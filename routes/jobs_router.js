@@ -6,7 +6,7 @@ module.exports = (knex) => {
 			
 	})
 
-	router.get('/jobs:id', (req, res) => {
+	router.get('/jobs/:id', (req, res) => {
 			
 	})
 
@@ -14,7 +14,7 @@ module.exports = (knex) => {
 			
 	})
 
-	router.post('/jobs:id', (req, res) => {
+	router.post('/jobs/:id', (req, res) => {
 			
 	})
 	return router
