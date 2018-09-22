@@ -3,15 +3,15 @@ const companiesRouter = express.Router();
 
 module.exports = (knex) => {
   companiesRouter
-    .get('/company/:id', (req, res) => {
+    .get('/companies/:id', (req, res) => {
 
     })
     
-    .post('/company/:id', (req, res) => {
+    .post('/companies/:id', (req, res) => {
 
     })
     
-    .post('/company', (req, res) => {
+    .post('/companies', (req, res) => {
 
   });
 
