@@ -17,5 +17,5 @@ module.exports = (knex) => {
 	router.post('/jobs/:id', (req, res) => {
 			
 	})
-	return router
+	return router;
 }
