@@ -1,7 +1,7 @@
 // Require Express and set router
 
 const express = require('express');
-const usersRouter = new express.Router();
+const router  = express.Router();
 
 // Require bcrypt to hash passwords
 
@@ -9,45 +9,46 @@ const bcrypt = require('bcrypt');
 
 // Routes
 
-usersRouter
+module.exports = (knex) => {
 
   // Register and Login
 
-  .get('/register', (req, res) => {
+  router.get('/register', (req, res) => {
 
   })
 
-  .post('/register', (req, res) => {
+  router.post('/register', (req, res) => {
 
   })
 
-  .get('/login', (req, res) => {
+  router.get('/login', (req, res) => {
 
   })
 
-  .post('/login', (req, res) => {
+  router.post('/login', (req, res) => {
 
   })
 
   // Edit profile
 
-  .post('/users/:id' (req, res) => {
+  router.post('/users/:id', (req, res) => {
 
   })
 
-  .post("/logout", (req, res) => {
+  router.post("/logout", (req, res) => {
 
   })
 
   // Users
 
-  .get('/users', (req, res) => {
+  router.get('/users', (req, res) => {
 
   })
 
-  .get('/users/:id', (req, res) => {
+  router.get('/users/:id', (req, res) => {
 
   })
 
+  return router;
 
-module.exports = usersRouter;
+}
