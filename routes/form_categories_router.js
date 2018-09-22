@@ -1,5 +1,5 @@
-var express = require('express');
-var formCategoriesRouter = express.Router();
+const express = require('express');
+const formCategoriesRouter = express.Router();
 
 formCategoriesRouter
   .get('/form_categories', (req, res) => {
