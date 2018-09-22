@@ -6,7 +6,7 @@ module.exports = (knex) => {
 			
 	})
 
-	router.get('/submitted_forms:id', (req, res) => {
+	router.get('/submitted_forms/:id', (req, res) => {
 			
 	})
 
@@ -14,7 +14,7 @@ module.exports = (knex) => {
 			
 	})
 
-	router.post('/submitted_forms:id', (req, res) => {
+	router.post('/submitted_forms/:id', (req, res) => {
 			
 	});
 
