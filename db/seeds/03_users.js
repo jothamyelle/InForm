@@ -14,8 +14,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Mon Jun 04 2018 03:30:00 GMT-0700 (PDT)"),
-          date_updated: new Date("Wed Aug 14 2019 23:52:09 GMT-0700 (PDT)")
+          date_created: new Date("Mon Jun 04 2018 03:30:00 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Wed Aug 14 2019 23:52:09 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Hulda",
@@ -27,8 +27,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sun Jun 24 2018 15:20:45 GMT-0700 (PDT)"),
-          date_updated: new Date("Mon Mar 18 2019 05:21:06 GMT-0700 (PDT)")
+          date_created: new Date("Sun Jun 24 2018 15:20:45 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Mon Mar 18 2019 05:21:06 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Audie",
@@ -40,8 +40,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sat Dec 02 2017 03:51:39 GMT-0800 (PST)"),
-          date_updated: new Date("Tue May 14 2019 06:03:38 GMT-0700 (PDT)")
+          date_created: new Date("Sat Dec 02 2017 03:51:39 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Tue May 14 2019 06:03:38 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Suzanne",
@@ -53,8 +53,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sun Feb 04 2018 13:01:47 GMT-0800 (PST)"),
-          date_updated: new Date("Sat May 18 2019 15:37:28 GMT-0700 (PDT)")
+          date_created: new Date("Sun Feb 04 2018 13:01:47 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Sat May 18 2019 15:37:28 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Corene",
@@ -66,8 +66,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sat Dec 02 2017 21:07:33 GMT-0800 (PST)"),
-          date_updated: new Date("Sun Oct 21 2018 21:54:32 GMT-0700 (PDT)")
+          date_created: new Date("Sat Dec 02 2017 21:07:33 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Sun Oct 21 2018 21:54:32 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Nash",
@@ -79,8 +79,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sat Sep 01 2018 09:20:09 GMT-0700 (PDT)"),
-          date_updated: new Date("Tue Sep 03 2019 11:05:45 GMT-0700 (PDT)")
+          date_created: new Date("Sat Sep 01 2018 09:20:09 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Tue Sep 03 2019 11:05:45 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Alexa",
@@ -92,8 +92,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Tue Jan 23 2018 19:19:56 GMT-0800 (PST)"),
-          date_updated: new Date("Sat Oct 27 2018 05:17:57 GMT-0700 (PDT)")
+          date_created: new Date("Tue Jan 23 2018 19:19:56 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Sat Oct 27 2018 05:17:57 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Mckenna",
@@ -105,8 +105,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Tue Mar 13 2018 11:33:03 GMT-0700 (PDT)"),
-          date_updated: new Date("Fri Feb 22 2019 07:36:54 GMT-0800 (PST)")
+          date_created: new Date("Tue Mar 13 2018 11:33:03 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Fri Feb 22 2019 07:36:54 GMT-0800 (PST)").toISOString()
         },
         {
           first_name: "Rashad",
@@ -118,8 +118,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Wed Jul 18 2018 23:42:26 GMT-0700 (PDT)"),
-          date_updated: new Date("Tue Nov 27 2018 13:59:30 GMT-0800 (PST)")
+          date_created: new Date("Wed Jul 18 2018 23:42:26 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Tue Nov 27 2018 13:59:30 GMT-0800 (PST)").toISOString()
         },
         {
           first_name: "Merl",
@@ -131,8 +131,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Thu Dec 28 2017 02:58:44 GMT-0800 (PST)"),
-          date_updated: new Date("Fri Mar 01 2019 18:36:23 GMT-0800 (PST)")
+          date_created: new Date("Thu Dec 28 2017 02:58:44 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Fri Mar 01 2019 18:36:23 GMT-0800 (PST)").toISOString()
         },
         {
           first_name: "Brenda",
@@ -144,8 +144,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Fri Jan 12 2018 18:01:44 GMT-0800 (PST)"),
-          date_updated: new Date("Wed Oct 24 2018 21:03:18 GMT-0700 (PDT)")
+          date_created: new Date("Fri Jan 12 2018 18:01:44 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Wed Oct 24 2018 21:03:18 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Lysanne",
@@ -157,8 +157,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sat Jan 27 2018 09:06:17 GMT-0800 (PST)"),
-          date_updated: new Date("Wed Feb 20 2019 00:58:06 GMT-0800 (PST)")
+          date_created: new Date("Sat Jan 27 2018 09:06:17 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Wed Feb 20 2019 00:58:06 GMT-0800 (PST)").toISOString()
         },
         {
           first_name: "Roslyn",
@@ -170,8 +170,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sat Jul 14 2018 08:53:47 GMT-0700 (PDT)"),
-          date_updated: new Date("Sun Nov 25 2018 18:58:33 GMT-0800 (PST)")
+          date_created: new Date("Sat Jul 14 2018 08:53:47 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Sun Nov 25 2018 18:58:33 GMT-0800 (PST)").toISOString()
         },
         {
           first_name: "Dion",
@@ -183,8 +183,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Thu Aug 23 2018 13:27:58 GMT-0700 (PDT)"),
-          date_updated: new Date("Sat Oct 13 2018 00:26:07 GMT-0700 (PDT)")
+          date_created: new Date("Thu Aug 23 2018 13:27:58 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Sat Oct 13 2018 00:26:07 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Arnulfo",
@@ -196,8 +196,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Wed Aug 22 2018 04:40:29 GMT-0700 (PDT)"),
-          date_updated: new Date("Sun Oct 21 2018 02:14:35 GMT-0700 (PDT)")
+          date_created: new Date("Wed Aug 22 2018 04:40:29 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Sun Oct 21 2018 02:14:35 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Dusty",
@@ -209,8 +209,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Fri Jul 20 2018 21:40:38 GMT-0700 (PDT)"),
-          date_updated: new Date("Sun Jun 16 2019 05:13:48 GMT-0700 (PDT)")
+          date_created: new Date("Fri Jul 20 2018 21:40:38 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Sun Jun 16 2019 05:13:48 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Viviane",
@@ -222,8 +222,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Thu Dec 07 2017 02:18:09 GMT-0800 (PST)"),
-          date_updated: new Date("Fri Oct 12 2018 17:00:15 GMT-0700 (PDT)")
+          date_created: new Date("Thu Dec 07 2017 02:18:09 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Fri Oct 12 2018 17:00:15 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Josiane",
@@ -235,8 +235,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Mon Jan 15 2018 16:19:45 GMT-0800 (PST)"),
-          date_updated: new Date("Fri Nov 02 2018 11:55:54 GMT-0700 (PDT)")
+          date_created: new Date("Mon Jan 15 2018 16:19:45 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Fri Nov 02 2018 11:55:54 GMT-0700 (PDT)").toISOString()
         },
         {
           first_name: "Isai",
@@ -248,8 +248,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Sun Jul 22 2018 13:47:09 GMT-0700 (PDT)"),
-          date_updated: new Date("Sun Feb 17 2019 22:52:42 GMT-0800 (PST)")
+          date_created: new Date("Sun Jul 22 2018 13:47:09 GMT-0700 (PDT)").toISOString(),
+          date_updated: new Date("Sun Feb 17 2019 22:52:42 GMT-0800 (PST)").toISOString()
         },
         {
           first_name: "Carter",
@@ -261,8 +261,8 @@ exports.seed = function(knex, Promise) {
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
           role_id: 1,
           company_id: 1,
-          date_created: new Date("Wed Feb 28 2018 18:40:10 GMT-0800 (PST)"),
-          date_updated: new Date("Tue Jan 01 2019 06:36:55 GMT-0800 (PST)")
+          date_created: new Date("Wed Feb 28 2018 18:40:10 GMT-0800 (PST)").toISOString(),
+          date_updated: new Date("Tue Jan 01 2019 06:36:55 GMT-0800 (PST)").toISOString()
         }
 
       ]);
