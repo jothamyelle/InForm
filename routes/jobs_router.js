@@ -1,21 +1,21 @@
 const express = require('express');
 const jobsRouter = new express.Router();
 
-jobsRouter
-	.get('/jobs', (req, res) => {
+module.exports = (knex) => {
+	jobsRouter.get('/jobs', (req, res) => {
 			
 	})
 
-	.get('/jobs:id', (req, res) => {
+	jobsRouter.get('/jobs:id', (req, res) => {
 			
 	})
 
-	.post('/jobs', (req, res) => {
+	jobsRouter.post('/jobs', (req, res) => {
 			
 	})
 
-	.post('/jobs:id', (req, res) => {
+	jobsRouter.post('/jobs:id', (req, res) => {
 			
 	})
-
-module.exports = jobsRouter;
+	return jobsRouter
+}
