@@ -1,21 +1,21 @@
 const express = require('express');
-const jobsRouter = new express.Router();
+const router = new express.Router();
 
 module.exports = (knex) => {
-	jobsRouter.get('/jobs', (req, res) => {
+	router.get('/jobs', (req, res) => {
 			
 	})
 
-	jobsRouter.get('/jobs:id', (req, res) => {
+	router.get('/jobs:id', (req, res) => {
 			
 	})
 
-	jobsRouter.post('/jobs', (req, res) => {
+	router.post('/jobs', (req, res) => {
 			
 	})
 
-	jobsRouter.post('/jobs:id', (req, res) => {
+	router.post('/jobs:id', (req, res) => {
 			
 	})
-	return jobsRouter
+	return router
 }
