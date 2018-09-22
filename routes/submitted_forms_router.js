@@ -1,5 +1,5 @@
 const express = require('express');
-const submittedFormsRouter = new express.Router();
+const router = new express.Router();
 
 module.exports = (knex) => {
 	router.get('/submitted_forms', (req, res) => {
@@ -18,5 +18,5 @@ module.exports = (knex) => {
 			
 	});
 
-	return router
+	return router;
 }
