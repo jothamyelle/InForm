@@ -1,5 +1,5 @@
-var express = require('express');
-var companiesRouter = express.Router();
+const express = require('express');
+const companiesRouter = express.Router();
 
 companiesRouter
   .get('/company/:id', (req, res) => {
