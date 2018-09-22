@@ -1,18 +1,22 @@
-var express = require('express');
-var companiesRouter = express.Router();
+const express = require('express');
+const companiesRouter = express.Router();
 
-companiesRouter
-  .get('/company/:id', (req, res) => {
+module.exports = (knex) => {
+  companiesRouter
+    .get('/company/:id', (req, res) => {
 
-  })
-  
-  .post('/company/:id', (req, res) => {
+    })
+    
+    .post('/company/:id', (req, res) => {
 
-  })
-  
-  .post('/company', (req, res) => {
+    })
+    
+    .post('/company', (req, res) => {
 
   });
 
-  module.exports = companiesRouter;
+  return companiesRouter;
+
+};
+
   
