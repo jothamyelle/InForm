@@ -1,7 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('hours', function (table) {
     table.increments();
-    table.integer('submitted_form_id').references('submitted_forms.id');
     table.integer('user_id').references('users.id');
     table.integer('minutes_worked');
     table.datetime('date_worked');
