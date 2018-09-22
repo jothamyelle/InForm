@@ -1,5 +1,3 @@
-// Require Express and set router
-
 const express = require('express');
 const jobsRouter = new express.Router();
 
