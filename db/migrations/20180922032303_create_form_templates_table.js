@@ -2,8 +2,8 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('form_templates', function (table) {
     table.increments();
     table.string('type');
-    table.integer('form_category_id').references('form_categories.id');
-    table.integer('company_id').references('companies.id');
+    table.integer('form_category_id').references('form_categories.id').onDelete("CASCADE");
+    table.integer('company_id').references('companies.id').onDelete("CASCADE");
     table.datetime('date_created');
     table.datetime('date_updated');
   });
