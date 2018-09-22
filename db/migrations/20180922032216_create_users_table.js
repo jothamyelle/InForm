@@ -8,8 +8,8 @@ exports.up = function(knex, Promise) {
     table.string('password_digest');
     table.string('address');
     table.string('image_url');
-    table.integer('role_id').references('user_roles.id');
-    table.integer('company_id').references('companies.id');
+    table.integer('role_id').references('user_roles.id').onDelete("CASCADE");
+    table.integer('company_id').references('companies.id').onDelete("CASCADE");
     table.boolean('active');
     table.datetime('date_created');
     table.datetime('date_updated');

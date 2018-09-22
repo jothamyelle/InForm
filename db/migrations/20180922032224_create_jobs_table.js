@@ -4,7 +4,6 @@ exports.up = function(knex, Promise) {
     table.string('name');
     table.string('address');
     table.integer('job_number');
-    table.string('email');
     table.boolean('active');
     table.integer('company_id').references('companies.id');
     table.datetime('date_created');
