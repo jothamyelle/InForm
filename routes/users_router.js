@@ -5,7 +5,7 @@ const router  = express.Router();
 
 // Require bcrypt to hash passwords
 
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 // Routes
 
