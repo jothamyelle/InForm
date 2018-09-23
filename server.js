@@ -16,10 +16,11 @@ app.use(knexLogger(knex));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Api endpoint that returns a list of items
-app.get('/api/getEmployees', (req,res) => {
-  var employeeList = ["John Smith", "Dave M", "Jamie D", "Ben D", "Jotham Y"];
-  res.json(employeeList);
-  console.log('Sent list of employees');
+app.get('/api/getUsers', (req,res) => {
+  dbHelpers.getUsers().then(function(result) {
+    res.json(result);
+    console.log('Sent list of Employees');
+  });
 });
 
 // Api endpoint that returns a list of jobs

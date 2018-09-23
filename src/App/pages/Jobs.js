@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AwesomeComponent from '../Spinner';
 
 class Jobs extends Component {
@@ -47,6 +47,11 @@ class Jobs extends Component {
     } else {
       return (
         <div className="App">
+          <Link to={'./'}>
+            <button variant="raised">
+              Home
+            </button>
+          </Link>
           <h1>List of Jobs</h1>
           {/* Check to see if any items are found*/}
           {list.length > 0 ? (
