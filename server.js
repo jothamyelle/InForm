@@ -12,10 +12,8 @@ const knex = require('knex')(knexConfig[ENV]);
 const dbHelpers = require('./helper_functions/db.js')
 
 app.use(knexLogger(knex));
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
 
-// Api endpoint that returns a list of items
+// Api endpoint that returns a list of users
 app.get('/api/getUsers', (req,res) => {
   dbHelpers.getUsers().then(function(result) {
     res.json(result);
@@ -29,11 +27,6 @@ app.get('/api/getJobs', (req,res) => {
     res.json(result);
     console.log('Sent list of Jobs');
   });
-});
-
-// Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 const port = process.env.PORT || 3005;
