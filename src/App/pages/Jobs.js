@@ -7,12 +7,12 @@ class Jobs extends Component {
   constructor(props){
     super(props);
     this.state = {
+      error: null,
       list: [],
       isLoading: false
     }
   }
 
-  // Fetch the list on first mount
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getList();
@@ -22,45 +22,60 @@ class Jobs extends Component {
   getList = () => {
     fetch('/api/getJobs')
     .then(res => res.json())
-    .then(list => this.setState({ list: list, isLoading: false }))
+    .then(
+      (result) => {
+        this.setState({
+          isLoading: false,
+          list: result
+        });
+      },
+      (error) => {
+        this.setState({
+          isLoading: false,
+          error
+        });
+      }
+    )
   }
 
   render() {
-    const { list, isLoading } = this.state;
-    if (isLoading) {
+    const { error, list, isLoading } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (isLoading) {
       return <AwesomeComponent />
+    } else {
+      return (
+        <div className="App">
+          <h1>List of Jobs</h1>
+          {/* Check to see if any items are found*/}
+          {list.length > 0 ? (
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Job Number</th>
+              </tr>
+              {/* Render the list of items */}
+              {list.map((item) => {
+                return (
+                  <tr>
+                    <td>{item.name}</td>
+                    <td>{item.address}</td>
+                    <td>{item.job_number}</td>
+                  </tr>
+                );
+              })}
+            </table>
+          ) : (
+            <div>
+              <h2>No List Items Found</h2>
+            </div>
+          )
+          }
+        </div>
+      )
     }
-    
-    return (
-      <div className="App">
-        <h1>List of Jobs</h1>
-        {/* Check to see if any items are found*/}
-        {list.length > 0 ? (
-          <table>
-          <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Job Number</th>
-          </tr>
-            {/* Render the list of items */}
-            {list.map((item) => {
-              return(
-                <tr>
-                  <td>{item.name}</td>
-                  <td>{item.address}</td>
-                  <td>{item.job_number}</td>
-                </tr>
-              );
-            })}
-          </table>
-        ) : (
-          <div>
-            <h2>No List Items Found</h2>
-          </div>
-        )
-      }
-      </div>
-    );
   }
 }
 

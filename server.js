@@ -25,7 +25,7 @@ function getJobs() {
 }
 
 app.get('/api/getJobs', (req,res) => {
-  var jobList = getJobs().then(function(result) {
+  getJobs().then(function(result) {
       res.json(result);
   console.log('Sent list of Jobs');
   });
