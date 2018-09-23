@@ -56,19 +56,23 @@ class User extends Component {
           {/* Check to see if any items are found*/}
           {list.length > 0 ? (
             <table>
-              <tr>
-                <th>First Name</th>
-                <th>Surname</th>
-                <th>Email</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Surname</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
               {/* Render the list of items */}
               {list.map((item) => {
                 return (
-                  <tr>
-                    <td>{item.first_name}</td>
-                    <td>{item.last_name}</td>
-                    <td>{item.email}</td>
-                  </tr>
+                  <tbody key={item.id}>
+                    <tr>
+                      <td>{item.first_name}</td>
+                      <td>{item.last_name}</td>
+                      <td>{item.email}</td>
+                    </tr>
+                  </tbody>
                 );
               })}
             </table>
