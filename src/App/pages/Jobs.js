@@ -56,19 +56,23 @@ class Jobs extends Component {
           {/* Check to see if any items are found*/}
           {list.length > 0 ? (
             <table>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Job Number</th>
-              </tr>
+            <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Job Number</th>
+                </tr>
+            </thead>
               {/* Render the list of items */}
               {list.map((item) => {
                 return (
-                  <tr>
-                    <td>{item.name}</td>
-                    <td>{item.address}</td>
-                    <td>{item.job_number}</td>
-                  </tr>
+                  <tbody key={item.id}>
+                    <tr>
+                      <td>{item.name}</td>
+                      <td>{item.address}</td>
+                      <td>{item.job_number}</td>
+                    </tr>
+                  </tbody>
                 );
               })}
             </table>
