@@ -17,7 +17,7 @@ app.get('/api/getEmployees', (req,res) => {
 });
 
 function getJobs() {
-    return knex.select('first_name').from('users')
+    return knex.select().from('jobs')
     .then(function(rows) {
         console.log('knex getJobs', rows);
         return rows;
@@ -27,7 +27,6 @@ function getJobs() {
 app.get('/api/getJobs', (req,res) => {
   var jobList = getJobs().then(function(result) {
       res.json(result);
-  console.log('jobList', jobList)
   console.log('Sent list of Jobs');
   });
 });

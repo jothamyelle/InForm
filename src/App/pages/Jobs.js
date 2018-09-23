@@ -36,16 +36,23 @@ class Jobs extends Component {
         <h1>List of Jobs</h1>
         {/* Check to see if any items are found*/}
         {list.length > 0 ? (
-          <div>
+          <table>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Job Number</th>
+          </tr>
             {/* Render the list of items */}
             {list.map((item) => {
               return(
-                <div>
-                  {item.first_name}
-                </div>
+                <tr>
+                  <td>{item.name}</td>
+                  <td>{item.address}</td>
+                  <td>{item.job_number}</td>
+                </tr>
               );
             })}
-          </div>
+          </table>
         ) : (
           <div>
             <h2>No List Items Found</h2>
