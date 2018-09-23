@@ -34,6 +34,11 @@ app.get("/poop", (req, res) => {
   res.send({express: 'Hello from Express'});
 });
 
+app.get("/", (req, res) => {
+  res.send({express: 'Hi'});
+});
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
