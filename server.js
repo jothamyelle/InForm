@@ -1,6 +1,9 @@
+const ENV = process.env.ENV || "development";
 const express = require('express');
 const path = require('path');
-
+const knexConfig = require('./knexfile');
+const knex = require('knex')(knexConfig[ENV]);
+const knexLogger = require('knex-logger');
 const app = express();
 
 // Serve the static files from the React app
@@ -13,10 +16,20 @@ app.get('/api/getEmployees', (req,res) => {
     console.log('Sent list of employees');
 });
 
+function getJobs() {
+    return knex.select('first_name').from('users')
+    .then(function(rows) {
+        console.log('knex getJobs', rows);
+        return rows;
+    });
+}
+
 app.get('/api/getJobs', (req,res) => {
-  var jobList = ["Job 1", "Job 2", "Job 3", "Job 4", "Job 5"];
-  res.json(jobList);
+  var jobList = getJobs().then(function(result) {
+      res.json(result);
+  console.log('jobList', jobList)
   console.log('Sent list of Jobs');
+  });
 });
 
 // Handles any requests that don't match the ones above

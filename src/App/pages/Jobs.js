@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AwesomeComponent from '../Spinner';
 
 class Jobs extends Component {
   // Initialize the state
   constructor(props){
     super(props);
     this.state = {
-      list: []
+      list: [],
+      isLoading: false
     }
   }
 
   // Fetch the list on first mount
   componentDidMount() {
+    this.setState({ isLoading: true });
     this.getList();
   }
 
@@ -18,12 +22,15 @@ class Jobs extends Component {
   getList = () => {
     fetch('/api/getJobs')
     .then(res => res.json())
-    .then(list => this.setState({ list }))
+    .then(list => this.setState({ list: list, isLoading: false }))
   }
 
   render() {
-    const { list } = this.state;
-
+    const { list, isLoading } = this.state;
+    if (isLoading) {
+      return <AwesomeComponent />
+    }
+    
     return (
       <div className="App">
         <h1>List of Jobs</h1>
@@ -34,7 +41,7 @@ class Jobs extends Component {
             {list.map((item) => {
               return(
                 <div>
-                  {item}
+                  {item.first_name}
                 </div>
               );
             })}

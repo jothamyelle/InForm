@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import AwesomeComponent from '../Spinner';
 
 
 class List extends Component {
@@ -27,8 +28,19 @@ class List extends Component {
 
   render() {
     const { list, isLoading } = this.state;
+
+    const divStyle = {
+      'text-align': 'center',
+      width: '100%',
+      margin: 'auto',
+    };
+
     if (isLoading) {
-      return <p>Loading ...</p>;
+      return (
+        <div className="App">
+          <div style={divStyle}><AwesomeComponent /></div>
+        </div>
+      )
     }
     return (
       <div className="App">
