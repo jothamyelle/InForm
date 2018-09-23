@@ -18,4 +18,14 @@ function getJobs() {
   });
 }
 
-exports.getJobs = getJobs
+function getUsers() {
+  return knex.select().from('users')
+  .then(function(rows) {
+      console.log('Knex employee query', rows);
+      return rows;
+  });
+}
+
+exports.getJobs = getJobs;
+exports.getUsers = getUsers;
+
