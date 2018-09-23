@@ -4,8 +4,10 @@ import './App.css';
 import Home from './pages/Home';
 import List from './pages/List';
 import Jobs from './pages/Jobs';
+import NoMatch from './pages/404';
 
 class App extends Component {
+
   render() {
     const App = () => (
       <div>
@@ -13,6 +15,7 @@ class App extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/list' component={List}/>
           <Route path='/jobs' component={Jobs}/>
+          <Route component={NoMatch}/>
         </Switch>
       </div>
     )
