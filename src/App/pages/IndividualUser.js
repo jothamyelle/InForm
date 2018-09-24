@@ -9,10 +9,10 @@ class IndividualUser extends Component {
     const { user } = this.props;
     
     return (
-      <figure key={user.id} className='employee'>
-          <img src={user.image_url} alt='silhouette' />
-          <figcaption>{user.first_name} {user.last_name}</figcaption>
-      </figure>
+        <figure key={user.id} className='employee'>
+            <img src={user.image_url} alt='silhouette' />
+            <figcaption>{user.first_name} {user.last_name}</figcaption>
+        </figure>
     )
   }
 }

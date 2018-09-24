@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
+import AwesomeComponent from '../../Spinner';
+
 
 class UserProfile extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      isLoading: true,
+      user: null
+    }
+  }
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    this.getUserById(this.props.match.params.id);
+  }
+
+  getUserById = (id) => {
+    fetch(`/api/getUser/${id}`)
+    .then((res) => res.json())
+    .then((result) => {
+      this.setState({
+        user: result,
+        isLoading: false
+      })
+      console.log(result)
+      console.log(this.state)
+    })
   }
 
   render() {
-    const id = this.props.match.params.id
-    
-    return (
-      <div class="employeeContainer">
-				<h2>{id}</h2>
-					<img src='https://image.shutterstock.com/image-vector/male-avatar-profile-picture-vector-450w-149083895.jpg' alt='silhouette' />
-			</div>
+    if (this.state.isLoading) {
+      return <AwesomeComponent />
+    } else {
+      return (
+        <div className="employeeContainer">
+        <p>{this.state.user[0].email}</p>
+        </div>
     )
+  } 
   }
 }
 
