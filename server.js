@@ -55,7 +55,6 @@ app.get('/api/getJobs', (req,res) => {
 
 app.get('/api/getUserSubmittedFormsById/:id', (req,res) => {
   dbHelpers.getUserSubmittedFormsById(req.params.id).then(function(result) {
-    console.log('RESULT',result)
     res.json(result);
     console.log('Sent list of User\'s Submitted Forms');
   });

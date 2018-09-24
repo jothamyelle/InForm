@@ -54,6 +54,7 @@ function getUserRoles() {
   });
 }
 
+//Function to return all the information needed to render data on Employee Profile Page
 function getUserSubmittedFormsById(id) {
 	return knex.select('form_templates.type', 'form_templates.form_category_id', 'form_templates.company_id',
 		'submitted_forms.date_created','form_categories.name', 'submitted_forms.id')
@@ -66,17 +67,6 @@ function getUserSubmittedFormsById(id) {
 				return rows;
 	})
 }
-
-function getFormCategoryById(id) {
-	return knex.select('name')
-		.from('form_categories')
-		.where({'id': id})
-		.then(function(rows) {
-			console.log('Knex user role query', rows);
-			return rows;
-		})
-}
-
 
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;

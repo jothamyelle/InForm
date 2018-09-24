@@ -39,7 +39,6 @@ class UserProfile extends Component {
       return <LoadingSpinner />
     } else {
 			const uniqueFormCategories = [...new Set(this.state.forms.map(form => form.name))]
-			console.log("UFC", uniqueFormCategories)
       const { email, first_name, last_name, image_url, phone_number, address, role_id } = this.state.user[0]
 
       return (
