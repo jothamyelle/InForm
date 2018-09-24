@@ -56,7 +56,7 @@ function getUserRoles() {
 
 function getUserSubmittedFormsById(id) {
 	return knex.select('form_templates.type', 'form_templates.form_category_id', 'form_templates.company_id',
-		'submitted_forms.date_created','form_categories.name')
+		'submitted_forms.date_created','form_categories.name', 'submitted_forms.id')
 		.from('form_templates')
 		.join('submitted_forms', {'submitted_forms.form_template_id': 'form_templates.id'})
 		.join('form_categories', {'form_categories.id': 'form_templates.form_category_id'})

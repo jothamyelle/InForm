@@ -38,6 +38,8 @@ class UserProfile extends Component {
     if (this.state.isLoading) {
       return <LoadingSpinner />
     } else {
+			const uniqueFormCategories = [...new Set(this.state.forms.map(form => form.name))]
+			console.log("UFC", uniqueFormCategories)
       const { email, first_name, last_name, image_url, phone_number, address, role_id } = this.state.user[0]
 
       return (
@@ -67,60 +69,39 @@ class UserProfile extends Component {
           </tbody>
 				</table>
         </div>
-        <div class="formContainer">
-				<h2>Training/Certs (3)</h2>
-				<table>
-          <thead>
-						<tr>
-							<th>Name</th>
-							<th>Expiration Date</th>
-							<th>View Document</th>
-						</tr>
-          </thead>
-          <tbody>
-						<tr>
-							<td>{this.state.forms[0].id}</td>
-							<td>03/20/2018</td>
-							<td><button>view</button></td>
-						</tr>
-						<tr>
-							<td>Driving</td>
-							<td>11/03/2019</td>
-							<td><button>view</button></td>
-						</tr>
-						<tr>
-							<td>Forklift</td>
-							<td>01/31/2019</td>
-							<td><button>view</button></td>
-						</tr>
-          </tbody>
-					</table>
-        </div>
-        <div class="formContainer">
+        <div className="formContainer">
 				<h2>Submitted Forms ({this.state.forms.length})</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Form Type</th>
-							<th>Date Submitted</th>
-							<th>View</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.state.forms.map((form) => {
-							return (
-								<tr>
-									<td>{form.type}</td>
-									<td>{form.date_created}</td>
-									<td><button>view</button></td>
-							</tr>
-							)
-						})}
-					</tbody>
-				</table>
+				{uniqueFormCategories.map((category) => {
+					return (
+						<div key={category}>
+							<h3>{category}</h3>
+								<table>
+									<thead>
+										<tr>
+											<th>Form Type</th>
+											<th>Date Submitted</th>
+											<th>View</th>
+										</tr>
+									</thead>
+									{this.state.forms.map((form) => {
+										if(form.name === category){
+											return (
+												<tbody key={form.id}>
+													<tr>
+														<td>{form.type}</td>
+														<td>{(form.date_created)}</td>
+														<td><button>view</button></td>
+													</tr>
+												</tbody>
+											)
+										}
+										})}
+								</table>
+						</div>
+					)
+				})}
 			</div>
     </div>
-
     )
   } 
   }
