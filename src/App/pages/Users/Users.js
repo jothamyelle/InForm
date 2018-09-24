@@ -56,13 +56,13 @@ class User extends Component {
           <div>
             {userRolesList.map((role) =>  {
               return (
-                <div>
+                <div key={role.id}>
                   <h2>{role.role}</h2>
-                  <div className="employeeContainer">
+                  <div className={userStyles.employeeContainer}>
                   {usersList.map((user) => {
                     if (user.role_id === role.id) {
                       return (
-                        <IndividualUser user={user}/>
+                        <IndividualUser user={user} key={user.id}/>
                       );
                     }
                   })}
