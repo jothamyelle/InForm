@@ -21,6 +21,13 @@ app.get('/api/getUsers', (req,res) => {
   });
 });
 
+app.get('/api/getUserRoles', (req,res) => {
+  dbHelpers.getUserRoles().then(function(result) {
+    res.json(result);
+    console.log('Sent list of user roles');
+  });
+});
+
 // Api endpoint that returns a list of jobs
 app.get('/api/getJobs', (req,res) => {
   dbHelpers.getJobs().then(function(result) {

@@ -26,6 +26,15 @@ function getUsers() {
   });
 }
 
+function getUserRoles() {
+  return knex.select().from('user_roles')
+  .then(function(rows) {
+      console.log('Knex user roles query', rows);
+      return rows;
+  });
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
+exports.getUserRoles = getUserRoles;
 
