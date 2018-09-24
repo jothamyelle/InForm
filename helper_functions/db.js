@@ -36,6 +36,16 @@ function getUserById(id) {
     });
 }
 
+function getUserRoleById(id) {
+  return knex.select()
+    .from('user_roles')
+    .where( {id: id} )
+    .then(function(rows) {
+        console.log('Knex user role query', rows);
+        return rows;
+    });
+}
+
 function getUserRoles() {
   return knex.select().from('user_roles')
   .then(function(rows) {
@@ -48,4 +58,5 @@ exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
 exports.getUserById = getUserById;
+exports.getUserRoleById = getUserRoleById;
 

@@ -7,24 +7,27 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      user: null
+      user: null,
+      roles: null
     }
   }
   componentDidMount() {
     this.setState({ isLoading: true });
-    this.getUserById(this.props.match.params.id);
+    this.getUserAndRoleById(this.props.match.params.id);
   }
 
-  getUserById = (id) => {
-    fetch(`/api/getUser/${id}`)
-    .then((res) => res.json())
-    .then((result) => {
+  getUserAndRoleById = (id) => {
+    Promise.all([
+      fetch(`/api/getUser/${id}`),
+      fetch(`/api/getUserRoles`)
+    ])
+    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+    .then(([user, roles]) => {
       this.setState({
-        user: result,
+        user: user,
+        roles: roles,
         isLoading: false
       })
-      console.log(result)
-      console.log(this.state)
     })
   }
 
@@ -32,7 +35,7 @@ class UserProfile extends Component {
     if (this.state.isLoading) {
       return <LoadingSpinner />
     } else {
-      const { email, first_name, last_name, image_url, phone_number, address } = this.state.user[0]
+      const { email, first_name, last_name, image_url, phone_number, address, role_id } = this.state.user[0]
 
       return (
         <div>
@@ -56,7 +59,7 @@ class UserProfile extends Component {
 						<td>{email}</td>
 						<td>{phone_number}</td>
 						<td>{address}</td>
-						<td>ROLE</td>
+						<td>{(this.state.roles.find(id => role_id)).role}</td>
 					</tr>
           </tbody>
 				</table>

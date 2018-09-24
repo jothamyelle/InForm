@@ -33,7 +33,15 @@ app.get('/api/getUserRoles', (req,res) => {
 app.get('/api/getUser/:id', (req,res) => {
   dbHelpers.getUserById(req.params.id).then(function(result) {
     res.json(result);
-    console.log('Sent list of user roles');
+    console.log('Sent user');
+  });
+});
+
+// Returns user role
+app.get('/api/getUserRole/:id', (req,res) => {
+  dbHelpers.getUserRoleById(req.params.id).then(function(result) {
+    res.json(result);
+    console.log('Sent user role');
   });
 });
 
