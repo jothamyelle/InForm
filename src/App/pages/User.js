@@ -4,12 +4,11 @@ import AwesomeComponent from '../Spinner';
 import UserRoles from './UserRoles';
 
 class User extends Component {
-  // Initialize the state
   constructor(props){
     super(props);
     this.state = {
       error: null,
-      users: [],
+      usersList: [],
       userRolesList: [],
       isLoading: false
     }
@@ -28,15 +27,26 @@ class User extends Component {
     .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
     .then(([users, userRoles]) => {
       this.setState({
-        users: users,
+        usersList: users,
         userRolesList: userRoles,
         isLoading: false
       })
     })
   }
 
+    getUserRole(user) {
+      this.state.userRolesList.forEach(function(item) {
+        if (item.id === user.role_id) {
+          return (
+            <p>{item.role}</p>
+          )
+        }
+      })
+    }
+
   render() {
-    const { error, users, isLoading } = this.state;
+    const { error, usersList, isLoading, userRolesList } = this.state;
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (isLoading) {
@@ -50,26 +60,26 @@ class User extends Component {
             </button>
           </Link>
           <UserRoles userRolesList={this.state.userRolesList}/>
-          <h1>List of Users</h1>
+          <h1>Employees</h1>
           {/* Check to see if any items are found*/}
-          {users.length > 0 ? (
-           <div>
-              {/* Render the list of items */}
-              {users.map((item) => {
-                return (
-                  <div key={item.id} className="employeeContainer">
-                    <h2>ROLE</h2>
-                    <figure>
-                        <img  src='{item.image_url}' alt='silhouette' />
-                        <figcaption>{item.first_name} {item.last_name}</figcaption>
-                    </figure>
-                  </div>
-                );
-              })}
-            </div>
+          {usersList.length > 0 ? (
+          <div>
+            {/* Render the list of items */}
+            {usersList.map((user) => {
+              return (
+                <div key={user.id} className="employeeContainer">
+                <p>{(userRolesList.find(item => item.id === user.role_id)).role}</p>
+                  <figure>
+                      <img src={user.image_url} alt='silhouette' />
+                      <figcaption>{user.first_name} {user.last_name}</figcaption>
+                  </figure>
+                </div>
+              );
+            })}
+          </div>
           ) : (
             <div>
-              <h2>No List Items Found</h2>
+              <h2>No Employees Found</h2>
             </div>
           )
           }

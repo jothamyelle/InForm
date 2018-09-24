@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import AwesomeComponent from '../Spinner';
 
 class UserRoles extends Component {
-  // Initialize the state
   constructor(props){
     super(props);
   }
 
   render() { 
-    const { error, userRolesList} = this.props;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else {
+    const { userRolesList } = this.props;
       return (
         <div>
           <div className="filters">
@@ -38,7 +33,6 @@ class UserRoles extends Component {
       )
     }
   }
-}
 
 
 export default UserRoles
