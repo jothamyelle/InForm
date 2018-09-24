@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class IndividualUser extends Component {
 
@@ -7,7 +8,7 @@ class IndividualUser extends Component {
     
     return (
         <figure key={user.id} className='employee'>
-            <img src={user.image_url} alt='silhouette' />
+            <Link to={`/users/${user.id}`}><img src={user.image_url} alt='silhouette' /></Link>
             <figcaption>{user.first_name} {user.last_name}</figcaption>
         </figure>
     )
