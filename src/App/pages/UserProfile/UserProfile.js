@@ -8,7 +8,8 @@ class UserProfile extends Component {
     this.state = {
       isLoading: true,
       user: null,
-      roles: null
+			roles: null,
+			forms: null
     }
   }
   componentDidMount() {
@@ -19,13 +20,15 @@ class UserProfile extends Component {
   getUserAndRoleById = (id) => {
     Promise.all([
       fetch(`/api/getUser/${id}`),
-      fetch(`/api/getUserRoles`)
+			fetch(`/api/getUserRoles`),
+			fetch(`/api/getUserSubmittedFormsById/${id}`)
     ])
-    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-    .then(([user, roles]) => {
+    .then(([res1, res2, res3]) => Promise.all([res1.json(), res2.json(), res3.json()]))
+    .then(([user, roles, forms]) => {
       this.setState({
         user: user,
-        roles: roles,
+				roles: roles,
+				forms: forms,
         isLoading: false
       })
     })
@@ -76,7 +79,7 @@ class UserProfile extends Component {
           </thead>
           <tbody>
 						<tr>
-							<td>Hearing</td>
+							<td>{this.state.forms[0].id}</td>
 							<td>03/20/2018</td>
 							<td><button>view</button></td>
 						</tr>
@@ -94,41 +97,29 @@ class UserProfile extends Component {
 					</table>
         </div>
         <div class="formContainer">
-				<h2>Submitted Forms (5)</h2>
+				<h2>Submitted Forms ({this.state.forms.length})</h2>
 				<table>
-					<tr>
-						<th>Form Name</th>
-						<th>Date Submitted</th>
-						<th>View</th>
-					</tr>
-					<tr>
-						<td>Form 1</td>
-						<td>Sep 22 2018</td>
-						<td><button>view</button></td>
-					</tr>
-					<tr>
-						<td>Form 2</td>
-						<td>Sep 22 2018</td>
-						<td><button>view</button></td>
-					</tr>
-					<tr>
-						<td>Form 3</td>
-						<td>Sep 22 2018</td>
-						<td><button>view</button></td>
-					</tr>
-					<tr>
-						<td>Form 4</td>
-						<td>Sep 22 2018</td>
-						<td><button>view</button></td>
-					</tr>
-					<tr>
-						<td>Form 5</td>
-						<td>Sep 22 2018</td>
-						<td><button>view</button></td>
-					</tr>
+					<thead>
+						<tr>
+							<th>Form Type</th>
+							<th>Date Submitted</th>
+							<th>View</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.forms.map((form) => {
+							return (
+								<tr>
+									<td>{form.type}</td>
+									<td>{form.date_created}</td>
+									<td><button>view</button></td>
+							</tr>
+							)
+						})}
+					</tbody>
 				</table>
 			</div>
-        </div>
+    </div>
 
     )
   } 
