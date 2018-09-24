@@ -21,10 +21,27 @@ app.get('/api/getUsers', (req,res) => {
   });
 });
 
+// Return user roles
 app.get('/api/getUserRoles', (req,res) => {
   dbHelpers.getUserRoles().then(function(result) {
     res.json(result);
     console.log('Sent list of user roles');
+  });
+});
+
+// Returns user by id
+app.get('/api/getUser/:id', (req,res) => {
+  dbHelpers.getUserById(req.params.id).then(function(result) {
+    res.json(result);
+    console.log('Sent user');
+  });
+});
+
+// Returns user role
+app.get('/api/getUserRole/:id', (req,res) => {
+  dbHelpers.getUserRoleById(req.params.id).then(function(result) {
+    res.json(result);
+    console.log('Sent user role');
   });
 });
 

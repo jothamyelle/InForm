@@ -26,6 +26,26 @@ function getUsers() {
   });
 }
 
+function getUserById(id) {
+  return knex.select()
+    .from('users')
+    .where( {id: id} )
+    .then(function(rows) {
+        console.log('Knex user profile query', rows);
+        return rows;
+    });
+}
+
+function getUserRoleById(id) {
+  return knex.select()
+    .from('user_roles')
+    .where( {id: id} )
+    .then(function(rows) {
+        console.log('Knex user role query', rows);
+        return rows;
+    });
+}
+
 function getUserRoles() {
   return knex.select().from('user_roles')
   .then(function(rows) {
@@ -37,4 +57,6 @@ function getUserRoles() {
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
+exports.getUserById = getUserById;
+exports.getUserRoleById = getUserRoleById;
 

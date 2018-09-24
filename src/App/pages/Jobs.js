@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AwesomeComponent from '../Spinner';
+import LoadingSpinner from '../Spinner';
 
 class Jobs extends Component {
   // Initialize the state
@@ -43,7 +43,7 @@ class Jobs extends Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (isLoading) {
-      return <AwesomeComponent />
+      return <LoadingSpinner />
     } else {
       return (
         <div className="App">
