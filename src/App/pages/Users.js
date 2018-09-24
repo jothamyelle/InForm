@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AwesomeComponent from '../Spinner';
 import UserRoles from './UserRoles';
+import IndividualUser from './IndividualUser';
 
 class User extends Component {
   constructor(props){
@@ -61,28 +62,23 @@ class User extends Component {
           </Link>
           <UserRoles userRolesList={this.state.userRolesList}/>
           <h1>Employees</h1>
-          {/* Check to see if any items are found*/}
-          {usersList.length > 0 ? (
           <div>
-            {/* Render the list of items */}
-            {usersList.map((user) => {
+            {userRolesList.map((role) =>  {
               return (
-                <div key={user.id} className="employeeContainer">
-                <p>{(userRolesList.find(item => item.id === user.role_id)).role}</p>
-                  <figure>
-                      <img src={user.image_url} alt='silhouette' />
-                      <figcaption>{user.first_name} {user.last_name}</figcaption>
-                  </figure>
+                <div>
+                  <h2>{role.role}</h2>
+                  {usersList.map((user) => {
+                    if (user.role_id === role.id) {
+                      return (
+                        <IndividualUser user={user}/>
+                      );
+                    }
+                  })}
                 </div>
-              );
-            })}
+              )
+            })
+            }
           </div>
-          ) : (
-            <div>
-              <h2>No Employees Found</h2>
-            </div>
-          )
-          }
         </div>
       )
     }
