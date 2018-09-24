@@ -53,6 +53,13 @@ app.get('/api/getJobs', (req,res) => {
   });
 });
 
+app.get('/api/getUserSubmittedFormsById/:id', (req,res) => {
+  dbHelpers.getUserSubmittedFormsById(req.params.id).then(function(result) {
+    res.json(result);
+    console.log('Sent list of User\'s Submitted Forms');
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 
