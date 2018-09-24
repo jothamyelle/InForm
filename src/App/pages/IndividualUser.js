@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class IndividualUser extends Component {
-  constructor(props){
-    super(props);
-  }
 
   render() {
     const { user } = this.props;

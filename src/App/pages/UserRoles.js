@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class UserRoles extends Component {
-  constructor(props){
-    super(props);
-  }
 
   render() { 
     const { userRolesList } = this.props;

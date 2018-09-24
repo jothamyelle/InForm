@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AwesomeComponent from '../../Spinner';
+import LoadingSpinner from '../../Spinner';
 import UserRoles from '../UserRoles';
 import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';
@@ -42,7 +42,7 @@ class User extends Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (isLoading) {
-      return <AwesomeComponent />
+      return <LoadingSpinner />
     } else {
       return (
         <div className="App">
