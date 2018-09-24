@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AwesomeComponent from '../Spinner';
-import UserRoles from './UserRoles';
-import IndividualUser from './IndividualUser';
+import AwesomeComponent from '../../Spinner';
+import UserRoles from '../UserRoles';
+import IndividualUser from '../IndividualUser';
+import userStyles from './userStyles.css';
 
 class User extends Component {
   constructor(props){
@@ -35,16 +36,6 @@ class User extends Component {
     })
   }
 
-    getUserRole(user) {
-      this.state.userRolesList.forEach(function(item) {
-        if (item.id === user.role_id) {
-          return (
-            <p>{item.role}</p>
-          )
-        }
-      })
-    }
-
   render() {
     const { error, usersList, isLoading, userRolesList } = this.state;
 
@@ -67,6 +58,7 @@ class User extends Component {
               return (
                 <div>
                   <h2>{role.role}</h2>
+                  <div className="employeeContainer">
                   {usersList.map((user) => {
                     if (user.role_id === role.id) {
                       return (
@@ -74,6 +66,7 @@ class User extends Component {
                       );
                     }
                   })}
+                  </div>
                 </div>
               )
             })

@@ -1,0 +1,4 @@
+.employeeContainer {
+  display:flex;
+  flex-wrap: wrap;
+}
