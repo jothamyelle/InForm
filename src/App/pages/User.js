@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AwesomeComponent from '../Spinner';
+import UserRoles from './UserRoles';
 
 class User extends Component {
   // Initialize the state
@@ -8,38 +9,34 @@ class User extends Component {
     super(props);
     this.state = {
       error: null,
-      list: [],
+      users: [],
+      userRolesList: [],
       isLoading: false
     }
   }
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    this.getList();
+    this.getUserRolesAndUsers();
   }
 
-  // Retrieves the list of items from the Express app
-  getList = () => {
-    fetch('/api/getUsers')
-    .then(res => res.json())
-    .then(
-      (result) => {
-        this.setState({
-          isLoading: false,
-          list: result
-        });
-      },
-      (error) => {
-        this.setState({
-          isLoading: false,
-          error
-        });
-      }
-    )
+  getUserRolesAndUsers = () => {
+    Promise.all([
+      fetch('/api/getUsers'),
+      fetch('/api/getUserRoles')
+    ])
+    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+    .then(([users, userRoles]) => {
+      this.setState({
+        users: users,
+        userRolesList: userRoles,
+        isLoading: false
+      })
+    })
   }
 
   render() {
-    const { error, list, isLoading } = this.state;
+    const { error, users, isLoading } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (isLoading) {
@@ -52,30 +49,24 @@ class User extends Component {
               Home
             </button>
           </Link>
+          <UserRoles userRolesList={this.state.userRolesList}/>
           <h1>List of Users</h1>
           {/* Check to see if any items are found*/}
-          {list.length > 0 ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Surname</th>
-                  <th>Email</th>
-                </tr>
-              </thead>
+          {users.length > 0 ? (
+           <div>
               {/* Render the list of items */}
-              {list.map((item) => {
+              {users.map((item) => {
                 return (
-                  <tbody key={item.id}>
-                    <tr>
-                      <td>{item.first_name}</td>
-                      <td>{item.last_name}</td>
-                      <td>{item.email}</td>
-                    </tr>
-                  </tbody>
+                  <div key={item.id} className="employeeContainer">
+                    <h2>ROLE</h2>
+                    <figure>
+                        <img  src='{item.image_url}' alt='silhouette' />
+                        <figcaption>{item.first_name} {item.last_name}</figcaption>
+                    </figure>
+                  </div>
                 );
               })}
-            </table>
+            </div>
           ) : (
             <div>
               <h2>No List Items Found</h2>
@@ -89,3 +80,4 @@ class User extends Component {
 }
 
 export default User;
+

@@ -27,7 +27,7 @@ function getUsers() {
 }
 
 function getUserRoles() {
-  return knex.select('role').from('user_roles')
+  return knex.select().from('user_roles')
   .then(function(rows) {
       console.log('Knex user roles query', rows);
       return rows;
