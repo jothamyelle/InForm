@@ -60,6 +60,13 @@ app.get('/api/getUserSubmittedFormsById/:id', (req,res) => {
   });
 });
 
+app.get('/api/getAllEmployeesHours', (req,res) => {
+  dbHelpers.getAllEmployeesHours().then(function(result) {
+    res.json(result);
+    console.log('Sent list of All Employee\s Hours');
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 

@@ -68,10 +68,21 @@ function getUserSubmittedFormsById(id) {
 	})
 }
 
+function getAllEmployeesHours() {
+    return knex.select()
+      .from('hours')
+      .join('users', {'users.id':'hours.user_id'})
+      .then(function(rows) {
+          console.log('Knex employee minutes worked query', rows);
+          return rows;
+      });
+  }
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
 exports.getUserById = getUserById;
 exports.getUserRoleById = getUserRoleById;
 exports.getUserSubmittedFormsById = getUserSubmittedFormsById;
+exports.getAllEmployeesHours = getAllEmployeesHours;
 
