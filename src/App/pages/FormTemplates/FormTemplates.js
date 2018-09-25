@@ -48,6 +48,7 @@ class FormTemplate extends Component {
           {this.state.categories.map((category) => {
             return(  
               <div>
+                <h1> Form Categories </h1>
                 <h2>{category.name}</h2>
                 <div className="form-container">
                   <table>
@@ -55,7 +56,7 @@ class FormTemplate extends Component {
                       <th>Form name</th>
                       <th>Fill Out</th>
                       <th>Edit Template</th>
-                      <th>Delte Template</th>
+                      <th>Delete Template</th>
                     </tr>
                     {this.state.templates.map((template) => {
                       if(template.form_category_id === category.id)
