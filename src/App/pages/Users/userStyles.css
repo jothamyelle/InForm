@@ -1,4 +1,4 @@
-.employeeContainer {
+:local(.employeeContainer) {
   display:flex;
   flex-wrap: wrap;
 }
