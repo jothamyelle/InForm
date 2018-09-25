@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Spinner';
 
-
-
 class Hours extends Component {
   constructor(props){
     super(props);
@@ -54,6 +52,7 @@ class Hours extends Component {
       }
       return userObject;
     }
+
     let uniqueUsersArray = [];
     if (this.state.currentFilterHours){
       const userIdArray = [...new Set(this.state.currentFilterHours.map(item => item.id))]
@@ -69,6 +68,7 @@ class Hours extends Component {
               <td>{item.first_name} {item.last_name}</td>
               <td>{Math.floor((item.minutes_worked)/60)}</td>
               <td>{item.shift_count}</td>
+              <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
             </tr>
           )}
         </tbody>
@@ -113,6 +113,7 @@ class Hours extends Component {
                 <th>Employee Name</th>
                 <th>Hours Worked</th>
                 <th>Shifts Worked</th>
+                <th>View Employee</th>
               </tr>
             </thead>
               { this.renderRows() }

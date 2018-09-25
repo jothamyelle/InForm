@@ -18,6 +18,12 @@ class Home extends Component {
             Jobs
         </button>
       </Link>
+
+      <Link to={'./hours'}>
+        <button variant="raised">
+            Hours
+        </button>
+      </Link>
     </div>
     );
   }
