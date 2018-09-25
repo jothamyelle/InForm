@@ -45,10 +45,10 @@ class FormTemplate extends Component {
               Home
             </button>
           </Link>
+          <h1> Form Templates </h1>
           {this.state.categories.map((category) => {
             return(  
               <div>
-                <h1> Form Templates </h1>
                 <h2>{category.name}</h2>
                 <div className="form-container">
                   <table>
