@@ -67,6 +67,13 @@ app.get('/api/getAllEmployeesHours', (req,res) => {
   });
 });
 
+app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
+  dbHelpers.getHoursFromDateFilters(req.params.date1, req.params.date2).then(function(result) {
+    res.json(result);
+    console.log('Sent Filtered list of All Employee\s Hours');
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 

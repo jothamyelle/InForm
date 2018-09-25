@@ -9,36 +9,77 @@ class Hours extends Component {
     super(props);
     this.state = {
       error: null,
-      isLoading: true,
-      hours: null
+      isLoading: false,
+      filteredHoursLoaded: false,
+      hours: null,
+      currentFilterHours: null,
+      startDate: null,
+      endDate: null
     }
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    this.getAllEmployeesHours();
+    this.setState({ isLoading: false });
   }
 
-  getAllEmployeesHours = () => {
-    fetch('/api/getAllEmployeesHours')
+  getHoursFromDateFilters = (date1, date2) => {
+    this.setState({isLoading:true})
+    fetch(`/api/getHoursFromDateFilters/${date1}/${date2}`)
     .then(res => res.json())
-    .then((hours) => {
+    .then((currentFilterHours) => {
       this.setState({
-        hours: hours,
+        currentFilterHours: currentFilterHours,
         isLoading: false,
-        startDate: null,
-        endDate: null
       })
     })
   }
 
+  renderRows(){
+    if (this.state.currentFilterHours){
+      return (
+        <tbody>
+          {this.state.currentFilterHours.map((item) =>
+            <tr key={item.id}>
+              <td>{item.first_name} {item.last_name}</td>
+              <td>{Math.floor((item.minutes_worked)/60)}</td>
+            </tr>
+          )}
+        </tbody>
+      )
+    }
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.getHoursFromDateFilters(this.state.startDate, this.state.endDate);
+  }
+
+  handleStartDate = (event) => {
+    this.setState({startDate: event.target.value})
+  }
+
+  handleEndDate = (event) => {
+    this.setState({endDate: event.target.value})
+  }
+
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    } else {
       return (
         <div>
           <h1> Hours </h1>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <span>
+                Start Date
+                <input onChange={this.handleStartDate} id="startDate" className="searchDate" type="date"/>
+              </span>
+              <span>
+                End Date
+                <input onChange={this.handleEndDate} id="endDate" className="searchDate" type="date"/>
+              </span>
+              <button type="submit">Search</button>
+            </form>
+          </div>
+          <br/>
           <table>
             <thead>
               <tr>
@@ -46,20 +87,11 @@ class Hours extends Component {
                 <th>Hours Worked</th>
               </tr>
             </thead>
-            <tbody>
-              {this.state.hours.map((item) => {
-                return(
-                  <tr>
-                    <td>{item.first_name} {item.last_name}</td>
-                    <td>{Math.floor((item.minutes_worked)/60)}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
+              { this.renderRows() }
           </table>
         </div>
       )
     }
-  }
 }
+
 export default Hours;

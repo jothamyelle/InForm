@@ -75,8 +75,19 @@ function getAllEmployeesHours() {
       .then(function(rows) {
           console.log('Knex employee minutes worked query', rows);
           return rows;
-      });
-  }
+    });
+}
+
+function getHoursFromDateFilters(date1, date2) {
+    return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
+      .from('hours')
+      .join('users', {'users.id':'hours.user_id'})
+      .whereBetween('date_worked', [date1, date2])
+      .then(function(rows) {
+          console.log('Knex employee minutes worked query', rows);
+          return rows;
+    });
+}
 
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
@@ -85,4 +96,5 @@ exports.getUserById = getUserById;
 exports.getUserRoleById = getUserRoleById;
 exports.getUserSubmittedFormsById = getUserSubmittedFormsById;
 exports.getAllEmployeesHours = getAllEmployeesHours;
+exports.getHoursFromDateFilters = getHoursFromDateFilters;
 
