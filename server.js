@@ -67,6 +67,13 @@ app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
   });
 })
 
+app.get('/api/getFormSubmissions/', (req,res) => {
+  dbHelpers.getFormSubmissions().then(function(result) {
+    res.json(result);
+    console.log('Sent list of all form submissions');
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 

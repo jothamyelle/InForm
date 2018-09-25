@@ -79,6 +79,15 @@ function getHoursFromDateFilters(date1, date2) {
     });
 }
 
+function getFormSubmissions() {
+  return knex.select()
+  .from('submitted_forms')
+  .then(function(rows) {
+      console.log('Knex form submissions query', rows);
+      return rows;
+  });
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -86,4 +95,5 @@ exports.getUserById = getUserById;
 exports.getUserRoleById = getUserRoleById;
 exports.getUserSubmittedFormsById = getUserSubmittedFormsById;
 exports.getHoursFromDateFilters = getHoursFromDateFilters;
+exports.getFormSubmissions = getFormSubmissions;
 
