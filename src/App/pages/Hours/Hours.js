@@ -34,14 +34,41 @@ class Hours extends Component {
     })
   }
 
+
+
   renderRows(){
+    function userMinutesSum (id, array) {
+      let minutesWorkedCount = 0;
+      let userObject = {
+        user_id: id,
+        shift_count: 0
+      };
+      for (let i = 0; i < array.length; i++ ){
+        if (array[i].id === id) {
+          minutesWorkedCount += array[i].minutes_worked;
+          userObject.shift_count++;
+          userObject['minutes_worked'] = minutesWorkedCount;
+          userObject['first_name'] = array[i].first_name;
+          userObject['last_name'] = array[i].last_name;
+        }
+      }
+      return userObject;
+    }
+    let uniqueUsersArray = [];
     if (this.state.currentFilterHours){
+      const userIdArray = [...new Set(this.state.currentFilterHours.map(item => item.id))]
+      userIdArray.forEach((item) => {
+        uniqueUsersArray.push(userMinutesSum(item, this.state.currentFilterHours))
+      })
+    
+
       return (
         <tbody>
-          {this.state.currentFilterHours.map((item) =>
-            <tr key={item.id}>
+          {uniqueUsersArray.map((item) =>
+            <tr key={item.user_id}>
               <td>{item.first_name} {item.last_name}</td>
               <td>{Math.floor((item.minutes_worked)/60)}</td>
+              <td>{item.shift_count}</td>
             </tr>
           )}
         </tbody>
@@ -85,6 +112,7 @@ class Hours extends Component {
               <tr>
                 <th>Employee Name</th>
                 <th>Hours Worked</th>
+                <th>Shifts Worked</th>
               </tr>
             </thead>
               { this.renderRows() }
