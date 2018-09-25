@@ -45,7 +45,7 @@ class Hours extends Component {
   }
 
   renderRows(){
-    const { currentFilterHours } = this.state.currentFilterHours;
+    const { currentFilterHours } = this.state;
     let uniqueUsersArray = [];
 
     if (currentFilterHours){
