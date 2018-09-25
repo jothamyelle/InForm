@@ -48,7 +48,7 @@ class FormTemplate extends Component {
           {this.state.categories.map((category) => {
             return(  
               <div>
-                <h1> Form Categories </h1>
+                <h1> Form Templates </h1>
                 <h2>{category.name}</h2>
                 <div className="form-container">
                   <table>
