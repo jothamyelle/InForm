@@ -10,6 +10,7 @@ app.use(knexLogger(knex));
 
 exports = module.exports;
 
+// Function to return all Jobs
 function getJobs() {
   return knex.select().from('jobs')
   .then(function(rows) {
@@ -18,6 +19,8 @@ function getJobs() {
   });
 }
 
+
+// Function to return all users
 function getUsers() {
   return knex.select().from('users')
   .then(function(rows) {
@@ -26,8 +29,9 @@ function getUsers() {
   });
 }
 
+// Function to return a user given an ID
 function getUserById(id) {
-  return knex.select()
+    return knex.select()
     .from('users')
     .where( {id: id} )
     .then(function(rows) {
@@ -36,6 +40,7 @@ function getUserById(id) {
     });
 }
 
+// Function to get a user role by its ID.
 function getUserRoleById(id) {
   return knex.select()
     .from('user_roles')
@@ -46,6 +51,7 @@ function getUserRoleById(id) {
     });
 }
 
+// Function to return all user roles
 function getUserRoles() {
   return knex.select().from('user_roles')
   .then(function(rows) {
@@ -68,6 +74,7 @@ function getUserSubmittedFormsById(id) {
 	})
 }
 
+// function to get hours worked and relevant user info given two date filter parameters
 function getHoursFromDateFilters(date1, date2) {
     return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
       .from('hours')
