@@ -60,6 +60,20 @@ app.get('/api/getUserSubmittedFormsById/:id', (req,res) => {
   });
 });
 
+app.get('/api/getAllEmployeesHours', (req,res) => {
+  dbHelpers.getAllEmployeesHours().then(function(result) {
+    res.json(result);
+    console.log('Sent list of All Employee\s Hours');
+  });
+});
+
+app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
+  dbHelpers.getHoursFromDateFilters(req.params.date1, req.params.date2).then(function(result) {
+    res.json(result);
+    console.log('Sent Filtered list of All Employee\s Hours');
+  });
+})
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 
