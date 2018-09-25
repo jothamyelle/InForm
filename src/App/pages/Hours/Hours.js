@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { userMinutesWorkedSum } from '../../../helpers/hours';
 import LoadingSpinner from '../../Spinner';
 
 class Hours extends Component {
@@ -8,8 +9,6 @@ class Hours extends Component {
     this.state = {
       error: null,
       isLoading: false,
-      filteredHoursLoaded: false,
-      hours: null,
       currentFilterHours: null,
       startDate: null,
       endDate: null
@@ -18,6 +17,19 @@ class Hours extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: false });
+  }
+
+  handleStartDate = (event) => {
+    this.setState({ startDate: event.target.value })
+  }
+  
+  handleEndDate = (event) => {
+    this.setState({ endDate: event.target.value })
+  }
+  
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.getHoursFromDateFilters(this.state.startDate, this.state.endDate);
   }
 
   getHoursFromDateFilters = (date1, date2) => {
@@ -29,38 +41,20 @@ class Hours extends Component {
         currentFilterHours: currentFilterHours,
         isLoading: false,
       })
-    })
+    }) // TODO - add error handling here
   }
 
-
-
   renderRows(){
-    function userMinutesSum (id, array) {
-      let minutesWorkedCount = 0;
-      let userObject = {
-        user_id: id,
-        shift_count: 0
-      };
-      for (let i = 0; i < array.length; i++ ){
-        if (array[i].id === id) {
-          minutesWorkedCount += array[i].minutes_worked;
-          userObject.shift_count++;
-          userObject['minutes_worked'] = minutesWorkedCount;
-          userObject['first_name'] = array[i].first_name;
-          userObject['last_name'] = array[i].last_name;
-        }
-      }
-      return userObject;
-    }
-
+    const { currentFilterHours } = this.state.currentFilterHours;
     let uniqueUsersArray = [];
-    if (this.state.currentFilterHours){
-      const userIdArray = [...new Set(this.state.currentFilterHours.map(item => item.id))]
+
+    if (currentFilterHours){
+      const userIdArray = [...new Set(currentFilterHours.map(item => item.id))];
+
       userIdArray.forEach((item) => {
-        uniqueUsersArray.push(userMinutesSum(item, this.state.currentFilterHours))
+        uniqueUsersArray.push(userMinutesWorkedSum(item, currentFilterHours));
       })
     
-
       return (
         <tbody>
           {uniqueUsersArray.map((item) =>
@@ -74,19 +68,6 @@ class Hours extends Component {
         </tbody>
       )
     }
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.getHoursFromDateFilters(this.state.startDate, this.state.endDate);
-  }
-
-  handleStartDate = (event) => {
-    this.setState({startDate: event.target.value})
-  }
-
-  handleEndDate = (event) => {
-    this.setState({endDate: event.target.value})
   }
 
   render() {
