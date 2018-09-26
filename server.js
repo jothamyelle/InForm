@@ -69,7 +69,7 @@ app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
 
 // Api endpoint that returns form template categories
 app.get('/api/getFormtemplateCategories', (req,res) => {
-  dbHelpers.getFormtemplateCategories(req.params.id).then(function(result) {
+  dbHelpers.getFormtemplateCategories().then(function(result) {
     res.json(result);
     console.log('Sent Form Template Categories');
   });
