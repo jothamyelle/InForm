@@ -88,9 +88,17 @@ app.get('/api/getFormTemplates', (req,res) => {
   dbHelpers.getFormTemplates().then(function(result) {
     res.json(result);
     console.log('Sent list of form templates');
-
   });
 });
+
+app.get('/api/getFormSubmissionsByDate/:date', (req,res) => {
+  dbHelpers.getFormSubmissionsByDate(req.params.date).then(function(result) {
+    res.json(result);
+    console.log('Sent list of submitted forms from date');
+  });
+});
+
+
 
 const port = process.env.PORT || 3005;
 app.listen(port);
