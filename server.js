@@ -75,6 +75,13 @@ app.get('/api/getFormSubmissions/', (req,res) => {
   })
 });
 
+app.get('/api/getSubmittedFormsByDate/:date', (req,res) => {
+  dbHelpers.getSubmittedFormsByDate(req.params.date).then(function(result) {
+    res.json(result);
+    console.log('Sent list of all form submissions');
+  })
+});
+
 // Api endpoint that returns form template categories
 app.get('/api/getFormtemplateCategories', (req,res) => {
   dbHelpers.getFormtemplateCategories().then(function(result) {
