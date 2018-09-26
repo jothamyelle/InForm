@@ -98,8 +98,6 @@ app.get('/api/getFormSubmissionsByDate/:date', (req,res) => {
   });
 });
 
-
-
 const port = process.env.PORT || 3005;
 app.listen(port);
 

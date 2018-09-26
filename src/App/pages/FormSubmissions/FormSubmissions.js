@@ -7,6 +7,7 @@ class FormSubmissions extends Component {
     super(props);
     this.state = {
       list: [],
+      todaysForms: null,
       error: null
     }
   }
@@ -16,23 +17,27 @@ class FormSubmissions extends Component {
     this.getFormSubmissions();
   }
 
+  
   getFormSubmissions = () => {
-    fetch('/api/getFormSubmissions')
-    .then(res => res.json())
-    .then(
-      (result) => {
-        this.setState({
-          isLoading: false,
-          list: result
-        });
+    Promise.all([
+      fetch('/api/getFormSubmissions'),
+      // insert this as param into getformsubmissionsbydate - new Date().toISOString().slice(0, 10)
+      fetch(`/api/getFormSubmissionsByDate/${'2018-01-04'}`)
+    ])
+    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+    .then(([forms, todaysForms]) => {
+      this.setState({
+        isLoading: false,
+        list: forms,
+        todaysForms: todaysForms
+      })
       },
-      (error) => {
-        this.setState({
-          isLoading: false,
-          error
-        });
-      }
-    )
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
   }
 
   render() {
@@ -45,7 +50,9 @@ class FormSubmissions extends Component {
         </Link>
         <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
-        <h2>Today's Submissions </h2>
+        <h2>Today's Submissions</h2>
+        {/* break into component */}
+        {this.state.todaysForms && <h2>hi</h2>}
       </div>
     )
   }
