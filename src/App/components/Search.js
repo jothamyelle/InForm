@@ -42,7 +42,7 @@ class Search extends Component {
           ref={input => this.search = input}
           onKeyUp={this.handleInputChange}
         />
-        <SearchResults results={this.state.results} />
+        {this.state.query && <SearchResults results={this.state.results} />}
       </form>
     )
   }

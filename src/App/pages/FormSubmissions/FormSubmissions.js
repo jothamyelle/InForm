@@ -38,8 +38,14 @@ class FormSubmissions extends Component {
   render() {
     return (
       <div>
-      <h1>Form Submissions</h1>
+        <Link to={'./'}>
+          <button variant="raised">
+            Home
+          </button>
+        </Link>
+        <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
+        <h2>Today's Submissions </h2>
       </div>
     )
   }

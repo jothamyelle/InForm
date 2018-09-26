@@ -18,17 +18,21 @@ class SearchResults extends Component {
     ))
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>User</th>
-            <th>Form Name</th>
-            <th>Job Name</th>
-          </tr>
-        </thead>
-        {options}
-        </table>)
+      <div>
+        <h2>Search Results:</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>User</th>
+              <th>Form Name</th>
+              <th>Job Name</th>
+            </tr>
+          </thead>
+          {options}
+          </table>
+        </div>          
+      )
   }
 }
 
