@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Spinner';
-import UserRoles from '../UserRoles';
+// import UserRoles from '../UserRoles';
 import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';
+import UserSearch from '../../components/UserSearch';
+
 
 class User extends Component {
   constructor(props){
@@ -51,7 +53,8 @@ class User extends Component {
               Home
             </button>
           </Link>
-          <UserRoles userRolesList={this.state.userRolesList}/>
+          {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
+          <UserSearch data={usersList}/>
           <h1>Employees</h1>
           <div>
             {userRolesList.map((role) =>  {

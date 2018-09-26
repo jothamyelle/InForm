@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import FormSubmissionSearchResults from './FormSubmissionSearchResults'
+import UserSearchResults from './UserSearchResults'
 
-class Search extends Component {
+class UserSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,9 +13,9 @@ class Search extends Component {
   filterItems = () => {
     let array = [];
     this.props.data.forEach((item) => {
-      if (JSON.stringify(Object.values(item)).toLowerCase().includes(this.state.query)) {
-        array.push(item);
-      }
+      if ( item.first_name.toLowerCase().includes(this.state.query.toLowerCase()) || item.last_name.toLowerCase().includes(this.state.query.toLowerCase())) {
+          array.push(item);
+        }
     })
     return array;
   }
@@ -27,12 +27,16 @@ class Search extends Component {
   }
 
   handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    }, () => {
-      this.getInfo();
-    })
+    setTimeout(() => {
+      this.setState({
+        query: this.search.value
+      }, () => {
+        this.getInfo();
+      })
+    }, 300);
   }
+
+
 
   handleSubmit = (event) => {
     if (event.key === 'Enter') {
@@ -49,10 +53,10 @@ class Search extends Component {
           onKeyUp={this.handleInputChange}
           onKeyPress={this.handleSubmit}
         />
-        {this.state.query && <FormSubmissionSearchResults results={this.state.results} />}
+        {this.state.query && <UserSearchResults users={this.state.results} />}
       </form>
     )
   }
 }
 
-export default Search;
+export default UserSearch;
