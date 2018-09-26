@@ -69,14 +69,30 @@ function getUserSubmittedFormsById(id) {
 }
 
 function getHoursFromDateFilters(date1, date2) {
-    return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
-      .from('hours')
-      .join('users', {'users.id':'hours.user_id'})
-      .whereBetween('date_worked', [date1, date2])
-      .then(function(rows) {
-          console.log('Knex employee minutes worked query', rows);
-          return rows;
-    });
+	return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
+		.from('hours')
+		.join('users', {'users.id':'hours.user_id'})
+		.whereBetween('date_worked', [date1, date2])
+		.then(function(rows) {
+				console.log('Knex employee minutes worked query', rows);
+				return rows;
+	});
+}
+
+function getFormtemplateCategories() {
+	return knex.select().from('form_categories')
+  .then(function(rows) {
+      console.log('Knex form template categories query', rows);
+      return rows;
+  });
+}
+
+function getFormTemplates() {
+	return knex.select().from('form_templates')
+  .then(function(rows) {
+      console.log('Knex form templates query', rows);
+      return rows;
+  });
 }
 
 exports.getJobs = getJobs;
@@ -86,4 +102,6 @@ exports.getUserById = getUserById;
 exports.getUserRoleById = getUserRoleById;
 exports.getUserSubmittedFormsById = getUserSubmittedFormsById;
 exports.getHoursFromDateFilters = getHoursFromDateFilters;
+exports.getFormTemplates = getFormTemplates;
+exports.getFormtemplateCategories = getFormtemplateCategories;
 

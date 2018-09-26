@@ -7,6 +7,7 @@ import Jobs from './pages/Jobs';
 import NoMatch from './pages/404';
 import UserProfile from './pages/UserProfile/UserProfile'
 import Hours from './pages/Hours/Hours'
+import FormTemplate from './pages/FormTemplates/FormTemplates'
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path='/users' component={Users}/>
           <Route path='/jobs' component={Jobs}/>
           <Route path='/hours' component={Hours}/>
+          <Route path='/form_templates' component={FormTemplate}/>
           <Route component={NoMatch}/>
         </Switch>
       </div>
