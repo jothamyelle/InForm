@@ -74,6 +74,17 @@ function getUserSubmittedFormsById(id) {
 	})
 }
 
+function getSubmittedFormsByDate(date) {
+	return knex.select()
+		.from('submitted_forms')
+		.join('jobs', {'jobs.id':'submitted_forms.job_id'})
+		.where({'submitted_forms.date_created':date})
+		.then(function(rows) {
+				console.log('Knex submitted forms by day query', rows);
+				return rows;
+	});
+}
+
 // function to get hours worked and relevant user info given two date filter parameters
 function getHoursFromDateFilters(date1, date2) {
     return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
@@ -93,4 +104,5 @@ exports.getUserById = getUserById;
 exports.getUserRoleById = getUserRoleById;
 exports.getUserSubmittedFormsById = getUserSubmittedFormsById;
 exports.getHoursFromDateFilters = getHoursFromDateFilters;
+exports.getSubmittedFormsByDate = getSubmittedFormsByDate;
 
