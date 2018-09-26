@@ -31,8 +31,14 @@ class Search extends Component {
       query: this.search.value
     }, () => {
       this.getInfo();
-  })
-}
+    })
+  }
+
+  handleSubmit = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  }
 
   render() {
     return (
@@ -41,6 +47,7 @@ class Search extends Component {
           placeholder="Search for..."
           ref={input => this.search = input}
           onKeyUp={this.handleInputChange}
+          onKeyPress={this.handleSubmit}
         />
         {this.state.query && <SearchResults results={this.state.results} />}
       </form>
