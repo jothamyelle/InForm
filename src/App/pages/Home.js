@@ -30,6 +30,13 @@ class Home extends Component {
             Forms
         </button>
       </Link>
+
+      <Link to={'./form_templates'}>
+        <button variant="raised">
+            Form Templates
+        </button>
+      </Link>
+      
     </div>
     );
   }
