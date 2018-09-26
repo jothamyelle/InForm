@@ -16,7 +16,6 @@ class FormSubmissions extends Component {
     this.getFormSubmissions();
   }
 
-  // Retrieves the list of submissions from the Express app
   getFormSubmissions = () => {
     fetch('/api/getFormSubmissions')
     .then(res => res.json())

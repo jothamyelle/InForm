@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Suggestions from './Suggestions'
+import SearchResults from './SearchResults'
 
 class Search extends Component {
   constructor(props) {
@@ -10,12 +10,19 @@ class Search extends Component {
     }
   }
 
-  getInfo = () => {
-    let filteredArray = this.props.data.filter((item) => {
-      return JSON.stringify(item).toLowerCase().indexOf(this.state.query.toLowerCase()) > -1;
+  filterItems = () => {
+    let array = [];
+    this.props.data.forEach((item) => {
+      if (JSON.stringify(Object.values(item)).toLowerCase().includes(this.state.query)) {
+        array.push(item);
+      }
     })
+    return array;
+  }
+
+  getInfo = () => {
     this.setState({
-      results: filteredArray
+      results: this.filterItems()
     })
   }
 
@@ -35,7 +42,7 @@ class Search extends Component {
           ref={input => this.search = input}
           onKeyUp={this.handleInputChange}
         />
-        <Suggestions results={this.state.results} />
+        <SearchResults results={this.state.results} />
       </form>
     )
   }
