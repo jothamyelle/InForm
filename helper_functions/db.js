@@ -76,7 +76,8 @@ function getUserSubmittedFormsById(id) {
 
 function getSubmittedFormsByDate(date) {
   console.log('DATE', date)
-	return knex.select('submitted_forms.date_created', 'form_templates.type', 'jobs.name', 'jobs.active')
+  return knex.select('submitted_forms.date_created', 'form_templates.type', 
+  'jobs.name', 'jobs.active', 'submitted_forms.id AS formId', 'jobs.id AS jobId')
 		.from('submitted_forms')
     .join('form_templates', {'form_templates.id':'submitted_forms.form_template_id'})
     .join('jobs', {'jobs.id': 'submitted_forms.job_id'})

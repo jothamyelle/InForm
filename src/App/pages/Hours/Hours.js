@@ -54,6 +54,7 @@ class Hours extends Component {
       userIdArray.forEach((item) => {
         uniqueUsersArray.push(userMinutesWorkedSum(item, currentFilterHours));
       })
+      console.log("Unique Users Array",uniqueUsersArray)
     
       return (
         <tbody>
