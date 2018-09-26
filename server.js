@@ -65,7 +65,15 @@ app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
     res.json(result);
     console.log('Sent Filtered list of All Employee\s Hours');
   });
-})
+});
+
+
+app.get('/api/getFormSubmissions/', (req,res) => {
+  dbHelpers.getFormSubmissions().then(function(result) {
+    res.json(result);
+    console.log('Sent list of all form submissions');
+  })
+});
 
 // Api endpoint that returns form template categories
 app.get('/api/getFormtemplateCategories', (req,res) => {
@@ -80,6 +88,7 @@ app.get('/api/getFormTemplates', (req,res) => {
   dbHelpers.getFormTemplates().then(function(result) {
     res.json(result);
     console.log('Sent list of form templates');
+
   });
 });
 
