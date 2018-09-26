@@ -52,7 +52,32 @@ class FormSubmissions extends Component {
         <Search data={this.state.list}/>
         <h2>Today's Submissions</h2>
         {/* break into component */}
-        {this.state.todaysForms && <h2>hi</h2>}
+        <table>
+          <thead>
+            <tr>
+              <th>Form Name</th>
+              <th>Job</th>
+              <th>Employee</th>
+              <th>Fill Out</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+        {this.state.todaysForms && this.state.todaysForms.map((form) => {
+          return (
+            <tbody>
+              <tr>
+                <td>{form.type}</td>
+                <td>{form.job_name}</td>
+                <td><Link to={`/users/${form.id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
+                <td>Fill Out</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+            </tbody>
+          )
+        })}
+          </table>
       </div>
     )
   }
