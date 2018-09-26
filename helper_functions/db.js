@@ -75,10 +75,12 @@ function getUserSubmittedFormsById(id) {
 }
 
 function getSubmittedFormsByDate(date) {
-	return knex.select()
+  console.log('DATE', date)
+	return knex.select('submitted_forms.date_created', 'form_templates.type', 'jobs.name', 'jobs.active')
 		.from('submitted_forms')
-		.join('jobs', {'jobs.id':'submitted_forms.job_id'})
-		.where({'submitted_forms.date_created':date})
+    .join('form_templates', {'form_templates.id':'submitted_forms.form_template_id'})
+    .join('jobs', {'jobs.id': 'submitted_forms.job_id'})
+		.where(knex.raw('??::date = ?', ['submitted_forms.date_created', date]))
 		.then(function(rows) {
 				console.log('Knex submitted forms by day query', rows);
 				return rows;
@@ -87,14 +89,42 @@ function getSubmittedFormsByDate(date) {
 
 // function to get hours worked and relevant user info given two date filter parameters
 function getHoursFromDateFilters(date1, date2) {
-    return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
-      .from('hours')
-      .join('users', {'users.id':'hours.user_id'})
-      .whereBetween('date_worked', [date1, date2])
-      .then(function(rows) {
-          console.log('Knex employee minutes worked query', rows);
-          return rows;
-    });
+	return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
+		.from('hours')
+		.join('users', {'users.id':'hours.user_id'})
+		.whereBetween('date_worked', [date1, date2])
+		.then(function(rows) {
+				console.log('Knex employee minutes worked query', rows);
+				return rows;
+	});
+}
+
+function getFormtemplateCategories() {
+	return knex.select().from('form_categories')
+  .then(function(rows) {
+      console.log('Knex form template categories query', rows);
+      return rows;
+  });
+}
+
+function getFormTemplates() {
+	return knex.select().from('form_templates')
+  .then(function(rows) {
+      console.log('Knex form templates query', rows);
+      return rows;
+  });
+}
+
+function getFormSubmissions() {
+  return knex.select('submitted_forms.id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
+  .from('submitted_forms')
+  .join('jobs', { 'jobs.id':'submitted_forms.job_id'})
+  .join('users', {'users.id':'submitted_forms.user_id'})
+  .join('form_templates', {'form_templates.id': 'submitted_forms.form_template_id'})
+  .then(function(rows) {
+      console.log('Knex form submissions query', rows);
+      return rows;
+  });
 }
 
 exports.getJobs = getJobs;
@@ -105,4 +135,7 @@ exports.getUserRoleById = getUserRoleById;
 exports.getUserSubmittedFormsById = getUserSubmittedFormsById;
 exports.getHoursFromDateFilters = getHoursFromDateFilters;
 exports.getSubmittedFormsByDate = getSubmittedFormsByDate;
+exports.getFormSubmissions = getFormSubmissions;
+exports.getFormTemplates = getFormTemplates;
+exports.getFormtemplateCategories = getFormtemplateCategories;
 

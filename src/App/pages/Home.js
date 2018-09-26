@@ -24,6 +24,19 @@ class Home extends Component {
             Hours
         </button>
       </Link>
+
+      <Link to={'./forms'}>
+        <button variant="raised">
+            Forms
+        </button>
+      </Link>
+
+      <Link to={'./form_templates'}>
+        <button variant="raised">
+            Form Templates
+        </button>
+      </Link>
+      
     </div>
     );
   }

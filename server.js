@@ -65,7 +65,39 @@ app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
     res.json(result);
     console.log('Sent Filtered list of All Employee\s Hours');
   });
-})
+});
+
+
+app.get('/api/getFormSubmissions/', (req,res) => {
+  dbHelpers.getFormSubmissions().then(function(result) {
+    res.json(result);
+    console.log('Sent list of all form submissions');
+  })
+});
+
+app.get('/api/getSubmittedFormsByDate/:date', (req,res) => {
+  dbHelpers.getSubmittedFormsByDate(req.params.date).then(function(result) {
+    res.json(result);
+    console.log('Sent list of all form submissions');
+  })
+});
+
+// Api endpoint that returns form template categories
+app.get('/api/getFormtemplateCategories', (req,res) => {
+  dbHelpers.getFormtemplateCategories().then(function(result) {
+    res.json(result);
+    console.log('Sent Form Template Categories');
+  });
+});
+
+// Api endpoint that returns form templates
+app.get('/api/getFormTemplates', (req,res) => {
+  dbHelpers.getFormTemplates().then(function(result) {
+    res.json(result);
+    console.log('Sent list of form templates');
+
+  });
+});
 
 const port = process.env.PORT || 3005;
 app.listen(port);
