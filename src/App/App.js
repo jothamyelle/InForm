@@ -16,8 +16,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: true
+      loggedIn: false
     }
+  }
+
+  login = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
+  
+  logout = () => {
+    this.setState({
+      loggedIn: false
+    })
   }
 
   render() {
@@ -26,7 +38,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/users/:id' render={ (props) => (this.state.loggedIn ? ( <UserProfile {...props}/> ) : ( <Login/> )) }/>
-          <Route exact path='/users/' render={ () => (this.state.loggedIn ? ( <Users/> ) : ( <Login/> )) }/>
+          <Route exact path='/users/' render={ () => (this.state.loggedIn ? ( <Users/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/jobs' render={ () => (this.state.loggedIn ? ( <Jobs/> ) : ( <Login/> )) }/>
           <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login/> )) }/>
           <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions/> ) : ( <Login/> )) }/>

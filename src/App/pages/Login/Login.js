@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  formHandler = (event) => {
+    event.preventDefault();
+    this.props.login()
+  }
   render() {
     return (
     <div>
       <h2>Login</h2>
-      <form>
+      <form onSubmit={this.formHandler}>
         Username
         <input></input>
         Password
