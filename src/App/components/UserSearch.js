@@ -41,8 +41,6 @@ class UserSearch extends Component {
     }, 300);
   }
 
-
-
   handleSubmit = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();

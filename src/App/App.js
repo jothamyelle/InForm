@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Users from './pages/Users/Users';
@@ -10,21 +10,28 @@ import Hours from './pages/Hours/Hours'
 import FormSubmissions from './pages/FormSubmissions/FormSubmissions'
 import FormTemplate from './pages/FormTemplates/FormTemplates'
 import AdminDashboard from './pages/AdminDashboard'
+import Login from '../App/pages/Login/Login'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: true
+    }
+  }
 
   render() {
     const App = () => (
       <div>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/users/:id' component={UserProfile}/>
-          <Route path='/users' component={Users}/>
-          <Route path='/jobs' component={Jobs}/>
-          <Route path='/hours' component={Hours}/>
-          <Route path='/forms' component={FormSubmissions}/>
-          <Route path='/form_templates' component={FormTemplate}/>
-          <Route path='/admin_dashboard' component={AdminDashboard}/>
+          <Route path='/users/:id' render={ (props) => (this.state.loggedIn ? ( <UserProfile {...props}/> ) : ( <Login/> )) }/>
+          <Route exact path='/users/' render={ () => (this.state.loggedIn ? ( <Users/> ) : ( <Login/> )) }/>
+          <Route path='/jobs' render={ () => (this.state.loggedIn ? ( <Jobs/> ) : ( <Login/> )) }/>
+          <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login/> )) }/>
+          <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions/> ) : ( <Login/> )) }/>
+          <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate/> ) : ( <Login/> )) }/>
+          <Route path='/admin_dashboard' render={ () => (this.state.loggedIn ? ( <AdminDashboard/> ) : ( <Login/> )) }/>
           <Route component={NoMatch}/>
         </Switch>
       </div>
