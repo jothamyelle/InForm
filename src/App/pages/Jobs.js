@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../Spinner';
+import JobSearch from '../components/JobSearch';
 
 class Jobs extends Component {
   // Initialize the state
@@ -52,6 +53,7 @@ class Jobs extends Component {
               Home
             </button>
           </Link>
+          <JobSearch data={list}/>
           <h1>List of Jobs</h1>
           {/* Check to see if any items are found*/}
           {list.length > 0 ? (
@@ -61,6 +63,7 @@ class Jobs extends Component {
                   <th>Name</th>
                   <th>Address</th>
                   <th>Job Number</th>
+                  <th>More Information</th>
                 </tr>
             </thead>
               {/* Render the list of items */}
@@ -71,6 +74,7 @@ class Jobs extends Component {
                       <td>{item.name}</td>
                       <td>{item.address}</td>
                       <td>{item.job_number}</td>
+                      <td><button>view</button></td>
                     </tr>
                   </tbody>
                 );
