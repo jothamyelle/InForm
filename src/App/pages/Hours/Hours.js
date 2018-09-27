@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { userMinutesWorkedSum } from '../../../helpers/hours';
 import LoadingSpinner from '../../Spinner';
+import HoursNameSearch from '../../components/HoursNameSearch';
 
 class Hours extends Component {
   constructor(props){
@@ -54,19 +55,32 @@ class Hours extends Component {
       userIdArray.forEach((item) => {
         uniqueUsersArray.push(userMinutesWorkedSum(item, currentFilterHours));
       })
-      console.log("Unique Users Array",uniqueUsersArray)
     
       return (
-        <tbody>
-          {uniqueUsersArray.map((item) =>
-            <tr key={item.user_id}>
-              <td>{item.first_name} {item.last_name}</td>
-              <td>{Math.floor((item.minutes_worked)/60)}</td>
-              <td>{item.shift_count}</td>
-              <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
-            </tr>
-          )}
-        </tbody>
+        <div>
+          <HoursNameSearch data={uniqueUsersArray}/>
+          <br/>
+          <table>
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Hours Worked</th>
+                <th>Shifts Worked</th>
+                <th>View Employee</th>
+              </tr>
+            </thead>
+            <tbody>
+              {uniqueUsersArray.map((item) =>
+                <tr key={item.user_id}>
+                  <td>{item.first_name} {item.last_name}</td>
+                  <td>{Math.floor((item.minutes_worked)/60)}</td>
+                  <td>{item.shift_count}</td>
+                  <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       )
     }
   }
@@ -89,17 +103,7 @@ class Hours extends Component {
             </form>
           </div>
           <br/>
-          <table>
-            <thead>
-              <tr>
-                <th>Employee Name</th>
-                <th>Hours Worked</th>
-                <th>Shifts Worked</th>
-                <th>View Employee</th>
-              </tr>
-            </thead>
-              { this.renderRows() }
-          </table>
+          { this.renderRows() }
         </div>
       )
     }
