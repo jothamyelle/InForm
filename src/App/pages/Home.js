@@ -36,6 +36,12 @@ class Home extends Component {
             Form Templates
         </button>
       </Link>
+
+      <Link to={'./admin_dashboard'}>
+        <button variant="raised">
+            Admin Dashboard
+        </button>
+      </Link>
       
     </div>
     );
