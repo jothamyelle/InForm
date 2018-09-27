@@ -88,6 +88,12 @@ class Hours extends Component {
   render() {
       return (
         <div>
+          <Link to={'./'}>
+            <button variant="raised">
+              Home
+            </button>
+          </Link>
+          <br/>
           <h1> Hours </h1>
           <div>
             <form onSubmit={this.handleSubmit}>
