@@ -68,29 +68,31 @@ class Hours extends Component {
         <div>
           <HoursNameSearch handleSearchQuery={this.handleSearchQuery} data={uniqueUsersArray}/>
           {!currentQuery && (
-          <div>
-            <h2>Filter Results</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Employee Name</th>
-                  <th>Hours Worked</th>
-                  <th>Shifts Worked</th>
-                  <th>View Employee</th>
-                </tr>
-              </thead>
-              <tbody>
-                {uniqueUsersArray.map((item) =>
-                  <tr key={item.user_id}>
-                    <td>{item.first_name} {item.last_name}</td>
-                    <td>{Math.floor((item.minutes_worked)/60)}</td>
-                    <td>{item.shift_count}</td>
-                    <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+            (uniqueUsersArray.length > 0) ? (
+              <div>
+                <h2>Filter Results</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Employee Name</th>
+                      <th>Hours Worked</th>
+                      <th>Shifts Worked</th>
+                      <th>View Employee</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {uniqueUsersArray.map((item) =>
+                      <tr key={item.user_id}>
+                        <td>{item.first_name} {item.last_name}</td>
+                        <td>{Math.floor((item.minutes_worked)/60)}</td>
+                        <td>{item.shift_count}</td>
+                        <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            ) : (<h2>No results from this time period</h2>)
           )}
         </div>
       )
