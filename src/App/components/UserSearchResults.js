@@ -18,10 +18,14 @@ class UserSearchResults extends Component {
 
     return (
       <div>
-        <h2>{this.props.users.length} Results</h2>
-        <div className={userStyles.employeeContainer}>
-          {listofResults}
-        </div>          
+        {this.props.users.length > 0 ?  (
+        <div>
+          <h2>Search Results ({this.props.users.length})</h2>
+          <div className={userStyles.employeeContainer}>
+            {listofResults}
+          </div>
+        </div>
+          ) : (<h2>No Results</h2>)}
       </div>
     ) 
     }
