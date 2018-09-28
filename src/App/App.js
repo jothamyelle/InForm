@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: true
     }
   }
 
@@ -39,11 +39,11 @@ class App extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/users/:id' render={ (props) => (this.state.loggedIn ? ( <UserProfile {...props}/> ) : ( <Login/> )) }/>
           <Route exact path='/users/' render={ () => (this.state.loggedIn ? ( <Users/> ) : ( <Login login={this.login}/> )) }/>
-          <Route path='/jobs' render={ () => (this.state.loggedIn ? ( <Jobs/> ) : ( <Login/> )) }/>
-          <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login/> )) }/>
-          <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions/> ) : ( <Login/> )) }/>
-          <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate/> ) : ( <Login/> )) }/>
-          <Route path='/admin_dashboard' render={ () => (this.state.loggedIn ? ( <AdminDashboard/> ) : ( <Login/> )) }/>
+          <Route path='/jobs' render={ () => (this.state.loggedIn ? ( <Jobs/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/admin_dashboard' render={ () => (this.state.loggedIn ? ( <AdminDashboard/> ) : ( <Login login={this.login}/> )) }/>
           <Route component={NoMatch}/>
         </Switch>
       </div>

@@ -62,10 +62,10 @@ class User extends Component {
             </button>
           </Link>
           {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
+            <h1>Employees</h1>
           <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
           {!currentQuery && (
           <div>
-            <h1>Employees</h1>
             {userRolesList.map((role) =>  {
               return (
                 <div key={role.id}>
