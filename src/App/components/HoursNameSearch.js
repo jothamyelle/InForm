@@ -33,6 +33,11 @@ class HoursNameSearch extends Component {
         query: this.search.value
       }, () => {
         this.getInfo();
+        if (this.state.query.length > 0) {
+          this.props.handleSearchQuery(true)
+        } else {
+          this.props.handleSearchQuery(false)
+        }
       })
     }, 300);
   }
