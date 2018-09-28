@@ -105,6 +105,14 @@ app.get('/api/getFormSubmissionsByDate/:date', (req,res) => {
   });
 });
 
+app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
+  console.log('node server', req.params.date1, req.params.date2)
+  dbHelpers.getFormSubmissionsFromLastWeek(req.params.date1, req.params.date2).then(function(result) {
+    res.json(result);
+    console.log(`Sent list of submitted forms from date ${req.params.date1} and ${req.params.date2}`);
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 

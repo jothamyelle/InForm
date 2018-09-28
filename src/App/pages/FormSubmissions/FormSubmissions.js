@@ -19,10 +19,19 @@ class FormSubmissions extends Component {
 
   
   getFormSubmissions = () => {
+
+    var date = new Date();
+    date.setDate(date.getDate() - 7);
+
+    var finalDate = date.toISOString().slice(0, 10);
+    
+    const today = new Date();
+    const date1 = today.toISOString().slice(0, 10);
+    // const date2 = oneWeekAgo.getDate().toISOString().slice(0, 10);
     Promise.all([
       fetch('/api/getFormSubmissions'),
       // insert this as param into getformsubmissionsbydate - new Date().toISOString().slice(0, 10)
-      fetch(`/api/getFormSubmissionsByDate/${'2018-01-04'}`)
+      fetch(`/api/getFormSubmissionsFromLastWeek/${date1}/${finalDate}`)
     ])
     .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
     .then(([forms, todaysForms]) => {
