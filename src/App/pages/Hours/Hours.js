@@ -12,7 +12,8 @@ class Hours extends Component {
       isLoading: false,
       currentFilterHours: null,
       startDate: null,
-      endDate: null
+      endDate: null,
+      currentQuery: false
     }
   }
 
@@ -45,8 +46,15 @@ class Hours extends Component {
     }) // TODO - add error handling here
   }
 
+  handleSearchQuery = (doesQueryExist) => {
+    this.setState(prevState => ({
+      currentQuery: doesQueryExist
+    }));
+  }
+
+
   renderRows(){
-    const { currentFilterHours } = this.state;
+    const { currentFilterHours, currentQuery } = this.state;
     let uniqueUsersArray = [];
 
     if (currentFilterHours){
@@ -58,28 +66,32 @@ class Hours extends Component {
     
       return (
         <div>
-          <HoursNameSearch data={uniqueUsersArray}/>
-          <br/>
-          <table>
-            <thead>
-              <tr>
-                <th>Employee Name</th>
-                <th>Hours Worked</th>
-                <th>Shifts Worked</th>
-                <th>View Employee</th>
-              </tr>
-            </thead>
-            <tbody>
-              {uniqueUsersArray.map((item) =>
-                <tr key={item.user_id}>
-                  <td>{item.first_name} {item.last_name}</td>
-                  <td>{Math.floor((item.minutes_worked)/60)}</td>
-                  <td>{item.shift_count}</td>
-                  <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
+          <HoursNameSearch handleSearchQuery={this.handleSearchQuery} data={uniqueUsersArray}/>
+          {!currentQuery && (
+          <div>
+            <h2>Filter Results</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Employee Name</th>
+                  <th>Hours Worked</th>
+                  <th>Shifts Worked</th>
+                  <th>View Employee</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {uniqueUsersArray.map((item) =>
+                  <tr key={item.user_id}>
+                    <td>{item.first_name} {item.last_name}</td>
+                    <td>{Math.floor((item.minutes_worked)/60)}</td>
+                    <td>{item.shift_count}</td>
+                    <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+          )}
         </div>
       )
     }

@@ -14,7 +14,8 @@ class User extends Component {
       error: null,
       usersList: [],
       userRolesList: [],
-      isLoading: false
+      isLoading: false,
+      currentQuery: false
     }
   }
 
@@ -33,13 +34,20 @@ class User extends Component {
       this.setState({
         usersList: users,
         userRolesList: userRoles,
-        isLoading: false
+        isLoading: false,
+        currentQuery: false
       })
     })
   }
 
+  handleSearchQuery = (doesQueryExist) => {
+    this.setState(prevState => ({
+      currentQuery: doesQueryExist
+    }));
+  }
+
   render() {
-    const { error, usersList, isLoading, userRolesList } = this.state;
+    const { error, usersList, isLoading, userRolesList, currentQuery } = this.state;
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -54,8 +62,9 @@ class User extends Component {
             </button>
           </Link>
           {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
-          <UserSearch data={usersList}/>
-          <h1>Employees</h1>
+            <h1>Employees</h1>
+          <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
+          {!currentQuery && (
           <div>
             {userRolesList.map((role) =>  {
               return (
@@ -75,6 +84,7 @@ class User extends Component {
             })
             }
           </div>
+          )}
         </div>
       )
     }

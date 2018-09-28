@@ -10,7 +10,8 @@ class Jobs extends Component {
     this.state = {
       error: null,
       list: [],
-      isLoading: false
+      isLoading: false,
+      currentQuery: false
     }
   }
 
@@ -39,8 +40,14 @@ class Jobs extends Component {
     )
   }
 
+  handleSearchQuery = (doesQueryExist) => {
+    this.setState(prevState => ({
+      currentQuery: doesQueryExist
+    }));
+  }
+
   render() {
-    const { error, list, isLoading } = this.state;
+    const { error, list, isLoading, currentQuery } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (isLoading) {
@@ -53,10 +60,11 @@ class Jobs extends Component {
               Home
             </button>
           </Link>
-          <JobSearch data={list}/>
-          <h1>List of Jobs</h1>
-          {/* Check to see if any items are found*/}
-          {list.length > 0 ? (
+          <h1>Jobs</h1>
+          <JobSearch  handleSearchQuery={this.handleSearchQuery} data={list}/>
+          {!currentQuery && (
+            <div>
+            <h2>All Jobs</h2>
             <table>
             <thead>
                 <tr>
@@ -66,7 +74,6 @@ class Jobs extends Component {
                   <th>More Information</th>
                 </tr>
             </thead>
-              {/* Render the list of items */}
               {list.map((item) => {
                 return (
                   <tbody key={item.id}>
@@ -80,12 +87,8 @@ class Jobs extends Component {
                 );
               })}
             </table>
-          ) : (
-            <div>
-              <h2>No List Items Found</h2>
             </div>
-          )
-          }
+          )}
         </div>
       )
     }
