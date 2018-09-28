@@ -46,6 +46,26 @@ class Jobs extends Component {
     }));
   }
 
+  getActiveJobCount = () => {
+    let count = 0;
+    this.state.list.forEach((item) => {
+      if (item.active) {
+        count++
+      }
+    })
+    return count;
+  }
+
+  getInactiveJobCount = () => {
+    let count = 0;
+    this.state.list.forEach((item) => {
+      if (!item.active) {
+        count++
+      }
+    })
+    return count;
+  }
+
   render() {
     const { error, list, isLoading, currentQuery } = this.state;
     if (error) {
@@ -65,6 +85,7 @@ class Jobs extends Component {
           {!currentQuery && (
             <div>
             <h2>All Jobs</h2>
+            <h2>Active Jobs ({this.getActiveJobCount()})</h2>
             <table>
             <thead>
                 <tr>
@@ -75,18 +96,43 @@ class Jobs extends Component {
                 </tr>
             </thead>
               {list.map((item) => {
-                return (
-                  <tbody key={item.id}>
+                  return ((item.active) && (
+                    <tbody key={item.id}>
+                      <tr>
+                        <td>{item.name}</td>
+                        <td>{item.address}</td>
+                        <td>{item.job_number}</td>
+                        <td><button>view</button></td>
+                      </tr>
+                    </tbody>
+                  ))
+              })}
+              </table>
+              <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2>
+              {this.getInactiveJobCount() > 0 && (
+              <table>
+                <thead>
                     <tr>
-                      <td>{item.name}</td>
-                      <td>{item.address}</td>
-                      <td>{item.job_number}</td>
-                      <td><button>view</button></td>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>Job Number</th>
+                      <th>More Information</th>
                     </tr>
-                  </tbody>
-                );
+                </thead>
+              {list.map((item) => {
+                  return ((!item.active) && (
+                    <tbody key={item.id}>
+                      <tr>
+                        <td>{item.name}</td>
+                        <td>{item.address}</td>
+                        <td>{item.job_number}</td>
+                        <td><button>view</button></td>
+                      </tr>
+                    </tbody>
+                  ))
               })}
             </table>
+              )}
             </div>
           )}
         </div>
