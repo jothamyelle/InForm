@@ -7,7 +7,7 @@ class FormSubmissions extends Component {
     super(props);
     this.state = {
       list: [],
-      todaysForms: null,
+      thisWeeksForms: null,
       error: null
     }
   }
@@ -19,12 +19,13 @@ class FormSubmissions extends Component {
 
   
   getFormSubmissions = () => {
-    const today = new Date();
-    const date1 = today.toISOString().slice(0, 10);
 
     const date = new Date();
     date.setDate(date.getDate() - 7);
-    const date2 = date.toISOString().slice(0, 10);
+    const date1 = date.toISOString().slice(0, 10);
+
+    const today = new Date();
+    const date2 = today.toISOString().slice(0, 10);
 
     // const date2 = oneWeekAgo.getDate().toISOString().slice(0, 10);
     Promise.all([
@@ -33,11 +34,11 @@ class FormSubmissions extends Component {
       fetch(`/api/getFormSubmissionsFromLastWeek/${date1}/${date2}`)
     ])
     .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-    .then(([forms, todaysForms]) => {
+    .then(([forms, thisWeeksForms]) => {
       this.setState({
         isLoading: false,
         list: forms,
-        todaysForms: todaysForms
+        thisWeeksForms: thisWeeksForms
       })
       },
         (error) => {
@@ -58,34 +59,36 @@ class FormSubmissions extends Component {
         </Link>
         <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
-        <h2>Today's Submissions</h2>
-        {/* break into component */}
-        <table>
-          <thead>
-            <tr>
-              <th>Form Name</th>
-              <th>Job</th>
-              <th>Employee</th>
-              <th>Fill Out</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-        {this.state.todaysForms && this.state.todaysForms.map((form) => {
+        <h2>Submissions this week:</h2>
+        {this.state.thisWeeksForms && this.state.thisWeeksForms.reverse().map((form) => {
           return (
-            <tbody>
-              <tr>
-                <td>{form.type}</td>
-                <td>{form.job_name}</td>
-                <td><Link to={`/users/${form.id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
-                <td>Fill Out</td>
-                <td>Edit</td>
-                <td>Delete</td>
-              </tr>
-            </tbody>
+            <div>
+            <h3>{new Date(form.date_created).toISOString().slice(0, 10)}</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Form Name</th>
+                    <th>Job</th>
+                    <th>Employee</th>
+                    <th>Fill Out</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    <tr>
+                      <td>{form.type}</td>
+                      <td>{form.job_name}</td>
+                      <td><Link to={`/users/${form.id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
+                      <td>Fill Out</td>
+                      <td>Edit</td>
+                      <td>Delete</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
           )
         })}
-          </table>
       </div>
     )
   }
