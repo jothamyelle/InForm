@@ -83,7 +83,6 @@ class AdminDashboard extends Component {
               <thead>
                 <tr>
                   <th>Job Name</th>
-                  <th>More Info</th>
                 </tr>
               </thead>
               {this.state.uniqueJobs.map((job) => {
@@ -91,7 +90,6 @@ class AdminDashboard extends Component {
                   <tbody key={job.job_id}>
                     <tr>
                       <td>{job.name}</td>
-                      <td><button>View</button></td>
                     </tr>
                   </tbody>
                 )
