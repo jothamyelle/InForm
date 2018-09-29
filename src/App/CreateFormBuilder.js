@@ -422,6 +422,9 @@ function updateStagingAreaHTML(element, type) {
 
 function addControlOption(elementId) {
   let addControlButton = document.querySelector('.addControlOption');
+  if(!addControlButton) {
+    return;
+  }
   addControlButton.addEventListener('click', event => {
     console.log("event:", event);
     let className = event.srcElement.dataset.classtype;
@@ -813,7 +816,7 @@ function addSaveButtonListener() {
   const saveButton = document.getElementById('saveButton');
   const savedFormTemplate = [];
   saveButton.addEventListener('click', function() { 
-    console.log(JSON.stringify(savedFormTemplate));
+    console.log(JSON.stringify(listOfDisplayOptions));
     return JSON.stringify(savedFormTemplate);
   })
 }
