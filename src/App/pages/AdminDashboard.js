@@ -4,6 +4,7 @@ import LoadingSpinner from '../Spinner';
 import { uniqueJobsArray } from '../../helpers/unique_jobs';
 import RaisedButton from 'material-ui/RaisedButton';
 
+
 class AdminDashboard extends Component {
   constructor(props){
     super(props);
@@ -91,7 +92,7 @@ class AdminDashboard extends Component {
                   <tbody key={job.job_id}>
                     <tr>
                       <td>{job.name}</td>
-                      <td><RaisedButton label="Default">View</RaisedButton></td>
+                      <td><RaisedButton variant="raised" primary={true}>View</RaisedButton></td>
                     </tr>
                   </tbody>
                 )
