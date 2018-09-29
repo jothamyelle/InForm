@@ -7,14 +7,12 @@ class FormSubmissionSearchResults extends Component {
 
   render() {
     const options = this.props.results.map(item => (
-        <tbody>
-          <tr>
+          <tr key={item.id}>
             <td>{item.date_updated}</td>
             <td>{item.first_name} {item.last_name}</td>
             <td>{item.type}</td>
             <td>{item.job_name}</td>
           </tr>
-        </tbody>
     ))
 
     return (
@@ -29,7 +27,9 @@ class FormSubmissionSearchResults extends Component {
               <th>Job Name</th>
             </tr>
           </thead>
-          {options}
+          <tbody>
+            {options}
+          </tbody>
           </table>
         </div>          
       )
