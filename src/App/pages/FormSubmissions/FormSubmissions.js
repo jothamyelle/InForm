@@ -7,7 +7,7 @@ class FormSubmissions extends Component {
     super(props);
     this.state = {
       list: [],
-      todaysForms: null,
+      thisWeeksForms: null,
       error: null
     }
   }
@@ -19,17 +19,27 @@ class FormSubmissions extends Component {
 
   
   getFormSubmissions = () => {
+
+    const date = new Date();
+    date.setDate(date.getDate() - 7);
+    const date1 = date.toISOString().slice(0, 10);
+
+    const today = new Date();
+    today.setDate(today.getDate() + 2);
+    const date2 = today.toISOString().slice(0, 10);
+
+    // const date2 = oneWeekAgo.getDate().toISOString().slice(0, 10);
     Promise.all([
       fetch('/api/getFormSubmissions'),
       // insert this as param into getformsubmissionsbydate - new Date().toISOString().slice(0, 10)
-      fetch(`/api/getFormSubmissionsByDate/${'2018-01-04'}`)
+      fetch(`/api/getFormSubmissionsFromLastWeek/${date1}/${date2}`)
     ])
     .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-    .then(([forms, todaysForms]) => {
+    .then(([forms, thisWeeksForms]) => {
       this.setState({
         isLoading: false,
         list: forms,
-        todaysForms: todaysForms
+        thisWeeksForms: thisWeeksForms
       })
       },
         (error) => {
@@ -41,6 +51,16 @@ class FormSubmissions extends Component {
   }
 
   render() {
+    const today = new Date();
+    const dateArray =[];
+
+    for (let i = 0; i < 7; i++){
+      let tempDate = new Date();
+      tempDate.setDate(tempDate.getDate()-i);
+      dateArray.push(tempDate);  
+    }
+
+
     return (
       <div>
         <Link to={'./'}>
@@ -50,34 +70,44 @@ class FormSubmissions extends Component {
         </Link>
         <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
-        <h2>Today's Submissions</h2>
-        {/* break into component */}
-        <table>
-          <thead>
-            <tr>
-              <th>Form Name</th>
-              <th>Job</th>
-              <th>Employee</th>
-              <th>Fill Out</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-        {this.state.todaysForms && this.state.todaysForms.map((form) => {
-          return (
-            <tbody>
-              <tr>
-                <td>{form.type}</td>
-                <td>{form.job_name}</td>
-                <td><Link to={`/users/${form.id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
-                <td>Fill Out</td>
-                <td>Edit</td>
-                <td>Delete</td>
-              </tr>
-            </tbody>
+        <h2>Submissions this week:</h2>
+        {dateArray.map((item) => {
+          return(
+          <table>
+
+                <thead>
+                <tr>
+                  {(new Date(item).toISOString().slice(0, 10) == today.toISOString().slice(0, 10)) ? (<h3>Today</h3>) : (<h3>{new Date(item).toISOString().slice(0, 10)}</h3>)}
+                </tr>
+                  <tr>
+                    <th>Form Name</th>
+                    <th>Job</th>
+                    <th>Employee</th>
+                    <th>Fill Out</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+        {this.state.thisWeeksForms && this.state.thisWeeksForms.reverse().map((form) => {
+          return ( new Date(form.date_created).toISOString().slice(0, 10) == today.toISOString().slice(0, 10) && (
+                  <tbody>
+                    <tr>
+                      <td>{form.type}</td>
+                      <td>{form.job_name}</td>
+                      <td><Link to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
+                      <td>Fill Out</td>
+                      <td>Edit</td>
+                      <td>Delete</td>
+                    </tr>
+                  </tbody>
+            )
+
+
           )
         })}
-          </table>
+                </table>
+          )
+      })}
       </div>
     )
   }
