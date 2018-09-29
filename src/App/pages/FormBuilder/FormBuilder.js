@@ -22,7 +22,7 @@ class FormBuilder extends Component {
       formContent: formBuilderObject.getListOfDisplayOptions()
       },
       () => {
-        const formContent = JSON.stringify(this.state.formContent);
+        const formContent = this.state.formContent;
         console.log("this.state.formContent:", this.state.formContent)
         axios.post('/api/postFormTemplate', formContent); 
       }
