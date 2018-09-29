@@ -11,6 +11,7 @@ import UserProfile from './pages/UserProfile/UserProfile'
 import Hours from './pages/Hours/Hours'
 import FormSubmissions from './pages/FormSubmissions/FormSubmissions'
 import FormTemplate from './pages/FormTemplates/FormTemplates'
+import NameCategory from './pages/FormBuilder/NameCategory';
 import FormBuilder from './pages/FormBuilder/FormBuilder';
 import AdminDashboard from './pages/AdminDashboard'
 import Login from '../App/pages/Login/Login'
@@ -46,6 +47,7 @@ class App extends Component {
           <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/name_category' render={ () => (this.state.loggedIn ? ( <NameCategory/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_builder' render={ () => (this.state.loggedIn ? ( <FormBuilder/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/admin_dashboard' render={ () => (this.state.loggedIn ? ( <AdminDashboard/> ) : ( <Login login={this.login}/> )) }/>
           <Route component={NoMatch}/>
