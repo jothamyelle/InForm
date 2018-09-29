@@ -10,8 +10,10 @@ class FormBuilder extends Component {
 
 
   componentDidMount () {
-    createFormBuilder(this.fbRef.current);
 
+    // console.log(createFormBuilder.listOfDisplayOptions);
+    const fb = createFormBuilder(this.fbRef.current);
+    console.log("fb = ", fb);
   }
 
   componentWillUnmount () {
@@ -20,8 +22,10 @@ class FormBuilder extends Component {
 
   render() {
     return (
-    
-      <div ref={this.fbRef}/>
+      <div>
+        <div ref={this.fbRef}/>
+        <button onClick={createFormBuilder}>Save!</button>
+      </div>
       )
   }
 }

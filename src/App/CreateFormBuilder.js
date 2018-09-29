@@ -810,16 +810,6 @@ function addResetButtonListener(){
   })
 }
 
-// Save Button
-
-function addSaveButtonListener() {
-  const saveButton = document.getElementById('saveButton');
-  const savedFormTemplate = [];
-  saveButton.addEventListener('click', function() { 
-    console.log(JSON.stringify(listOfDisplayOptions));
-    return JSON.stringify(savedFormTemplate);
-  })
-}
 
 // Delete Buttons
 function addDeleteButtonListener(){
@@ -916,8 +906,20 @@ var controlRows = document.querySelectorAll('#controls .controls');
 });
 
   addResetButtonListener();
-  addSaveButtonListener();
+  // addSaveButtonListener();
   addDeleteButtonListener();
   addDuplicateButtonListener();
+
+  
+// Save Button
+
+// function addSaveButtonListener() {
+  // const saveButton = document.getElementById('saveButton');
+  // const savedFormTemplate = [];
+  // saveButton.addEventListener('click', function() { 
+  //   console.log(JSON.stringify(listOfDisplayOptions));
+    return JSON.stringify(listOfDisplayOptions);
+  // })
+// }
 
 }
