@@ -7,7 +7,7 @@ class FormSubmissionSearchResults extends Component {
 
   render() {
     const options = this.props.results.map(item => (
-          <tr key={item.id}>
+          <tr key={item.submitted_forms_id}>
             <td>{item.date_updated}</td>
             <td>{item.first_name} {item.last_name}</td>
             <td>{item.type}</td>
