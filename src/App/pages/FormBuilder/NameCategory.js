@@ -13,8 +13,12 @@ class NameCategory extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  handleSubmit() {
-    console.log("Hello")
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      name: event.target[0].value,
+      category: event.target[0].value,
+    });
   }
 
   componentWillMount() {
@@ -26,8 +30,6 @@ class NameCategory extends Component {
           this.setState(prevState => ({
             categories: [...prevState.categories, category.name]
           }))
-          console.log(this.state.categories);
-          
         })
       })
   }
@@ -40,9 +42,9 @@ class NameCategory extends Component {
           <h2>Build a Form:</h2>
           <form onSubmit={this.handleSubmit}>
             <label>Name</label>
-            <input type="text"/>
+            <input type="text" name="name"/>
             <label>Category</label>
-            <select>{this.state.categories.map(category => <option key={category}>{category}</option>)}</select>
+            <select name="category">{this.state.categories.map(category => <option key={category}>{category}</option>)}</select>
             <input type="Submit"/>
           </form>
         </div>
