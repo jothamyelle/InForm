@@ -157,6 +157,10 @@ function getFormSubmissionsFromLastWeek(date1, date2) {
   });
 }
 
+function postFormTemplate(formBuilderContent) {
+  
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -170,3 +174,4 @@ exports.getFormTemplates = getFormTemplates;
 exports.getFormtemplateCategories = getFormtemplateCategories;
 exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
 exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
+exports.postFormTemplate = postFormTemplate;

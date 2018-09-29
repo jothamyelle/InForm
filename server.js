@@ -113,6 +113,14 @@ app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
   });
 });
 
+app.get('/api/postFormTemplate', (req,res) => {
+  console.log('node server -> form builder content', req.formBuilderContent);
+  dbHelpers.postFormTemplate(req.formBuilderContent).then(function(result) {
+    res.json(result);
+    console.log(`Sent the form builder content!`);
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 
