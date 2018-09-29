@@ -1,3 +1,10 @@
+/* 
+  BUGS THAT DON'T DESTROY EVERYTHING AND CAN BE *" "EASILY" "* FIXED LATER ON...
+    - checkbox options are added to end of the list for some wild reason (on duplicated controls),
+      instead of updating existing options, it addds to the list
+    - 
+*/
+
 export default function createFormBuilder (element) {
   
   element = element || document.querySelector('#FormBuilderRoot');
@@ -413,21 +420,26 @@ function updateStagingAreaHTML(element, type) {
   addDuplicateListener(duplicateButton);
 }
 
-function addControlOption(elementId, className) {
-  let controlInputs = document.getElementsByClassName(className);
-  let controlInput = controlInputs[controlInputs.length - 1]
-  let newRow = controlInput.cloneNode();
-  controlInput.insertAdjacentElement('afterend', newRow);
-  newRow.value = '';
-  listOfDisplayOptions[elementId].controlOptions[controlInputs.length - 1] = newRow.value;
-  let elementObject = document.getElementById(elementId);
-  let index = controlInputs.length - 1;
-  newRow.addEventListener('keyup', event => {
-    updateControlOption(elementObject, newRow, index);
-  });
-  newRow.addEventListener('change', event => {
-    updateControlOption(elementObject, newRow, index);
-    updateStagingAreaHTML(elementObject, className);
+function addControlOption(elementId) {
+  let addControlButton = document.querySelector('.addControlOption');
+  addControlButton.addEventListener('click', event => {
+    console.log("event:", event);
+    let className = event.srcElement.dataset.classtype;
+    let controlInputs = document.getElementsByClassName(className);
+    let controlInput = controlInputs[controlInputs.length - 1]
+    let newRow = controlInput.cloneNode();
+    controlInput.insertAdjacentElement('afterend', newRow);
+    newRow.value = '';
+    listOfDisplayOptions[elementId].controlOptions[controlInputs.length - 1] = newRow.value;
+    let elementObject = document.getElementById(elementId);
+    let index = controlInputs.length - 1;
+    newRow.addEventListener('keyup', event => {
+      updateControlOption(elementObject, newRow, index);
+    });
+    newRow.addEventListener('change', event => {
+      updateControlOption(elementObject, newRow, index);
+      updateStagingAreaHTML(elementObject, className);
+    });
   });
 }
 
@@ -470,7 +482,7 @@ function displayAppropriateOptions(elementObject) {
       }
       htmlToDisplay += `
       <br/>
-      <button onclick="addControlOption(${elementObject.id}, 'checkboxOption')">+ Add Option</button>
+      <button class="addControlOption" data-classtype="checkboxOption">+ Add Option</button>
       <br/>
       <label>Required</label>
       <input type="checkbox" class="checkRequired" ${elementObject.required ? 'checked' : ''}/>
@@ -493,7 +505,7 @@ function displayAppropriateOptions(elementObject) {
       }
       htmlToDisplay += `
       <br/>
-      <button onclick="addControlOption(${elementObject.id}, 'radioOption')">+ Add Option</button>
+      <button class="addControlOption" data-classtype="radioOption">+ Add Option</button>
       <br/>
       <label>Required</label>
       <input type="checkbox" class="radioRequired"${elementObject.required ? 'checked' : ''}/>
@@ -516,7 +528,7 @@ function displayAppropriateOptions(elementObject) {
     }
     htmlToDisplay += `
     <br/>
-    <button onclick="addControlOption(${elementObject.id}, 'selectOption')">+ Add Option</button>
+    <button class="addControlOption" data-classtype="selectOption">+ Add Option</button>
     <br/>
     <label>Required</label>
     <input type="checkbox" class="selectRequired" ${elementObject.required ? 'checked' : ''}/>
@@ -539,7 +551,7 @@ function displayAppropriateOptions(elementObject) {
       }
       htmlToDisplay += `
       <br/>
-      <button onclick="addControlOption(${elementObject.id}, 'selectMultipleOption')">+ Add Option</button>
+      <button class="addControlOption" data-classtype="selectMultipleOption">+ Add Option</button>
       <br/>
       <label>Required</label>
       <input type="checkbox" class="selectMultipleMultipleRequired" ${elementObject.required ? 'checked' : ''}/>
@@ -614,6 +626,8 @@ function displayAppropriateOptions(elementObject) {
   let optionsList = document.getElementById('optionsList');
   optionsList.innerHTML = '';
   optionsList.insertAdjacentHTML('afterbegin', htmlToDisplay);
+
+  addControlOption(elementObject.id);
   
   // add event listeners to all the multiple options inputs
   let optionClasses = ['checkboxOption','radioOption','selectOption', 'selectMultipleOption'];
@@ -775,7 +789,7 @@ function addDuplicateListener(button) {
         listOfDisplayOptions[clone.id].controlOptions.push(option);
       });
 
-    displayAppropriateOptions(clone);
+    // displayAppropriateOptions(clone);
     controlClickDisplayOptions(clone);
   })
 }
@@ -786,13 +800,10 @@ function addResetButtonListener(){
   const stagingArea = document.getElementById('stagingArea');
   
   resetButton.addEventListener('click', function() {
-    // const confirmation = confirm('Are you sure?');
-    // if (confirmation) {
-    //   stagingArea.innerHTML = '';
-    //   const beginnerItem = createbeginnerItem(); 
-    //   stagingArea.append(beginnerItem);
-    //   addAllEventListeners(beginnerItem);
-    // }
+    stagingArea.innerHTML = '';
+    const beginnerItem = createbeginnerItem(); 
+    stagingArea.append(beginnerItem);
+    addAllEventListeners(beginnerItem);
   })
 }
 
@@ -802,6 +813,7 @@ function addSaveButtonListener() {
   const saveButton = document.getElementById('saveButton');
   const savedFormTemplate = [];
   saveButton.addEventListener('click', function() { 
+    console.log(JSON.stringify(savedFormTemplate));
     return JSON.stringify(savedFormTemplate);
   })
 }
@@ -888,10 +900,6 @@ function handleDrop(event) {
 function handleDragEnd(event) {
   // this/event.target is the source nodevent.
   this.style.opacity = '1';
-
-  [].forEach.call(stagedRows, function (stagedRow) {
-      removeDragOverClasses(this);
-  });
 }
 
 let stagedRows = document.querySelectorAll('#stagingArea .staged');
