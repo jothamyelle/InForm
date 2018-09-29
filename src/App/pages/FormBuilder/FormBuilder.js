@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import formBuilderObject from '../../CreateFormBuilder.js'
+import axios from 'axios';
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -20,7 +21,11 @@ class FormBuilder extends Component {
     this.setState({
       formContent: formBuilderObject.getListOfDisplayOptions()
       },
-      () => console.log("this.state.formContent:", this.state.formContent)
+      () => {
+        const formContent = this.state.formContent;
+        console.log("this.state.formContent:", this.state.formContent)
+        axios.post('/api/postFormTemplate', formContent); 
+      }
     );
   }
 

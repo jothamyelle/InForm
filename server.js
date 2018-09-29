@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 const ENV = process.env.ENV || "development";
 
@@ -12,6 +13,9 @@ const knex = require('knex')(knexConfig[ENV]);
 const dbHelpers = require('./helper_functions/db.js')
 
 app.use(knexLogger(knex));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Api endpoint that returns a list of users
 app.get('/api/getUsers', (req,res) => {
@@ -110,6 +114,14 @@ app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
   dbHelpers.getFormSubmissionsFromLastWeek(req.params.date1, req.params.date2).then(function(result) {
     res.json(result);
     console.log(`Sent list of submitted forms from date ${req.params.date1} and ${req.params.date2}`);
+  });
+});
+
+app.post('/api/postFormTemplate', (req,res) => {
+  console.log('node server -> request content', req.body);
+  dbHelpers.postFormTemplate(req.formBuilderContent).then(function(result) {
+    res.json(result);
+    console.log(`Sent the form builder content!`);
   });
 });
 
