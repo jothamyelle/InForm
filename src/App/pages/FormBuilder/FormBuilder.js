@@ -1,30 +1,34 @@
 import React, { Component } from 'react'
-import createFormBuilder from '../../CreateFormBuilder.js'
+import formBuilderObject from '../../CreateFormBuilder.js'
 
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
     this.fbRef = React.createRef();
+    this.state = {
+      formContent: {}
+    };
+
+    this.saveForm = this.saveForm.bind(this);
   }
-
-
 
   componentDidMount () {
-
-    // console.log(createFormBuilder.listOfDisplayOptions);
-    const fb = createFormBuilder(this.fbRef.current);
-    console.log("fb = ", fb);
+    formBuilderObject.createFormBuilder(this.fbRef.current);
   }
 
-  componentWillUnmount () {
-    // removeFormBuilder(this.fbRef.current);
+  saveForm() {
+    this.setState({
+      formContent: formBuilderObject.getListOfDisplayOptions()
+      },
+      () => console.log("this.state.formContent:", this.state.formContent)
+    );
   }
 
   render() {
     return (
       <div>
         <div ref={this.fbRef}/>
-        <button onClick={createFormBuilder}>Save!</button>
+        <button onClick={this.saveForm} id="saveButton">Save</button>
       </div>
       )
   }
