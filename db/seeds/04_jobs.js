@@ -4,8 +4,8 @@ exports.seed = function(knex, Promise) {
       .then(function () {
         // Inserts seed entries
         return knex('jobs').insert([
-          {name: 'JobName 1', address: '5994 Boehm Road', job_number: 26181, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString()},
-          {name: 'JobName 2', address: '45876 Ralph Parks', job_number: 8374, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Sat Sep 22 2018 00:09:03 GMT-0700 (PDT)").toISOString()},
+          {name: 'Lighthouse Labs Reno', address: '5994 Boehm Road', job_number: 26181, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString()},
+          {name: 'Whitley Court', address: '45876 Ralph Parks', job_number: 8374, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Sat Sep 22 2018 00:09:03 GMT-0700 (PDT)").toISOString()},
           {name: 'JobName 3', address: '3433 West Crest', job_number: 1979, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Sat Sep 22 2018 05:46:40 GMT-0700 (PDT)").toISOString()},
           {name: 'JobName 4', address: '534 Hugh Terrace', job_number: 91661, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Sat Sep 22 2018 05:30:26 GMT-0700 (PDT)").toISOString()},
           {name: 'JobName 5', address: '81551 Olson Fords', job_number: 7370, active: true, company_id: 1, date_created: new Date("Fri Sep 21 2018 20:37:39 GMT-0700 (PDT)").toISOString(), date_updated: new Date("Sat Sep 22 2018 03:35:02 GMT-0700 (PDT)").toISOString()},
