@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../Spinner';
 import JobSearch from '../components/JobSearch';
+import JobsStyles from './Jobs/JobsStyes.css'
+import Typography from '@material-ui/core/Typography';
+import TextField from 'material-ui/TextField';
+
+
 import {
   Table,
   TableBody,
@@ -83,17 +88,24 @@ class Jobs extends Component {
       return <LoadingSpinner />
     } else {
       return (
-        <div className="App">
+        <div>
           <Link to={'./'}>
             <FlatButton>Home</FlatButton>
           </Link>
-          <h1>Jobs</h1>
-          <JobSearch  handleSearchQuery={this.handleSearchQuery} data={list}/>
+          {/* <h1>Jobs</h1> */}
+          <Typography variant="display4" gutterBottom align="center">
+            Jobs
+          </Typography>
+          <div className={JobsStyles.searchBox}>
+            <JobSearch handleSearchQuery={this.handleSearchQuery} data={list}/>
+          </div>
           {!currentQuery && (
-            <div>
-            <h2>All Jobs</h2>
-            <h2>Active Jobs ({this.getActiveJobCount()})</h2>
-            <Table>
+            <div className={JobsStyles.tableContainer}>
+          <Typography variant="display2" gutterBottom align="center">
+          Active Jobs ({this.getActiveJobCount()})
+          </Typography>
+            {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
+            <Table className={JobsStyles.formsTable}>
             <TableHeader displayRowCheckbox={false}>
                 <TableRow>
                   <TableHeaderColumn>Name</TableHeaderColumn>
@@ -115,7 +127,10 @@ class Jobs extends Component {
               })}
                     </TableBody>
               </Table>
-              <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2>
+              <Typography variant="display2" gutterBottom align="center">
+                Inactive Jobs ({this.getInactiveJobCount()})
+              </Typography>
+              {/* <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2> */}
               {this.getInactiveJobCount() > 0 && (
               <table>
                 <thead>

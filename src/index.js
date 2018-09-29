@@ -17,10 +17,11 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: orange500,
-    primary2Color: blue100,
-    primary3Color: yellow100,
-    secondary1Color: blue200,
-  }
+    primary2Color: orange500,
+    primary3Color: orange500,
+    secondary1Color: orange500,
+  },
+  fontFamily: 'Roboto, sans-serif',
 });
 render((
     <BrowserRouter>

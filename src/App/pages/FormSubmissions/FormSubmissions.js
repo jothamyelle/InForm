@@ -73,24 +73,24 @@ class FormSubmissions extends Component {
         <h2>Submissions this week:</h2>
         {dateArray.map((item) => {
           return(
+          <div key={item}>
+              {(new Date(item).toISOString().slice(0, 10) == today.toISOString().slice(0, 10)) ? (<h3>Today</h3>) : (<h3>{new Date(item).toISOString().slice(0, 10)}</h3>)}
           <table>
-
-                <thead>
-                <tr>
-                  {(new Date(item).toISOString().slice(0, 10) == today.toISOString().slice(0, 10)) ? (<h3>Today</h3>) : (<h3>{new Date(item).toISOString().slice(0, 10)}</h3>)}
-                </tr>
-                  <tr>
-                    <th>Form Name</th>
-                    <th>Job</th>
-                    <th>Employee</th>
-                    <th>Fill Out</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
+            <thead>
+            <tr>
+            </tr>
+              <tr>
+                <th>Form Name</th>
+                <th>Job</th>
+                <th>Employee</th>
+                <th>Fill Out</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
         {this.state.thisWeeksForms && this.state.thisWeeksForms.reverse().map((form) => {
           return ( new Date(form.date_created).toISOString().slice(0, 10) == today.toISOString().slice(0, 10) && (
-                  <tbody>
+                  <tbody key={form.id}>
                     <tr>
                       <td>{form.type}</td>
                       <td>{form.job_name}</td>
@@ -106,6 +106,7 @@ class FormSubmissions extends Component {
           )
         })}
                 </table>
+                </div>
           )
       })}
       </div>

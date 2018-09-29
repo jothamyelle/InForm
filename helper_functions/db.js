@@ -118,7 +118,7 @@ function getFormTemplates() {
 }
 
 function getFormSubmissions() {
-  return knex.select('submitted_forms.id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
+  return knex.select('submitted_forms.id as submitted_forms_id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
   .from('submitted_forms')
   .join('jobs', { 'jobs.id':'submitted_forms.job_id' })
   .join('users', {'users.id':'submitted_forms.user_id' })
@@ -157,6 +157,10 @@ function getFormSubmissionsFromLastWeek(date1, date2) {
   });
 }
 
+function postFormTemplate(formBuilderContent) {
+  console.log(`Made it into the postFormTemplate, here's the content: ${formBuilderContent}`);
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -170,3 +174,4 @@ exports.getFormTemplates = getFormTemplates;
 exports.getFormtemplateCategories = getFormtemplateCategories;
 exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
 exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
+exports.postFormTemplate = postFormTemplate;

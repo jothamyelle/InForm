@@ -51,9 +51,7 @@ class AdminDashboard extends Component {
       return (
         <div>
           <Link to={'./'}>
-            <RaisedButton variant="raised" >
-              Home
-            </RaisedButton>
+            <RaisedButton variant="raised">Home</RaisedButton>
           </Link>
           {this.getUniqueJobsArray()}
           <h1> Good Morning Ben. Currently {this.state.todaysForms.length} forms 
@@ -93,7 +91,7 @@ class AdminDashboard extends Component {
                   <tbody key={job.job_id}>
                     <tr>
                       <td>{job.name}</td>
-                      <td><RaisedButton variant="raised" primary={true}>View</RaisedButton></td>
+                      <td><button>View</button></td>
                     </tr>
                   </tbody>
                 )

@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 
-
 import './App.css';
 import Home from './pages/Home';
 import Users from './pages/Users/Users';
@@ -16,7 +15,6 @@ import FormTemplate from './pages/FormTemplates/FormTemplates'
 import FormBuilder from './pages/FormBuilder/FormBuilder';
 import AdminDashboard from './pages/AdminDashboard'
 import Login from '../App/pages/Login/Login'
-
 
 class App extends Component {
   constructor(props) {
