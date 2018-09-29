@@ -142,6 +142,20 @@ function getFormSubmissionsByDate(date) {
   });
 }
 
+function getFormSubmissionsFromLastWeek(date1, date2) {
+  console.log('knex query last week', date1, date2)
+  return knex.select('submitted_forms.id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id as user_id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
+  .from('submitted_forms')
+  .join('jobs', { 'jobs.id':'submitted_forms.job_id' })
+  .join('users', {'users.id':'submitted_forms.user_id' })
+  .join('form_templates', {'form_templates.id': 'submitted_forms.form_template_id'})
+  .whereBetween('submitted_forms.date_created', [date1, date2])
+  .orderBy('submitted_forms.date_created')
+  .then(function(rows) {
+    console.log('Knex form submissions last week query', rows);
+    return rows;
+  });
+}
 
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
@@ -155,4 +169,4 @@ exports.getFormSubmissions = getFormSubmissions;
 exports.getFormTemplates = getFormTemplates;
 exports.getFormtemplateCategories = getFormtemplateCategories;
 exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
-
+exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
