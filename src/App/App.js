@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-//import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { Route, Switch} from 'react-router-dom';
 
 
 import './App.css';
@@ -17,7 +14,6 @@ import FormTemplate from './pages/FormTemplates/FormTemplates'
 import FormBuilder from './pages/FormBuilder/FormBuilder';
 import AdminDashboard from './pages/AdminDashboard'
 import Login from '../App/pages/Login/Login'
-import { deepOrange400, orange500, deepOrange100, grey400, grey300, grey500, orange600 } from 'material-ui/styles/colors';
 
 class App extends Component {
   constructor(props) {
@@ -56,19 +52,10 @@ class App extends Component {
         </Switch>
       </div>
     )
-    const muiTheme = getMuiTheme({
-      palette: {
-        primary1Color: grey400,
-        primary2Color: grey300,
-        primary3Color: grey500,
-        secondary1Color: orange600
-      }
-    });
+    
     return (
       <Switch>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <App/>
-        </MuiThemeProvider>
+        <App/>
       </Switch>
     );
   }
