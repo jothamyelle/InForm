@@ -150,6 +150,7 @@ function getFormSubmissionsFromLastWeek(date1, date2) {
   .join('users', {'users.id':'submitted_forms.user_id' })
   .join('form_templates', {'form_templates.id': 'submitted_forms.form_template_id'})
   .whereBetween('submitted_forms.date_created', [date1, date2])
+  .orderBy('submitted_forms.date_created')
   .then(function(rows) {
     console.log('Knex form submissions last week query', rows);
     return rows;

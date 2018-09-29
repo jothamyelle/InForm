@@ -25,6 +25,7 @@ class FormSubmissions extends Component {
     const date1 = date.toISOString().slice(0, 10);
 
     const today = new Date();
+    today.setDate(today.getDate() + 2);
     const date2 = today.toISOString().slice(0, 10);
 
     // const date2 = oneWeekAgo.getDate().toISOString().slice(0, 10);
@@ -50,6 +51,16 @@ class FormSubmissions extends Component {
   }
 
   render() {
+    const today = new Date();
+    const dateArray =[];
+
+    for (let i = 0; i < 7; i++){
+      let tempDate = new Date();
+      tempDate.setDate(tempDate.getDate()-i);
+      dateArray.push(tempDate);  
+    }
+
+
     return (
       <div>
         <Link to={'./'}>
@@ -60,12 +71,14 @@ class FormSubmissions extends Component {
         <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
         <h2>Submissions this week:</h2>
-        {this.state.thisWeeksForms && this.state.thisWeeksForms.reverse().map((form) => {
-          return (
-            <div>
-            <h3>{new Date(form.date_created).toISOString().slice(0, 10)}</h3>
-              <table>
+        {dateArray.map((item) => {
+          return(
+          <table>
+
                 <thead>
+                <tr>
+                  {(new Date(item).toISOString().slice(0, 10) == today.toISOString().slice(0, 10)) ? (<h3>Today</h3>) : (<h3>{new Date(item).toISOString().slice(0, 10)}</h3>)}
+                </tr>
                   <tr>
                     <th>Form Name</th>
                     <th>Job</th>
@@ -75,20 +88,26 @@ class FormSubmissions extends Component {
                     <th>Delete</th>
                   </tr>
                 </thead>
+        {this.state.thisWeeksForms && this.state.thisWeeksForms.reverse().map((form) => {
+          return ( new Date(form.date_created).toISOString().slice(0, 10) == today.toISOString().slice(0, 10) && (
                   <tbody>
                     <tr>
                       <td>{form.type}</td>
                       <td>{form.job_name}</td>
-                      <td><Link to={`/users/${form.id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
+                      <td><Link to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
                       <td>Fill Out</td>
                       <td>Edit</td>
                       <td>Delete</td>
                     </tr>
                   </tbody>
-                </table>
-              </div>
+            )
+
+
           )
         })}
+                </table>
+          )
+      })}
       </div>
     )
   }
