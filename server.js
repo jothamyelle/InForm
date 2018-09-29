@@ -113,7 +113,7 @@ app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
   });
 });
 
-app.get('/api/postFormTemplate', (req,res) => {
+app.post('/api/postFormTemplate', (req,res) => {
   console.log('node server -> form builder content', req.formBuilderContent);
   dbHelpers.postFormTemplate(req.formBuilderContent).then(function(result) {
     res.json(result);

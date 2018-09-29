@@ -158,7 +158,7 @@ function getFormSubmissionsFromLastWeek(date1, date2) {
 }
 
 function postFormTemplate(formBuilderContent) {
-  
+  console.log(`Made it into the postFormTemplate, here's the content: ${formBuilderContent}`);
 }
 
 exports.getJobs = getJobs;
