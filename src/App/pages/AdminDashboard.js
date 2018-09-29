@@ -5,6 +5,7 @@ import { uniqueJobsArray } from '../../helpers/unique_jobs';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
+
 class AdminDashboard extends Component {
   constructor(props){
     super(props);
@@ -50,7 +51,7 @@ class AdminDashboard extends Component {
       return (
         <div>
           <Link to={'./'}>
-            <RaisedButton variant="raised" primary={true}>
+            <RaisedButton variant="raised" >
               Home
             </RaisedButton>
           </Link>

@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../Spinner';
 import JobSearch from '../components/JobSearch';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class Jobs extends Component {
   // Initialize the state
@@ -76,9 +85,7 @@ class Jobs extends Component {
       return (
         <div className="App">
           <Link to={'./'}>
-            <button variant="raised">
-              Home
-            </button>
+            <FlatButton>Home</FlatButton>
           </Link>
           <h1>Jobs</h1>
           <JobSearch  handleSearchQuery={this.handleSearchQuery} data={list}/>
@@ -86,28 +93,28 @@ class Jobs extends Component {
             <div>
             <h2>All Jobs</h2>
             <h2>Active Jobs ({this.getActiveJobCount()})</h2>
-            <table>
-            <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Address</th>
-                  <th>Job Number</th>
-                  <th>More Information</th>
-                </tr>
-            </thead>
+            <Table>
+            <TableHeader displayRowCheckbox={false}>
+                <TableRow>
+                  <TableHeaderColumn>Name</TableHeaderColumn>
+                  <TableHeaderColumn>Address</TableHeaderColumn>
+                  <TableHeaderColumn>Job Number</TableHeaderColumn>
+                  <TableHeaderColumn>More Information</TableHeaderColumn>
+                </TableRow>
+            </TableHeader>
+                    <TableBody displayRowCheckbox={false}>
               {list.map((item) => {
                   return ((item.active) && (
-                    <tbody key={item.id}>
-                      <tr>
-                        <td>{item.name}</td>
-                        <td>{item.address}</td>
-                        <td>{item.job_number}</td>
-                        <td><button>view</button></td>
-                      </tr>
-                    </tbody>
+                      <TableRow>
+                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn>{item.address}</TableRowColumn>
+                        <TableRowColumn>{item.job_number}</TableRowColumn>
+                        <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                      </TableRow>
                   ))
               })}
-              </table>
+                    </TableBody>
+              </Table>
               <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2>
               {this.getInactiveJobCount() > 0 && (
               <table>
