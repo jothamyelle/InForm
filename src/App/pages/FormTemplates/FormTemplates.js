@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Spinner';
-import FormTemplateStyles from './FormTemplateStyles.css';
 
 class FormTemplate extends Component {
   constructor(props){
