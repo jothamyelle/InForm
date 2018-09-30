@@ -121,9 +121,17 @@ app.post('/api/postFormTemplate', (req,res) => {
   // console.log(`Sent the form builder content!`, req.body.name, req.body.category, req.body.formContent);
   dbHelpers.postFormTemplate(req.body.formContent, req.body.name, req.body.category)
   .then(function() {
-    res.json('')
+    res.json('');
   });
 });
+
+app.post('/api/deleteFormTemplate', (req, res) => {
+  dbHelpers.deleteFormTemplate(req.body.id)
+  .then(function() {
+    res.json('');
+  })
+
+})
 
 const port = process.env.PORT || 3005;
 app.listen(port);
