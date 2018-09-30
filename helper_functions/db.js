@@ -165,7 +165,13 @@ function postFormTemplate(formBuilderContent, name, category ) {
     .where('name', category)
     .then((categoryId) =>     
       knex('form_templates')
-        .insert({type: formBuilderContent['0'].type, form_category_id: categoryId[0].id, company_id: 1, date_created: new Date().toISOString(), date_updated: new Date().toISOString() })
+        .insert({
+          type: name, 
+          form_category_id: categoryId[0].id, 
+          company_id: 1,
+          date_created: new Date().toISOString(), 
+          date_updated: new Date().toISOString() 
+        })
         .returning('*')
         .then((formTemplate) => {
           //  formBuilderContent.forEach(field => {
