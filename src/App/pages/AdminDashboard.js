@@ -50,9 +50,7 @@ class AdminDashboard extends Component {
     } else {
       return (
         <div>
-          <Link to={'./'}>
-            <RaisedButton variant="raised">Home</RaisedButton>
-          </Link>
+          <TemporaryDrawer />
           {this.getUniqueJobsArray()}
           <h1> Good Morning Ben. Currently {this.state.todaysForms.length} forms 
           from {this.state.uniqueJobs.length} active jobs </h1>
