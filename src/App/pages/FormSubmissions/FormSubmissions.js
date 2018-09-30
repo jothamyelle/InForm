@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../../components/Search';
+import TemporaryDrawer from '../Drawer';
 
 class FormSubmissions extends Component {
   constructor(props) {
@@ -63,11 +64,7 @@ class FormSubmissions extends Component {
 
     return (
       <div>
-        <Link to={'./'}>
-          <button variant="raised">
-            Home
-          </button>
-        </Link>
+        <TemporaryDrawer />
         <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
         <h2>Submissions this week:</h2>

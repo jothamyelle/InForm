@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { userMinutesWorkedSum } from '../../../helpers/hours';
 import LoadingSpinner from '../../Spinner';
 import HoursNameSearch from '../../components/HoursNameSearch';
+import TemporaryDrawer from '../Drawer';
 
 class Hours extends Component {
   constructor(props){
@@ -66,6 +67,7 @@ class Hours extends Component {
     
       return (
         <div>
+          <TemporaryDrawer />
           <HoursNameSearch handleSearchQuery={this.handleSearchQuery} data={uniqueUsersArray}/>
           {!currentQuery && (
             (uniqueUsersArray.length > 0) ? (

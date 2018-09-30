@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import { red500 } from 'material-ui/styles/colors';
-import { Link } from 'react-router-dom';
-import FlatButton from 'material-ui/FlatButton';
 import ListItem from 'material-ui/List/ListItem';
 
 
@@ -34,18 +31,18 @@ class TemporaryDrawer extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        <ListItem button component="a" href="./">Home</ListItem>
+        <ListItem button component="a" href="/admin_dashboard">Admin Dashboard</ListItem>
         <Divider />
-        <ListItem button component="a" href="./admin_dashboard">Admin Dashboard</ListItem>
+        <ListItem button component="a" href="/form_templates">Form Templates</ListItem>
         <Divider />
-        <ListItem button component="a" href="./form_templates">Form Templates</ListItem>
+        <ListItem button component="a" href="/forms">Forms</ListItem>
         <Divider />
-        <ListItem button component="a" href="./forms">Forms</ListItem>
+        <ListItem button component="a" href="/jobs">Jobs</ListItem>
         <Divider />
-        <ListItem button component="a" href="./jobs">Jobs</ListItem>
+        <ListItem button component="a" href="/hours">Hours</ListItem>
         <Divider />
-        <ListItem button component="a" href="./hours">Hours</ListItem>
-        <Divider />
+        <ListItem button component="a" href="/users">Users</ListItem>
+
       </div>
     );
 

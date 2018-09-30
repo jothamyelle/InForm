@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoadingSpinner from '../../Spinner';
+import TemporaryDrawer from '../Drawer';
 
 
 class UserProfile extends Component {
@@ -43,6 +44,7 @@ class UserProfile extends Component {
 
       return (
         <div>
+          <TemporaryDrawer />
           <div className="employeeContainer">
           <h2>{first_name} {last_name}</h2>
           <img src={image_url} alt="profile_photo"/>
