@@ -2,7 +2,7 @@
   BUGS THAT DON'T DESTROY EVERYTHING AND CAN BE *" "EASILY" "* FIXED LATER ON...
     - checkbox options are added to end of the list for some wild reason (on duplicated controls),
       instead of updating existing options, it addds to the list
-    - 
+    - Controls with multiple options are duplicating for every option on save
 */
 
 let formBuilderObject;
