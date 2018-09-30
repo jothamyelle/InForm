@@ -45,7 +45,7 @@ class FormTemplate extends Component {
             </button>
           </Link>
           <h1> Form Templates </h1>
-          <Link to={'./name_category'}>
+          <Link to={'./form_builder'}>
             <button variant="raised">
               Create New Form Template
             </button>

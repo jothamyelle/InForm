@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.get('/api/getUsers', (req,res) => {
   dbHelpers.getUsers().then(function(result) {
     res.json(result);
-    console.log('Sent list of Employees');
+    // console.log('Sent list of Employees');
   });
 });
 
@@ -119,7 +119,7 @@ app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
 
 app.post('/api/postFormTemplate', (req,res) => {
   console.log('node server -> request content', req.body);
-  dbHelpers.postFormTemplate(req.formBuilderContent).then(function(result) {
+  dbHelpers.postFormTemplate(req.formContent, req.eventNames, req,category).then(function(result) {
     // res.json(result);
     console.log(`Sent the form builder content!`);
   });

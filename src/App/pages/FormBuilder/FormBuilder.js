@@ -53,7 +53,11 @@ class FormBuilder extends Component {
         const formContent = this.state.formContent;
         console.log("this.state.formContent:", this.state.formContent);
         this.setState({ redirect: true});
-        axios.post('/api/postFormTemplate', formContent)
+        axios.post('/api/postFormTemplate', {
+          name: this.state.newTemplateName,
+          category: this.state.newTemplateCategory,  
+          formContent
+        })
         .then() 
       }
       );
@@ -66,6 +70,7 @@ class FormBuilder extends Component {
     } else if(this.state.newTemplateName) {
       return (
         <div>
+          <h2>{this.state.newTemplateName}</h2>
           <div ref={this.fbRef}/>
           <button onClick={this.saveForm} id="saveButton">Save</button>
         </div>
