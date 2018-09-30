@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+//import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 
 import './App.css';
@@ -52,10 +53,10 @@ class App extends Component {
         </Switch>
       </div>
     )
-    
+
     return (
       <Switch>
-        <App/>
+          <App/>
       </Switch>
     );
   }

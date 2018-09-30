@@ -130,7 +130,7 @@ function getFormSubmissions() {
 }
 
 function getFormSubmissionsByDate(date) {
-  return knex.select('submitted_forms.id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id as user_id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
+  return knex.select('submitted_forms.id as submitted_forms_id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id as user_id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
   .from('submitted_forms')
   .join('jobs', { 'jobs.id':'submitted_forms.job_id' })
   .join('users', {'users.id':'submitted_forms.user_id' })
@@ -144,7 +144,7 @@ function getFormSubmissionsByDate(date) {
 
 function getFormSubmissionsFromLastWeek(date1, date2) {
   console.log('knex query last week', date1, date2)
-  return knex.select('submitted_forms.id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id as user_id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
+  return knex.select('submitted_forms.id as submitted_forms_id', 'submitted_forms.date_created as submitted_forms_date_created', 'submitted_forms.date_updated as submitted_forms_date_updated', 'users.id as user_id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
   .from('submitted_forms')
   .join('jobs', { 'jobs.id':'submitted_forms.job_id' })
   .join('users', {'users.id':'submitted_forms.user_id' })

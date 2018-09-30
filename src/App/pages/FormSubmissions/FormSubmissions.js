@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../../components/Search';
+import TemporaryDrawer from '../Drawer';
 
 class FormSubmissions extends Component {
   constructor(props) {
@@ -63,11 +64,7 @@ class FormSubmissions extends Component {
 
     return (
       <div>
-        <Link to={'./'}>
-          <button variant="raised">
-            Home
-          </button>
-        </Link>
+        <TemporaryDrawer />
         <h1>Form Submissions</h1>
         <Search data={this.state.list}/>
         <h2>Submissions this week:</h2>
@@ -88,23 +85,21 @@ class FormSubmissions extends Component {
                 <th>Delete</th>
               </tr>
             </thead>
-        {this.state.thisWeeksForms && this.state.thisWeeksForms.reverse().map((form) => {
-          return ( new Date(form.date_created).toISOString().slice(0, 10) == today.toISOString().slice(0, 10) && (
-                  <tbody key={form.id}>
-                    <tr>
-                      <td>{form.type}</td>
-                      <td>{form.job_name}</td>
-                      <td><Link to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
-                      <td>Fill Out</td>
-                      <td>Edit</td>
-                      <td>Delete</td>
-                    </tr>
-                  </tbody>
+                  <tbody>
+        {this.state.thisWeeksForms && this.state.thisWeeksForms.map((form) => {
+          return ( new Date(form.submitted_forms_date_created).toISOString().slice(0, 10) == new Date(item).toISOString().slice(0, 10) && (
+            <tr key={form.submitted_forms_id}>
+              <td>{form.type}</td>
+              <td>{form.job_name}</td>
+              <td><Link to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
+              <td>Fill Out</td>
+              <td>Edit</td>
+              <td>Delete</td>
+            </tr>
             )
-
-
           )
         })}
+                  </tbody>
                 </table>
                 </div>
           )

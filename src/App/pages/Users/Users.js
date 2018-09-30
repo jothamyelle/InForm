@@ -5,6 +5,7 @@ import LoadingSpinner from '../../Spinner';
 import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';
 import UserSearch from '../../components/UserSearch';
+import TemporaryDrawer from '../Drawer';
 
 
 class User extends Component {
@@ -56,11 +57,7 @@ class User extends Component {
     } else {
       return (
         <div className="App">
-          <Link to={'./'}>
-            <button variant="raised">
-              Home
-            </button>
-          </Link>
+          <TemporaryDrawer />
           {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
             <h1>Employees</h1>
           <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
