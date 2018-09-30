@@ -2,7 +2,7 @@
   BUGS THAT DON'T DESTROY EVERYTHING AND CAN BE *" "EASILY" "* FIXED LATER ON...
     - checkbox options are added to end of the list for some wild reason (on duplicated controls),
       instead of updating existing options, it addds to the list
-    - 
+    - Controls with multiple options are duplicating for every option on save
 */
 
 let formBuilderObject;
@@ -144,9 +144,6 @@ export default formBuilderObject = {
       </div>
       <div id="controls">
         
-          <div class="controls" draggable="true" title="Form Title" data-type="">
-              <h1><label>Title</label></h1>
-          </div>
 
           <div class="controls" draggable="true" title="Section Header" data-type="">
               <h2><label>Header</label></h2>
@@ -453,12 +450,6 @@ export default formBuilderObject = {
     let htmlToDisplay = "";
     let controlOptionsArray = listOfDisplayOptions[elementObject.id].controlOptions;
     switch(elementObject.type) {
-      case 'title':
-      htmlToDisplay += `
-        <label>Form Title</label>
-        <input type="text" class="formTitleValue" value="${elementObject.value}"/>
-      `;
-      break;
       case 'header':
       htmlToDisplay += `
         <label>Section Header</label>

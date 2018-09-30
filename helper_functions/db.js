@@ -14,7 +14,7 @@ exports = module.exports;
 function getJobs() {
   return knex.select().from('jobs')
   .then(function(rows) {
-      console.log('Knex job query', rows);
+      // console.log('Knex job query', rows);
       return rows;
   });
 }
@@ -24,7 +24,7 @@ function getJobs() {
 function getUsers() {
   return knex.select().from('users')
   .then(function(rows) {
-      console.log('Knex employee query', rows);
+      // console.log('Knex employee query', rows);
       return rows;
   });
 }
@@ -35,7 +35,7 @@ function getUserById(id) {
     .from('users')
     .where( {id: id} )
     .then(function(rows) {
-        console.log('Knex user profile query', rows);
+        // console.log('Knex user profile query', rows);
         return rows;
     });
 }
@@ -46,7 +46,7 @@ function getUserRoleById(id) {
     .from('user_roles')
     .where( {id: id} )
     .then(function(rows) {
-        console.log('Knex user role query', rows);
+        // console.log('Knex user role query', rows);
         return rows;
     });
 }
@@ -55,7 +55,7 @@ function getUserRoleById(id) {
 function getUserRoles() {
   return knex.select().from('user_roles')
   .then(function(rows) {
-      console.log('Knex user roles query', rows);
+      // console.log('Knex user roles query', rows);
       return rows;
   });
 }
@@ -69,13 +69,13 @@ function getUserSubmittedFormsById(id) {
 		.join('form_categories', {'form_categories.id': 'form_templates.form_category_id'})
 		.where ({'submitted_forms.user_id': id})
 		.then(function(rows) {
-				console.log('Knex user role query', rows);
+				// console.log('Knex user role query', rows);
 				return rows;
 	})
 }
 
 function getSubmittedFormsByDate(date) {
-  console.log('DATE', date)
+  // console.log('DATE', date)
   return knex.select('submitted_forms.date_created', 'form_templates.type', 
   'jobs.name', 'jobs.active', 'submitted_forms.id AS formId', 'jobs.id AS jobId')
 		.from('submitted_forms')
@@ -83,20 +83,20 @@ function getSubmittedFormsByDate(date) {
     .join('jobs', {'jobs.id': 'submitted_forms.job_id'})
 		.where(knex.raw('??::date = ?', ['submitted_forms.date_created', date]))
 		.then(function(rows) {
-				console.log('Knex submitted forms by day query', rows);
+				// console.log('Knex submitted forms by day query', rows);
 				return rows;
 	});
 }
 
 // function to get hours worked and relevant user info given two date filter parameters
 function getHoursFromDateFilters(date1, date2) {
-  console.log(date1, date2)
+  // console.log(date1, date2)
 	return knex.select('hours.minutes_worked', 'users.first_name', 'users.last_name', 'users.id')
 		.from('hours')
 		.join('users', {'users.id':'hours.user_id'})
 		.whereBetween('date_worked', [date1, date2])
 		.then(function(rows) {
-				console.log('Knex employee minutes worked query', rows);
+				// console.log('Knex employee minutes worked query', rows);
 				return rows;
 	});
 }
@@ -104,7 +104,7 @@ function getHoursFromDateFilters(date1, date2) {
 function getFormtemplateCategories() {
 	return knex.select().from('form_categories')
   .then(function(rows) {
-      console.log('Knex form template categories query', rows);
+      // console.log('Knex form template categories query', rows);
       return rows;
   });
 }
@@ -112,7 +112,7 @@ function getFormtemplateCategories() {
 function getFormTemplates() {
 	return knex.select().from('form_templates')
   .then(function(rows) {
-      console.log('Knex form templates query', rows);
+      // console.log('Knex form templates query', rows);
       return rows;
   });
 }
@@ -124,7 +124,7 @@ function getFormSubmissions() {
   .join('users', {'users.id':'submitted_forms.user_id' })
   .join('form_templates', {'form_templates.id': 'submitted_forms.form_template_id'})
   .then(function(rows) {
-    console.log('Knex form submissions query', rows);
+    // console.log('Knex form submissions query', rows);
     return rows;
   });
 }
@@ -137,13 +137,13 @@ function getFormSubmissionsByDate(date) {
   .join('form_templates', {'form_templates.id': 'submitted_forms.form_template_id'})
   .where(knex.raw('??::date = ?', ['submitted_forms.date_created', date]))
   .then(function(rows) {
-    console.log('Knex form submissions date query', rows);
+    // console.log('Knex form submissions date query', rows);
     return rows;
   });
 }
 
 function getFormSubmissionsFromLastWeek(date1, date2) {
-  console.log('knex query last week', date1, date2)
+  // console.log('knex query last week', date1, date2)
   return knex.select('submitted_forms.id', 'submitted_forms.date_created', 'submitted_forms.date_updated', 'users.id as user_id', 'users.first_name', 'users.last_name', 'form_templates.type', 'jobs.name as job_name')
   .from('submitted_forms')
   .join('jobs', { 'jobs.id':'submitted_forms.job_id' })
@@ -152,14 +152,55 @@ function getFormSubmissionsFromLastWeek(date1, date2) {
   .whereBetween('submitted_forms.date_created', [date1, date2])
   .orderBy('submitted_forms.date_created')
   .then(function(rows) {
-    console.log('Knex form submissions last week query', rows);
+    // console.log('Knex form submissions last week query', rows);
     return rows;
   });
 }
 
-function postFormTemplate(formBuilderContent) {
-  console.log(`Made it into the postFormTemplate, here's the content: ${formBuilderContent}`);
-}
+function postFormTemplate(formBuilderContent, name, category ) {
+  console.log(`Made it into the postFormTemplate, here's the content: name ${name}, category ${category}, formBuilderContent ${formBuilderContent['0'].type}`);
+  
+  knex.select('id')
+    .from('form_categories')
+    .where('name', category)
+    .then((categoryId) =>     
+      knex('form_templates')
+        .insert({type: formBuilderContent['0'].type, form_category_id: categoryId[0].id, company_id: 1, date_created: new Date().toISOString(), date_updated: new Date().toISOString() })
+        .returning('*')
+        .then((formTemplate) => {
+          //  formBuilderContent.forEach(field => {
+             for (field in formBuilderContent) {
+             knex('template_fields')
+              .insert({
+                label: formBuilderContent[field].label, 
+                type: formBuilderContent[field].type,
+                options: JSON.stringify(formBuilderContent[field].controlOptions),
+                maxlength: formBuilderContent[field].maxlength,
+                required: formBuilderContent[field].required,
+                placeholder: formBuilderContent[field].placeholder,
+                multiple: formBuilderContent[field].multiple,
+                date_created: new Date().toISOString(), 
+                date_updated: new Date().toISOString()
+              })
+              .returning('*')
+              .then(templateField => { 
+                knex('form_template_fields')
+                .insert({
+                  form_template_id: formTemplate[0].id,
+                  template_field_id: templateField[0].id,
+                  date_created: new Date().toISOString(), 
+                  date_updated: new Date().toISOString()
+                })
+                .returning('*')
+                .then(res => {
+                  console.log(res)
+                })
+              })
+            }
+          })
+        )
+      return Promise.resolve();
+    }
 
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;

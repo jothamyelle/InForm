@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Redirect, Switch} from 'react-router-dom';
 
 
 import './App.css';
@@ -19,8 +19,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: true
+      loggedIn: true,
+      
     }
+
   }
 
   login = () => {
