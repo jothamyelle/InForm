@@ -92,7 +92,6 @@ class Jobs extends Component {
                   <th>Name</th>
                   <th>Address</th>
                   <th>Job Number</th>
-                  <th>More Information</th>
                 </tr>
             </thead>
               {list.map((item) => {
@@ -102,7 +101,6 @@ class Jobs extends Component {
                         <td>{item.name}</td>
                         <td>{item.address}</td>
                         <td>{item.job_number}</td>
-                        <td><button>view</button></td>
                       </tr>
                     </tbody>
                   ))
