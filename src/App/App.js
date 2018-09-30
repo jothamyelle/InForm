@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
-
 import './App.css';
 import Home from './pages/Home';
 import Users from './pages/Users/Users';
@@ -20,8 +19,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: true
+      loggedIn: true,
+      
     }
+
   }
 
   login = () => {
