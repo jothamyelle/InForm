@@ -62,7 +62,8 @@ class FormBuilder extends Component {
           formContent
         })
         .then(() => {
-          this.setState({ newTemplateName: "", redirect: true});
+          formBuilderObject.emptyListOfDisplayOptions();
+          this.setState({ newTemplateName: "", newTemplateCategory: "", formContent: "", redirect: true});
         }) 
       }
       );
