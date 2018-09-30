@@ -54,13 +54,11 @@ class Login extends Component {
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-          </Avatar>
           <Typography variant="headline">Sign in</Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
+              <Input id="email" name="email" autoFocus />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
@@ -68,14 +66,13 @@ class Login extends Component {
                 name="password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
               />
             </FormControl>
             <Button
               type="submit"
               fullWidth
               variant="raised"
-              color="primary"
+              color="orange"
               className={classes.submit}
             >
               Sign in
