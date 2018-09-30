@@ -4,11 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import { red500 } from 'material-ui/styles/colors';
+import { red500, orange400 } from 'material-ui/styles/colors';
 import ListItem from 'material-ui/List/ListItem';
 import { Link } from 'react-router-dom'
 import { ListSubheader } from '@material-ui/core';
 import orange from '@material-ui/core/colors/orange';
+import { orange500 } from 'material-ui/styles/colors';
 
 
 const styles = theme => ({
@@ -20,6 +21,9 @@ const styles = theme => ({
       color: orange[500],
     },
   },
+  button: {
+    backgroundColor: orange500
+  }
 });
 
 class TemporaryDrawer extends React.Component {
@@ -54,7 +58,7 @@ class TemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer('left', true)}>Menu</Button>
+        <Button className={classes.button} onClick={this.toggleDrawer('left', true)}>Menu</Button>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}

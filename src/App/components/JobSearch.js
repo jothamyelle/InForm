@@ -70,7 +70,7 @@ class JobSearch extends Component {
       <form>
         <CustomizedInputs
         setParentValue={this.handleInputChange}
-
+        style={{display: "block"}}
           // onKeyUp={this.handleInputChange}
           onKeyPress={this.handleSubmit}
         />
