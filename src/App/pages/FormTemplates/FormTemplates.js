@@ -45,6 +45,11 @@ class FormTemplate extends Component {
             </button>
           </Link>
           <h1> Form Templates </h1>
+          <Link to={'./name_category'}>
+            <button variant="raised">
+              Create New Form Template
+            </button>
+          </Link>
           {this.state.categories.map((category) => {
             return(  
               <div key={category.id}>
