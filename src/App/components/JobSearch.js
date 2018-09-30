@@ -10,6 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+import CustomizedInputs from './Input'
+
+
 class JobSearch extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +40,10 @@ class JobSearch extends Component {
     })
   }
 
-  handleInputChange = () => {
+  handleInputChange = (value) => {
     setTimeout(() => {
       this.setState({
-        query: this.search.value
+        query: value
       }, () => {
         this.getInfo();
         if (this.state.query.length > 0) {
@@ -60,21 +63,16 @@ class JobSearch extends Component {
   }
 
   render() {
+    const ref = React.createRef();
+
     return (
       
       <form>
-      {/* <TextField
-      hintText="Search for jobs"
-      floatingLabelText="Search for jobs"
-    /> */}
-        <Input
-          placeholder="Search for..."
-          inputRef={Input => this.search = Input}
-          onKeyUp={this.handleInputChange}
+        <CustomizedInputs
+        setParentValue={this.handleInputChange}
+
+          // onKeyUp={this.handleInputChange}
           onKeyPress={this.handleSubmit}
-          hintText="Search for jobs"
-      floatingLabelText="Search for jobs"
-      className={JobsStyles.textField}
         />
         {this.state.query && <JobSearchResults jobs={this.state.results} />}
       </form>

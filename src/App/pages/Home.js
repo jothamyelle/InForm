@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class Home extends Component {
@@ -8,39 +9,39 @@ class Home extends Component {
     <div className="App">
       <h1>Project Home</h1>
       <Link to={'./users'}>
-        <button variant="raised">
+        <RaisedButton variant="raised">
             Users
-        </button>
+        </RaisedButton>
       </Link>
 
       <Link to={'./jobs'}>
-        <button variant="raised">
+        <RaisedButton variant="raised">
             Jobs
-        </button>
+        </RaisedButton>
       </Link>
 
       <Link to={'./hours'}>
-        <button variant="raised">
+        <RaisedButton variant="raised">
             Hours
-        </button>
+        </RaisedButton>
       </Link>
 
       <Link to={'./forms'}>
-        <button variant="raised">
+        <RaisedButton variant="raised">
             Forms
-        </button>
+        </RaisedButton>
       </Link>
 
       <Link to={'./form_templates'}>
-        <button variant="raised">
+        <RaisedButton variant="raised">
             Form Templates
-        </button>
+        </RaisedButton>
       </Link>
 
       <Link to={'./admin_dashboard'}>
-        <button variant="raised">
+        <RaisedButton variant="raised">
             Admin Dashboard
-        </button>
+        </RaisedButton>
       </Link>
       
     </div>

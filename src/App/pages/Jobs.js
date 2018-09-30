@@ -25,7 +25,7 @@ class Jobs extends Component {
       error: null,
       list: [],
       isLoading: false,
-      currentQuery: false
+      currentQuery: false,
     }
   }
 
