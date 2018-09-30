@@ -7,7 +7,6 @@ import userStyles from './userStyles.css';
 import UserSearch from '../../components/UserSearch';
 import TemporaryDrawer from '../Drawer';
 
-
 class User extends Component {
   constructor(props){
     super(props);
