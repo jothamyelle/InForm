@@ -106,9 +106,9 @@ class Jobs extends Component {
           Active Jobs ({this.getActiveJobCount()})
           </Typography>
             {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
-            <Table className={JobsStyles.formsTable}>
-            <TableHeader displaySelectAll={false} displayRowCheckbox='false'>
-                <TableRow>
+            <Table selectable={false} className={JobsStyles.formsTable}>
+            <TableHeader displaySelectAll={false}>
+                <TableRow displayRowCheckbox={false}>
                   <TableHeaderColumn>Name</TableHeaderColumn>
                   <TableHeaderColumn>Address</TableHeaderColumn>
                   <TableHeaderColumn>Job Number</TableHeaderColumn>
@@ -133,28 +133,28 @@ class Jobs extends Component {
               </Typography>
               {/* <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2> */}
               {this.getInactiveJobCount() > 0 && (
-              <table>
-                <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Address</th>
-                      <th>Job Number</th>
-                      <th>More Information</th>
-                    </tr>
-                </thead>
+              <Table>
+                <TableHeader displaySelectAll={false}>
+                    <TableRow>
+                      <TableHeaderColumn>Name</TableHeaderColumn>
+                      <TableHeaderColumn>Address</TableHeaderColumn>
+                      <TableHeaderColumn>Job Number</TableHeaderColumn>
+                      <TableHeaderColumn>More Information</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                    <TableBody displayRowCheckbox={false}>
               {list.map((item) => {
                   return ((!item.active) && (
-                    <tbody key={item.id}>
-                      <tr>
-                        <td>{item.name}</td>
-                        <td>{item.address}</td>
-                        <td>{item.job_number}</td>
-                        <td><button>view</button></td>
-                      </tr>
-                    </tbody>
+                      <TableRow key={item.id}>
+                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn>{item.address}</TableRowColumn>
+                        <TableRowColumn>{item.job_number}</TableRowColumn>
+                        <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                      </TableRow>
                   ))
               })}
-            </table>
+                    </TableBody>
+            </Table>
               )}
             </div>
           )}
