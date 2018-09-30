@@ -4,7 +4,10 @@ import LoadingSpinner from '../Spinner';
 import JobSearch from '../components/JobSearch';
 import JobsStyles from './Jobs/JobsStyes.css'
 import Typography from '@material-ui/core/Typography';
+import TemporaryDrawer from './Drawer';
+
 import TextField from 'material-ui/TextField';
+import Drawer from '@material-ui/core/Drawer';
 
 
 import {
@@ -89,9 +92,7 @@ class Jobs extends Component {
     } else {
       return (
         <div>
-          <Link to={'./'}>
-            <FlatButton>Home</FlatButton>
-          </Link>
+          <TemporaryDrawer />
           {/* <h1>Jobs</h1> */}
           <Typography variant="display4" gutterBottom align="center">
             Jobs
