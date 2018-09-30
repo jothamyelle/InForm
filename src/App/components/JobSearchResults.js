@@ -1,4 +1,17 @@
 import React, { Component } from 'react'
+import Typography from '@material-ui/core/Typography';
+import JobsStyles from '../pages/Jobs/JobsStyes.css'
+
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class JobSearchResults extends Component {
   constructor(props) {
@@ -9,32 +22,32 @@ class JobSearchResults extends Component {
         return (
           <div>
           {this.props.jobs.length > 0 ? (
-            <div>
-              <h2>Search Results ({this.props.jobs.length})</h2>
-              <table>
-              <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Job Number</th>
-                    <th>More Information</th>
-                  </tr>
-              </thead>
-                {this.props.jobs.map((item) => {
-                  return (
-                    <tbody key={item.id}>
-                      <tr>
-                        <td>{item.name}</td>
-                        <td>{item.address}</td>
-                        <td>{item.job_number}</td>
-                        <td><button>view</button></td>
-                      </tr>
-                    </tbody>
-                  );
-                })}
-              </table>
+            <div className={JobsStyles.tableContainer}>
+              <Typography variant="display2" gutterBottom align="center">Search Results ({this.props.jobs.length})</Typography>
+              <Table selectable={false} className={JobsStyles.formsTable}>
+                <TableHeader displaySelectAll={false}>
+                  <TableRow displayRowCheckbox={false}>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Address</TableHeaderColumn>
+                    <TableHeaderColumn>Job Number</TableHeaderColumn>
+                    <TableHeaderColumn>More Information</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                  {this.props.jobs.map((item) => {
+                    return (
+                        <TableRow>
+                          <TableRowColumn>{item.name}</TableRowColumn>
+                          <TableRowColumn>{item.address}</TableRowColumn>
+                          <TableRowColumn>{item.job_number}</TableRowColumn>
+                          <TableRowColumn><FlatButton backgroundColor="orange">view</FlatButton></TableRowColumn>
+                        </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
             </div>
-        ) : (<h2>No results</h2>)}
+        ) : (<Typography variant="display2" gutterBottom align="center">No results</Typography>)}
         </div>
       );
     }
