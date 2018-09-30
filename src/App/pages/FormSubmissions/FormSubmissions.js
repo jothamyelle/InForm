@@ -4,6 +4,7 @@ import Search from '../../components/Search';
 import TemporaryDrawer from '../Drawer';
 import FormSubmissionsTable from '../../components/FormSubmissionsTable'
 import Typography from '@material-ui/core/Typography';
+import LoadingProgress from '../../components/Progress';
 
 
 class FormSubmissions extends Component {
@@ -12,7 +13,8 @@ class FormSubmissions extends Component {
     this.state = {
       list: [],
       thisWeeksForms: null,
-      error: null
+      error: null,
+      isLoading: true
     }
   }
 
@@ -63,22 +65,25 @@ class FormSubmissions extends Component {
       tempDate.setDate(tempDate.getDate()-i);
       dateArray.push(tempDate);  
     }
-
-
     return (
       <div>
         <TemporaryDrawer />
 
         <Typography variant="display3" gutterBottom align="center">
             Form Submissions 
-          </Typography>
+        </Typography>
 
         <Search data={this.state.list}/>
-
         <Typography variant="display2" gutterBottom align="center">
             Submissions this week
         </Typography>
-        <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+        <div>
+        {this.state.isLoading ? (
+          <LoadingProgress/>
+        ) : (
+          <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+          )}
+        </div>
       </div>
     )
   }
