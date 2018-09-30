@@ -88,7 +88,7 @@ class UserProfile extends Component {
 												<tbody key={form.id}>
 													<tr>
 														<td>{form.type}</td>
-														<td>{(form.date_created)}</td>
+														<td>{(form.date_created).slice(0, 10)}</td>
 														<td><button>view</button></td>
 													</tr>
 												</tbody>

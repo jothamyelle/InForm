@@ -25,7 +25,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "75477 Labadie Trail",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 2,
           company_id: 1,
           date_created: new Date("Sun Jun 24 2018 15:20:45 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Mon Mar 18 2019 05:21:06 GMT-0700 (PDT)").toISOString()
@@ -38,7 +38,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "8573 Gail Glens",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 2,
           company_id: 1,
           date_created: new Date("Sat Dec 02 2017 03:51:39 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Tue May 14 2019 06:03:38 GMT-0700 (PDT)").toISOString()
@@ -51,7 +51,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "4258 Gislason Street",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 2,
           company_id: 1,
           date_created: new Date("Sun Feb 04 2018 13:01:47 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Sat May 18 2019 15:37:28 GMT-0700 (PDT)").toISOString()
@@ -64,7 +64,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "309 Gusikowski Trail",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Sat Dec 02 2017 21:07:33 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Sun Oct 21 2018 21:54:32 GMT-0700 (PDT)").toISOString()
@@ -77,7 +77,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "226 Adrienne Prairie",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Sat Sep 01 2018 09:20:09 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Tue Sep 03 2019 11:05:45 GMT-0700 (PDT)").toISOString()
@@ -90,7 +90,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "5402 Berge Villages",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Tue Jan 23 2018 19:19:56 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Sat Oct 27 2018 05:17:57 GMT-0700 (PDT)").toISOString()
@@ -103,7 +103,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "982 Legros Mountain",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Tue Mar 13 2018 11:33:03 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Fri Feb 22 2019 07:36:54 GMT-0800 (PST)").toISOString()
@@ -116,7 +116,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "19655 America Neck",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Wed Jul 18 2018 23:42:26 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Tue Nov 27 2018 13:59:30 GMT-0800 (PST)").toISOString()
@@ -129,7 +129,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "93850 Kub Heights",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 2,
           company_id: 1,
           date_created: new Date("Thu Dec 28 2017 02:58:44 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Fri Mar 01 2019 18:36:23 GMT-0800 (PST)").toISOString()
@@ -142,7 +142,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "4207 Kelsie Loop",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 2,
           company_id: 1,
           date_created: new Date("Fri Jan 12 2018 18:01:44 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Wed Oct 24 2018 21:03:18 GMT-0700 (PDT)").toISOString()
@@ -155,7 +155,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "29390 Kassulke Lane",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Sat Jan 27 2018 09:06:17 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Wed Feb 20 2019 00:58:06 GMT-0800 (PST)").toISOString()
@@ -168,7 +168,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "3448 Lindgren Mill",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Sat Jul 14 2018 08:53:47 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Sun Nov 25 2018 18:58:33 GMT-0800 (PST)").toISOString()
@@ -181,7 +181,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "093 Annie Parkways",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Thu Aug 23 2018 13:27:58 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Sat Oct 13 2018 00:26:07 GMT-0700 (PDT)").toISOString()
@@ -194,7 +194,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "43512 Hessel Extension",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Wed Aug 22 2018 04:40:29 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Sun Oct 21 2018 02:14:35 GMT-0700 (PDT)").toISOString()
@@ -207,7 +207,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "63186 Cristal Glen",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Fri Jul 20 2018 21:40:38 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Sun Jun 16 2019 05:13:48 GMT-0700 (PDT)").toISOString()
@@ -220,7 +220,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "408 Karl Ford",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Thu Dec 07 2017 02:18:09 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Fri Oct 12 2018 17:00:15 GMT-0700 (PDT)").toISOString()
@@ -233,7 +233,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "1859 Jesus Overpass",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Mon Jan 15 2018 16:19:45 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Fri Nov 02 2018 11:55:54 GMT-0700 (PDT)").toISOString()
@@ -246,7 +246,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "485 Thiel Fork",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Sun Jul 22 2018 13:47:09 GMT-0700 (PDT)").toISOString(),
           date_updated: new Date("Sun Feb 17 2019 22:52:42 GMT-0800 (PST)").toISOString()
@@ -259,7 +259,7 @@ exports.seed = function(knex, Promise) {
           password_digest: "$2a$10$vlfv5uZWvFKTsPBX.hKJ8uLby5yPPKETZmoCvS7nR1jguH/lH5URO",
           address: "37431 Bruen Way",
           image_url: "https://randomuser.me/api/portraits/men/62.jpg",
-          role_id: 1,
+          role_id: 3,
           company_id: 1,
           date_created: new Date("Wed Feb 28 2018 18:40:10 GMT-0800 (PST)").toISOString(),
           date_updated: new Date("Tue Jan 01 2019 06:36:55 GMT-0800 (PST)").toISOString()
