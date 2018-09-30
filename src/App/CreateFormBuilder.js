@@ -11,6 +11,9 @@ export default formBuilderObject = {
   getListOfDisplayOptions: function() {
     return listOfDisplayOptions;
   },
+  emptyListOfDisplayOptions: function() {
+    return listOfDisplayOptions = {};
+  },
   createFormBuilder: function(element) {
     element = element || document.querySelector('#FormBuilderRoot');
     element.innerHTML += `
