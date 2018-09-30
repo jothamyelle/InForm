@@ -175,38 +175,50 @@ function postFormTemplate(formBuilderContent, name, category ) {
         .returning('*')
         .then((formTemplate) => {
           //  formBuilderContent.forEach(field => {
-             for (field in formBuilderContent) {
-             knex('template_fields')
+            for (field in formBuilderContent) {
+            knex('template_fields')
+            .insert({
+              label: formBuilderContent[field].label, 
+              type: formBuilderContent[field].type,
+              options: JSON.stringify(formBuilderContent[field].controlOptions),
+              maxlength: formBuilderContent[field].maxlength,
+              required: formBuilderContent[field].required,
+              placeholder: formBuilderContent[field].placeholder,
+              multiple: formBuilderContent[field].multiple,
+              date_created: new Date().toISOString(), 
+              date_updated: new Date().toISOString()
+            })
+            .returning('*')
+            .then(templateField => { 
+              knex('form_template_fields')
               .insert({
-                label: formBuilderContent[field].label, 
-                type: formBuilderContent[field].type,
-                options: JSON.stringify(formBuilderContent[field].controlOptions),
-                maxlength: formBuilderContent[field].maxlength,
-                required: formBuilderContent[field].required,
-                placeholder: formBuilderContent[field].placeholder,
-                multiple: formBuilderContent[field].multiple,
+                form_template_id: formTemplate[0].id,
+                template_field_id: templateField[0].id,
                 date_created: new Date().toISOString(), 
                 date_updated: new Date().toISOString()
               })
               .returning('*')
-              .then(templateField => { 
-                knex('form_template_fields')
-                .insert({
-                  form_template_id: formTemplate[0].id,
-                  template_field_id: templateField[0].id,
-                  date_created: new Date().toISOString(), 
-                  date_updated: new Date().toISOString()
-                })
-                .returning('*')
-                .then(res => {
-                  console.log(res)
-                })
+              .then(res => {
+                console.log(res)
               })
-            }
-          })
-        )
-      return Promise.resolve();
-    }
+            })
+          }
+        })
+    )
+    return Promise.resolve();
+}
+
+function deleteFormTemplate(templateId) {
+  knex.select('id')
+    .from('form_templates')
+    .where('id', templateId)
+    .limit(1)
+    .del()
+    .then(res => {
+      console.log(res)
+    })
+  return Promise.resolve();
+}
 
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
@@ -222,3 +234,4 @@ exports.getFormtemplateCategories = getFormtemplateCategories;
 exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
 exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
 exports.postFormTemplate = postFormTemplate;
+exports.deleteFormTemplate = deleteFormTemplate;

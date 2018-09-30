@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('submitted_forms', function (table) {
     table.increments();
-    table.integer('form_template_id').references('form_templates.id');
+    table.integer('form_template_id').references('form_templates.id').onDelete("CASCADE");;
     table.integer('user_id').references('users.id');
     table.integer('job_id').references('jobs.id');
     table.datetime('date_created');

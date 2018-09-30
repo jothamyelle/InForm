@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
+import axios from 'axios';
+
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import FlatButton from 'material-ui/FlatButton';
+
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
 
 class FormTemplate extends Component {
   constructor(props){
@@ -10,9 +24,22 @@ class FormTemplate extends Component {
       error: null,
       isLoading: true,
       categories: null,
-      templates: null
+      templates: null,
+      open: false,
+      confirmationTemplateId: null,
     }
   }
+
+  handleClickConfirmation = (templateId) => {
+    this.setState({ confirmationTemplateId: templateId, open: true });
+  };
+
+  handleConfirmationDelete = (confirmation) => {
+    if (confirmation === 'delete') {
+      this.deleteTemplate(this.state.confirmationTemplateId);    
+    }
+    this.setState({ confirmationTemplateId: null, open: false });
+  };
 
   componentDidMount() {
     this.setState({ isLoading: true });
@@ -32,6 +59,16 @@ class FormTemplate extends Component {
         isLoading: false
       })
     })
+  }
+
+  deleteTemplate = (templateId) => {
+    axios.post('/api/deleteFormTemplate', {
+      id: templateId
+    })
+    .then(() => {
+      console.log("I'm back")
+      this.getTemplatesAndCategories();
+    }) 
   }
 
   render() {
@@ -69,7 +106,7 @@ class FormTemplate extends Component {
                             <td>{template.type}</td>
                             <td><button>Fill Out</button></td>
                             <td><button>Edit</button></td>
-                            <td><button>Delete</button></td>
+                            <td><button onClick={() => this.handleClickConfirmation(template.id)}>Delete</button></td>
                           </tr>
                         </tbody>
                       )
@@ -79,6 +116,34 @@ class FormTemplate extends Component {
               </div>
             )
           })}
+
+          <div>
+            <Dialog
+              open={this.state.open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={this.handleConfirmationDelete}
+              aria-labelledby="alert-dialog-slide-title"
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle id="alert-dialog-slide-title">
+                {"InForm"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                  Deleting this template means that all submitted forms using this template will also be deleted. Do you want to proceed?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <FlatButton onClick={() => this.handleConfirmationDelete('cancel')} color="primary">
+                  Cancel
+                </FlatButton>
+                <FlatButton backgroundColor="orange" onClick={() => this.handleConfirmationDelete('delete')} color="primary">
+                  Delete
+                </FlatButton>
+              </DialogActions>
+            </Dialog>
+          </div>
         </div>
       )
     }
