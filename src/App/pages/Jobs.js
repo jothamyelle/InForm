@@ -117,14 +117,14 @@ class Jobs extends Component {
             </TableHeader>
                     <TableBody displayRowCheckbox={false}>
               {list.map((item) => {
-                  return ((item.active) && (
-                      <TableRow>
-                        <TableRowColumn>{item.name}</TableRowColumn>
-                        <TableRowColumn>{item.address}</TableRowColumn>
-                        <TableRowColumn>{item.job_number}</TableRowColumn>
-                        <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
-                      </TableRow>
-                  ))
+                return ((item.active) && (
+                  <TableRow>
+                    <TableRowColumn>{item.name}</TableRowColumn>
+                    <TableRowColumn>{item.address}</TableRowColumn>
+                    <TableRowColumn>{item.job_number}</TableRowColumn>
+                    <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                  </TableRow>
+                ))
               })}
                     </TableBody>
               </Table>
