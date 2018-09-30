@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import JobSearchResults from './JobSearchResults'
+import Input from '@material-ui/core/Input';
+import JobsStyles from '../pages/Jobs/JobsStyes.css'
+import PropTypes from 'prop-types';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
+import CustomizedInputs from './Input'
+
 
 class JobSearch extends Component {
   constructor(props) {
@@ -28,10 +40,10 @@ class JobSearch extends Component {
     })
   }
 
-  handleInputChange = () => {
+  handleInputChange = (value) => {
     setTimeout(() => {
       this.setState({
-        query: this.search.value
+        query: value
       }, () => {
         this.getInfo();
         if (this.state.query.length > 0) {
@@ -51,12 +63,15 @@ class JobSearch extends Component {
   }
 
   render() {
+    const ref = React.createRef();
+
     return (
+      
       <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
-          onKeyUp={this.handleInputChange}
+        <CustomizedInputs
+        setParentValue={this.handleInputChange}
+
+          // onKeyUp={this.handleInputChange}
           onKeyPress={this.handleSubmit}
         />
         {this.state.query && <JobSearchResults jobs={this.state.results} />}
