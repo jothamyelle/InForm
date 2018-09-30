@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../Spinner';
 import JobSearch from '../components/JobSearch';
+import JobsStyles from './Jobs/JobsStyes.css'
+import Typography from '@material-ui/core/Typography';
+import TextField from 'material-ui/TextField';
+
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class Jobs extends Component {
   // Initialize the state
@@ -74,39 +88,49 @@ class Jobs extends Component {
       return <LoadingSpinner />
     } else {
       return (
-        <div className="App">
+        <div>
           <Link to={'./'}>
-            <button variant="raised">
-              Home
-            </button>
+            <FlatButton>Home</FlatButton>
           </Link>
-          <h1>Jobs</h1>
-          <JobSearch  handleSearchQuery={this.handleSearchQuery} data={list}/>
+          {/* <h1>Jobs</h1> */}
+          <Typography variant="display4" gutterBottom align="center">
+            Jobs
+          </Typography>
+          <div className={JobsStyles.searchBox}>
+            <JobSearch handleSearchQuery={this.handleSearchQuery} data={list}/>
+          </div>
           {!currentQuery && (
-            <div>
-            <h2>All Jobs</h2>
-            <h2>Active Jobs ({this.getActiveJobCount()})</h2>
-            <table>
-            <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Address</th>
-                  <th>Job Number</th>
-                </tr>
-            </thead>
+            <div className={JobsStyles.tableContainer}>
+          <Typography variant="display2" gutterBottom align="center">
+          Active Jobs ({this.getActiveJobCount()})
+          </Typography>
+            {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
+            <Table className={JobsStyles.formsTable}>
+            <TableHeader displayRowCheckbox={false}>
+                <TableRow>
+                  <TableHeaderColumn>Name</TableHeaderColumn>
+                  <TableHeaderColumn>Address</TableHeaderColumn>
+                  <TableHeaderColumn>Job Number</TableHeaderColumn>
+                  <TableHeaderColumn>More Information</TableHeaderColumn>
+                </TableRow>
+            </TableHeader>
+                    <TableBody displayRowCheckbox={false}>
               {list.map((item) => {
                   return ((item.active) && (
-                    <tbody key={item.id}>
-                      <tr>
-                        <td>{item.name}</td>
-                        <td>{item.address}</td>
-                        <td>{item.job_number}</td>
-                      </tr>
-                    </tbody>
+                      <TableRow>
+                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn>{item.address}</TableRowColumn>
+                        <TableRowColumn>{item.job_number}</TableRowColumn>
+                        <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                      </TableRow>
                   ))
               })}
-              </table>
-              <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2>
+                    </TableBody>
+              </Table>
+              <Typography variant="display2" gutterBottom align="center">
+                Inactive Jobs ({this.getInactiveJobCount()})
+              </Typography>
+              {/* <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2> */}
               {this.getInactiveJobCount() > 0 && (
               <table>
                 <thead>

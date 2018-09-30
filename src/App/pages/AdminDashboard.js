@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../Spinner';
 import { uniqueJobsArray } from '../../helpers/unique_jobs';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 
 class AdminDashboard extends Component {
@@ -49,9 +51,7 @@ class AdminDashboard extends Component {
       return (
         <div>
           <Link to={'./'}>
-            <button>
-              Home
-            </button>
+            <RaisedButton variant="raised">Home</RaisedButton>
           </Link>
           {this.getUniqueJobsArray()}
           <h1> Good Morning Ben. Currently {this.state.todaysForms.length} forms 
