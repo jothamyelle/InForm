@@ -4,6 +4,7 @@ import LoadingSpinner from '../Spinner';
 import { uniqueJobsArray } from '../../helpers/unique_jobs';
 import RaisedButton from 'material-ui/RaisedButton';
 import TemporaryDrawer from './Drawer';
+import LoadingProgress from '../components/Progress';
 
 
 
@@ -47,7 +48,7 @@ class AdminDashboard extends Component {
 
   render() { 
     if (this.state.isLoading) {
-      return <LoadingSpinner />
+      return <LoadingProgress />
     } else {
       return (
         <div>
