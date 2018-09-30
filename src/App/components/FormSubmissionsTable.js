@@ -8,16 +8,19 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { orange400 } from 'material-ui/styles/colors';
+import { orange400, white } from 'material-ui/styles/colors';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
+import { grey200 } from 'material-ui/styles/colors';
+import { grey900 } from 'material-ui/styles/colors';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: orange400,
-    color: theme.palette.common.white,
+    backgroundColor: white,
+    color: grey900
+
   },
   body: {
     fontSize: 14,
@@ -39,6 +42,9 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.default,
     },
   },
+  button:{
+    color: orange400
+  }
 });
 
 
@@ -84,7 +90,7 @@ class FormSubmissionsTable extends Component {
                   <CustomTableCell><Link to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></CustomTableCell>
                   <CustomTableCell>View</CustomTableCell>
                   <CustomTableCell>Edit</CustomTableCell>
-                  <CustomTableCell><Button><DeleteIcon /></Button></CustomTableCell>
+                  <CustomTableCell><Button color={orange400}><DeleteIcon /></Button></CustomTableCell>
                 </TableRow>
                 )
               )
