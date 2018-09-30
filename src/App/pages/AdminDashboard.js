@@ -17,8 +17,6 @@ import {
 import FlatButton from 'material-ui/FlatButton';
 import { orange300 } from 'material-ui/styles/colors';
 
-
-
 class AdminDashboard extends Component {
   constructor(props){
     super(props);
@@ -58,20 +56,35 @@ class AdminDashboard extends Component {
   }
 
   render() { 
+    
     if (this.state.isLoading) {
       return <LoadingProgress />
     } else {
+        this.getUniqueJobsArray()
+
+      const todaysFormsNumber = (
+        <Typography style={{color:"orange", display:"inline"}} variant="display3" gutterBottom align="center">
+          {this.state.todaysForms.length}
+        </Typography>
+      )
+      const todaysJobsNumber = (
+        <Typography style={{color:"orange", display:"inline"}} variant="display3" gutterBottom align="center">
+          {this.state.uniqueJobs.length}
+        </Typography>
+      )
+
       return (
         <div>
           <TemporaryDrawer />
-          {this.getUniqueJobsArray()}
+
           <Typography variant="display3" gutterBottom align="center">
-            Good Morning Ben. Currently {this.state.todaysForms.length} forms 
-            from {this.state.uniqueJobs.length} active jobs
+            Good Morning Ben. Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
           </Typography>
+
           <Typography variant="display2" gutterBottom align="center">
-          Today's Forms ({this.state.todaysForms.length}) 
-        </Typography>
+            Today's Forms
+          </Typography>
+
           <div style={{width:'75%', margin: 'auto'}} className="form-container">
             <Table selectable={false} style={{textAlign: 'left'}}>
               <TableHeader displaySelectAll={false}>
@@ -92,11 +105,13 @@ class AdminDashboard extends Component {
               </TableBody>
             </Table>
           </div>
+
           <Typography variant="display2" gutterBottom align="center">
-            Today's Active Jobs ({[...new Set(this.state.todaysForms.map(item => item.name))].length}) 
+            Today's Active Jobs
           </Typography>
+
           <div style={{width:'75%', margin: 'auto'}} className="form-container">
-            <Table>
+            <Table style={{textAlign: 'left'}}>
               <TableHeader displaySelectAll={false}>
                 <TableRow displayRowCheckbox={false}>
                   <TableHeaderColumn>Job Name</TableHeaderColumn>
@@ -105,9 +120,9 @@ class AdminDashboard extends Component {
               <TableBody displayRowCheckbox={false} >
                 {this.state.uniqueJobs.map((job) => {
                   return(
-                      <TableRow displayRowCheckbox={false} key={job.job_id}>
-                        <TableRowColumn>{job.name}</TableRowColumn>
-                      </TableRow>
+                    <TableRow displayRowCheckbox={false} key={job.job_id}>
+                      <TableRowColumn>{job.name}</TableRowColumn>
+                    </TableRow>
                   )
                 })}
                 </TableBody>
