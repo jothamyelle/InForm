@@ -5,6 +5,7 @@ import JobSearch from '../components/JobSearch';
 import JobsStyles from './Jobs/JobsStyes.css'
 import Typography from '@material-ui/core/Typography';
 import TemporaryDrawer from './Drawer';
+import { orange300 } from 'material-ui/styles/colors';
 
 
 import TextField from 'material-ui/TextField';
@@ -123,7 +124,7 @@ class Jobs extends Component {
                       <TableRowColumn>{item.name}</TableRowColumn>
                       <TableRowColumn>{item.address}</TableRowColumn>
                       <TableRowColumn>{item.job_number}</TableRowColumn>
-                      <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                      <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
                     </TableRow>
                   ))
                   })}
