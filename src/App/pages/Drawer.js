@@ -42,17 +42,17 @@ class TemporaryDrawer extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        <Link to={`/`}><ListItem>Dashboard</ListItem></Link>
+        <Link style={{ textDecoration: 'none' }} to={`/`}><ListItem>Dashboard</ListItem></Link>
         <Divider />
-        <Link to={`/form_templates`}><ListItem>Form Templates</ListItem></Link>
+        <Link style={{ textDecoration: 'none' }} to={`/form_templates`}><ListItem>Form Templates</ListItem></Link>
         <Divider />
-        <Link to={`/forms`}><ListItem>Forms</ListItem></Link>
+        <Link style={{ textDecoration: 'none' }} to={`/forms`}><ListItem>Forms</ListItem></Link>
         <Divider />
-        <Link to={`/jobs`}><ListItem>Jobs</ListItem></Link>
+        <Link style={{ textDecoration: 'none' }} to={`/jobs`}><ListItem>Jobs</ListItem></Link>
         <Divider />
-        <Link to={`/users`}><ListItem>Staff</ListItem></Link>
+        <Link style={{ textDecoration: 'none' }} to={`/users`}><ListItem>Staff</ListItem></Link>
         <Divider />
-        <Link to={`/hours`}><ListItem>Hours</ListItem></Link>
+        <Link style={{ textDecoration: 'none' }} to={`/hours`}><ListItem>Hours</ListItem></Link>
       </div>
     );
 
