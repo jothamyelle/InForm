@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Spinner';
+import TemporaryDrawer from '../Drawer';
 
 class FormTemplate extends Component {
   constructor(props){
@@ -38,12 +39,8 @@ class FormTemplate extends Component {
       return <LoadingSpinner />
     } else {
       return(
-        <div className="App">
-          <Link to={'./'}>
-            <button variant="raised">
-              Home
-            </button>
-          </Link>
+        <div>
+          <TemporaryDrawer />     
           <h1> Form Templates </h1>
           <Link to={'./form_builder'}>
             <button variant="raised">
