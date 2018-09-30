@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../../components/Search';
 import TemporaryDrawer from '../Drawer';
+import FormSubmissionsTable from '../../components/FormSubmissionsTable'
+import Typography from '@material-ui/core/Typography';
+import LoadingProgress from '../../components/Progress';
+
 
 class FormSubmissions extends Component {
   constructor(props) {
@@ -9,7 +13,8 @@ class FormSubmissions extends Component {
     this.state = {
       list: [],
       thisWeeksForms: null,
-      error: null
+      error: null,
+      isLoading: true
     }
   }
 
@@ -60,50 +65,25 @@ class FormSubmissions extends Component {
       tempDate.setDate(tempDate.getDate()-i);
       dateArray.push(tempDate);  
     }
-
-
     return (
       <div>
         <TemporaryDrawer />
-        <h1>Form Submissions</h1>
+
+        <Typography variant="display3" gutterBottom align="center">
+            Form Submissions 
+        </Typography>
+
         <Search data={this.state.list}/>
-        <h2>Submissions this week:</h2>
-        {dateArray.map((item) => {
-          return(
-          <div key={item}>
-              {(new Date(item).toISOString().slice(0, 10) == today.toISOString().slice(0, 10)) ? (<h3>Today</h3>) : (<h3>{new Date(item).toISOString().slice(0, 10)}</h3>)}
-          <table>
-            <thead>
-            <tr>
-            </tr>
-              <tr>
-                <th>Form Name</th>
-                <th>Job</th>
-                <th>Employee</th>
-                <th>Fill Out</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-                  <tbody>
-        {this.state.thisWeeksForms && this.state.thisWeeksForms.map((form) => {
-          return ( new Date(form.submitted_forms_date_created).toISOString().slice(0, 10) == new Date(item).toISOString().slice(0, 10) && (
-            <tr key={form.submitted_forms_id}>
-              <td>{form.type}</td>
-              <td>{form.job_name}</td>
-              <td><Link to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></td>
-              <td>Fill Out</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            )
-          )
-        })}
-                  </tbody>
-                </table>
-                </div>
-          )
-      })}
+        <Typography variant="display2" gutterBottom align="center">
+            Submissions this week
+        </Typography>
+        <div>
+        {this.state.isLoading ? (
+          <LoadingProgress/>
+        ) : (
+          <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+          )}
+        </div>
       </div>
     )
   }
