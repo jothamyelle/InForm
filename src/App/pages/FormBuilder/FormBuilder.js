@@ -46,19 +46,22 @@ class FormBuilder extends Component {
   }
   
   saveForm() {
+    if (!Object.keys(formBuilderObject.getListOfDisplayOptions()).length) {
+      return;
+    }
+    console.log(formBuilderObject.getListOfDisplayOptions());
     this.setState({
       formContent: formBuilderObject.getListOfDisplayOptions()
       },
       () => {
         const formContent = this.state.formContent;
-        console.log("this.state.formContent:", this.state.formContent);
+        // console.log("this.state.formContent:", this.state.formContent);
         axios.post('/api/postFormTemplate', {
           name: this.state.newTemplateName,
           category: this.state.newTemplateCategory,  
           formContent
         })
         .then(() => {
-          console.log("Hello")
           this.setState({ newTemplateName: "", redirect: true});
         }) 
       }
