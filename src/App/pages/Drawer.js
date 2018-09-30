@@ -40,15 +40,12 @@ class TemporaryDrawer extends React.Component {
       <div className={classes.list}>
         <Link to={`/`}><ListItem>Dashboard</ListItem></Link>
         <Divider />
-        <ListSubheader>Forms</ListSubheader>
         <Link to={`/form_templates`}><ListItem>Form Templates</ListItem></Link>
         <Divider />
         <Link to={`/forms`}><ListItem>Forms</ListItem></Link>
         <Divider />
-        <ListSubheader id="custom-css-input">Jobs</ListSubheader>
         <Link to={`/jobs`}><ListItem>Jobs</ListItem></Link>
         <Divider />
-        <ListSubheader id="custom-css-input">Employee Information</ListSubheader>
         <Link to={`/users`}><ListItem>Staff</ListItem></Link>
         <Divider />
         <Link to={`/hours`}><ListItem>Hours</ListItem></Link>
