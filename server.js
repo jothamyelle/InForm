@@ -29,7 +29,7 @@ app.get('/api/getUsers', (req,res) => {
 app.get('/api/getUserRoles', (req,res) => {
   dbHelpers.getUserRoles().then(function(result) {
     res.json(result);
-    console.log('Sent list of user roles');
+    // console.log('Sent list of user roles');
   });
 });
 
@@ -37,7 +37,7 @@ app.get('/api/getUserRoles', (req,res) => {
 app.get('/api/getUser/:id', (req,res) => {
   dbHelpers.getUserById(req.params.id).then(function(result) {
     res.json(result);
-    console.log('Sent user');
+    // console.log('Sent user');
   });
 });
 
@@ -45,7 +45,7 @@ app.get('/api/getUser/:id', (req,res) => {
 app.get('/api/getUserRole/:id', (req,res) => {
   dbHelpers.getUserRoleById(req.params.id).then(function(result) {
     res.json(result);
-    console.log('Sent user role');
+    // console.log('Sent user role');
   });
 });
 
@@ -53,21 +53,21 @@ app.get('/api/getUserRole/:id', (req,res) => {
 app.get('/api/getJobs', (req,res) => {
   dbHelpers.getJobs().then(function(result) {
     res.json(result);
-    console.log('Sent list of Jobs');
+    // console.log('Sent list of Jobs');
   });
 });
 
 app.get('/api/getUserSubmittedFormsById/:id', (req,res) => {
   dbHelpers.getUserSubmittedFormsById(req.params.id).then(function(result) {
     res.json(result);
-    console.log('Sent list of User\'s Submitted Forms');
+    // console.log('Sent list of User\'s Submitted Forms');
   });
 });
 
 app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
   dbHelpers.getHoursFromDateFilters(req.params.date1, req.params.date2).then(function(result) {
     res.json(result);
-    console.log('Sent Filtered list of All Employee\s Hours');
+    // console.log('Sent Filtered list of All Employee\s Hours');
   });
 });
 
@@ -75,14 +75,14 @@ app.get(`/api/getHoursFromDateFilters/:date1/:date2`, (req,res) => {
 app.get('/api/getFormSubmissions/', (req,res) => {
   dbHelpers.getFormSubmissions().then(function(result) {
     res.json(result);
-    console.log('Sent list of all form submissions');
+    // console.log('Sent list of all form submissions');
   })
 });
 
 app.get('/api/getSubmittedFormsByDate/:date', (req,res) => {
   dbHelpers.getSubmittedFormsByDate(req.params.date).then(function(result) {
     res.json(result);
-    console.log('Sent list of all form submissions');
+    // console.log('Sent list of all form submissions');
   })
 });
 
@@ -90,7 +90,7 @@ app.get('/api/getSubmittedFormsByDate/:date', (req,res) => {
 app.get('/api/getFormtemplateCategories', (req,res) => {
   dbHelpers.getFormtemplateCategories().then(function(result) {
     res.json(result);
-    console.log('Sent Form Template Categories');
+    // console.log('Sent Form Template Categories');
   });
 });
 
@@ -98,31 +98,31 @@ app.get('/api/getFormtemplateCategories', (req,res) => {
 app.get('/api/getFormTemplates', (req,res) => {
   dbHelpers.getFormTemplates().then(function(result) {
     res.json(result);
-    console.log('Sent list of form templates');
+    // console.log('Sent list of form templates');
   });
 });
 
 app.get('/api/getFormSubmissionsByDate/:date', (req,res) => {
   dbHelpers.getFormSubmissionsByDate(req.params.date).then(function(result) {
     res.json(result);
-    console.log('Sent list of submitted forms from date');
+    // console.log('Sent list of submitted forms from date');
   });
 });
 
 app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
-  console.log('node server', req.params.date1, req.params.date2)
+  // console.log('node server', req.params.date1, req.params.date2)
   dbHelpers.getFormSubmissionsFromLastWeek(req.params.date1, req.params.date2).then(function(result) {
     res.json(result);
-    console.log(`Sent list of submitted forms from date ${req.params.date1} and ${req.params.date2}`);
+    // console.log(`Sent list of submitted forms from date ${req.params.date1} and ${req.params.date2}`);
   });
 });
 
 app.post('/api/postFormTemplate', (req,res) => {
-  console.log('node server -> request content', req.body);
-  dbHelpers.postFormTemplate(req.formContent, req.eventNames, req,category).then(function(result) {
+  // console.log(`Sent the form builder content!`, req.body.name, req.body.category, req.body.formContent);
+  dbHelpers.postFormTemplate(req.body.formContent, req.body.name, req.body.category)
+  // .then(function(result) {
     // res.json(result);
-    console.log(`Sent the form builder content!`);
-  });
+  // });
 });
 
 const port = process.env.PORT || 3005;
