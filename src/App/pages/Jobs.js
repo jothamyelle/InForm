@@ -107,7 +107,7 @@ class Jobs extends Component {
           </Typography>
             {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
             <Table className={JobsStyles.formsTable}>
-            <TableHeader displayRowCheckbox={false}>
+            <TableHeader displaySelectAll={false} displayRowCheckbox='false'>
                 <TableRow>
                   <TableHeaderColumn>Name</TableHeaderColumn>
                   <TableHeaderColumn>Address</TableHeaderColumn>
