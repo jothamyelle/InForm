@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 class FormTemplate extends Component {
   constructor(props){
@@ -10,8 +12,10 @@ class FormTemplate extends Component {
       error: null,
       isLoading: true,
       categories: null,
-      templates: null
+      templates: null,
+      data: []
     }
+    this.handleFillOutClick = this.handleFillOutClick.bind(this);
   }
 
   componentDidMount() {
@@ -34,9 +38,21 @@ class FormTemplate extends Component {
     })
   }
 
+  handleFillOutClick = (event) => {
+    let id = Number(event.target.dataset.templateId);
+    axios.get(`/api/getFormtemplate/${id}`)
+    .then(response => {
+      this.setState({
+        data: response
+      });
+    })
+  }
+
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
+    } else if (this.state.data) {
+      return <FormToFillOut />
     } else {
       return(
         <div>
@@ -67,7 +83,7 @@ class FormTemplate extends Component {
                         <tbody key={template.id}>
                           <tr>
                             <td>{template.type}</td>
-                            <td><button>Fill Out</button></td>
+                            <td><button data-template-id={template.id} onClick={this.handleFillOutClick}>Fill Out</button></td>
                             <td><button>Edit</button></td>
                             <td><button>Delete</button></td>
                           </tr>
