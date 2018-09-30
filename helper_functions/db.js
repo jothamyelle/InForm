@@ -167,7 +167,7 @@ function postFormTemplate(formBuilderContent, name, category ) {
       knex('form_templates')
         .insert({type: formBuilderContent['0'].type, form_category_id: categoryId[0].id, company_id: 1, date_created: new Date().toISOString(), date_updated: new Date().toISOString() })
         .returning('*')
-        .then((res) => {
+        .then((formTemplate) => {
           //  formBuilderContent.forEach(field => {
              for (field in formBuilderContent) {
              knex('template_fields')
@@ -183,21 +183,24 @@ function postFormTemplate(formBuilderContent, name, category ) {
                 date_updated: new Date().toISOString()
               })
               .returning('*')
-              .then(result => { console.log(res[0].id);
-                console.log(result[0].id);
+              .then(templateField => { 
                 knex('form_template_fields')
                 .insert({
-                  form_template_id: res[0].id,
-                  template_field_id: result[0].id,
+                  form_template_id: formTemplate[0].id,
+                  template_field_id: templateField[0].id,
                   date_created: new Date().toISOString(), 
                   date_updated: new Date().toISOString()
                 })
                 .returning('*')
-                .then(rEsUlT => console.log(rEsUlT))
+                .then(res => {
+                  console.log(res)
+                })
               })
             }
-        })
-    )}
+          })
+        )
+      return Promise.resolve();
+    }
 
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;

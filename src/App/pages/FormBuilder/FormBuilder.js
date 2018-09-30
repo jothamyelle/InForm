@@ -52,13 +52,15 @@ class FormBuilder extends Component {
       () => {
         const formContent = this.state.formContent;
         console.log("this.state.formContent:", this.state.formContent);
-        this.setState({ redirect: true});
         axios.post('/api/postFormTemplate', {
           name: this.state.newTemplateName,
           category: this.state.newTemplateCategory,  
           formContent
         })
-        .then() 
+        .then(() => {
+          console.log("Hello")
+          this.setState({ newTemplateName: "", redirect: true});
+        }) 
       }
       );
     }
@@ -66,7 +68,7 @@ class FormBuilder extends Component {
     render() {
     if (this.state.redirect) {
 
-      return <Redirect to='/users'/>
+      return <Redirect to='/form_templates'/>
     } else if(this.state.newTemplateName) {
       return (
         <div>
