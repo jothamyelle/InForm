@@ -14,6 +14,9 @@ import { orange300 } from 'material-ui/styles/colors';
 
 
 const styles = theme => ({
+  list: {
+    width: 250
+  },
   listSection: {
     backgroundColor: orange,
   },
