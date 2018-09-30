@@ -6,14 +6,21 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { red500 } from 'material-ui/styles/colors';
 import ListItem from 'material-ui/List/ListItem';
+import { Link } from 'react-router-dom'
+import { ListSubheader } from '@material-ui/core';
+import orange from '@material-ui/core/colors/orange';
 
 
-const styles = {
-  list: {
-    width: 250,
-    color:red500
-  }
-};
+const styles = theme => ({
+  listSection: {
+    backgroundColor: orange,
+  },
+  cssLabel: {
+    '&$cssFocused': {
+      color: orange[500],
+    },
+  },
+});
 
 class TemporaryDrawer extends React.Component {
   state = {
@@ -31,18 +38,20 @@ class TemporaryDrawer extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        <ListItem button component="a" href="/admin_dashboard">Admin Dashboard</ListItem>
+        <Link to={`/`}><ListItem>Dashboard</ListItem></Link>
         <Divider />
-        <ListItem button component="a" href="/form_templates">Form Templates</ListItem>
+        <ListSubheader>Forms</ListSubheader>
+        <Link to={`/form_templates`}><ListItem>Form Templates</ListItem></Link>
         <Divider />
-        <ListItem button component="a" href="/forms">Forms</ListItem>
+        <Link to={`/forms`}><ListItem>Forms</ListItem></Link>
         <Divider />
-        <ListItem button component="a" href="/jobs">Jobs</ListItem>
+        <ListSubheader id="custom-css-input">Jobs</ListSubheader>
+        <Link to={`/jobs`}><ListItem>Jobs</ListItem></Link>
         <Divider />
-        <ListItem button component="a" href="/hours">Hours</ListItem>
+        <ListSubheader id="custom-css-input">Employee Information</ListSubheader>
+        <Link to={`/users`}><ListItem>Staff</ListItem></Link>
         <Divider />
-        <ListItem button component="a" href="/users">Users</ListItem>
-
+        <Link to={`/hours`}><ListItem>Hours</ListItem></Link>
       </div>
     );
 
