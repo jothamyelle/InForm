@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { orange500 } from 'material-ui/styles/colors';
+import orange from '@material-ui/core/colors/orange';
 
 const styles = theme => ({
   layout: {
@@ -37,18 +38,90 @@ const styles = theme => ({
     width: '100%', // Fix IE11 issue.
     marginTop: theme.spacing.unit,
   },
-  button: {
-    backgroundColor: orange500
-  },
   submit: {
     marginTop: theme.spacing.unit * 3,
     backgroundColor: orange500
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  cssLabel: {
+    '&$cssFocused': {
+      color: orange500,
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: orange[500],
+    },
+  },
+  bootstrapRoot: {
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  cssLabel: {
+    '&$cssFocused': {
+      color: orange[500],
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: orange[500],
+    },
+  },
+  bootstrapRoot: {
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  bootstrapInput: {
+    borderRadius: 4,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  bootstrapFormLabel: {
+    fontSize: 18,
   },
 });
 
 class Login extends Component {
   constructor(props){
     super(props);
+  }
+
+  formHandler = (event) => {
+    event.preventDefault();
+    this.props.login()
   }
 
   render() {
@@ -58,18 +131,38 @@ class Login extends Component {
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-          <Typography variant="headline">Sign in</Typography>
-          <form className={classes.form}>
+          <Typography variant="display1">Sign in</Typography>
+          <form className={classes.form} onSubmit={this.formHandler}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoFocus />
+              <InputLabel 
+              htmlFor="custom-css-input"
+              FormLabelClasses={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              }}
+              >Email Address</InputLabel>
+              <Input
+              id="custom-css-input"
+              classes={{
+                underline: classes.cssUnderline,
+              }}
+              />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
+              <InputLabel 
+              htmlFor="custom-css-input"
+              FormLabelClasses={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              }}
+              >Password</InputLabel>
               <Input
+                id="custom-css-input"
+                classes={{
+                  underline: classes.cssUnderline,
+                }}
                 name="password"
                 type="password"
-                id="password"
               />
             </FormControl>
             <Button
@@ -103,10 +196,10 @@ export default withStyles(styles)(Login);
 //     super(props);
 //   }
 
-//   formHandler = (event) => {
-//     event.preventDefault();
-//     this.props.login()
-//   }
+  // formHandler = (event) => {
+  //   event.preventDefault();
+  //   this.props.login()
+  // }
 //   render() {
 //     return (
 //     <div>

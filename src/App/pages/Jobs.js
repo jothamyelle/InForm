@@ -107,27 +107,27 @@ class Jobs extends Component {
           </Typography>
             {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
             <Table selectable={false} className={JobsStyles.formsTable}>
-            <TableHeader displaySelectAll={false}>
+              <TableHeader displaySelectAll={false}>
                 <TableRow displayRowCheckbox={false}>
                   <TableHeaderColumn>Name</TableHeaderColumn>
                   <TableHeaderColumn>Address</TableHeaderColumn>
                   <TableHeaderColumn>Job Number</TableHeaderColumn>
                   <TableHeaderColumn>More Information</TableHeaderColumn>
                 </TableRow>
-            </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-              {list.map((item) => {
-                return ((item.active) && (
-                  <TableRow>
-                    <TableRowColumn>{item.name}</TableRowColumn>
-                    <TableRowColumn>{item.address}</TableRowColumn>
-                    <TableRowColumn>{item.job_number}</TableRowColumn>
-                    <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
-                  </TableRow>
-                ))
-              })}
-                    </TableBody>
-              </Table>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {list.map((item) => {
+                  return ((item.active) && (
+                    <TableRow>
+                      <TableRowColumn>{item.name}</TableRowColumn>
+                      <TableRowColumn>{item.address}</TableRowColumn>
+                      <TableRowColumn>{item.job_number}</TableRowColumn>
+                      <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                    </TableRow>
+                  ))
+                  })}
+              </TableBody>
+            </Table>
               <Typography variant="display2" gutterBottom align="center">
                 Inactive Jobs ({this.getInactiveJobCount()})
               </Typography>
@@ -135,25 +135,25 @@ class Jobs extends Component {
               {this.getInactiveJobCount() > 0 && (
               <Table>
                 <TableHeader displaySelectAll={false}>
-                    <TableRow>
-                      <TableHeaderColumn>Name</TableHeaderColumn>
-                      <TableHeaderColumn>Address</TableHeaderColumn>
-                      <TableHeaderColumn>Job Number</TableHeaderColumn>
-                      <TableHeaderColumn>More Information</TableHeaderColumn>
-                    </TableRow>
+                  <TableRow>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Address</TableHeaderColumn>
+                    <TableHeaderColumn>Job Number</TableHeaderColumn>
+                    <TableHeaderColumn>More Information</TableHeaderColumn>
+                  </TableRow>
                 </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-              {list.map((item) => {
-                  return ((!item.active) && (
-                      <TableRow key={item.id}>
-                        <TableRowColumn>{item.name}</TableRowColumn>
-                        <TableRowColumn>{item.address}</TableRowColumn>
-                        <TableRowColumn>{item.job_number}</TableRowColumn>
-                        <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
-                      </TableRow>
-                  ))
-              })}
-                    </TableBody>
+                  <TableBody displayRowCheckbox={false}>
+                    {list.map((item) => {
+                      return ((!item.active) && (
+                        <TableRow key={item.id}>
+                          <TableRowColumn>{item.name}</TableRowColumn>
+                          <TableRowColumn>{item.address}</TableRowColumn>
+                          <TableRowColumn>{item.job_number}</TableRowColumn>
+                          <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                        </TableRow>
+                      ))
+                    })}
+                  </TableBody>
             </Table>
               )}
             </div>
