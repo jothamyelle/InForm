@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { userMinutesWorkedSum } from '../../../helpers/hours';
-import LoadingSpinner from '../../Spinner';
 import HoursNameSearch from '../../components/HoursNameSearch';
 import TemporaryDrawer from '../Drawer';
 

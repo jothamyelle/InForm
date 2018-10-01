@@ -6,10 +6,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import ListItem from 'material-ui/List/ListItem';
 import { Link } from 'react-router-dom'
-import { ListSubheader } from '@material-ui/core';
 import orange from '@material-ui/core/colors/orange';
-import { orange500 } from 'material-ui/styles/colors';
-import { orange400 } from 'material-ui/styles/colors';
 import { orange300 } from 'material-ui/styles/colors';
 
 

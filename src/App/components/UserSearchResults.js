@@ -3,9 +3,6 @@ import IndividualUser from '../../App/pages/IndividualUser';
 import userStyles from '../pages/Users/userStyles.css';
 
 class UserSearchResults extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const listofResults = this.props.users.map((user) => {

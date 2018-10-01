@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import LoadingSpinner from '../../Spinner';
+import LoadingProgress from '../../components/Progress'
 // import UserRoles from '../UserRoles';
 import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';
@@ -14,7 +13,7 @@ class User extends Component {
       error: null,
       usersList: [],
       userRolesList: [],
-      isLoading: false,
+      isLoading: true,
       currentQuery: false
     }
   }
@@ -52,7 +51,7 @@ class User extends Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (isLoading) {
-      return <LoadingSpinner />
+      return <LoadingProgress />
     } else {
       return (
         <div className="App">

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import { orange300 } from 'material-ui/styles/colors';
 import JobsStyles from '../Jobs/JobsStyes.css'
 
+import LoadingProgress from '../../components/Progress'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -83,9 +83,6 @@ class FormTemplate extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    } else {
       return(
         <div>
           <TemporaryDrawer />  
@@ -100,38 +97,42 @@ class FormTemplate extends Component {
             <br/>
           </div>
 
-          {this.state.categories.map((category) => {
-            return(  
-              <div key={category.id} className={JobsStyles.tableContainer}>
-                <Typography variant="display2" gutterBottom align="center">
-                  {category.name}
-                </Typography>
-                <div className="form-container">
-                  <Table selectable={false} className={JobsStyles.formsTable}>
-                    <TableHeader displaySelectAll={false}>
-                      <TableRow displayRowCheckbox={false}>
-                        <TableHeaderColumn>Form name</TableHeaderColumn>
-                        <TableHeaderColumn>Fill Out</TableHeaderColumn>
-                        <TableHeaderColumn>Delete Template</TableHeaderColumn>
-                      </TableRow>
-                    </TableHeader>
-                    {this.state.templates.map((template) => {
-                      if(template.form_category_id === category.id)
-                      return (
-                        <TableBody displayRowCheckbox={false} key={template.id}>
-                          <TableRow>
-                            <TableRowColumn>{template.type}</TableRowColumn>
-                            <TableRowColumn><FlatButton backgroundColor={orange300}>Fill Out</FlatButton></TableRowColumn>
-                            <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
-                          </TableRow>
-                        </TableBody>
-                      )
-                    })}
-                  </Table>
+          {this.state.isLoading ? (<LoadingProgress/>) : (
+          <div>
+            {this.state.categories.map((category) => {
+              return(  
+                <div key={category.id} className={JobsStyles.tableContainer}>
+                  <Typography variant="display2" gutterBottom align="center">
+                    {category.name}
+                  </Typography>
+                  <div className="form-container">
+                    <Table selectable={false} className={JobsStyles.formsTable}>
+                      <TableHeader displaySelectAll={false}>
+                        <TableRow displayRowCheckbox={false}>
+                          <TableHeaderColumn>Form name</TableHeaderColumn>
+                          <TableHeaderColumn>Fill Out</TableHeaderColumn>
+                          <TableHeaderColumn>Delete Template</TableHeaderColumn>
+                        </TableRow>
+                      </TableHeader>
+                      {this.state.templates.map((template) => {
+                        if(template.form_category_id === category.id)
+                        return (
+                          <TableBody displayRowCheckbox={false} key={template.id}>
+                            <TableRow>
+                              <TableRowColumn>{template.type}</TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor={orange300}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
+                            </TableRow>
+                          </TableBody>
+                        )
+                      })}
+                    </Table>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
+          )}
 
           <div>
             <Dialog
@@ -162,8 +163,9 @@ class FormTemplate extends Component {
           </div>
         </div>
       )
-    }
   }
 }
+
+
 
 export default FormTemplate;
