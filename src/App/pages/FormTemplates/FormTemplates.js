@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import { orange300 } from 'material-ui/styles/colors';
 import JobsStyles from '../Jobs/JobsStyes.css'
@@ -36,9 +37,11 @@ class FormTemplate extends Component {
       isLoading: true,
       categories: null,
       templates: null,
+      data: [],
       open: false,
       confirmationTemplateId: null,
     }
+    this.handleFillOutClick = this.handleFillOutClick.bind(this);
   }
 
   handleClickConfirmation = (templateId) => {
@@ -68,6 +71,19 @@ class FormTemplate extends Component {
         categories: categories,
         templates: templates,
         isLoading: false
+      })
+    })
+  }
+
+  handleFillOutClick = (event) => {
+    let id = Number(event.target.dataset.templateId);
+    axios.get(`/api/getFormtemplate/${id}`)
+    .then(response => {
+      this.setState({
+        data: response.data,
+        confirmationTemplateId: id
+      }, () => {
+        this.props.getFormData(this.state.data, this.state.confirmationTemplateId)
       })
     })
   }
