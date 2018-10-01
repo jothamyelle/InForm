@@ -5,6 +5,8 @@ import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';
 import UserSearch from '../../components/UserSearch';
 import TemporaryDrawer from '../Drawer';
+import Typography from '@material-ui/core/Typography';
+
 
 class User extends Component {
   constructor(props){
@@ -54,33 +56,39 @@ class User extends Component {
       return <LoadingProgress />
     } else {
       return (
-        <div className="App">
+        <div>
           <TemporaryDrawer />
-          {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
-            <h1>Employees</h1>
-          <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
-          {!currentQuery && (
-          <div>
-            {userRolesList.map((role) =>  {
-              return (
-                <div key={role.id}>
-                  <h2>{role.role}</h2>
+          <div className="App">
+            {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
+            <Typography variant="display4" gutterBottom align="center">
+              Employees
+            </Typography>
+            <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
+            {!currentQuery && (
+            <div>
+              {userRolesList.map((role) =>  {
+                return (
+                  <div key={role.id}>
+                  <Typography variant="display2" gutterBottom align="center">
+                    {role.role}
+                  </Typography>
                   <div className={userStyles.employeeContainer}>
-                  {usersList.map((user) => {
-                    if (user.role_id === role.id) {
-                      return (
-                        <IndividualUser user={user} key={user.id}/>
-                      );
-                    }
-                  })}
+                    {usersList.map((user) => {
+                      if (user.role_id === role.id) {
+                        return (
+                          <IndividualUser user={user} key={user.id}/>
+                        );
+                      }
+                    })}
                   </div>
-                </div>
-              )
-            })
-            }
+                  </div>
+                )
+              })
+              }
+            </div>
+            )}
           </div>
-          )}
-        </div>
+          </div>
       )
     }
   }
