@@ -147,8 +147,7 @@ app.post('/api/deleteFormTemplate', (req, res) => {
 });
 
 app.post('/api/submitForm', (req, res) => {
-  console.log("req.body:", req.body);
-  dbHelpers.submitForm(req.body)
+  dbHelpers.submitForm(req)
   .then(function() {
     res.json('');
   });

@@ -29,13 +29,13 @@ class SingleFormTemplate extends Component {
         case 'header':
         return(
           <div>
-            <h2>{control.label}</h2>
+            <h2>{control.value}</h2>
           </div>
         );
         case 'paragraph':
         return(
           <div>
-            <p>{control.label}</p>
+            <p>{control.value}</p>
           </div>
           );
         case 'checkbox':
@@ -164,10 +164,22 @@ class SingleFormTemplate extends Component {
 
     const data = {};
     for (let [key, val] of formData.entries()) {
-      Object.assign(data, { [key]: val })
+      if(data[key]) {
+        if(!Array.isArray(data[key])){
+          data[key]=[data[key]]
+        }
+        data[key].push(val);
+      } else {
+        Object.assign(data, { [key]: val })
+      }
     }
 
-    axios.post(`/api/submitForm`, {body: data});
+    axios.post(`/api/submitForm`, {
+      formValues: data,
+      templateId: this.props.formId,
+      userId: 1,
+      jobId: 1
+    });
   }
 
 
