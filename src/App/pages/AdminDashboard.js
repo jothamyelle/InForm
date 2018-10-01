@@ -75,7 +75,7 @@ class AdminDashboard extends Component {
           <TemporaryDrawer />
 
           <Typography variant="display3" gutterBottom align="center">
-            Good Morning Ben. Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
+            Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
           </Typography>
 
           <Typography variant="display2" gutterBottom align="center">
