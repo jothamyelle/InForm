@@ -15,8 +15,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
-// import JobsStyles from './Jobs/JobsStyes.css'
+import JobsStyles from '../Jobs/JobsStyes.css'
 // import LoadingProgress from '../components/Progress'
 
 
@@ -81,33 +84,41 @@ class SingleFormTemplate extends Component {
         );
         case 'radio':
         return(
-
-          <FormControl component="fieldset">
-            <FormLabel component="legend">{control.label}</FormLabel>
-            <RadioGroup
-              name={control.label + control.id}
-              required={control.required} 
-            >
-              {control.options.map(option => {
-                return(
-                  <FormControlLabel  control={<Radio value={option} style={{color: "orange"}}/>} label={option} /> 
-                )
-              })}
-            </RadioGroup>
-          </FormControl>
+          <div>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">{control.label}</FormLabel>
+              <RadioGroup
+                name={control.label + control.id}
+                required={control.required} 
+              >
+                {control.options.map(option => {
+                  return(
+                    <FormControlLabel  control={<Radio value={option} style={{color: "orange"}}/>} label={option} /> 
+                  )
+                })}
+              </RadioGroup>
+            </FormControl>
+          </div>
         );
         case 'select':
         return(
           <div>
-          <label>{control.label}</label>
-          <select name={control.label + control.id}
-            required={control.required}>
-            {control.options.map(option => {
-              return(
-              <option>{option}</option>
-              )
-            })}
-            </select>
+          <FormControl style={{minWidth: 120}}>
+            <InputLabel>{control.label}</InputLabel>
+            <Select
+              inputProps={{
+                name: control.label + control.id,
+                required: control.required
+              }}
+            >
+              {control.options.map(option => {
+                return(
+                <MenuItem value={option}>{option}</MenuItem>
+                )
+              })}
+            
+            </Select>
+          </FormControl>
           </div>
         );
         case 'selectMultiple':
@@ -193,7 +204,9 @@ class SingleFormTemplate extends Component {
           <Typography variant="display4" gutterBottom align="center">
             {this.state.formName}
           </Typography>
-          {this.renderFormHTML()}
+          <div className={JobsStyles.searchBox}>
+            {this.renderFormHTML()}
+          </div>
           <input type="submit"/>
         </form>
       </div>
