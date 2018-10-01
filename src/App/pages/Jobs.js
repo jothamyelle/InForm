@@ -89,7 +89,7 @@ class Jobs extends Component {
         <div>
           <TemporaryDrawer />
           {/* <h1>Jobs</h1> */}
-          <Typography variant="display4" gutterBottom align="center">
+          <Typography variant="display2" gutterBottom align="center">
             Jobs
           </Typography>
           <div className={JobsStyles.searchBox}>

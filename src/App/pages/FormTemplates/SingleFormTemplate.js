@@ -5,6 +5,12 @@ import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 
+import Typography from '@material-ui/core/Typography';
+import { orange300 } from 'material-ui/styles/colors';
+// import JobsStyles from './Jobs/JobsStyes.css'
+// import LoadingProgress from '../components/Progress'
+
+
 class SingleFormTemplate extends Component {
   constructor(props){
     super(props);
@@ -26,21 +32,24 @@ class SingleFormTemplate extends Component {
     let controls = this.props.formData.map(control => {
       switch(control.type) {
         case 'header':
+        console.log(control.label);      
         return(
-          <div>
-            <h2>{control.label}</h2>
-          </div>
+          <Typography variant="display2" gutterBottom align="center">    
+            {control.label}
+          </Typography>
         );
         case 'paragraph':
         return(
-          <div>
-            <p>{control.label}</p>
-          </div>
+          <Typography component="p">
+            {control.label}
+          </Typography>
           );
         case 'checkbox':
         return(
           <div>
-          <label>{control.label}</label>
+            <Typography component="p">
+              {control.label}
+            </Typography>
             {control.options.map(option => {
               return(
               <p>
@@ -161,7 +170,9 @@ class SingleFormTemplate extends Component {
       <div>
         <TemporaryDrawer />
         <form>
-          <h1>{this.state.formName}</h1>
+          <Typography variant="display4" gutterBottom align="center">
+            {this.state.formName}
+          </Typography>
           {this.renderFormHTML()}
           <input type="submit"/>
         </form>
