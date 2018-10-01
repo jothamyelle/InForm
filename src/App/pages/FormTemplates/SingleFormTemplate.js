@@ -93,7 +93,7 @@ class SingleFormTemplate extends Component {
               >
                 {control.options.map(option => {
                   return(
-                    <FormControlLabel  control={<Radio value={option} style={{color: "orange"}}/>} label={option} /> 
+                    <FormControlLabel control={<Radio value={option} style={{color: "orange"}}/>} label={option} /> 
                   )
                 })}
               </RadioGroup>
@@ -122,18 +122,31 @@ class SingleFormTemplate extends Component {
           </div>
         );
         case 'selectMultiple':
+        console.log(control.options)
         return(
-          <div>
-          <label>{control.label}</label>
-          <select name={control.label + control.id} multiple
-            required={control.required}>
-            {control.options.map(option => {
-              return(
-              <option>{option}</option>
-              )
-            })}
-            </select>
-          </div>
+
+          <FormControl style={{minWidth: 120}}>
+            <InputLabel>{control.label}</InputLabel>
+            <Select
+              multiple
+              name={control.label + control.id} 
+              required={control.required}
+              value={control.options}
+            >
+            
+            {control.options.map((option) => {
+             return ( 
+                <MenuItem
+                  key={option}
+                  
+                >
+                  {option}
+                </MenuItem>
+             )
+            }
+            )}
+            </Select>
+          </FormControl>
         );
         case 'text':
         return(
