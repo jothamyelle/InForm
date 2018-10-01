@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TemporaryDrawer from '../Drawer';
 import LoadingProgress from '../../components/Progress'
 
-
 class UserProfile extends Component {
   constructor(props){
     super(props);

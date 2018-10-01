@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import UserSearchResults from './UserSearchResults'
+import CustomizedInputs from './Input'
 
 class UserSearch extends Component {
   constructor(props) {
@@ -26,10 +27,10 @@ class UserSearch extends Component {
     })
   }
 
-  handleInputChange = () => {
+  handleInputChange = (value) => {
     setTimeout(() => {
       this.setState({
-        query: this.search.value
+        query: value
       }, () => {
         this.getInfo();
         if (this.state.query.length > 0) {
@@ -50,10 +51,10 @@ class UserSearch extends Component {
   render() {
     return (
       <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
-          onKeyUp={this.handleInputChange}
+        <CustomizedInputs
+        setParentValue={this.handleInputChange}
+        style={{display: "block"}}
+          // onKeyUp={this.handleInputChange}
           onKeyPress={this.handleSubmit}
         />
         {this.state.query && <UserSearchResults users={this.state.results} />}

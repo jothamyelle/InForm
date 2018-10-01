@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import IndividualUser from '../../App/pages/IndividualUser';
 import userStyles from '../pages/Users/userStyles.css';
+import Typography from '@material-ui/core/Typography';
 
 class UserSearchResults extends Component {
 
@@ -17,12 +18,19 @@ class UserSearchResults extends Component {
       <div>
         {this.props.users.length > 0 ?  (
         <div>
-          <h2>Search Results ({this.props.users.length})</h2>
+          <Typography variant="display2" gutterBottom align="center">
+            Search Results ({this.props.users.length})
+          </Typography>
+          {/* <h2>Search Results ({this.props.users.length})</h2> */}
           <div className={userStyles.employeeContainer}>
             {listofResults}
           </div>
         </div>
-          ) : (<h2>No Results</h2>)}
+          ) : (
+            <Typography variant="display2" gutterBottom align="center">
+              No Results
+            </Typography>
+            )}
       </div>
     ) 
     }

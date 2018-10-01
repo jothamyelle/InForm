@@ -28,7 +28,6 @@ class ImageAvatars extends Component {
     return (
       <div className={classes.row}>
         <Avatar
-          // alt="Adelle Charles"
           src={this.props.image_url}
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
