@@ -13,6 +13,7 @@ class FormTemplate extends Component {
       isLoading: true,
       categories: null,
       templates: null,
+      confirmationTemplateId: null,
       data: []
     }
     this.handleFillOutClick = this.handleFillOutClick.bind(this);
@@ -43,16 +44,19 @@ class FormTemplate extends Component {
     axios.get(`/api/getFormtemplate/${id}`)
     .then(response => {
       this.setState({
-        data: response
-      });
+        data: response.data,
+        confirmationTemplateId: id
+      }, () => {
+        this.props.getFormData(this.state.data, this.state.confirmationTemplateId)
+      })
     })
   }
 
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
-    } else if (this.state.data) {
-      return <FormToFillOut />
+    } else if (this.state.data.length > 0) {
+      return <Redirect to={`/form_templates/${this.state.confirmationTemplateId}`} />
     } else {
       return(
         <div>

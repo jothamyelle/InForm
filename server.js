@@ -120,7 +120,14 @@ app.get('/api/getFormSubmissionsFromLastWeek/:date1/:date2', (req,res) => {
 app.get('/api/getFormTemplate/:id', (req,res) => {
   dbHelpers.getFormTemplateById(req.params.id)
   .then(allOptions => {
-    res.json(allOptions.data);
+    res.json(allOptions);
+  });
+});
+
+app.get('/api/getFormTemplateName/:id', (req,res) => {
+  dbHelpers.getFormTemplateName(req.params.id)
+  .then(formName => {
+    res.json(formName);
   });
 });
 

@@ -215,6 +215,13 @@ function getFormTemplateById(templateId) {
   .returning('*')
 }
 
+function getFormTemplateName(templateId) {
+  return knex.select('type')
+  .from('form_templates')
+  .where('form_templates.id', templateId)
+  .returning('*')
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -230,3 +237,4 @@ exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
 exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
 exports.postFormTemplate = postFormTemplate;
 exports.getFormTemplateById = getFormTemplateById;
+exports.getFormTemplateName = getFormTemplateName;
