@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
+import LoadingProgress from '../../components/Progress'
 
 
 class UserProfile extends Component {
@@ -37,7 +38,7 @@ class UserProfile extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <LoadingSpinner />
+      return <LoadingProgress />
     } else {
 			const uniqueFormCategories = [...new Set(this.state.forms.map(form => form.name))]
       const { email, first_name, last_name, image_url, phone_number, address, role_id } = this.state.user[0]
