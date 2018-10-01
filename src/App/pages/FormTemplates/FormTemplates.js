@@ -75,15 +75,14 @@ class FormTemplate extends Component {
     })
   }
 
-  handleFillOutClick = (event) => {
-    let id = Number(event.target.dataset.templateId);
+  handleFillOutClick = (id) => {
     axios.get(`/api/getFormtemplate/${id}`)
     .then(response => {
       this.setState({
         data: response.data,
         confirmationTemplateId: id
       }, () => {
-        this.props.getFormData(this.state.data, this.state.confirmationTemplateId)
+        this.props.getFormData(this.state.data, id)
       })
     })
   }
@@ -99,6 +98,9 @@ class FormTemplate extends Component {
   }
 
   render() {
+    if (this.state.data.length > 0) {
+      return <Redirect to={`/form_templates/${this.state.confirmationTemplateId}`} />
+    }
       return(
         <div>
           <TemporaryDrawer />  
@@ -136,7 +138,7 @@ class FormTemplate extends Component {
                           <TableBody displayRowCheckbox={false} key={template.id}>
                             <TableRow>
                               <TableRowColumn>{template.type}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor={orange300}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
                               <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
                             </TableRow>
                           </TableBody>
