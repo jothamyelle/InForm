@@ -1,0 +1,21 @@
+:local(.formsTable) {
+  width:100%;
+  
+  padding: 10px;
+}
+:local(.tableContainer) {
+  width:90%;
+  margin: auto;
+}
+
+.CustomizedInputs-container-211 {
+  display: block;
+}
+
+:local(.searchBox) {
+  width:90%;
+  margin: auto;
+  text-align: center;
+
+}
+

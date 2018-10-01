@@ -96,14 +96,13 @@ return (
             focused: classes.cssFocused,
           }}
         >
-          Search for jobs...
+          Search here...
         </InputLabel>
         <Input
           id="custom-css-input"
           classes={{
             underline: classes.cssUnderline,
           }}
-          placeholder="Search for..."
           value={this.state.name}
           onChange={this.handleChange}
           hintText="Search for jobs"
