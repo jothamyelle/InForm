@@ -4,8 +4,18 @@ import LoadingSpinner from '../Spinner';
 import { uniqueJobsArray } from '../../helpers/unique_jobs';
 import RaisedButton from 'material-ui/RaisedButton';
 import TemporaryDrawer from './Drawer';
-
-
+import LoadingProgress from '../components/Progress';
+import Typography from '@material-ui/core/Typography';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
+import { orange300 } from 'material-ui/styles/colors';
 
 class AdminDashboard extends Component {
   constructor(props){
@@ -46,59 +56,83 @@ class AdminDashboard extends Component {
   }
 
   render() { 
+    
     if (this.state.isLoading) {
-      return <LoadingSpinner />
+      return <LoadingProgress />
     } else {
+        this.getUniqueJobsArray()
+
+      const todaysFormsNumber = (
+        <Typography style={{color:"orange", display:"inline"}} variant="display3" gutterBottom align="center">
+          {this.state.todaysForms.length}
+        </Typography>
+      )
+      const todaysJobsNumber = (
+        <Typography style={{color:"orange", display:"inline"}} variant="display3" gutterBottom align="center">
+          {this.state.uniqueJobs.length}
+        </Typography>
+      )
+
       return (
         <div>
           <TemporaryDrawer />
-          {this.getUniqueJobsArray()}
-          <h1> Good Morning Ben. Currently {this.state.todaysForms.length} forms 
-          from {this.state.uniqueJobs.length} active jobs </h1>
-          <h2> Today's Forms ({this.state.todaysForms.length}) </h2>
-          <div className="form-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Form name</th>
-                  <th>View Form</th>
-                </tr>
-              </thead>
-              {this.state.todaysForms.map((form) => {
-                return(
-                  <tbody key={form.formId}>
-                    <tr>
-                      <td>{form.type}</td>
-                      <td><button>View</button></td>
-                    </tr>
-                  </tbody>
-                )
-              })}
-            </table>
+
+          <Typography variant="display3" gutterBottom align="center">
+            Good Morning Ben. Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
+          </Typography>
+
+          <Typography variant="display2" gutterBottom align="center">
+            Today's Forms
+          </Typography>
+
+          <div style={{width:'75%', margin: 'auto'}} className="form-container">
+            <Table selectable={false} style={{textAlign: 'left'}}>
+              <TableHeader displaySelectAll={false}>
+                <TableRow displayRowCheckbox={false}>
+                  <TableHeaderColumn>Form name</TableHeaderColumn>
+                  <TableHeaderColumn>View Form</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {this.state.todaysForms.map((form) => {
+                  return(
+                    <TableRow key={form.formId}>
+                      <TableRowColumn>{form.type}</TableRowColumn>
+                      <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+                    </TableRow>
+                  )})
+                  }
+              </TableBody>
+            </Table>
           </div>
-          <h2> Today's Active Jobs ({[...new Set(this.state.todaysForms.map(item => item.name))].length}) </h2>
-          <div className="form-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Job Name</th>
-                </tr>
-              </thead>
-              {this.state.uniqueJobs.map((job) => {
-                return(
-                  <tbody key={job.job_id}>
-                    <tr>
-                      <td>{job.name}</td>
-                    </tr>
-                  </tbody>
-                )
-              })}
-            </table>
+
+          <Typography variant="display2" gutterBottom align="center">
+            Today's Active Jobs
+          </Typography>
+
+          <div style={{width:'75%', margin: 'auto'}} className="form-container">
+            <Table style={{textAlign: 'left'}}>
+              <TableHeader displaySelectAll={false}>
+                <TableRow displayRowCheckbox={false}>
+                  <TableHeaderColumn>Job Name</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false} >
+                {this.state.uniqueJobs.map((job) => {
+                  return(
+                    <TableRow displayRowCheckbox={false} key={job.job_id}>
+                      <TableRowColumn>{job.name}</TableRowColumn>
+                    </TableRow>
+                  )
+                })}
+                </TableBody>
+            </Table>
           </div>
         </div>
       )
     }
   }
 }
+
 
 export default AdminDashboard;
