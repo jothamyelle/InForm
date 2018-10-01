@@ -138,7 +138,7 @@ class FormTemplate extends Component {
                           return (
                             <TableRow  key={template.id}>
                               <TableRowColumn>{template.type}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor={orange300}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
                               <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
                             </TableRow>
                           )
