@@ -24,7 +24,7 @@ export default formBuilderObject = {
       font-family: 'Roboto', sans-serif;  
     }
 
-    p {
+    form-p-tag {
       font-size: 18px;
     }
 
@@ -59,11 +59,17 @@ export default formBuilderObject = {
   .deleteControl {
     background-color: #ffb74d;
     color: black;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
   }
 
   .duplicateControl {
     background-color: lightgrey;
-    color: black
+    color: black;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
   }
 
   .reset-btn {
@@ -408,11 +414,11 @@ export default formBuilderObject = {
     let controlInStagingArea = document.getElementById(currentElement.id);
     
     controlInStagingArea.innerHTML = `
-    <button id="control${currentElement.id}DuplicateButton" class="duplicateControl mui-btn">Duplicate</button>
     <span class="requiredDisplay"></span><br>
-    <p><label>${labelName}<label></p>
+    <h2><label>${labelName}<label></h2>
     <div id="control${currentElement.id}MultiOptions"></div>
-    <button id="control${currentElement.id}DeleteButton" class="deleteControl mui-btn">Delete</button></div>`;
+    <button id="control${currentElement.id}DeleteButton" class="deleteControl mui-btn">Delete</button></div>
+    <button id="control${currentElement.id}DuplicateButton" class="duplicateControl mui-btn">Duplicate</button>`;
 
     let multiOptionsDiv = document.getElementById(`control${currentElement.id}MultiOptions`);
 

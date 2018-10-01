@@ -41,6 +41,14 @@ class FormBuilder extends Component {
   
   componentDidUpdate () {
     if(this.state.newTemplateName && !this.state.redirect){
+      document.getElementsByTagName('head')[0].innerHTML +=
+      `
+      <link class="materialcssaddition" href="//cdn.muicss.com/mui-0.9.41/css/mui.min.css" rel="stylesheet" type="text/css" />
+      <link class="materialcssaddition" href="test.css" rel="stylesheet" type="text/css" />
+      <link class="materialcssaddition" href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+      <script class="materialcssaddition" src="//cdn.muicss.com/mui-0.9.41/js/mui.min.js"></script>
+      `
+      
       formBuilderObject.createFormBuilder(this.fbRef.current);
     }
   }
@@ -63,6 +71,7 @@ class FormBuilder extends Component {
         })
         .then(() => {
           formBuilderObject.emptyListOfDisplayOptions();
+          document.getElementsByClassName('materialcssaddition').innerHTML = '';
           this.setState({ newTemplateName: "", newTemplateCategory: "", formContent: "", redirect: true});
         }) 
       }
