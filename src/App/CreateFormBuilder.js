@@ -23,7 +23,12 @@ export default formBuilderObject = {
     * {
       font-family: 'Roboto', sans-serif;  
     }
-    body {
+
+    p {
+      font-size: 18px;
+    }
+
+  body {
     width: 95%;
     margin: 0 auto;
     padding:20px;
@@ -59,6 +64,11 @@ export default formBuilderObject = {
   .duplicateControl {
     background-color: lightgrey;
     color: black
+  }
+
+  .reset-btn {
+    background-color: #ffb74d;
+    color: black;
   }
 
   .staged {
@@ -208,7 +218,7 @@ export default formBuilderObject = {
 
       </div>
     </div>
-    <button class="mui-btn" id="resetButton">Reset</button>`;
+    <button class="mui-btn reset-btn" id="resetButton">Reset</button>`;
 
 
   let dragSrcEl = null;
@@ -398,11 +408,11 @@ export default formBuilderObject = {
     let controlInStagingArea = document.getElementById(currentElement.id);
     
     controlInStagingArea.innerHTML = `
-    <button id="control${currentElement.id}DuplicateButton" class="duplicateControl">Duplicate</button>
+    <button id="control${currentElement.id}DuplicateButton" class="duplicateControl mui-btn">Duplicate</button>
     <span class="requiredDisplay"></span><br>
     <p><label>${labelName}<label></p>
     <div id="control${currentElement.id}MultiOptions"></div>
-    <button id="control${currentElement.id}DeleteButton" class="deleteControl">Delete</button></div>`;
+    <button id="control${currentElement.id}DeleteButton" class="deleteControl mui-btn">Delete</button></div>`;
 
     let multiOptionsDiv = document.getElementById(`control${currentElement.id}MultiOptions`);
 
@@ -422,7 +432,7 @@ export default formBuilderObject = {
         multiOptionsDiv.innerHTML += `
           <p>
           <input type="${inputType}" class="checkboxOption" value="${controlOptionsArray[index]}"/>
-          <p><label>${controlOptionsArray[index]}<label></p>  
+          <label>${controlOptionsArray[index]}<label>
           </p>
           `;
         });
@@ -494,7 +504,7 @@ export default formBuilderObject = {
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption" data-classtype="checkboxOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="checkboxOption">+ Add Option</button>
         <br/>
         <p><label>Required<label></p>
         <input type="checkbox" class="checkRequired" ${elementObject.required ? 'checked' : ''}/>
