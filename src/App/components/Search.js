@@ -50,9 +50,9 @@ class Search extends Component {
     return (
       <form>
         <CustomizedInputs
-        setParentValue={this.handleInputChange}
-        style={{display: "block"}}
-        onKeyPress={this.handleSubmit}
+          setParentValue={this.handleInputChange}
+          style={{display: "block"}}
+          onKeyPress={this.handleSubmit}
         />
         {this.state.query && <FormSubmissionSearchResults results={this.state.results} />}
       </form>

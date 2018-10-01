@@ -4,7 +4,7 @@ import JobsStyles from './Jobs/JobsStyes.css'
 import Typography from '@material-ui/core/Typography';
 import TemporaryDrawer from './Drawer';
 import { orange300 } from 'material-ui/styles/colors';
-import LoadingProgress from '../components/Progress'
+import LoadingProgress from '../components/Progress';
 
 
 import {
