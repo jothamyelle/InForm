@@ -234,6 +234,19 @@ function deleteFormTemplate(templateId) {
   return Promise.resolve();
 }
 
+function submitForm(formTemplateId, userId, jobId) {
+  console.log("I've submitted to the db");
+//   knex.select('id')
+//     .from('form_templates')
+//     .where('id', templateId)
+//     .limit(1)
+//     .del()
+//     .then(res => {
+//       console.log(res)
+//     })
+//   return Promise.resolve();
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -251,3 +264,4 @@ exports.postFormTemplate = postFormTemplate;
 exports.getFormTemplateById = getFormTemplateById;
 exports.getFormTemplateName = getFormTemplateName;
 exports.deleteFormTemplate = deleteFormTemplate;
+exports.submitForm = submitForm;

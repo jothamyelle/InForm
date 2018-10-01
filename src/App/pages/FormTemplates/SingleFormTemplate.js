@@ -11,6 +11,7 @@ class SingleFormTemplate extends Component {
     this.state = {
       formName: ""
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -45,7 +46,7 @@ class SingleFormTemplate extends Component {
               return(
               <p>
                 <input type="checkbox" name={control.label + control.id}
-                  required={control.required}/>
+                  required={control.required} value={option}/>
                 <label>{option}</label>
               </p>
               )
@@ -60,7 +61,7 @@ class SingleFormTemplate extends Component {
               return(
               <p>
                 <input type="radio" name={control.label + control.id}
-                  required={control.required}/>
+                  required={control.required} value={option}/>
                 <label>{option}</label>
               </p>
               )
@@ -155,12 +156,26 @@ class SingleFormTemplate extends Component {
     return controls;
   }
 
+  handleSubmit = (event) => {
+    event.persist();
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = {};
+    for (let [key, val] of formData.entries()) {
+      Object.assign(data, { [key]: val })
+    }
+
+    axios.post(`/api/submitForm`, {body: data});
+  }
+
 
   render() {  
     return(
       <div>
         <TemporaryDrawer />
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <h1>{this.state.formName}</h1>
           {this.renderFormHTML()}
           <input type="submit"/>
