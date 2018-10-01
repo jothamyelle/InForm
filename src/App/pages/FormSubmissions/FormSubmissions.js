@@ -15,7 +15,8 @@ class FormSubmissions extends Component {
       thisWeeksForms: null,
       error: null,
       isLoading: true,
-      queryExists: false
+      queryExists: false,
+      formId: null
     }
   }
 

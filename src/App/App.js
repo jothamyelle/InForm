@@ -11,6 +11,7 @@ import Hours from './pages/Hours/Hours'
 import FormSubmissions from './pages/FormSubmissions/FormSubmissions'
 import FormTemplate from './pages/FormTemplates/FormTemplates'
 import SingleFormTemplate from './pages/FormTemplates/SingleFormTemplate'
+import SingleFormSubmission from './pages/FormSubmissions/SingleFormSubmission'
 import FormBuilder from './pages/FormBuilder/FormBuilder';
 import AdminDashboard from './pages/AdminDashboard'
 import Login from '../App/pages/Login/Login'
@@ -54,7 +55,8 @@ class App extends Component {
           <Route exact path='/users/' render={ () => (this.state.loggedIn ? ( <Users/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/jobs' render={ () => (this.state.loggedIn ? ( <Jobs/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login login={this.login}/> )) }/>
-          <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions getFormData={this.getFormData}/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/form_submissions/:id' render={ () => (this.state.loggedIn ? ( <SingleFormSubmission fordId={this.state.formId}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_templates/:id' render={ () => (this.state.loggedIn ? ( <SingleFormTemplate formData={this.state.formData} formId={this.state.formId}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate getFormData={this.getFormData}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_builder' render={ () => (this.state.loggedIn ? ( <FormBuilder/> ) : ( <Login login={this.login}/> )) }/>
