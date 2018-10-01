@@ -19,3 +19,12 @@
 .CalendarDay__hovered_span {
   background: #ffb74d; ;
 }
+
+.DateRangePickerInput__withBorder {
+  border: none;
+}
+
+.DateInput_input DateInput_input_1 DateInput_input__focused DateInput_input__focused_2 {
+  text-decoration-color: #ffb74d;
+  color: #ffb74d;
+}
