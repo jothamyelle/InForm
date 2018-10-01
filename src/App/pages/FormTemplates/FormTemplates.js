@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
+import Typography from '@material-ui/core/Typography';
+import { orange300 } from 'material-ui/styles/colors';
+import JobsStyles from '../Jobs/JobsStyes.css'
+
 import LoadingProgress from '../../components/Progress'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -9,6 +13,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 
 function Transition(props) {
@@ -72,48 +85,53 @@ class FormTemplate extends Component {
   render() {
       return(
         <div>
-          <TemporaryDrawer />     
-          <h1> Form Templates </h1>
-          <Link to={'./form_builder'}>
-            <button variant="raised">
-              Create New Form Template
-            </button>
-          </Link>
+          <TemporaryDrawer />  
+          <Typography variant="display4" gutterBottom align="center">
+            Form Templates
+          </Typography>
+          <div className={JobsStyles.searchBox}>
+            <Link to={'./form_builder'}>
+              <FlatButton backgroundColor={orange300}><span className={JobsStyles.span}>Create New Form Template</span></FlatButton>
+            </Link>
+            <br/>
+            <br/>
+          </div>
+
           {this.state.isLoading ? (<LoadingProgress/>) : (
-            <div>
+          <div>
             {this.state.categories.map((category) => {
               return(  
-                <div key={category.id}>
-                  <h2>{category.name}</h2>
+                <div key={category.id} className={JobsStyles.tableContainer}>
+                  <Typography variant="display2" gutterBottom align="center">
+                    {category.name}
+                  </Typography>
                   <div className="form-container">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Form name</th>
-                          <th>Fill Out</th>
-                          <th>Edit Template</th>
-                          <th>Delete Template</th>
-                        </tr>
-                      </thead>
+                    <Table selectable={false} className={JobsStyles.formsTable}>
+                      <TableHeader displaySelectAll={false}>
+                        <TableRow displayRowCheckbox={false}>
+                          <TableHeaderColumn>Form name</TableHeaderColumn>
+                          <TableHeaderColumn>Fill Out</TableHeaderColumn>
+                          <TableHeaderColumn>Delete Template</TableHeaderColumn>
+                        </TableRow>
+                      </TableHeader>
                       {this.state.templates.map((template) => {
                         if(template.form_category_id === category.id)
                         return (
-                          <tbody key={template.id}>
-                            <tr>
-                              <td>{template.type}</td>
-                              <td><button>Fill Out</button></td>
-                              <td><button>Edit</button></td>
-                              <td><button onClick={() => this.handleClickConfirmation(template.id)}>Delete</button></td>
-                            </tr>
-                          </tbody>
+                          <TableBody displayRowCheckbox={false} key={template.id}>
+                            <TableRow>
+                              <TableRowColumn>{template.type}</TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor={orange300}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
+                            </TableRow>
+                          </TableBody>
                         )
                       })}
-                    </table>
+                    </Table>
                   </div>
                 </div>
               )
             })}
-            </div>
+          </div>
           )}
 
           <div>
@@ -147,5 +165,7 @@ class FormTemplate extends Component {
       )
   }
 }
+
+
 
 export default FormTemplate;
