@@ -14,7 +14,8 @@ class SingleFormSubmission extends Component {
   }
 
   componentWillMount() {
-    // axios.get(`/api/getFormtemplateName/${this.props.formId}`)
+    console.log("this.props.match.params.id:", this.props.match.params.id);
+    // axios.get(`/api/getFormSubmission/${this.props.formId}`)
     // .then(formName => {
     //   this.setState({
     //     formName: formName.data[0].type
