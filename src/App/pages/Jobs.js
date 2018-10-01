@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import LoadingSpinner from '../Spinner';
 import JobSearch from '../components/JobSearch';
 import JobsStyles from './Jobs/JobsStyes.css'
 import Typography from '@material-ui/core/Typography';
 import TemporaryDrawer from './Drawer';
-
-
-import TextField from 'material-ui/TextField';
-import Drawer from '@material-ui/core/Drawer';
+import { orange300 } from 'material-ui/styles/colors';
+import LoadingProgress from '../components/Progress'
 
 
 import {
@@ -28,7 +24,7 @@ class Jobs extends Component {
     this.state = {
       error: null,
       list: [],
-      isLoading: false,
+      isLoading: true,
       currentQuery: false,
     }
   }
@@ -88,8 +84,6 @@ class Jobs extends Component {
     const { error, list, isLoading, currentQuery } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (isLoading) {
-      return <LoadingSpinner />
     } else {
       return (
         <div>
@@ -100,64 +94,72 @@ class Jobs extends Component {
           </Typography>
           <div className={JobsStyles.searchBox}>
             <JobSearch handleSearchQuery={this.handleSearchQuery} data={list}/>
+            <br/>
+            <br/>
           </div>
           {!currentQuery && (
-            <div className={JobsStyles.tableContainer}>
-          <Typography variant="display2" gutterBottom align="center">
-          Active Jobs ({this.getActiveJobCount()})
-          </Typography>
-            {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
-            <Table selectable={false} className={JobsStyles.formsTable}>
-              <TableHeader displaySelectAll={false}>
-                <TableRow displayRowCheckbox={false}>
-                  <TableHeaderColumn>Name</TableHeaderColumn>
-                  <TableHeaderColumn>Address</TableHeaderColumn>
-                  <TableHeaderColumn>Job Number</TableHeaderColumn>
-                  <TableHeaderColumn>More Information</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody displayRowCheckbox={false}>
-                {list.map((item) => {
-                  return ((item.active) && (
-                    <TableRow>
-                      <TableRowColumn>{item.name}</TableRowColumn>
-                      <TableRowColumn>{item.address}</TableRowColumn>
-                      <TableRowColumn>{item.job_number}</TableRowColumn>
-                      <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
-                    </TableRow>
-                  ))
-                  })}
-              </TableBody>
-            </Table>
+            <div>
+              {isLoading ? (<LoadingProgress/>) : (
+                <div className={JobsStyles.tableContainer}>
               <Typography variant="display2" gutterBottom align="center">
-                Inactive Jobs ({this.getInactiveJobCount()})
+              Active Jobs ({this.getActiveJobCount()})
               </Typography>
-              {/* <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2> */}
-              {this.getInactiveJobCount() > 0 && (
-              <Table>
-                <TableHeader displaySelectAll={false}>
-                  <TableRow>
-                    <TableHeaderColumn>Name</TableHeaderColumn>
-                    <TableHeaderColumn>Address</TableHeaderColumn>
-                    <TableHeaderColumn>Job Number</TableHeaderColumn>
-                    <TableHeaderColumn>More Information</TableHeaderColumn>
-                  </TableRow>
-                </TableHeader>
+                {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
+                <Table selectable={false} className={JobsStyles.formsTable}>
+                  <TableHeader displaySelectAll={false}>
+                    <TableRow displayRowCheckbox={false}>
+                      <TableHeaderColumn>Name</TableHeaderColumn>
+                      <TableHeaderColumn>Address</TableHeaderColumn>
+                      <TableHeaderColumn>Job Number</TableHeaderColumn>
+                      <TableHeaderColumn>More Information</TableHeaderColumn>
+                    </TableRow>
+                  </TableHeader>
                   <TableBody displayRowCheckbox={false}>
                     {list.map((item) => {
-                      return ((!item.active) && (
-                        <TableRow key={item.id}>
+                      return ((item.active) && (
+                        <TableRow>
                           <TableRowColumn>{item.name}</TableRowColumn>
                           <TableRowColumn>{item.address}</TableRowColumn>
                           <TableRowColumn>{item.job_number}</TableRowColumn>
-                          <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                          <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
                         </TableRow>
                       ))
-                    })}
+                      })}
                   </TableBody>
-            </Table>
+                </Table>
+                <br/>
+                <br/>
+                  <Typography variant="display2" gutterBottom align="center">
+                    Inactive Jobs ({this.getInactiveJobCount()})
+                  </Typography>
+                  {/* <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2> */}
+                  {this.getInactiveJobCount() > 0 && (
+                  <Table>
+                    <TableHeader displaySelectAll={false}>
+                      <TableRow>
+                        <TableHeaderColumn>Name</TableHeaderColumn>
+                        <TableHeaderColumn>Address</TableHeaderColumn>
+                        <TableHeaderColumn>Job Number</TableHeaderColumn>
+                        <TableHeaderColumn>More Information</TableHeaderColumn>
+                      </TableRow>
+                    </TableHeader>
+                      <TableBody displayRowCheckbox={false}>
+                        {list.map((item) => {
+                          return ((!item.active) && (
+                            <TableRow key={item.id}>
+                              <TableRowColumn>{item.name}</TableRowColumn>
+                              <TableRowColumn>{item.address}</TableRowColumn>
+                              <TableRowColumn>{item.job_number}</TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                            </TableRow>
+                          ))
+                        })}
+                      </TableBody>
+                </Table>
+                  )}
+                </div>
               )}
-            </div>
+              </div>
           )}
         </div>
       )

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Search from '../../components/Search';
 import TemporaryDrawer from '../Drawer';
 import FormSubmissionsTable from '../../components/FormSubmissionsTable'
 import Typography from '@material-ui/core/Typography';
 import LoadingProgress from '../../components/Progress';
+import FormSubmissionsStyles from './FormSubmissionsStyles.css'
 
 
 class FormSubmissions extends Component {
@@ -14,13 +14,20 @@ class FormSubmissions extends Component {
       list: [],
       thisWeeksForms: null,
       error: null,
-      isLoading: true
+      isLoading: true,
+      queryExists: false
     }
   }
 
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getFormSubmissions();
+  }
+
+  handleSearchQuery = (doesQueryExist) => {
+    this.setState(prevState => ({
+      currentQuery: doesQueryExist
+    }));
   }
 
   
@@ -57,7 +64,6 @@ class FormSubmissions extends Component {
   }
 
   render() {
-    const today = new Date();
     const dateArray =[];
 
     for (let i = 0; i < 7; i++){
@@ -69,21 +75,24 @@ class FormSubmissions extends Component {
       <div>
         <TemporaryDrawer />
 
-        <Typography variant="display3" gutterBottom align="center">
+        <Typography variant="display4" gutterBottom align="center">
             Form Submissions 
         </Typography>
-
-        <Search data={this.state.list}/>
-        <Typography variant="display2" gutterBottom align="center">
-            Submissions this week
-        </Typography>
-        <div>
-        {this.state.isLoading ? (
-          <LoadingProgress/>
-        ) : (
-          <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
-          )}
+        <div className={FormSubmissionsStyles.searchBox}>
+          <Search handleSearchQuery={this.handleSearchQuery} data={this.state.list}/>
+          <br/>
+          <br/>
         </div>
+
+        {!this.state.currentQuery && (
+          <div>
+          {this.state.isLoading ? (
+            <LoadingProgress/>
+          ) : (
+            <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+          )}
+          </div>
+        )}
       </div>
     )
   }

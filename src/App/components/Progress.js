@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { orange400, orange50, orange500 } from 'material-ui/styles/colors';
+import {  orange500 } from 'material-ui/styles/colors';
 
 const styles = theme => ({
   progress: {
@@ -12,9 +12,7 @@ const styles = theme => ({
 });
 
 class CircularIndeterminate  extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
   const { classes } = this.props;
   return (

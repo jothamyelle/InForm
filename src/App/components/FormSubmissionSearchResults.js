@@ -1,36 +1,49 @@
 import React, { Component } from 'react'
+import FormSubmissionsStyles from '../pages/FormSubmissions/FormSubmissionsStyles.css'
+import Typography from '@material-ui/core/Typography';
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class FormSubmissionSearchResults extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const options = this.props.results.map(item => (
-          <tr key={item.submitted_forms_id}>
-            <td>{item.date_updated}</td>
-            <td>{item.first_name} {item.last_name}</td>
-            <td>{item.type}</td>
-            <td>{item.job_name}</td>
-          </tr>
+          <TableRow key={item.submitted_forms_id} displaySelectAll={false}>
+            <TableRowColumn>{item.type}</TableRowColumn>
+            <TableRowColumn>{item.job_name}</TableRowColumn>
+            <TableRowColumn>{item.first_name} {item.last_name}</TableRowColumn>
+            <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+            <TableRowColumn><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
+          </TableRow>
     ))
 
     return (
-      <div>
-        <h2>Search Results:</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>User</th>
-              <th>Form Name</th>
-              <th>Job Name</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className={FormSubmissionsStyles.tableContainer}>
+        <Typography variant="display2" gutterBottom align="center">
+        Search Results
+        </Typography>
+        <Table selectable={false} className={FormSubmissionsStyles.formsTable}>
+          <TableHeader displaySelectAll={false}>
+            <TableRow displaySelectAll={false}>
+              <TableHeaderColumn>Form Name</TableHeaderColumn>
+              <TableHeaderColumn>Job</TableHeaderColumn>
+              <TableHeaderColumn>Employee</TableHeaderColumn>
+              <TableHeaderColumn>View</TableHeaderColumn>
+              <TableHeaderColumn>Delete</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false}>
             {options}
-          </tbody>
-          </table>
+          </TableBody>
+          </Table>
         </div>          
       )
   }

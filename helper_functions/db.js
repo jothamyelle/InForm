@@ -222,6 +222,18 @@ function getFormTemplateName(templateId) {
   .returning('*')
 }
 
+function deleteFormTemplate(templateId) {
+  knex.select('id')
+    .from('form_templates')
+    .where('id', templateId)
+    .limit(1)
+    .del()
+    .then(res => {
+      console.log(res)
+    })
+  return Promise.resolve();
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -238,3 +250,4 @@ exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
 exports.postFormTemplate = postFormTemplate;
 exports.getFormTemplateById = getFormTemplateById;
 exports.getFormTemplateName = getFormTemplateName;
+exports.deleteFormTemplate = deleteFormTemplate;

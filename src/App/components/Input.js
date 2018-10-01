@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import purple from '@material-ui/core/colors/purple';
 import orange from '@material-ui/core/colors/orange';
-import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
   container: {
@@ -64,12 +60,6 @@ const styles = theme => ({
   },
 });
 
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-  },
-});
-
 
 class CustomizedInputs extends React.Component {
 constructor(props) {
@@ -96,14 +86,13 @@ return (
             focused: classes.cssFocused,
           }}
         >
-          Search for jobs...
+          Search here...
         </InputLabel>
         <Input
           id="custom-css-input"
           classes={{
             underline: classes.cssUnderline,
           }}
-          placeholder="Search for..."
           value={this.state.name}
           onChange={this.handleChange}
           hintText="Search for jobs"
