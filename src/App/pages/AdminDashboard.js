@@ -13,6 +13,14 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import { orange300 } from 'material-ui/styles/colors';
+import SimpleSlide from '../components/AdminDashboardSlide'
+import SimpleGrow from '../components/AdminDashboardGrow'
+import Grow from '@material-ui/core/Grow';
+
+
+function Transition(props) {
+  return <SimpleSlide direction="up" {...props} />;
+}
 
 class AdminDashboard extends Component {
   constructor(props){
@@ -70,19 +78,8 @@ class AdminDashboard extends Component {
         </Typography>
       )
 
-      return (
-        <div>
-          <TemporaryDrawer />
-
-          <Typography variant="display3" gutterBottom align="center">
-            Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
-          </Typography>
-
-          <Typography variant="display2" gutterBottom align="center">
-            Today's Forms
-          </Typography>
-
-          <div style={{width:'75%', margin: 'auto'}} className="form-container">
+      const todaysForms = (
+        <div style={{width:'75%', margin: 'auto'}} className="form-container">
             <Table selectable={false} style={{textAlign: 'left'}}>
               <TableHeader displaySelectAll={false}>
                 <TableRow displayRowCheckbox={false}>
@@ -102,12 +99,10 @@ class AdminDashboard extends Component {
               </TableBody>
             </Table>
           </div>
+      )
 
-          <Typography variant="display2" gutterBottom align="center">
-            Today's Active Jobs
-          </Typography>
-
-          <div style={{width:'75%', margin: 'auto'}} className="form-container">
+      const todaysJobs = (
+        <div style={{width:'75%', margin: 'auto'}} className="form-container">
             <Table style={{textAlign: 'left'}}>
               <TableHeader displaySelectAll={false}>
                 <TableRow displayRowCheckbox={false}>
@@ -125,6 +120,30 @@ class AdminDashboard extends Component {
                 </TableBody>
             </Table>
           </div>
+      )
+
+      const checked = true;
+      return (
+        <div>
+          <TemporaryDrawer />
+
+            {/* <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/> */}
+            <SimpleGrow todaysForms={todaysForms} todaysJobs={todaysJobs} todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
+          {/* <Typography variant="display3" gutterBottom align="center">
+            Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
+          </Typography> */}
+
+          {/* <Typography variant="display2" gutterBottom align="center">
+            Today's Forms
+          </Typography> */}
+
+          
+
+          {/* <Typography variant="display2" gutterBottom align="center">
+            Today's Active Jobs
+          </Typography> */}
+
+          
         </div>
       )
     }
