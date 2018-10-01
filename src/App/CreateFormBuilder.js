@@ -153,7 +153,7 @@ export default formBuilderObject = {
       </div>
 
       <div id="options">
-        <div id="optionsList"></div>
+        <div class="mui-textfield" id="optionsList"></div>
       </div>
       <div id="controls" class="mui-container">
         
@@ -400,7 +400,7 @@ export default formBuilderObject = {
     controlInStagingArea.innerHTML = `
     <button id="control${currentElement.id}DuplicateButton" class="duplicateControl">Duplicate</button>
     <span class="requiredDisplay"></span><br>
-    <label>${labelName}</label>
+    <p><label>${labelName}<label></p>
     <div id="control${currentElement.id}MultiOptions"></div>
     <button id="control${currentElement.id}DeleteButton" class="deleteControl">Delete</button></div>`;
 
@@ -422,7 +422,7 @@ export default formBuilderObject = {
         multiOptionsDiv.innerHTML += `
           <p>
           <input type="${inputType}" class="checkboxOption" value="${controlOptionsArray[index]}"/>
-          <label>${controlOptionsArray[index]}</label>  
+          <p><label>${controlOptionsArray[index]}<label></p>  
           </p>
           `;
         });
@@ -467,22 +467,22 @@ export default formBuilderObject = {
     switch(elementObject.type) {
       case 'header':
       htmlToDisplay += `
-        <label>Section Header</label>
+        <p><label>Section Header<label></p>
         <input type="text" class="headerValue" value="${elementObject.value}"/>
       `;
       break;
       case 'paragraph':
       htmlToDisplay += `
-        <label>Instructions or Question</label>
+        <p><label>Instructions or Question<label></p>
         <textarea class="instructionsValue"/>${elementObject.value}</textarea>
       `;
       break;
       case 'checkbox':
         htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="checkLabel" value="${elementObject.label}"/>
         <br/>
-        <label>Checkbox Options</label>`;
+        <p><label>Checkbox Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
@@ -496,16 +496,16 @@ export default formBuilderObject = {
         <br/>
         <button class="addControlOption" data-classtype="checkboxOption">+ Add Option</button>
         <br/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="checkRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'radio':
       htmlToDisplay += `
-      <label>Label</label>
+      <p><label>Label<label></p>
       <input type="text" class="radioLabel" value="${elementObject.label}"/>
       <br/>
-        <label>Radio Options</label>`;
+        <p><label>Radio Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
@@ -519,16 +519,16 @@ export default formBuilderObject = {
         <br/>
         <button class="addControlOption" data-classtype="radioOption">+ Add Option</button>
         <br/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="radioRequired"${elementObject.required ? 'checked' : ''}/>
         `;
         break;
         case 'select':
         htmlToDisplay += `
-      <label>Label</label>
+      <p><label>Label<label></p>
       <input type="text" class="selectLabel" value="${elementObject.label}"/>
       <br/>
-      <label>Select Options</label>`;
+      <p><label>Select Options<label></p>`;
       if(controlOptionsArray.length > 0) {
         controlOptionsArray.forEach((option, index) => {
           htmlToDisplay += `
@@ -542,16 +542,16 @@ export default formBuilderObject = {
       <br/>
       <button class="addControlOption" data-classtype="selectOption">+ Add Option</button>
       <br/>
-      <label>Required</label>
+      <p><label>Required<label></p>
       <input type="checkbox" class="selectRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'selectMultiple':
         htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="selectMultipleLabel" value="${elementObject.label}"/>
         <br/>
-        <label>Select Multiple Options</label>`;
+        <p><label>Select Multiple Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
@@ -565,71 +565,71 @@ export default formBuilderObject = {
         <br/>
         <button class="addControlOption" data-classtype="selectMultipleOption">+ Add Option</button>
         <br/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="selectMultipleMultipleRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'text':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="textLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="text" class="textPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="textRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="textMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
       case 'textarea':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="textareaLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="text" class="textareaPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="textareaRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="textareaMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
       case 'date':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="dateLabel" value="${elementObject.label}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="dateRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'time':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="timeLabel" value="${elementObject.label}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="timeRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'number':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="numberLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="number" class="numberPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="numberRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="numberMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
       case 'email':
         htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="emailLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="text" class="emailPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="emailRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="emailMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
