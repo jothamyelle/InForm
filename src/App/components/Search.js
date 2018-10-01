@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FormSubmissionSearchResults from './FormSubmissionSearchResults'
+import CustomizedInputs from './Input'
 
 class Search extends Component {
   constructor(props) {
@@ -26,11 +27,16 @@ class Search extends Component {
     })
   }
 
-  handleInputChange = () => {
+  handleInputChange = (value) => {
     this.setState({
-      query: this.search.value
+      query: value
     }, () => {
       this.getInfo();
+      if (this.state.query.length > 0) {
+        this.props.handleSearchQuery(true)
+      } else {
+        this.props.handleSearchQuery(false)
+      }
     })
   }
 
@@ -43,11 +49,10 @@ class Search extends Component {
   render() {
     return (
       <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
-          onKeyUp={this.handleInputChange}
-          onKeyPress={this.handleSubmit}
+        <CustomizedInputs
+        setParentValue={this.handleInputChange}
+        style={{display: "block"}}
+        onKeyPress={this.handleSubmit}
         />
         {this.state.query && <FormSubmissionSearchResults results={this.state.results} />}
       </form>

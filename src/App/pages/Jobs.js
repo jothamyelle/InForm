@@ -100,6 +100,8 @@ class Jobs extends Component {
           </Typography>
           <div className={JobsStyles.searchBox}>
             <JobSearch handleSearchQuery={this.handleSearchQuery} data={list}/>
+            <br/>
+            <br/>
           </div>
           {!currentQuery && (
             <div className={JobsStyles.tableContainer}>
@@ -129,6 +131,8 @@ class Jobs extends Component {
                   })}
               </TableBody>
             </Table>
+            <br/>
+            <br/>
               <Typography variant="display2" gutterBottom align="center">
                 Inactive Jobs ({this.getInactiveJobCount()})
               </Typography>
