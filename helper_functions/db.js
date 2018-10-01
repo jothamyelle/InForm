@@ -251,7 +251,6 @@ function submitForm(formData) {
     .returning('*')
     .then((submittedForm) => {
       for (keyValue in keyValuePairs) {
-        console.log("keyValuePairs[keyValue]:", keyValuePairs[keyValue]);
         knex('submitted_fields')
         .insert({
           value: JSON.stringify(keyValuePairs[keyValue]),
