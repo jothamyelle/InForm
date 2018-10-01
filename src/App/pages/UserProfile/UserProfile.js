@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
 import LoadingProgress from '../../components/Progress'
 

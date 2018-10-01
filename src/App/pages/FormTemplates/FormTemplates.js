@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
 import LoadingProgress from '../../components/Progress'
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';

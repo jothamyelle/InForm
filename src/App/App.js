@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 import './App.css';
-import Home from './pages/Home';
 import Users from './pages/Users/Users';
 import Jobs from './pages/Jobs';
 import NoMatch from './pages/404';

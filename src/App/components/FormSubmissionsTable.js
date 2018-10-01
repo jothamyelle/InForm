@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 // import TableCell from '@material-ui/core/TableCell';
-import { orange300, orange400, white, } from 'material-ui/styles/colors';
+import { orange300, orange400, } from 'material-ui/styles/colors';
 import Typography from '@material-ui/core/Typography';
 import FormSubmissionsStyles from '../pages/FormSubmissions/FormSubmissionsStyles.css'
-import DeleteIcon from '@material-ui/icons/Delete'
-import IconButton from '@material-ui/core/IconButton'
 
 import {
   Table,
@@ -18,20 +16,6 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
-
-// const CustomTableCell = withStyles(theme => ({
-//   head: {
-//     backgroundColor: white,
-//     color: grey900
-//   },
-//   body: {
-//     fontSize: 14,
-//   },
-//   highlight: {
-//     color: orange400,
-//     backgroundColor: darkBlack
-//   }
-// }))(TableCell);
 
 const styles = theme => ({
   root: {
@@ -55,11 +39,9 @@ const styles = theme => ({
 
 
 class FormSubmissionsTable extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
-    const { classes, dateArray, thisWeeksForms } = this.props;
+    const {  dateArray, thisWeeksForms } = this.props;
     const today = (
       <Typography variant="display2" gutterBottom align="center">
         Today

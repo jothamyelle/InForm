@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import LoadingSpinner from '../Spinner';
 import JobSearch from '../components/JobSearch';
 import JobsStyles from './Jobs/JobsStyes.css'
 import Typography from '@material-ui/core/Typography';
 import TemporaryDrawer from './Drawer';
 import { orange300 } from 'material-ui/styles/colors';
 import LoadingProgress from '../components/Progress'
-
-
-import TextField from 'material-ui/TextField';
-import Drawer from '@material-ui/core/Drawer';
 
 
 import {
@@ -105,7 +99,7 @@ class Jobs extends Component {
           </div>
           {!currentQuery && (
             <div>
-              {this.state.isLoading ? (<LoadingProgress/>) : (
+              {isLoading ? (<LoadingProgress/>) : (
                 <div className={JobsStyles.tableContainer}>
               <Typography variant="display2" gutterBottom align="center">
               Active Jobs ({this.getActiveJobCount()})

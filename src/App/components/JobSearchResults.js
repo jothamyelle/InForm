@@ -14,9 +14,6 @@ import {
 import FlatButton from 'material-ui/FlatButton';
 
 class JobSearchResults extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
         return (

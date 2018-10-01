@@ -54,9 +54,6 @@ const styles = theme => ({
 });
 
 class Login extends Component {
-  constructor(props){
-    super(props);
-  }
 
   formHandler = (event) => {
     event.preventDefault();

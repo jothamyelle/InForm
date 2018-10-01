@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import LoadingSpinner from '../../Spinner';
 import LoadingProgress from '../../components/Progress'
-
 // import UserRoles from '../UserRoles';
 import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';

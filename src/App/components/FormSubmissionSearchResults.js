@@ -13,9 +13,6 @@ import {
 import FlatButton from 'material-ui/FlatButton';
 
 class FormSubmissionSearchResults extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const options = this.props.results.map(item => (
