@@ -9,7 +9,8 @@ class SingleFormTemplate extends Component {
   constructor(props){
     super(props);
     this.state = {
-      formName: ""
+      formName: "",
+      submitted: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -179,11 +180,20 @@ class SingleFormTemplate extends Component {
       templateId: this.props.formId,
       userId: 1,
       jobId: 1
+    })
+    .then(() => {
+      alert("Form successfully submitted!");
+      this.setState({
+        submitted: true
+      });
     });
   }
 
 
   render() {  
+    if(this.state.submitted) {
+      return <Redirect to={`/form_templates`}/>
+    }
     return(
       <div>
         <TemporaryDrawer />
