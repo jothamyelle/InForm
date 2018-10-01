@@ -14,6 +14,7 @@ import {
 import FlatButton from 'material-ui/FlatButton';
 import { orange300 } from 'material-ui/styles/colors';
 import SimpleSlide from '../components/AdminDashboardSlide'
+import SimpleGrow from '../components/AdminDashboardGrow'
 
 function Transition(props) {
   return <SimpleSlide direction="up" {...props} />;
@@ -80,7 +81,7 @@ class AdminDashboard extends Component {
           <TemporaryDrawer />
 
             <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
-
+            {/* <SimpleGrow todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/> */}
           {/* <Typography variant="display3" gutterBottom align="center">
             Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
           </Typography> */}
