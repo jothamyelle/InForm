@@ -59,6 +59,43 @@ class SimpleGrow extends React.Component {
           </Typography>
           </Grow>
           <br/>
+          <Grow
+            in={checked}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(checked ? { timeout: 2000 } : {})}
+          >
+            <Typography variant="display2" gutterBottom align="center">
+              Today's Forms
+            </Typography>
+          </Grow>
+          <br/>
+          <Grow
+            in={checked}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(checked ? { timeout: 3000 } : {})}
+          >
+              {this.props.todaysForms}
+          </Grow>
+          <br/>
+          <Grow
+            in={checked}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(checked ? { timeout: 4000 } : {})}
+          >
+              <Typography variant="display2" gutterBottom align="center">
+            Today's Active Jobs
+          </Typography>
+          </Grow>
+          <br/>
+          <Grow
+            in={checked}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(checked ? { timeout: 4000 } : {})}
+          >
+              <Typography variant="display2" gutterBottom align="center">
+            {this.props.todaysJobs}
+          </Typography>
+          </Grow>
       </div>
     );
   }
