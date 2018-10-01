@@ -21,7 +21,7 @@ class UserSearchResults extends Component {
           <Typography variant="display2" gutterBottom align="center">
             Search Results ({this.props.users.length})
           </Typography>
-          <div className={userStyles.employeeContainer}>
+          <div style={{alignItems:'center', justifyContent:'center'}} className={userStyles.employeeContainer}>
             {listofResults}
           </div>
         </div>
