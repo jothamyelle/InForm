@@ -7,7 +7,6 @@ import UserSearch from '../../components/UserSearch';
 import TemporaryDrawer from '../Drawer';
 import Typography from '@material-ui/core/Typography';
 
-
 class User extends Component {
   constructor(props){
     super(props);

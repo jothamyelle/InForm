@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,23 +13,28 @@ const styles = {
     margin: 10,
   },
   bigAvatar: {
-    width: 60,
-    height: 60,
+    width: 125,
+    height: 125,
   },
 };
 
-function ImageAvatars(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.row}>
-      <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" className={classes.avatar} />
-      <Avatar
-        alt="Adelle Charles"
-        src="/static/images/uxceo-128.jpg"
-        className={classNames(classes.avatar, classes.bigAvatar)}
-      />
-    </div>
-  );
+class ImageAvatars extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.row}>
+        <Avatar
+          // alt="Adelle Charles"
+          src={this.props.image_url}
+          className={classNames(classes.avatar, classes.bigAvatar)}
+        />
+      </div>
+    );
+  }
 }
 
 ImageAvatars.propTypes = {
