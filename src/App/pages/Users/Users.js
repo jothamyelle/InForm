@@ -72,7 +72,7 @@ class User extends Component {
                   <Typography variant="display2" gutterBottom align="center">
                     {role.role}
                   </Typography>
-                  <div className={userStyles.employeeContainer}>
+                  <div style={{alignItems:'center', justifyContent:'center'}} className={userStyles.employeeContainer}>
                     {usersList.map((user) => {
                       if (user.role_id === role.id) {
                         return (
