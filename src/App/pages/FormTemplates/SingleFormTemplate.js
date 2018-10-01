@@ -7,15 +7,26 @@ import { Redirect } from 'react-router-dom'
 
 import Typography from '@material-ui/core/Typography';
 import { orange300 } from 'material-ui/styles/colors';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+
 // import JobsStyles from './Jobs/JobsStyes.css'
 // import LoadingProgress from '../components/Progress'
+
 
 
 class SingleFormTemplate extends Component {
   constructor(props){
     super(props);
     this.state = {
-      formName: ""
+      formName: "",
+      radioOptions: "",
     }
   }
 
@@ -28,53 +39,62 @@ class SingleFormTemplate extends Component {
     })
   }
 
+  radioChange = event => {
+    this.setState({ radioOtpions: event.target.value });
+  };
+
   renderFormHTML() {
     let controls = this.props.formData.map(control => {
       switch(control.type) {
         case 'header':
-        console.log(control.label);      
         return(
           <Typography variant="display2" gutterBottom align="center">    
             {control.label}
+            <input type="hidden" name={control.type + control.id} value={control.label} />
           </Typography>
         );
         case 'paragraph':
         return(
           <Typography component="p">
             {control.label}
+            <input type="hidden" name={control.type + control.id} value={control.label} />
           </Typography>
           );
         case 'checkbox':
         return(
-          <div>
-            <Typography component="p">
-              {control.label}
-            </Typography>
-            {control.options.map(option => {
-              return(
-              <p>
-                <input type="checkbox" name={control.label + control.id}
-                  required={control.required}/>
-                <label>{option}</label>
-              </p>
-              )
-            })}
-          </div>
+            <FormControl component="fieldset">
+              <FormLabel component="legend" color="primary">{control.label} </FormLabel>
+              <FormGroup>
+                
+                {control.options.map(option => {
+                  return(
+                    <FormControlLabel
+                      control={
+                      <Checkbox name={control.label + control.id} required={control.required} style={{color: "orange"}}/>
+                      }
+                      label={option}
+                    />
+                    )
+                  })}
+              </FormGroup>
+            </FormControl>
         );
         case 'radio':
         return(
-          <div>
-          <label>{control.label}</label>
-            {control.options.map(option => {
-              return(
-              <p>
-                <input type="radio" name={control.label + control.id}
-                  required={control.required}/>
-                <label>{option}</label>
-              </p>
-              )
-            })}
-          </div>
+
+          <FormControl component="fieldset">
+            <FormLabel component="legend">{control.label}</FormLabel>
+            <RadioGroup
+              name={control.label + control.id}
+              required={control.required} 
+            >
+              {control.options.map(option => {
+                return(
+                  <FormControlLabel  control={<Radio value={option} style={{color: "orange"}}/>} label={option} /> 
+                )
+              })}
+            </RadioGroup>
+          </FormControl>
         );
         case 'select':
         return(
