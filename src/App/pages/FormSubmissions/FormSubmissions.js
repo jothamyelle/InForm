@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Search from '../../components/Search';
 import TemporaryDrawer from '../Drawer';
 import FormSubmissionsTable from '../../components/FormSubmissionsTable'
@@ -65,7 +64,6 @@ class FormSubmissions extends Component {
   }
 
   render() {
-    const today = new Date();
     const dateArray =[];
 
     for (let i = 0; i < 7; i++){

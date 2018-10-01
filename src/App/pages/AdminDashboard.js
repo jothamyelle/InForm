@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import LoadingSpinner from '../Spinner';
 import { uniqueJobsArray } from '../../helpers/unique_jobs';
-import RaisedButton from 'material-ui/RaisedButton';
 import TemporaryDrawer from './Drawer';
 import LoadingProgress from '../components/Progress';
 import Typography from '@material-ui/core/Typography';

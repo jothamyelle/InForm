@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
-
-import Button from '@material-ui/core/Button';
+import LoadingProgress from '../../components/Progress'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -72,9 +70,6 @@ class FormTemplate extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    } else {
       return(
         <div>
           <TemporaryDrawer />     
@@ -84,38 +79,42 @@ class FormTemplate extends Component {
               Create New Form Template
             </button>
           </Link>
-          {this.state.categories.map((category) => {
-            return(  
-              <div key={category.id}>
-                <h2>{category.name}</h2>
-                <div className="form-container">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Form name</th>
-                        <th>Fill Out</th>
-                        <th>Edit Template</th>
-                        <th>Delete Template</th>
-                      </tr>
-                    </thead>
-                    {this.state.templates.map((template) => {
-                      if(template.form_category_id === category.id)
-                      return (
-                        <tbody key={template.id}>
-                          <tr>
-                            <td>{template.type}</td>
-                            <td><button>Fill Out</button></td>
-                            <td><button>Edit</button></td>
-                            <td><button onClick={() => this.handleClickConfirmation(template.id)}>Delete</button></td>
-                          </tr>
-                        </tbody>
-                      )
-                    })}
-                  </table>
+          {this.state.isLoading ? (<LoadingProgress/>) : (
+            <div>
+            {this.state.categories.map((category) => {
+              return(  
+                <div key={category.id}>
+                  <h2>{category.name}</h2>
+                  <div className="form-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Form name</th>
+                          <th>Fill Out</th>
+                          <th>Edit Template</th>
+                          <th>Delete Template</th>
+                        </tr>
+                      </thead>
+                      {this.state.templates.map((template) => {
+                        if(template.form_category_id === category.id)
+                        return (
+                          <tbody key={template.id}>
+                            <tr>
+                              <td>{template.type}</td>
+                              <td><button>Fill Out</button></td>
+                              <td><button>Edit</button></td>
+                              <td><button onClick={() => this.handleClickConfirmation(template.id)}>Delete</button></td>
+                            </tr>
+                          </tbody>
+                        )
+                      })}
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+            </div>
+          )}
 
           <div>
             <Dialog
@@ -146,7 +145,6 @@ class FormTemplate extends Component {
           </div>
         </div>
       )
-    }
   }
 }
 
