@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import TemporaryDrawer from '../Drawer';
 import LoadingProgress from '../../components/Progress'
+import Typography from '@material-ui/core/Typography';
+import ImageAvatars from '../../components/Avatar'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class UserProfile extends Component {
   constructor(props){
@@ -12,6 +23,7 @@ class UserProfile extends Component {
 			forms: null
     }
   }
+
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getUserAndRoleById(this.props.match.params.id);
@@ -45,58 +57,66 @@ class UserProfile extends Component {
         <div>
           <TemporaryDrawer />
           <div className="employeeContainer">
-          <h2>{first_name} {last_name}</h2>
-          <img src={image_url} alt="profile_photo"/>
+          <Typography style={{color:"orange"}} variant="display3" gutterBottom align="center">
+            {first_name} {last_name}
+          </Typography>
+          <ImageAvatars image_url={image_url}/>
         </div>
-        <div>
-          <h2>Contact Info</h2>
-          <table>
-					<thead>
-            <tr>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-					<tr>
-						<td>{email}</td>
-						<td>{phone_number}</td>
-						<td>{address}</td>
-						<td>{(this.state.roles.find(id => role_id)).role}</td>
-					</tr>
-          </tbody>
-				</table>
+        <div style={{width: '80%', margin: 'auto'}}>
+          <Typography variant="display2" gutterBottom align="center">
+            Contact Info
+          </Typography>
+          <Table>
+					<TableHeader displaySelectAll={false}>
+            <TableRow displayRowCheckbox={false}>
+              <TableHeaderColumn>Email</TableHeaderColumn>
+              <TableHeaderColumn>Phone</TableHeaderColumn>
+              <TableHeaderColumn>Address</TableHeaderColumn>
+              <TableHeaderColumn>Role</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false}>
+					<TableRow displayRowCheckbox={false}>
+						<TableRowColumn>{email}</TableRowColumn>
+						<TableRowColumn>{phone_number}</TableRowColumn>
+						<TableRowColumn>{address}</TableRowColumn>
+						<TableRowColumn>{(this.state.roles.find(id => role_id)).role}</TableRowColumn>
+					</TableRow>
+          </TableBody>
+				</Table>
         </div>
         <div className="formContainer">
-				<h2>Submitted Forms ({this.state.forms.length})</h2>
+        <Typography variant="display2" gutterBottom align="center">
+          Submitted Forms ({this.state.forms.length})
+        </Typography>
 				{uniqueFormCategories.map((category) => {
 					return (
-						<div key={category}>
-							<h3>{category}</h3>
-								<table>
-									<thead>
-										<tr>
-											<th>Form Type</th>
-											<th>Date Submitted</th>
-											<th>View</th>
-										</tr>
-									</thead>
-									{this.state.forms.map((form) => {
-										if(form.name === category){
-											return (
-												<tbody key={form.id}>
-													<tr>
-														<td>{form.type}</td>
-														<td>{(form.date_created).slice(0, 10)}</td>
-														<td><button>view</button></td>
-													</tr>
-												</tbody>
-											)
-										}
-										})}
-								</table>
+						<div style={{width: '80%', margin: 'auto'}} key={category}>
+              <Typography variant="display1" gutterBottom align="center">
+                {category}
+              </Typography>
+								<Table>
+									<TableHeader displaySelectAll={false}>
+										<TableRow displayRowCheckbox={false}>
+											<TableHeaderColumn>Form Type</TableHeaderColumn>
+											<TableHeaderColumn>Date Submitted</TableHeaderColumn>
+											<TableHeaderColumn>View</TableHeaderColumn>
+										</TableRow>
+									</TableHeader>
+                  <TableBody displayRowCheckbox={false}>
+                    {this.state.forms.map((form) => {
+                      if(form.name === category){
+                        return (
+                            <TableRow key={form.id} displayRowCheckbox={false}>
+                              <TableRowColumn>{form.type}</TableRowColumn>
+                              <TableRowColumn>{(form.date_created).slice(0, 10)}</TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                            </TableRow>
+                        )
+                      }
+                    })}
+                  </TableBody>
+								</Table>
 						</div>
 					)
 				})}

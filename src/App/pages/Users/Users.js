@@ -60,7 +60,7 @@ class User extends Component {
           <div className="App">
             {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
             <Typography variant="display4" gutterBottom align="center">
-              Employees
+              Staff
             </Typography>
             <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
             {!currentQuery && (
