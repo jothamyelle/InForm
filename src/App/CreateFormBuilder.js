@@ -38,7 +38,8 @@ export default formBuilderObject = {
     padding:20px;
     display: flex;
     justify-content: space-around;
-    border:1px solid black;
+    border-radius: 2px;
+    box-shadow: 5px 5px 35px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
   }
 
   /* Prevent the text contents of draggable elements from being selectable. */
@@ -85,9 +86,7 @@ export default formBuilderObject = {
     margin-bottom: 20px;
     border-radius: 0;
     background-color: #FFF;
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
-    width:100%;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
    
     cursor: move;
     text-align: center;
@@ -131,7 +130,7 @@ export default formBuilderObject = {
   }
 
   .controls {
-    padding: 15px;
+    padding: 5px;
     margin-bottom: 20px;
     border-radius: 0;
     background-color: #FFF;
@@ -175,7 +174,7 @@ export default formBuilderObject = {
         
 
           <div class="controls mui-panel" draggable="true" title="Section Header" data-type="">
-              <h2><label>Header</label></h2>
+              <h3><label>Header</label></h3>
           </div>
     
           <div class="controls" draggable="true" title="Question or instructions to fill the field" data-type="">
@@ -312,7 +311,8 @@ export default formBuilderObject = {
         node.append(createFormInput(inputType));
       }
     }
-
+    const lineBreak = document.createElement('br');
+    node.append(lineBreak);
     const deleteButton = createDeleteButton();
     node.append(deleteButton);
     addDeleteListener(deleteButton);
