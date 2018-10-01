@@ -51,6 +51,16 @@ export default formBuilderObject = {
     flex:3;
   }
 
+  .deleteControl {
+    background-color: #ffb74d;
+    color: black;
+  }
+
+  .duplicateControl {
+    background-color: lightgrey;
+    color: black
+  }
+
   .staged {
     padding-top:20px;
     min-height:50px;
