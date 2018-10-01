@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import JobsStyles from '../pages/Jobs/JobsStyes.css';
+import { orange300 } from 'material-ui/styles/colors';
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class HoursNameSearchResults extends Component {
 
@@ -9,28 +22,32 @@ class HoursNameSearchResults extends Component {
       <div>
         {this.props.names.length > 0 ? (
           <div>
-            <h2>Search Results ({this.props.names.length})</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Employee Name</th>
-                  <th>Hours Worked</th>
-                  <th>Shifts Worked</th>
-                  <th>View Employee</th>
-                </tr>
-              </thead>
-              <tbody>
+            <br/>
+            <br/>
+            <Typography variant="display2" gutterBottom align="center">
+              Search Results
+            </Typography>
+            <Table selectable={false} className={JobsStyles.formsTable}>
+              <TableHeader displaySelectAll={false}>
+                <TableRow displayRowCheckbox={false}>
+                  <TableHeaderColumn>Employee Name</TableHeaderColumn>
+                  <TableHeaderColumn>Hours Worked</TableHeaderColumn>
+                  <TableHeaderColumn>Shifts Worked</TableHeaderColumn>
+                  <TableHeaderColumn>View Employee</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
                 {this.props.names.map((item) =>
-                  <tr key={item.user_id}>
-                    <td>{item.first_name} {item.last_name}</td>
-                    <td>{Math.floor((item.minutes_worked)/60)}</td>
-                    <td>{item.shift_count}</td>
-                    <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
-                  </tr>
+                  <TableRow key={item.user_id}>
+                    <TableRowColumn>{item.first_name} {item.last_name}</TableRowColumn>
+                    <TableRowColumn>{Math.floor((item.minutes_worked)/60)}</TableRowColumn>
+                    <TableRowColumn>{item.shift_count}</TableRowColumn>
+                    <TableRowColumn>{<Link to={`/users/${item.user_id}`} target="_blank"><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
+                  </TableRow>
                 )}
-              </tbody>
-            </table>
-            </div>
+              </TableBody>
+            </Table>
+          </div>
           ) : (<h2>No Results</h2>)}          
       </div>
     ) 
