@@ -1,7 +1,7 @@
 .CalendarDay__selected_span {
   background: #ffb74d; 
   color: white; 
-  border: 1px solid #ffb74d; 
+  border: 2px solid #ffb74d; 
 }
 
 .CalendarDay__selected {

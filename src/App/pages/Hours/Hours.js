@@ -5,7 +5,7 @@ import HoursNameSearch from '../../components/HoursNameSearch';
 import TemporaryDrawer from '../Drawer';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker} from 'react-dates';
 import Typography from '@material-ui/core/Typography';
 import JobsStyles from '../Jobs/JobsStyes.css'
 import HoursStyles from './HoursStyles.css'
