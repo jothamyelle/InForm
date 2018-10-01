@@ -80,55 +80,54 @@ class AdminDashboard extends Component {
 
       const todaysForms = (
         <div style={{width:'75%', margin: 'auto'}} className="form-container">
-            <Table selectable={false} style={{textAlign: 'left'}}>
-              <TableHeader displaySelectAll={false}>
-                <TableRow displayRowCheckbox={false}>
-                  <TableHeaderColumn>Form name</TableHeaderColumn>
-                  <TableHeaderColumn>View Form</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody displayRowCheckbox={false}>
-                {this.state.todaysForms.map((form) => {
-                  return(
-                    <TableRow key={form.formId}>
-                      <TableRowColumn>{form.type}</TableRowColumn>
-                      <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
-                    </TableRow>
-                  )})
-                  }
-              </TableBody>
-            </Table>
-          </div>
+          <Table selectable={false} style={{textAlign: 'left'}}>
+            <TableHeader displaySelectAll={false}>
+              <TableRow displayRowCheckbox={false}>
+                <TableHeaderColumn>Form name</TableHeaderColumn>
+                <TableHeaderColumn>View Form</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {this.state.todaysForms.map((form) => {
+                return(
+                  <TableRow key={form.formId}>
+                    <TableRowColumn>{form.type}</TableRowColumn>
+                    <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+                  </TableRow>
+                )})
+                }
+            </TableBody>
+          </Table>
+        </div>
       )
 
       const todaysJobs = (
         <div style={{width:'75%', margin: 'auto'}} className="form-container">
-            <Table style={{textAlign: 'left'}}>
-              <TableHeader displaySelectAll={false}>
-                <TableRow displayRowCheckbox={false}>
-                  <TableHeaderColumn>Job Name</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody displayRowCheckbox={false} >
-                {this.state.uniqueJobs.map((job) => {
-                  return(
-                    <TableRow displayRowCheckbox={false} key={job.job_id}>
-                      <TableRowColumn>{job.name}</TableRowColumn>
-                    </TableRow>
-                  )
-                })}
-                </TableBody>
-            </Table>
-          </div>
+          <Table style={{textAlign: 'left'}}>
+            <TableHeader displaySelectAll={false}>
+              <TableRow displayRowCheckbox={false}>
+                <TableHeaderColumn>Job Name</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false} >
+              {this.state.uniqueJobs.map((job) => {
+                return(
+                  <TableRow displayRowCheckbox={false} key={job.job_id}>
+                    <TableRowColumn>{job.name}</TableRowColumn>
+                  </TableRow>
+                )
+              })}
+              </TableBody>
+          </Table>
+        </div>
       )
 
-      const checked = true;
       return (
         <div>
           <TemporaryDrawer />
 
-            {/* <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/> */}
-            <SimpleGrow todaysForms={todaysForms} todaysJobs={todaysJobs} todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
+          <SimpleGrow todaysForms={todaysForms} todaysJobs={todaysJobs} todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
+          {/* <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/> */}
           {/* <Typography variant="display3" gutterBottom align="center">
             Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
           </Typography> */}
@@ -137,13 +136,9 @@ class AdminDashboard extends Component {
             Today's Forms
           </Typography> */}
 
-          
-
           {/* <Typography variant="display2" gutterBottom align="center">
             Today's Active Jobs
-          </Typography> */}
-
-          
+          </Typography> */}          
         </div>
       )
     }

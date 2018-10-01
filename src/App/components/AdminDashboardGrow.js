@@ -49,53 +49,37 @@ class SimpleGrow extends React.Component {
           </Typography>
           </Grow>
           <br/>
-          <Grow
-            in={checked}
-            style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 1000 } : {})}
-          >
+
+          <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})} >
             <Typography variant="display3" gutterBottom align="center">
               Currently {this.props.todaysFormsNumber} forms from {this.props.todaysJobsNumber} active jobs
             </Typography>
           </Grow>
           <br/>
-          <Grow
-            in={checked}
-            style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 2000 } : {})}
-          >
+
+          <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 2000 } : {})} >
             <Typography variant="display2" gutterBottom align="center">
               Today's Forms
             </Typography>
           </Grow>
           <br/>
-          <Grow
-            in={checked}
-            style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 2000 } : {})}
-          >
-              {this.props.todaysForms}
+
+          <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 2000 } : {})} >
+            {this.props.todaysForms}
           </Grow>
           <br/>
-          <Grow
-            in={checked}
-            style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 3000 } : {})}
-          >
+
+          <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 3000 } : {})} >
             <Typography variant="display2" gutterBottom align="center">
               Today's Active Jobs
             </Typography>
           </Grow>
           <br/>
-          <Grow
-            in={checked}
-            style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 3000 } : {})}
-          >
-            <Typography variant="display2" gutterBottom align="center">
-              {this.props.todaysJobs}
-            </Typography>
+
+          <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 3000 } : {})} >
+            {this.props.todaysJobs}
           </Grow>
+
       </div>
     );
   }
