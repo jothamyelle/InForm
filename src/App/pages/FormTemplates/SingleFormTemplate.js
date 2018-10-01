@@ -163,6 +163,7 @@ class SingleFormTemplate extends Component {
         <form>
           <h1>{this.state.formName}</h1>
           {this.renderFormHTML()}
+          <input type="submit"/>
         </form>
       </div>
     )
