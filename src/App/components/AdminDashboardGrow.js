@@ -55,8 +55,8 @@ class SimpleGrow extends React.Component {
             {...(checked ? { timeout: 1000 } : {})}
           >
             <Typography variant="display3" gutterBottom align="center">
-            Currently {this.props.todaysFormsNumber} forms from {this.props.todaysJobsNumber} active jobs
-          </Typography>
+              Currently {this.props.todaysFormsNumber} forms from {this.props.todaysJobsNumber} active jobs
+            </Typography>
           </Grow>
           <br/>
           <Grow
@@ -72,7 +72,7 @@ class SimpleGrow extends React.Component {
           <Grow
             in={checked}
             style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 3000 } : {})}
+            {...(checked ? { timeout: 2000 } : {})}
           >
               {this.props.todaysForms}
           </Grow>
@@ -80,21 +80,21 @@ class SimpleGrow extends React.Component {
           <Grow
             in={checked}
             style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 4000 } : {})}
+            {...(checked ? { timeout: 3000 } : {})}
           >
-              <Typography variant="display2" gutterBottom align="center">
-            Today's Active Jobs
-          </Typography>
+            <Typography variant="display2" gutterBottom align="center">
+              Today's Active Jobs
+            </Typography>
           </Grow>
           <br/>
           <Grow
             in={checked}
             style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 4000 } : {})}
+            {...(checked ? { timeout: 3000 } : {})}
           >
-              <Typography variant="display2" gutterBottom align="center">
-            {this.props.todaysJobs}
-          </Typography>
+            <Typography variant="display2" gutterBottom align="center">
+              {this.props.todaysJobs}
+            </Typography>
           </Grow>
       </div>
     );
