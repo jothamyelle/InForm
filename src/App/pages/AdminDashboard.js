@@ -13,6 +13,11 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import { orange300 } from 'material-ui/styles/colors';
+import SimpleSlide from '../components/AdminDashboardSlide'
+
+function Transition(props) {
+  return <SimpleSlide direction="up" {...props} />;
+}
 
 class AdminDashboard extends Component {
   constructor(props){
@@ -74,9 +79,11 @@ class AdminDashboard extends Component {
         <div>
           <TemporaryDrawer />
 
-          <Typography variant="display3" gutterBottom align="center">
+            <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
+
+          {/* <Typography variant="display3" gutterBottom align="center">
             Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
-          </Typography>
+          </Typography> */}
 
           <Typography variant="display2" gutterBottom align="center">
             Today's Forms
