@@ -20,6 +20,9 @@ export default formBuilderObject = {
     <div class="formBuildArea">
 
     <style>
+    * {
+      font-family: 'Roboto', sans-serif;  
+    }
     body {
     width: 95%;
     margin: 0 auto;
@@ -52,16 +55,15 @@ export default formBuilderObject = {
     padding-top:20px;
     min-height:50px;
     height: auto;
-    border: 2px solid #666666;
-    background-color: #ccc;
-    margin-right: 5px;
-    -webkit-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 3px #000;
-    -ms-box-shadow: inset 0 0 3px #000;
-    box-shadow: inset 0 0 3px #000;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: #FFF;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+    width:100%;
+   
+    cursor: move;
     text-align: center;
     cursor: move;
   }
@@ -103,24 +105,22 @@ export default formBuilderObject = {
   }
 
   .controls {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: #FFF;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
     width:100%;
-    border: 2px solid #666666;
-    background-color: #ccc;
-    margin-right: 5px;
-    -webkit-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 3px #000;
-    -ms-box-shadow: inset 0 0 3px #000;
-    box-shadow: inset 0 0 3px #000;
-    text-align: center;
+   
     cursor: move;
   }
 
   #options {
     flex:1;
     padding:5px;
+    margin:10px;
+    margin-right:5px;
     border-left:solid black 1px;
   }
 
@@ -136,7 +136,7 @@ export default formBuilderObject = {
 
     </style>
       
-      <div id="stagingArea">
+      <div class="mui-container" id="stagingArea">
         
         <div id="beginnerItem" class="staged">Drop Stuff Here</div>
         
@@ -145,60 +145,60 @@ export default formBuilderObject = {
       <div id="options">
         <div id="optionsList"></div>
       </div>
-      <div id="controls">
+      <div id="controls" class="mui-container">
         
 
-          <div class="controls" draggable="true" title="Section Header" data-type="">
+          <div class="controls mui-panel" draggable="true" title="Section Header" data-type="">
               <h2><label>Header</label></h2>
           </div>
     
           <div class="controls" draggable="true" title="Question or instructions to fill the field" data-type="">
-              <label>Instructions</label>
+              <h3><label>Instructions</label></h3>
           </div>
     
           <div class="controls" draggable="true" title="Checkbox" data-type="checkbox">
-              <label>Checkbox</label><span class="requiredDisplay"></span>
+              <h3><label>Checkbox</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Radio Button" data-type="radio">
-              <label>Radio Button</label><span class="requiredDisplay"></span>
+              <h3><label>Radio Button</label><span class="requiredDisplay"></h3></span>
           </div>
     
           <div class="controls" draggable="true" title="Select" data-type="select">
-              <label>Select</label><span class="requiredDisplay"></span>
+              <h3><label>Select</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Select Multiple" data-type="select multiple">
-              <label>Select Multiple</label><span class="requiredDisplay"></span>
+              <h3><label>Select Multiple</label><span class="requiredDisplay"></h3></span>
           </div>
     
           <div class="controls" draggable="true" title="Text" data-type="text">
-              <label>Text</label><span class="requiredDisplay"></span>
+              <h3><label>Text</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Text Area" data-type="textarea">
-              <label>Text Area</label><span class="requiredDisplay"></span><br>
+              <h3><label>Text Area</label><span class="requiredDisplay"></h3></span><br>
           </div>
 
           <div class="controls" draggable="true" title="Date" data-type="date">
-              <label>Date</label><span class="requiredDisplay"></span>
+              <h3><label>Date</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Time" data-type="time">
-              <label>Time</label><span class="requiredDisplay"></span>
+              <h3><label>Time</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Number" data-type="number">
-              <label>Number</label><span class="requiredDisplay"></span>
+              <h3><label>Number</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Email" data-type="email">
-              <label>Email</label><span class="requiredDisplay"></span>
+              <h3><label>Email</label><span class="requiredDisplay"></h3></span>
           </div>
 
       </div>
     </div>
-    <button id="resetButton">Reset</button>`;
+    <button class="mui-btn" id="resetButton">Reset</button>`;
 
 
   let dragSrcEl = null;
@@ -238,6 +238,7 @@ export default formBuilderObject = {
   function createDeleteButton() {
     const button = document.createElement('button');
     button.classList.add('deleteControl');
+    button.classList.add('mui-btn');
     button.innerHTML = 'Delete';
     return button;
   }
@@ -245,6 +246,7 @@ export default formBuilderObject = {
   function createDuplicateButton() {
     const button = document.createElement('button');
     button.classList.add('duplicateControl');
+    button.classList.add('mui-btn');
     button.innerHTML = 'Duplicate';
     return button;
   }
