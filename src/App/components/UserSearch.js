@@ -52,9 +52,8 @@ class UserSearch extends Component {
     return (
       <form>
         <CustomizedInputs
-        setParentValue={this.handleInputChange}
-        style={{display: "block"}}
-          // onKeyUp={this.handleInputChange}
+          setParentValue={this.handleInputChange}
+          style={{display: "block"}}
           onKeyPress={this.handleSubmit}
         />
         {this.state.query && <UserSearchResults users={this.state.results} />}

@@ -21,7 +21,6 @@ class UserSearchResults extends Component {
           <Typography variant="display2" gutterBottom align="center">
             Search Results ({this.props.users.length})
           </Typography>
-          {/* <h2>Search Results ({this.props.users.length})</h2> */}
           <div className={userStyles.employeeContainer}>
             {listofResults}
           </div>
@@ -30,7 +29,7 @@ class UserSearchResults extends Component {
             <Typography variant="display2" gutterBottom align="center">
               No Results
             </Typography>
-            )}
+          )}
       </div>
     ) 
     }
