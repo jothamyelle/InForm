@@ -158,8 +158,6 @@ function getFormSubmissionsFromLastWeek(date1, date2) {
 }
 
 function postFormTemplate(formBuilderContent, name, category ) {
-  console.log(`Made it into the postFormTemplate, here's the content: name ${name}, category ${category}, formBuilderContent ${formBuilderContent['0'].type}`);
-  
   knex.select('id')
     .from('form_categories')
     .where('name', category)
@@ -175,37 +173,53 @@ function postFormTemplate(formBuilderContent, name, category ) {
         .returning('*')
         .then((formTemplate) => {
           //  formBuilderContent.forEach(field => {
-            for (field in formBuilderContent) {
-            knex('template_fields')
+          for (field in formBuilderContent) {
+          knex('template_fields')
+          .insert({
+            label: formBuilderContent[field].label, 
+            type: formBuilderContent[field].type,
+            options: JSON.stringify(formBuilderContent[field].controlOptions),
+            maxlength: formBuilderContent[field].maxlength,
+            required: formBuilderContent[field].required,
+            placeholder: formBuilderContent[field].placeholder,
+            multiple: formBuilderContent[field].multiple,
+            date_created: new Date().toISOString(), 
+            date_updated: new Date().toISOString()
+          })
+          .returning('*')
+          .then(templateField => { 
+            knex('form_template_fields')
             .insert({
-              label: formBuilderContent[field].label, 
-              type: formBuilderContent[field].type,
-              options: JSON.stringify(formBuilderContent[field].controlOptions),
-              maxlength: formBuilderContent[field].maxlength,
-              required: formBuilderContent[field].required,
-              placeholder: formBuilderContent[field].placeholder,
-              multiple: formBuilderContent[field].multiple,
+              form_template_id: formTemplate[0].id,
+              template_field_id: templateField[0].id,
               date_created: new Date().toISOString(), 
               date_updated: new Date().toISOString()
             })
             .returning('*')
-            .then(templateField => { 
-              knex('form_template_fields')
-              .insert({
-                form_template_id: formTemplate[0].id,
-                template_field_id: templateField[0].id,
-                date_created: new Date().toISOString(), 
-                date_updated: new Date().toISOString()
-              })
-              .returning('*')
-              .then(res => {
-                console.log(res)
-              })
+            .then(res => {
+              console.log(res)
             })
-          }
-        })
-    )
-    return Promise.resolve();
+          })
+        }
+    })
+  )
+  return Promise.resolve();
+}
+
+function getFormTemplateById(templateId) {
+  return knex.select('*')
+  .from('form_templates')
+  .where('form_templates.id', templateId)
+  .join('form_template_fields', {'form_templates.id': 'form_template_fields.form_template_id'})
+  .join('template_fields', {'form_template_fields.template_field_id': 'template_fields.id'})
+  .returning('*')
+}
+
+function getFormTemplateName(templateId) {
+  return knex.select('type')
+  .from('form_templates')
+  .where('form_templates.id', templateId)
+  .returning('*')
 }
 
 function deleteFormTemplate(templateId) {
@@ -234,4 +248,6 @@ exports.getFormtemplateCategories = getFormtemplateCategories;
 exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
 exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
 exports.postFormTemplate = postFormTemplate;
+exports.getFormTemplateById = getFormTemplateById;
+exports.getFormTemplateName = getFormTemplateName;
 exports.deleteFormTemplate = deleteFormTemplate;

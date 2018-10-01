@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import { orange300 } from 'material-ui/styles/colors';
 import JobsStyles from '../Jobs/JobsStyes.css'
@@ -36,9 +37,11 @@ class FormTemplate extends Component {
       isLoading: true,
       categories: null,
       templates: null,
+      data: [],
       open: false,
       confirmationTemplateId: null,
     }
+    this.handleFillOutClick = this.handleFillOutClick.bind(this);
   }
 
   handleClickConfirmation = (templateId) => {
@@ -72,6 +75,18 @@ class FormTemplate extends Component {
     })
   }
 
+  handleFillOutClick = (id) => {
+    axios.get(`/api/getFormtemplate/${id}`)
+    .then(response => {
+      this.setState({
+        data: response.data,
+        confirmationTemplateId: id
+      }, () => {
+        this.props.getFormData(this.state.data, id)
+      })
+    })
+  }
+
   deleteTemplate = (templateId) => {
     axios.post('/api/deleteFormTemplate', {
       id: templateId
@@ -83,6 +98,9 @@ class FormTemplate extends Component {
   }
 
   render() {
+    if (this.state.data.length > 0) {
+      return <Redirect to={`/form_templates/${this.state.confirmationTemplateId}`} />
+    }
       return(
         <div>
           <TemporaryDrawer />  
@@ -120,7 +138,7 @@ class FormTemplate extends Component {
                           <TableBody displayRowCheckbox={false} key={template.id}>
                             <TableRow>
                               <TableRowColumn>{template.type}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor={orange300}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
                               <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
                             </TableRow>
                           </TableBody>
