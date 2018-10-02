@@ -341,8 +341,9 @@ export default formBuilderObject = {
     const duplicateButton = createDuplicateButton();
     node.append(duplicateButton);
     addDuplicateListener(duplicateButton);
-
-    // controlClickDisplayOptions(node);
+    if(listOfDisplayOptions[node.id]) {
+      controlClickDisplayOptions(node);
+    }
     
     return node;
   }
@@ -806,10 +807,10 @@ export default formBuilderObject = {
   function addDeleteListener(button) {
     button.addEventListener('click', function() {
       button.parentElement.remove();
-      // console.log(button.parentElement.id) 
-      console.log(listOfDisplayOptions);
-      delete listOfDisplayOptions[button.parentElement.id]
-      // console.log(listOfDisplayOptions);      
+      let optionsList = document.getElementById('optionsList');
+      optionsList.innerHTML = '';
+      // displayAppropriateOptions(listOfDisplayOptions[button.parentElement.id -1]);
+      delete listOfDisplayOptions[button.parentElement.id];
       let stagingArea = document.getElementById('stagingArea');
       if(!stagingArea.innerHTML.trim()) {
         const beginnerItem = createbeginnerItem(); 
