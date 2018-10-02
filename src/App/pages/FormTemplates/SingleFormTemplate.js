@@ -35,7 +35,7 @@ class SingleFormTemplate extends Component {
       radioOptions: "",
     }
   }
-
+  
   componentWillMount() {
     axios.get(`/api/getFormtemplateName/${this.props.formId}`)
     .then(formName => {
@@ -50,20 +50,21 @@ class SingleFormTemplate extends Component {
   };
 
   renderFormHTML() {
+    
     let controls = this.props.formData.map(control => {
       switch(control.type) {
         case 'header':
         return(
           <Typography variant="display2" gutterBottom align="center" style={{margin: 20}}>    
             {control.label}
-            <input type="hidden" name={control.type + control.id} value={control.label} />
+            <input type="hidden" name={control.type} value={control.label} />
           </Typography>
         );
         case 'paragraph':
         return(
           <Typography component="p" style={{margin: 20}}>
             {control.label}
-            <input type="hidden" name={control.type + control.id} value={control.label} />
+            <input type="hidden" name={control.type} value={control.label} />
           </Typography>
           );
         case 'checkbox':
@@ -77,7 +78,7 @@ class SingleFormTemplate extends Component {
                   return(
                     <FormControlLabel
                       control={
-                      <Checkbox name={control.label + control.id} required={control.required} style={{color: "orange"}}/>
+                      <Checkbox name={control.label} required={control.required} style={{color: "orange"}}/>
                       }
                       label={option}
                     />
@@ -93,7 +94,7 @@ class SingleFormTemplate extends Component {
             <FormControl component="fieldset" style={{width: 300, margin: 20 }}>
               <FormLabel component="legend">{control.label}</FormLabel>
               <RadioGroup
-                name={control.label + control.id}
+                name={control.label}
                 required={control.required} 
                 value={this.state.radioOptions}
                 onChange={this.radioChange}
@@ -114,7 +115,7 @@ class SingleFormTemplate extends Component {
               <InputLabel>{control.label}</InputLabel>
               <Select
                 inputProps={{
-                  name: control.label + control.id,
+                  name: control.label,
                   required: control.required
                 }}
               >
@@ -136,7 +137,7 @@ class SingleFormTemplate extends Component {
               <InputLabel>{control.label}</InputLabel>
               <Select
                 multiple
-                name={control.label + control.id} 
+                name={control.label} 
                 required={control.required}
                 value={control.options}
               >
@@ -176,7 +177,7 @@ class SingleFormTemplate extends Component {
               multiline
               rowsMax="4"
               margin="normal"
-              name={control.label + control.id}
+              name={control.label}
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required}
@@ -190,7 +191,7 @@ class SingleFormTemplate extends Component {
               label={control.label}
               type="date"
               // defaultValue= "2017-05-24"
-              name={control.label + control.id}
+              name={control.label}
               required={control.required}
               InputLabelProps={{
                 shrink: true
@@ -211,7 +212,7 @@ class SingleFormTemplate extends Component {
               inputProps={{
                 step: 300, // 5 min
               }}
-              name={control.label + control.id}
+              name={control.label}
               required={control.required}
             />
           </div>
@@ -222,7 +223,7 @@ class SingleFormTemplate extends Component {
             <TextField style={{width: 300, margin: 20 }}
               label={control.label}
               type="number"
-              name={control.label + control.id}
+              name={control.label}
               required={control.required}
               placeholder={control.placeholder} 
               margin="normal"
@@ -235,7 +236,7 @@ class SingleFormTemplate extends Component {
             <TextField style={{width: 300, margin: 20 }}
               label={control.label}
               type="number"
-              name={control.label + control.id}
+              name={control.label}
               required={control.required}
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
