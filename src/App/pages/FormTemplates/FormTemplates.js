@@ -134,7 +134,7 @@ class FormTemplate extends Component {
                         </TableRow>
                       </TableHeader>
                         <TableBody displayRowCheckbox={false}>
-                        {this.state.templates.reverse()map((template) => {
+                        {this.state.templates.reverse().map((template) => {
                           if(template.form_category_id === category.id)
                           return (
                             <TableRow  key={template.id}>
