@@ -33,7 +33,9 @@ class SingleFormTemplate extends Component {
     this.state = {
       formName: "",
       radioOptions: "",
+      submitted: false
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   componentWillMount() {
@@ -235,7 +237,7 @@ class SingleFormTemplate extends Component {
           <div>
             <TextField style={{width: 300, margin: 20 }}
               label={control.label}
-              type="number"
+              type="email"
               name={control.label}
               required={control.required}
               placeholder={control.placeholder} 
@@ -249,12 +251,47 @@ class SingleFormTemplate extends Component {
     return controls;
   }
 
+  handleSubmit = (event) => {
+    event.persist();
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = {};
+    for (let [key, val] of formData.entries()) {
+      if(data[key]) {
+        if(!Array.isArray(data[key])){
+          data[key]=[data[key]]
+        }
+        data[key].push(val);
+      } else {
+        Object.assign(data, { [key]: val })
+      }
+    }
+
+    axios.post(`/api/submitForm`, {
+      formValues: data,
+      templateId: this.props.formId,
+      userId: 1,
+      jobId: 1
+    })
+    .then(() => {
+      alert("Form successfully submitted!");
+      this.setState({
+        submitted: true
+      });
+    });
+  }
+
 
   render() {  
+    if(this.state.submitted) {
+      return <Redirect to={`/form_templates`}/>
+    }
     return(
       <div>
         <TemporaryDrawer />
-          <form>
+          <form onSubmit={(e) => this.handleSubmit(e)}>
             <Paper elevation={3} style={{width: 500, padding: 25}} className={JobsStyles.searchBox}>
               <Typography variant="display4" gutterBottom align="center">
                 {this.state.formName}

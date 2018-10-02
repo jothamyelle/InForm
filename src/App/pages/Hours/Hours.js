@@ -3,6 +3,25 @@ import { Link } from 'react-router-dom';
 import { userMinutesWorkedSum } from '../../../helpers/hours';
 import HoursNameSearch from '../../components/HoursNameSearch';
 import TemporaryDrawer from '../Drawer';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker} from 'react-dates';
+import Typography from '@material-ui/core/Typography';
+import JobsStyles from '../Jobs/JobsStyes.css'
+import HoursStyles from './HoursStyles.css'
+import { orange300 } from 'material-ui/styles/colors';
+import Footer from '../Footer/Footer'
+
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 class Hours extends Component {
   constructor(props){
@@ -11,9 +30,9 @@ class Hours extends Component {
       error: null,
       isLoading: false,
       currentFilterHours: null,
-      startDate: null,
-      endDate: null,
-      currentQuery: false
+      // startDate: null,
+      // endDate: null,
+      currentQuery: false,
     }
   }
 
@@ -31,7 +50,11 @@ class Hours extends Component {
   
   handleSubmit = (event) => {
     event.preventDefault();
-    this.getHoursFromDateFilters(this.state.startDate, this.state.endDate);
+    let sDate =  this.state.startDate._d.toISOString()
+    let eDate =  this.state.endDate._d.toISOString()
+    console.log('StartDate', sDate)
+    console.log('EndDate', eDate)
+    this.getHoursFromDateFilters(this.state.startDate._d.toISOString(), this.state.endDate._d.toISOString());
   }
 
   getHoursFromDateFilters = (date1, date2) => {
@@ -66,34 +89,38 @@ class Hours extends Component {
     
       return (
         <div>
-          <TemporaryDrawer />
-          <HoursNameSearch handleSearchQuery={this.handleSearchQuery} data={uniqueUsersArray}/>
+          <div className={JobsStyles.searchBox}>
+            <HoursNameSearch handleSearchQuery={this.handleSearchQuery} data={uniqueUsersArray}/>
+            <br/>
+            <br/>
+          </div>
           {!currentQuery && (
             (uniqueUsersArray.length > 0) ? (
               <div>
-                <h2>Filter Results</h2>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Employee Name</th>
-                      <th>Hours Worked</th>
-                      <th>Shifts Worked</th>
-                      <th>View Employee</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <br/>
+                <br/>
+                <Table selectable={false} className={JobsStyles.formsTable}>
+                  <TableHeader displaySelectAll={false}>
+                    <TableRow displayRowCheckbox={false}>
+                      <TableHeaderColumn>Employee Name</TableHeaderColumn>
+                      <TableHeaderColumn>Hours Worked</TableHeaderColumn>
+                      <TableHeaderColumn>Shifts Worked</TableHeaderColumn>
+                      <TableHeaderColumn>View Employee</TableHeaderColumn>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody displayRowCheckbox={false}>
                     {uniqueUsersArray.map((item) =>
-                      <tr key={item.user_id}>
-                        <td>{item.first_name} {item.last_name}</td>
-                        <td>{Math.floor((item.minutes_worked)/60)}</td>
-                        <td>{item.shift_count}</td>
-                        <td>{<Link to={`/users/${item.user_id}`} target="_blank">Go</Link>}</td>
-                      </tr>
+                      <TableRow key={item.user_id}>
+                        <TableRowColumn>{item.first_name} {item.last_name}</TableRowColumn>
+                        <TableRowColumn>{Math.floor((item.minutes_worked)/60)}</TableRowColumn>
+                        <TableRowColumn>{item.shift_count}</TableRowColumn>
+                        <TableRowColumn>{<Link to={`/users/${item.user_id}`} target="_blank"><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
+                      </TableRow>
                     )}
-                  </tbody>
-                </table>
+                  </TableBody>
+                </Table>
               </div>
-            ) : (<h2>No results from this time period</h2>)
+            ) : (<Typography variant="display2" gutterBottom align="center">No Results</Typography>)
           )}
         </div>
       )
@@ -103,28 +130,33 @@ class Hours extends Component {
   render() {
       return (
         <div>
-          <Link to={'./'}>
-            <button variant="raised">
-              Home
-            </button>
-          </Link>
-          <br/>
-          <h1> Hours </h1>
-          <div>
+          <TemporaryDrawer />
+          <Typography variant="display4" gutterBottom align="center">
+            Hours
+          </Typography>
+          <div className={JobsStyles.searchBox}  style={{height: "100vh"}}>
             <form onSubmit={this.handleSubmit}>
-              <span>
-                Start Date
-                <input onChange={this.handleStartDate} id="startDate" className="searchDate" type="date"/>
-              </span>
-              <span>
-                End Date
-                <input onChange={this.handleEndDate} id="endDate" className="searchDate" type="date"/>
-              </span>
-              <button type="submit">Search</button>
+              <DateRangePicker
+                className={HoursStyles.CalendarDay__selected}
+                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                isOutsideRange = {() => false}
+              />
+              <br/>
+              <br/>
+              <FlatButton type="submit" backgroundColor={orange300}>Filter</FlatButton>
             </form>
           </div>
           <br/>
           { this.renderRows() }
+          <br/>
+          <br/>
+          <Footer/>
         </div>
       )
     }

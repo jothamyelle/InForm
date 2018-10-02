@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HoursNameSearchResults from './HoursNameSearchResults'
+import CustomizedInputs from './Input'
 
 class HoursNameSearch extends Component {
   constructor(props) {
@@ -27,10 +28,10 @@ class HoursNameSearch extends Component {
     })
   }
 
-  handleInputChange = () => {
+  handleInputChange = (value) => {
     setTimeout(() => {
       this.setState({
-        query: this.search.value
+        query: value
       }, () => {
         this.getInfo();
         if (this.state.query.length > 0) {
@@ -53,10 +54,10 @@ class HoursNameSearch extends Component {
   render() {
     return (
       <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
-          onKeyUp={this.handleInputChange}
+        <CustomizedInputs
+        setParentValue={this.handleInputChange}
+        style={{display: "block"}}
+          // onKeyUp={this.handleInputChange}
           onKeyPress={this.handleSubmit}
         />
         {this.state.query && <HoursNameSearchResults names={this.state.results} />}

@@ -234,6 +234,48 @@ function deleteFormTemplate(templateId) {
   return Promise.resolve();
 }
 
+function submitForm(formData) {
+  // formData.body.formValues -> object that holds .body object of all key value pairs
+  // formData.body.templateId
+  // formData.body.userId
+  // formData.body.jobId
+  let keyValuePairs = formData.body.formValues;
+  knex('submitted_forms')
+    .insert({
+      form_template_id: formData.body.templateId, 
+      user_id: formData.body.userId, 
+      job_id: formData.body.jobId, 
+      date_created: new Date().toISOString(), 
+      date_updated: new Date().toISOString() 
+    })
+    .returning('*')
+    .then((submittedForm) => {
+      for (keyValue in keyValuePairs) {
+        knex('submitted_fields')
+        .insert({
+          value: JSON.stringify(keyValuePairs[keyValue]),
+          date_created: new Date().toISOString(), 
+          date_updated: new Date().toISOString()
+        })
+        .returning('*')
+        .then(submittedField => { 
+        knex('submitted_form_fields')
+        .insert({
+          submitted_form_id: submittedForm[0].id,
+          submitted_field_id: submittedField[0].id,
+          date_created: new Date().toISOString(), 
+          date_updated: new Date().toISOString()
+        })
+        .returning('*')
+        .then(res => {
+          console.log(res)
+        })
+      })
+     }
+  })
+  return Promise.resolve();
+}
+
 exports.getJobs = getJobs;
 exports.getUsers = getUsers;
 exports.getUserRoles = getUserRoles;
@@ -251,3 +293,4 @@ exports.postFormTemplate = postFormTemplate;
 exports.getFormTemplateById = getFormTemplateById;
 exports.getFormTemplateName = getFormTemplateName;
 exports.deleteFormTemplate = deleteFormTemplate;
+exports.submitForm = submitForm;

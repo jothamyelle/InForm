@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import { orange300 } from 'material-ui/styles/colors';
 import JobsStyles from '../Jobs/JobsStyes.css'
+import Footer from '../Footer/Footer'
 
 import LoadingProgress from '../../components/Progress'
 import Dialog from '@material-ui/core/Dialog';
@@ -132,23 +133,26 @@ class FormTemplate extends Component {
                           <TableHeaderColumn>Delete Template</TableHeaderColumn>
                         </TableRow>
                       </TableHeader>
-                      {this.state.templates.map((template) => {
-                        if(template.form_category_id === category.id)
-                        return (
-                          <TableBody displayRowCheckbox={false} key={template.id}>
-                            <TableRow>
+                        <TableBody displayRowCheckbox={false}>
+                        {this.state.templates.map((template) => {
+                          if(template.form_category_id === category.id)
+                          return (
+                            <TableRow  key={template.id}>
                               <TableRowColumn>{template.type}</TableRowColumn>
                               <TableRowColumn><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
                               <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
                             </TableRow>
-                          </TableBody>
-                        )
-                      })}
+                          )
+                        })}
+                      </TableBody>
                     </Table>
                   </div>
                 </div>
               )
             })}
+            <br/>
+            <br/>
+            <Footer />
           </div>
           )}
 
