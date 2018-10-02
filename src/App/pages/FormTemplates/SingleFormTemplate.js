@@ -4,6 +4,7 @@ import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import Header from '../Header/Header'
 
 import Typography from '@material-ui/core/Typography';
 import orange from '@material-ui/core/colors/orange';
@@ -314,7 +315,9 @@ class SingleFormTemplate extends Component {
     }
     return(
       <div>
-        <TemporaryDrawer />
+        <Header />
+          <br/>
+          <br/>
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <Paper elevation={3} style={{width: 800, padding: 25}} className={JobsStyles.searchBox}>
               <Typography variant="display4" gutterBottom align="center">

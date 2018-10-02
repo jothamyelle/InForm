@@ -29,6 +29,9 @@ const styles = theme => ({
 });
 
 class SimpleGrow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     checked: true,
   };
@@ -53,8 +56,8 @@ class SimpleGrow extends React.Component {
 
           <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})} >
             <Typography variant="display3" gutterBottom align="center">
-              {/* These ternaries don't make sense. This is what works...not what is logical */}
-              Currently {this.props.todaysFormsNumber} {((this.props.todaysFormsNumber===1) ? "form": "forms")} from {this.props.todaysJobsNumber} active {((this.props.todaysJobsNumber===1) ? "jobs": "job")}
+            {/* .props.children because it's being passed a material ui element */}
+              Currently {this.props.todaysFormsNumber} {((this.props.todaysFormsNumber.props.children===1) ? "form": "forms")} from {this.props.todaysJobsNumber} active {((this.props.todaysJobsNumber.props.children===1) ? "job": "jobs")}
             </Typography>
           </Grow>
           <br/>
