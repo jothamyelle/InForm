@@ -20,17 +20,41 @@ export default formBuilderObject = {
     <div class="formBuildArea">
 
     <style>
-    body {
+
+  * {
+    font-family: 'Roboto', sans-serif;  
+  }
+
+  .plus-icon {
+    color: #ffb74d;
+    font-size: 50px;
+    margin-top: 12.5px;
+  }
+  form-p-tag {
+    font-size: 18px;
+  }
+
+  #mui-input-style {
+    width: 30%;
+    margin:auto;
+  }
+
+  body {
     width: 95%;
     margin: 0 auto;
     padding:20px;
+  }
+
+  #options-h3 {
+    margin-top: 10px;
   }
 
   .formBuildArea {
     padding:20px;
     display: flex;
     justify-content: space-around;
-    border:1px solid black;
+    border-radius: 2px;
+    box-shadow: 5px 5px 35px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
   }
 
   /* Prevent the text contents of draggable elements from being selectable. */
@@ -48,20 +72,38 @@ export default formBuilderObject = {
     flex:3;
   }
 
+  .deleteControl {
+    background-color: #ffb74d;
+    color: black;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+  }
+
+  .duplicateControl {
+    background-color: lightgrey;
+    color: black;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+  }
+
+  .reset-btn {
+    background-color: #ffb74d;
+    color: black;
+  }
+
   .staged {
     padding-top:20px;
     min-height:50px;
     height: auto;
-    border: 2px solid #666666;
-    background-color: #ccc;
-    margin-right: 5px;
-    -webkit-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 3px #000;
-    -ms-box-shadow: inset 0 0 3px #000;
-    box-shadow: inset 0 0 3px #000;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 0;
+    background-color: #FFF;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
+    cursor: move;
     text-align: center;
     cursor: move;
   }
@@ -97,35 +139,33 @@ export default formBuilderObject = {
   }
 
   #controls {
-    border-left:solid black 1px;
     padding: 10px;
     flex:1;
+    margin-left:5px;
   }
 
   .controls {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 0;
+    background-color: #FFF;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
     width:100%;
-    border: 2px solid #666666;
-    background-color: #ccc;
-    margin-right: 5px;
-    -webkit-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 3px #000;
-    -ms-box-shadow: inset 0 0 3px #000;
-    box-shadow: inset 0 0 3px #000;
-    text-align: center;
     cursor: move;
   }
 
   #options {
     flex:1;
     padding:5px;
-    border-left:solid black 1px;
+    margin:10px;
+    margin-right:5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
   }
 
   #options li {
     list-style: none;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
   }
   #controls li {
     border:solid black 1px;
@@ -136,69 +176,71 @@ export default formBuilderObject = {
 
     </style>
       
-      <div id="stagingArea">
+      <div class="mui-container" id="stagingArea">
         
-        <div id="beginnerItem" class="staged">Drop Stuff Here</div>
+        <div id="beginnerItem" class="staged"><i class="material-icons plus-icon">
+        add_circle_outline
+        </i></div>
         
       </div>
 
       <div id="options">
-        <div id="optionsList"></div>
+        <div class="mui-textfield" id="optionsList"></div>
       </div>
-      <div id="controls">
+      <div id="controls" class="mui--container">
         
 
-          <div class="controls" draggable="true" title="Section Header" data-type="">
-              <h2><label>Header</label></h2>
+          <div class="controls mui-panel" draggable="true" title="Section Header" data-type="">
+              <h3 id="options-h3"-><label>Header</label></h3>
           </div>
     
           <div class="controls" draggable="true" title="Question or instructions to fill the field" data-type="">
-              <label>Instructions</label>
+              <h3 id="options-h3"-><label>Instructions</label></h3>
           </div>
     
           <div class="controls" draggable="true" title="Checkbox" data-type="checkbox">
-              <label>Checkbox</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Checkbox</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Radio Button" data-type="radio">
-              <label>Radio Button</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Radio Button</label><span class="requiredDisplay"></h3></span>
           </div>
     
           <div class="controls" draggable="true" title="Select" data-type="select">
-              <label>Select</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Select</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Select Multiple" data-type="select multiple">
-              <label>Select Multiple</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Select Multiple</label><span class="requiredDisplay"></h3></span>
           </div>
     
           <div class="controls" draggable="true" title="Text" data-type="text">
-              <label>Text</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Text</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Text Area" data-type="textarea">
-              <label>Text Area</label><span class="requiredDisplay"></span><br>
+              <h3 id="options-h3"-><label>Text Area</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Date" data-type="date">
-              <label>Date</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Date</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Time" data-type="time">
-              <label>Time</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Time</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Number" data-type="number">
-              <label>Number</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"-><label>Number</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Email" data-type="email">
-              <label>Email</label><span class="requiredDisplay"></span>
+              <h3 id="options-h3"><label>Email</label><span class="requiredDisplay"></h3></span>
           </div>
 
       </div>
     </div>
-    <button id="resetButton">Reset</button>`;
+    <button class="mui-btn reset-btn" id="resetButton">Reset</button>`;
 
 
   let dragSrcEl = null;
@@ -238,6 +280,7 @@ export default formBuilderObject = {
   function createDeleteButton() {
     const button = document.createElement('button');
     button.classList.add('deleteControl');
+    button.classList.add('mui-btn');
     button.innerHTML = 'Delete';
     return button;
   }
@@ -245,6 +288,7 @@ export default formBuilderObject = {
   function createDuplicateButton() {
     const button = document.createElement('button');
     button.classList.add('duplicateControl');
+    button.classList.add('mui-btn');
     button.innerHTML = 'Duplicate';
     return button;
   }
@@ -254,17 +298,21 @@ export default formBuilderObject = {
     switch (inputType) {
       case 'textarea':
         input = document.createElement('textarea');
+        input.setAttribute('id', 'mui-input-style')
         break;
       case 'select':
         input = document.createElement('select');
+        input.setAttribute('id', 'mui-input-style')
         break;
       case 'select multiple':
         input = document.createElement('select multiple');
+        input.setAttribute('id', 'mui-input-style')
         input.setAttribute('multiple', '');
         break;
       default:
         input = document.createElement('input');
         input.setAttribute('type', inputType);
+        input.setAttribute('id', 'mui-input-style')
     }
     return input; 
   }
@@ -284,7 +332,8 @@ export default formBuilderObject = {
         node.append(createFormInput(inputType));
       }
     }
-
+    const lineBreak = document.createElement('br');
+    node.append(lineBreak);
     const deleteButton = createDeleteButton();
     node.append(deleteButton);
     addDeleteListener(deleteButton);
@@ -306,6 +355,7 @@ export default formBuilderObject = {
     let newStagedElement = dragSrcEl.cloneNode(true);
     newStagedElement.classList.remove('controls');
     newStagedElement.classList.add('staged');
+    newStagedElement.classList.add('mui-textfield');
     newStagedElement.setAttribute('id', idCounter++);
     newStagedElement.style.opacity = '1';
     turnToFormControl(newStagedElement);
@@ -386,11 +436,11 @@ export default formBuilderObject = {
     let controlInStagingArea = document.getElementById(currentElement.id);
     
     controlInStagingArea.innerHTML = `
-    <button id="control${currentElement.id}DuplicateButton" class="duplicateControl">Duplicate</button>
     <span class="requiredDisplay"></span><br>
-    <label>${labelName}</label>
+    <h2><label>${labelName}<label></h2>
     <div id="control${currentElement.id}MultiOptions"></div>
-    <button id="control${currentElement.id}DeleteButton" class="deleteControl">Delete</button></div>`;
+    <button id="control${currentElement.id}DeleteButton" class="deleteControl mui-btn">Delete</button></div>
+    <button id="control${currentElement.id}DuplicateButton" class="duplicateControl mui-btn">Duplicate</button>`;
 
     let multiOptionsDiv = document.getElementById(`control${currentElement.id}MultiOptions`);
 
@@ -410,7 +460,7 @@ export default formBuilderObject = {
         multiOptionsDiv.innerHTML += `
           <p>
           <input type="${inputType}" class="checkboxOption" value="${controlOptionsArray[index]}"/>
-          <label>${controlOptionsArray[index]}</label>  
+          <label>${controlOptionsArray[index]}<label>
           </p>
           `;
         });
@@ -455,22 +505,22 @@ export default formBuilderObject = {
     switch(elementObject.type) {
       case 'header':
       htmlToDisplay += `
-        <label>Section Header</label>
+        <p><label>Section Header<label></p>
         <input type="text" class="headerValue" value="${elementObject.value}"/>
       `;
       break;
       case 'paragraph':
       htmlToDisplay += `
-        <label>Instructions or Question</label>
+        <p><label>Instructions or Question<label></p>
         <textarea class="instructionsValue"/>${elementObject.value}</textarea>
       `;
       break;
       case 'checkbox':
         htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="checkLabel" value="${elementObject.label}"/>
         <br/>
-        <label>Checkbox Options</label>`;
+        <p><label>Checkbox Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
@@ -482,18 +532,18 @@ export default formBuilderObject = {
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption" data-classtype="checkboxOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="checkboxOption">+ Add Option</button>
         <br/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="checkRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'radio':
       htmlToDisplay += `
-      <label>Label</label>
+      <p><label>Label<label></p>
       <input type="text" class="radioLabel" value="${elementObject.label}"/>
       <br/>
-        <label>Radio Options</label>`;
+        <p><label>Radio Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
@@ -505,18 +555,18 @@ export default formBuilderObject = {
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption" data-classtype="radioOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="radioOption">+ Add Option</button>
         <br/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="radioRequired"${elementObject.required ? 'checked' : ''}/>
         `;
         break;
         case 'select':
         htmlToDisplay += `
-      <label>Label</label>
+      <p><label>Label<label></p>
       <input type="text" class="selectLabel" value="${elementObject.label}"/>
       <br/>
-      <label>Select Options</label>`;
+      <p><label>Select Options<label></p>`;
       if(controlOptionsArray.length > 0) {
         controlOptionsArray.forEach((option, index) => {
           htmlToDisplay += `
@@ -528,18 +578,18 @@ export default formBuilderObject = {
       }
       htmlToDisplay += `
       <br/>
-      <button class="addControlOption" data-classtype="selectOption">+ Add Option</button>
+      <button class="addControlOption mui-btn" data-classtype="selectOption">+ Add Option</button>
       <br/>
-      <label>Required</label>
+      <p><label>Required<label></p>
       <input type="checkbox" class="selectRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'selectMultiple':
         htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="selectMultipleLabel" value="${elementObject.label}"/>
         <br/>
-        <label>Select Multiple Options</label>`;
+        <p><label>Select Multiple Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
@@ -551,73 +601,73 @@ export default formBuilderObject = {
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption" data-classtype="selectMultipleOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="selectMultipleOption">+ Add Option</button>
         <br/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="selectMultipleMultipleRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'text':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="textLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="text" class="textPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="textRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="textMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
       case 'textarea':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="textareaLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="text" class="textareaPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="textareaRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="textareaMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
       case 'date':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="dateLabel" value="${elementObject.label}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="dateRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'time':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="timeLabel" value="${elementObject.label}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="timeRequired" ${elementObject.required ? 'checked' : ''}/>
         `;
       break;
       case 'number':
       htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="numberLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="number" class="numberPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="numberRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="numberMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
       case 'email':
         htmlToDisplay += `
-        <label>Label</label>
+        <p><label>Label<label></p>
         <input type="text" class="emailLabel" value="${elementObject.label}"/>
-        <label>Placeholder</label>
+        <p><label>Placeholder<label></p>
         <input type="text" class="emailPlaceholder" value="${elementObject.placeholder}"/>
-        <label>Required</label>
+        <p><label>Required<label></p>
         <input type="checkbox" class="emailRequired" ${elementObject.required ? 'checked' : ''}/>
-        <label>Maximum Length</label>
+        <p><label>Maximum Length<label></p>
         <input type="number" class="emailMaxlength" value="${elementObject.maxlength}"/>
         `;
       break;
