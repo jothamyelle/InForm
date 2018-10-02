@@ -87,7 +87,7 @@ class FormBuilder extends Component {
     } else if(this.state.newTemplateName) {
       return (
         <div>
-          <Typography variant="display3" gutterBottom align="Center">
+          <Typography variant="display3" align="Center">
             Form Builder
           </Typography>
           <Typography variant="display2" gutterBottom align="Left">

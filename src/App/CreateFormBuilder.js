@@ -20,23 +20,33 @@ export default formBuilderObject = {
     <div class="formBuildArea">
 
     <style>
-    * {
-      font-family: 'Roboto', sans-serif;  
-    }
 
-    form-p-tag {
-      font-size: 18px;
-    }
+  * {
+    font-family: 'Roboto', sans-serif;  
+  }
 
-    #mui-input-style {
-      width: 30%;
-      margin:auto;
-    }
+  .plus-icon {
+    color: #ffb74d;
+    font-size: 50px;
+    margin-top: 12.5px;
+  }
+  form-p-tag {
+    font-size: 18px;
+  }
+
+  #mui-input-style {
+    width: 30%;
+    margin:auto;
+  }
 
   body {
     width: 95%;
     margin: 0 auto;
     padding:20px;
+  }
+
+  #options-h3 {
+    margin-top: 10px;
   }
 
   .formBuildArea {
@@ -168,62 +178,64 @@ export default formBuilderObject = {
       
       <div class="mui-container" id="stagingArea">
         
-        <div id="beginnerItem" class="staged">Drop Stuff Here</div>
+        <div id="beginnerItem" class="staged"><i class="material-icons plus-icon">
+        add_circle_outline
+        </i></div>
         
       </div>
 
       <div id="options">
         <div class="mui-textfield" id="optionsList"></div>
       </div>
-      <div id="controls" class="mui-container">
+      <div id="controls" class="mui--container">
         
 
           <div class="controls mui-panel" draggable="true" title="Section Header" data-type="">
-              <h3><label>Header</label></h3>
+              <h3 id="options-h3"-><label>Header</label></h3>
           </div>
     
           <div class="controls" draggable="true" title="Question or instructions to fill the field" data-type="">
-              <h3><label>Instructions</label></h3>
+              <h3 id="options-h3"-><label>Instructions</label></h3>
           </div>
     
           <div class="controls" draggable="true" title="Checkbox" data-type="checkbox">
-              <h3><label>Checkbox</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Checkbox</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Radio Button" data-type="radio">
-              <h3><label>Radio Button</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Radio Button</label><span class="requiredDisplay"></h3></span>
           </div>
     
           <div class="controls" draggable="true" title="Select" data-type="select">
-              <h3><label>Select</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Select</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Select Multiple" data-type="select multiple">
-              <h3><label>Select Multiple</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Select Multiple</label><span class="requiredDisplay"></h3></span>
           </div>
     
           <div class="controls" draggable="true" title="Text" data-type="text">
-              <h3><label>Text</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Text</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Text Area" data-type="textarea">
-              <h3><label>Text Area</label><span class="requiredDisplay"></h3></span><br>
+              <h3 id="options-h3"-><label>Text Area</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Date" data-type="date">
-              <h3><label>Date</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Date</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Time" data-type="time">
-              <h3><label>Time</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Time</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Number" data-type="number">
-              <h3><label>Number</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"-><label>Number</label><span class="requiredDisplay"></h3></span>
           </div>
 
           <div class="controls" draggable="true" title="Email" data-type="email">
-              <h3><label>Email</label><span class="requiredDisplay"></h3></span>
+              <h3 id="options-h3"><label>Email</label><span class="requiredDisplay"></h3></span>
           </div>
 
       </div>
