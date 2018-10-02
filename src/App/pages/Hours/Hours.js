@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { userMinutesWorkedSum } from '../../../helpers/hours';
 import HoursNameSearch from '../../components/HoursNameSearch';
-import TemporaryDrawer from '../Drawer';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker} from 'react-dates';
@@ -11,6 +10,7 @@ import JobsStyles from '../Jobs/JobsStyes.css'
 import HoursStyles from './HoursStyles.css'
 import { orange300 } from 'material-ui/styles/colors';
 import Footer from '../Footer/Footer'
+import Header from '../Header/Header';
 
 
 import {
@@ -30,8 +30,6 @@ class Hours extends Component {
       error: null,
       isLoading: false,
       currentFilterHours: null,
-      // startDate: null,
-      // endDate: null,
       currentQuery: false,
     }
   }
@@ -130,8 +128,9 @@ class Hours extends Component {
   render() {
       return (
         <div>
-          <TemporaryDrawer />
-          <Typography variant="display4" gutterBottom align="center">
+          <Header />
+          <br/>
+          <Typography variant="display3" gutterBottom align="center">
             Hours
           </Typography>
           <div className={JobsStyles.searchBox}  style={{height: "100vh"}}>

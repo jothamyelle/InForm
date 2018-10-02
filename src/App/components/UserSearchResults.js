@@ -15,7 +15,7 @@ class UserSearchResults extends Component {
     })
 
     return (
-      <div>
+      <div style={{height: "100vh"}}>
         {this.props.users.length > 0 ?  (
         <div>
           <Typography variant="display2" gutterBottom align="center">

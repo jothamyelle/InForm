@@ -6,6 +6,7 @@ import TemporaryDrawer from './Drawer';
 import { orange300 } from 'material-ui/styles/colors';
 import LoadingProgress from '../components/Progress';
 import Footer from './Footer/Footer'
+import Header from './Header/Header'
 
 
 import {
@@ -89,9 +90,10 @@ class Jobs extends Component {
     } else {
       return (
         <div>
-          <TemporaryDrawer />
+          <Header />
+          <br/>
           {/* <h1>Jobs</h1> */}
-          <Typography variant="display2" gutterBottom align="center">
+          <Typography variant="display3" gutterBottom align="center">
             Jobs
           </Typography>
           <div className={JobsStyles.searchBox}>
@@ -113,7 +115,6 @@ class Jobs extends Component {
                       <TableHeaderColumn>Name</TableHeaderColumn>
                       <TableHeaderColumn>Address</TableHeaderColumn>
                       <TableHeaderColumn>Job Number</TableHeaderColumn>
-                      <TableHeaderColumn>More Information</TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
                   <TableBody displayRowCheckbox={false}>
@@ -123,7 +124,6 @@ class Jobs extends Component {
                           <TableRowColumn>{item.name}</TableRowColumn>
                           <TableRowColumn>{item.address}</TableRowColumn>
                           <TableRowColumn>{item.job_number}</TableRowColumn>
-                          <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
                         </TableRow>
                       ))
                       })}
@@ -142,7 +142,6 @@ class Jobs extends Component {
                         <TableHeaderColumn>Name</TableHeaderColumn>
                         <TableHeaderColumn>Address</TableHeaderColumn>
                         <TableHeaderColumn>Job Number</TableHeaderColumn>
-                        <TableHeaderColumn>More Information</TableHeaderColumn>
                       </TableRow>
                     </TableHeader>
                       <TableBody displayRowCheckbox={false}>
@@ -152,7 +151,6 @@ class Jobs extends Component {
                               <TableRowColumn>{item.name}</TableRowColumn>
                               <TableRowColumn>{item.address}</TableRowColumn>
                               <TableRowColumn>{item.job_number}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
                             </TableRow>
                           ))
                         })}

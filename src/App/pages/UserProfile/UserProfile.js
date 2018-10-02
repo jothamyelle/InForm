@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TemporaryDrawer from '../Drawer';
+import Header from '../Header/Header';
 import LoadingProgress from '../../components/Progress'
 import Footer from '../Footer/Footer'
 import Typography from '@material-ui/core/Typography';
@@ -56,7 +56,8 @@ class UserProfile extends Component {
 
       return (
         <div>
-          <TemporaryDrawer />
+          <Header />
+          <br/>
           <div className="employeeContainer">
           <Typography style={{color:"orange"}} variant="display3" gutterBottom align="center">
             {first_name} {last_name}

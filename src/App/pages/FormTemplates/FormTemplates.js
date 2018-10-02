@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TemporaryDrawer from '../Drawer';
+import Header from '../Header/Header';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
@@ -104,8 +104,9 @@ class FormTemplate extends Component {
     }
       return(
         <div>
-          <TemporaryDrawer />  
-          <Typography variant="display4" gutterBottom align="center">
+          <Header />
+          <br/>
+          <Typography variant="display3" gutterBottom align="center">
             Form Templates
           </Typography>
           <div className={JobsStyles.searchBox}>
