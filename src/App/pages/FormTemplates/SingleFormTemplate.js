@@ -9,8 +9,10 @@ class SingleFormTemplate extends Component {
   constructor(props){
     super(props);
     this.state = {
-      formName: ""
+      formName: "",
+      submitted: false
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -28,13 +30,13 @@ class SingleFormTemplate extends Component {
         case 'header':
         return(
           <div>
-            <h2>{control.label}</h2>
+            <h2>{control.value}</h2>
           </div>
         );
         case 'paragraph':
         return(
           <div>
-            <p>{control.label}</p>
+            <p>{control.value}</p>
           </div>
           );
         case 'checkbox':
@@ -45,7 +47,7 @@ class SingleFormTemplate extends Component {
               return(
               <p>
                 <input type="checkbox" name={control.label + control.id}
-                  required={control.required}/>
+                  required={control.required} value={option}/>
                 <label>{option}</label>
               </p>
               )
@@ -60,7 +62,7 @@ class SingleFormTemplate extends Component {
               return(
               <p>
                 <input type="radio" name={control.label + control.id}
-                  required={control.required}/>
+                  required={control.required} value={option}/>
                 <label>{option}</label>
               </p>
               )
@@ -155,14 +157,50 @@ class SingleFormTemplate extends Component {
     return controls;
   }
 
+  handleSubmit = (event) => {
+    event.persist();
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = {};
+    for (let [key, val] of formData.entries()) {
+      if(data[key]) {
+        if(!Array.isArray(data[key])){
+          data[key]=[data[key]]
+        }
+        data[key].push(val);
+      } else {
+        Object.assign(data, { [key]: val })
+      }
+    }
+
+    axios.post(`/api/submitForm`, {
+      formValues: data,
+      templateId: this.props.formId,
+      userId: 1,
+      jobId: 1
+    })
+    .then(() => {
+      alert("Form successfully submitted!");
+      this.setState({
+        submitted: true
+      });
+    });
+  }
+
 
   render() {  
+    if(this.state.submitted) {
+      return <Redirect to={`/form_templates`}/>
+    }
     return(
       <div>
         <TemporaryDrawer />
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <h1>{this.state.formName}</h1>
           {this.renderFormHTML()}
+          <input type="submit"/>
         </form>
       </div>
     )

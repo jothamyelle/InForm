@@ -5,6 +5,7 @@ import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
 import Typography from '@material-ui/core/Typography';
+import Footer from '../pages/Footer/Footer';
 
 const styles = theme => ({
   root: {
@@ -79,7 +80,9 @@ class SimpleGrow extends React.Component {
           <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 3000 } : {})} >
             {this.props.todaysJobs}
           </Grow>
-
+          <br/>
+          <br/>
+          <Footer/>
       </div>
     );
   }

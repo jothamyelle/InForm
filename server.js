@@ -143,9 +143,15 @@ app.post('/api/deleteFormTemplate', (req, res) => {
   dbHelpers.deleteFormTemplate(req.body.id)
   .then(function() {
     res.json('');
-  })
+  });
+});
 
-})
+app.post('/api/submitForm', (req, res) => {
+  dbHelpers.submitForm(req)
+  .then(function() {
+    res.json('');
+  });
+});
 
 const port = process.env.PORT || 3005;
 app.listen(port);

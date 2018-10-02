@@ -5,11 +5,13 @@ import HoursNameSearch from '../../components/HoursNameSearch';
 import TemporaryDrawer from '../Drawer';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-//import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker} from 'react-dates';
 import Typography from '@material-ui/core/Typography';
 import JobsStyles from '../Jobs/JobsStyes.css'
-//import HoursStyles from './HoursStyles.css'
+import HoursStyles from './HoursStyles.css'
 import { orange300 } from 'material-ui/styles/colors';
+import Footer from '../Footer/Footer'
+
 
 import {
   Table,
@@ -28,9 +30,9 @@ class Hours extends Component {
       error: null,
       isLoading: false,
       currentFilterHours: null,
-      startDate: null,
-      endDate: null,
-      currentQuery: false
+      // startDate: null,
+      // endDate: null,
+      currentQuery: false,
     }
   }
 
@@ -48,7 +50,11 @@ class Hours extends Component {
   
   handleSubmit = (event) => {
     event.preventDefault();
-    this.getHoursFromDateFilters(this.state.startDate, this.state.endDate);
+    let sDate =  this.state.startDate._d.toISOString()
+    let eDate =  this.state.endDate._d.toISOString()
+    console.log('StartDate', sDate)
+    console.log('EndDate', eDate)
+    this.getHoursFromDateFilters(this.state.startDate._d.toISOString(), this.state.endDate._d.toISOString());
   }
 
   getHoursFromDateFilters = (date1, date2) => {
@@ -128,16 +134,19 @@ class Hours extends Component {
           <Typography variant="display4" gutterBottom align="center">
             Hours
           </Typography>
-          <div className={JobsStyles.searchBox}>
+          <div className={JobsStyles.searchBox}  style={{height: "100vh"}}>
             <form onSubmit={this.handleSubmit}>
-              <span>
-                Start Date
-                <input onChange={this.handleStartDate} id="startDate" className="searchDate" type="date"/>
-              </span>
-              <span>
-                End Date
-                <input onChange={this.handleEndDate} id="endDate" className="searchDate" type="date"/>
-              </span>
+              <DateRangePicker
+                className={HoursStyles.CalendarDay__selected}
+                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                isOutsideRange = {() => false}
+              />
               <br/>
               <br/>
               <FlatButton type="submit" backgroundColor={orange300}>Filter</FlatButton>
@@ -145,6 +154,9 @@ class Hours extends Component {
           </div>
           <br/>
           { this.renderRows() }
+          <br/>
+          <br/>
+          <Footer/>
         </div>
       )
     }
