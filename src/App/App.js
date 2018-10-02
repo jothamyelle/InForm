@@ -22,9 +22,13 @@ class App extends Component {
     this.state = {
       loggedIn: true,
       formData: [],
-      formId: null
+      formId: null,
+      formSubmitted: false,
     }
     this.getFormData = this.getFormData.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+    this.setFormSubmittedToFalse = this.setFormSubmittedToFalse.bind(this); 
+
   }
 
   getFormData = (formData, id) => {
@@ -46,6 +50,19 @@ class App extends Component {
     })
   }
 
+  formSubmit = () => {
+    this.setState({
+      formSubmitted: true
+    })
+  } 
+
+  setFormSubmittedToFalse = () => {
+    this.setState({
+      formSubmitted: false
+    })
+  }
+
+
   render() {
     const App = () => (
       <div>
@@ -57,8 +74,8 @@ class App extends Component {
           <Route path='/hours' render={ () => (this.state.loggedIn ? ( <Hours/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/forms' render={ () => (this.state.loggedIn ? ( <FormSubmissions getFormData={this.getFormData}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_submissions/:id' render={ (props) => ( <SingleFormSubmission {...props}/> )}/>
-          <Route path='/form_templates/:id' render={ () => (this.state.loggedIn ? ( <SingleFormTemplate formData={this.state.formData} formId={this.state.formId}/> ) : ( <Login login={this.login}/> )) }/>
-          <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate getFormData={this.getFormData}/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/form_templates/:id' render={ () => (this.state.loggedIn ? ( <SingleFormTemplate formData={this.state.formData} formId={this.state.formId} formSubmit={this.formSubmit}/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate getFormData={this.getFormData} formSubmitted={this.state.formSubmitted} setFormSubmittedToFalse={this.setFormSubmittedToFalse}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_builder' render={ () => (this.state.loggedIn ? ( <FormBuilder/> ) : ( <Login login={this.login}/> )) }/>
           <Route component={NoMatch}/>
         </Switch>

@@ -27,7 +27,6 @@ import PropTypes from 'prop-types';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-
 import JobsStyles from '../Jobs/JobsStyes.css'
 
 const theme = createMuiTheme({
@@ -38,6 +37,7 @@ const theme = createMuiTheme({
   }
 })
 
+
 class SingleFormTemplate extends Component {
   constructor(props){
     super(props);
@@ -46,7 +46,7 @@ class SingleFormTemplate extends Component {
       radioOptions: "",
       selectOptions: "",
       selectMultipleOptions: [],
-      submitted: false
+      submitted: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -281,7 +281,7 @@ class SingleFormTemplate extends Component {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-
+    
     const data = {};
     for (let [key, val] of formData.entries()) {
       if(data[key]) {
@@ -293,7 +293,7 @@ class SingleFormTemplate extends Component {
         Object.assign(data, { [key]: val })
       }
     }
-
+    
     axios.post(`/api/submitForm`, {
       formValues: data,
       templateId: this.props.formId,
@@ -301,16 +301,16 @@ class SingleFormTemplate extends Component {
       jobId: 1
     })
     .then(() => {
-      alert("Form successfully submitted!");
       this.setState({
         submitted: true
       });
     });
   }
-
-
+  
+  
   render() {  
     if(this.state.submitted) {
+      this.props.formSubmit();
       return <Redirect to={`/form_templates`}/>
     }
     return(
@@ -326,9 +326,13 @@ class SingleFormTemplate extends Component {
               <MuiThemeProvider theme={theme}>
                 {this.renderFormHTML()}
               </MuiThemeProvider>
+      
               <RaisedButton type="submit" backgroundColor={orange300} style={{margin: 20}}>Submit</RaisedButton>
             </Paper>
           </form>
+      
+
+        
       </div>
     )
   }
