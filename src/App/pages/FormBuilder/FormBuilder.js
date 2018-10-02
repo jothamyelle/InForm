@@ -12,6 +12,8 @@ import FormCategorySelect from '../../components/FormCategorySelect'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import FlatButton from 'material-ui/FlatButton';
+import { orange300 } from 'material-ui/styles/colors';
 
 
 class FormBuilder extends Component {
@@ -132,9 +134,6 @@ class FormBuilder extends Component {
     }
     
     render() {
-      const formOptions = this.state.categories.map(category => (
-        <MenuItem value={category}>{category}</MenuItem>
-      ))
 
     if (this.state.redirect) {
 
@@ -149,20 +148,27 @@ class FormBuilder extends Component {
             {this.state.newTemplateName}
           </Typography>
           <div ref={this.fbRef}/>
-          <Button onClick={this.saveForm} id="saveButton">Save</Button>
+          <Button 
+            style={{backgroundColor: '#ffb74d', color: 'black'}}
+            onClick={this.saveForm}
+          >
+            Save
+          </Button>
         </div>
         )
     } else {
       return (
         <div>
-          <Typography variant="display2" align="Center">
-            Build a Form:
+          <Typography style={{marginTop:'10px'}} variant="display2" align="Center">
+            Form Builder
           </Typography>
-          <form onSubmit={this.handleSubmit}>
-            <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
-            <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
-            <Button type="submit">Submit</Button>
-          </form>
+          <div>
+            <form style={{width:'50%', margin:'auto', textAlign:'center'}} onSubmit={this.handleSubmit}>
+              <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
+              <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
+              <FlatButton backgroundColor={orange300} style={{marginTop:'10px', paddingLeft:'5px', paddingRight:'5px'}} type="submit">GET STARTED</FlatButton>
+            </form>
+          </div>
         </div>
       )
     }
