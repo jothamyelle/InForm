@@ -46,7 +46,7 @@ class SingleFormTemplate extends Component {
   }
 
   radioChange = event => {
-    this.setState({ radioOtpions: event.target.value });
+    this.setState({ radioOptions: event.target.value });
   };
 
   renderFormHTML() {
@@ -70,7 +70,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             <FormControl component="fieldset" style={{width: 300, margin: 20 }}>
-              <FormLabel component="legend" color="primary">{control.label} </FormLabel>
+              <FormLabel component="legend" color={orange300}>{control.label} </FormLabel>
               <FormGroup>
                 
                 {control.options.map(option => {
@@ -95,10 +95,12 @@ class SingleFormTemplate extends Component {
               <RadioGroup
                 name={control.label + control.id}
                 required={control.required} 
+                value={this.state.radioOptions}
+                onChange={this.radioChange}
               >
                 {control.options.map(option => {
                   return(
-                    <FormControlLabel control={<Radio value={option} style={{color: "orange"}}/>} label={option} /> 
+                    <FormControlLabel value={option} control={<Radio  style={{color: "orange"}}/>} label={option} /> 
                   )
                 })}
               </RadioGroup>
