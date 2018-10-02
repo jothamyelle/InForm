@@ -53,7 +53,8 @@ class SimpleGrow extends React.Component {
 
           <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})} >
             <Typography variant="display3" gutterBottom align="center">
-              Currently {this.props.todaysFormsNumber} {(this.props.todaysFormsNumber === 1) ? "form" : "forms" } from {this.props.todaysJobsNumber} active jobs
+              {/* These ternaries don't make sense. This is what works...not what is logical */}
+              Currently {this.props.todaysFormsNumber} {((this.props.todaysFormsNumber===1) ? "form": "forms")} from {this.props.todaysJobsNumber} active {((this.props.todaysJobsNumber===1) ? "jobs": "job")}
             </Typography>
           </Grow>
           <br/>
