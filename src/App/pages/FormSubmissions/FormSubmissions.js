@@ -5,6 +5,7 @@ import FormSubmissionsTable from '../../components/FormSubmissionsTable'
 import Typography from '@material-ui/core/Typography';
 import LoadingProgress from '../../components/Progress';
 import FormSubmissionsStyles from './FormSubmissionsStyles.css'
+import Footer from '../Footer/Footer'
 
 
 class FormSubmissions extends Component {
@@ -76,7 +77,7 @@ class FormSubmissions extends Component {
         <TemporaryDrawer />
 
         <Typography variant="display4" gutterBottom align="center">
-            Form Submissions 
+            Submitted Forms 
         </Typography>
         <div className={FormSubmissionsStyles.searchBox}>
           <Search handleSearchQuery={this.handleSearchQuery} data={this.state.list}/>
@@ -93,6 +94,7 @@ class FormSubmissions extends Component {
           )}
           </div>
         )}
+        <Footer />
       </div>
     )
   }

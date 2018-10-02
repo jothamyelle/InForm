@@ -54,7 +54,7 @@ class TemporaryDrawer extends React.Component {
         onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'} style={{ textDecoration: 'none' }} to={`/form_templates`}><ListItem>Form Templates</ListItem></Link>
         <Divider />
         <Link onMouseEnter={(e) => e.target.style.backgroundColor = orange300}
-        onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'} style={{ textDecoration: 'none' }} to={`/forms`}><ListItem>Forms</ListItem></Link>
+        onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'} style={{ textDecoration: 'none' }} to={`/forms`}><ListItem>Submitted Forms</ListItem></Link>
         <Divider />
         <Link onMouseEnter={(e) => e.target.style.backgroundColor = orange300}
         onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'} style={{ textDecoration: 'none' }} to={`/jobs`}><ListItem>Jobs</ListItem></Link>

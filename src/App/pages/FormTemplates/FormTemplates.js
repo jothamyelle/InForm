@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import { orange300 } from 'material-ui/styles/colors';
 import JobsStyles from '../Jobs/JobsStyes.css'
+import Footer from '../Footer/Footer'
 
 import LoadingProgress from '../../components/Progress'
 import Dialog from '@material-ui/core/Dialog';
@@ -149,6 +150,9 @@ class FormTemplate extends Component {
                 </div>
               )
             })}
+            <br/>
+            <br/>
+            <Footer />
           </div>
           )}
 
