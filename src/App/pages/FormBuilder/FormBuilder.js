@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import formBuilderObject from '../../CreateFormBuilder.js'
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -85,7 +87,12 @@ class FormBuilder extends Component {
     } else if(this.state.newTemplateName) {
       return (
         <div>
-          <h2>{this.state.newTemplateName}</h2>
+          <Typography variant="display3" gutterBottom align="Center">
+            Form Builder
+          </Typography>
+          <Typography variant="display2" gutterBottom align="Left">
+            {this.state.newTemplateName}
+          </Typography>
           <div ref={this.fbRef}/>
           <button onClick={this.saveForm} id="saveButton">Save</button>
         </div>

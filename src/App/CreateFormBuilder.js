@@ -28,6 +28,11 @@ export default formBuilderObject = {
       font-size: 18px;
     }
 
+    #mui-input-style {
+      width: 30%;
+      margin:auto;
+    }
+
   body {
     width: 95%;
     margin: 0 auto;
@@ -84,10 +89,10 @@ export default formBuilderObject = {
     height: auto;
     padding: 5px;
     margin-bottom: 20px;
+    margin-top: 10px;
     border-radius: 0;
     background-color: #FFF;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
-   
     cursor: move;
     text-align: center;
     cursor: move;
@@ -124,20 +129,19 @@ export default formBuilderObject = {
   }
 
   #controls {
-    border-left:solid black 1px;
     padding: 10px;
     flex:1;
+    margin-left:5px;
   }
 
   .controls {
     padding: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 0;
     background-color: #FFF;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
     width:100%;
-   
     cursor: move;
   }
 
@@ -146,11 +150,12 @@ export default formBuilderObject = {
     padding:5px;
     margin:10px;
     margin-right:5px;
-    border-left:solid black 1px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
   }
 
   #options li {
     list-style: none;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25), 5px 5px 20px rgba(0,0,0,0.22);
   }
   #controls li {
     border:solid black 1px;
@@ -281,17 +286,21 @@ export default formBuilderObject = {
     switch (inputType) {
       case 'textarea':
         input = document.createElement('textarea');
+        input.setAttribute('id', 'mui-input-style')
         break;
       case 'select':
         input = document.createElement('select');
+        input.setAttribute('id', 'mui-input-style')
         break;
       case 'select multiple':
         input = document.createElement('select multiple');
+        input.setAttribute('id', 'mui-input-style')
         input.setAttribute('multiple', '');
         break;
       default:
         input = document.createElement('input');
         input.setAttribute('type', inputType);
+        input.setAttribute('id', 'mui-input-style')
     }
     return input; 
   }
@@ -334,6 +343,7 @@ export default formBuilderObject = {
     let newStagedElement = dragSrcEl.cloneNode(true);
     newStagedElement.classList.remove('controls');
     newStagedElement.classList.add('staged');
+    newStagedElement.classList.add('mui-textfield');
     newStagedElement.setAttribute('id', idCounter++);
     newStagedElement.style.opacity = '1';
     turnToFormControl(newStagedElement);
@@ -533,7 +543,7 @@ export default formBuilderObject = {
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption" data-classtype="radioOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="radioOption">+ Add Option</button>
         <br/>
         <p><label>Required<label></p>
         <input type="checkbox" class="radioRequired"${elementObject.required ? 'checked' : ''}/>
@@ -556,7 +566,7 @@ export default formBuilderObject = {
       }
       htmlToDisplay += `
       <br/>
-      <button class="addControlOption" data-classtype="selectOption">+ Add Option</button>
+      <button class="addControlOption mui-btn" data-classtype="selectOption">+ Add Option</button>
       <br/>
       <p><label>Required<label></p>
       <input type="checkbox" class="selectRequired" ${elementObject.required ? 'checked' : ''}/>
@@ -579,7 +589,7 @@ export default formBuilderObject = {
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption" data-classtype="selectMultipleOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="selectMultipleOption">+ Add Option</button>
         <br/>
         <p><label>Required<label></p>
         <input type="checkbox" class="selectMultipleMultipleRequired" ${elementObject.required ? 'checked' : ''}/>
