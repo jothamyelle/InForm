@@ -48,7 +48,14 @@ class HoursNameSearchResults extends Component {
               </TableBody>
             </Table>
           </div>
-          ) : (<h2>No Results</h2>)}          
+          ) : (
+            <div>
+              <br/>
+              <br/>
+              <Typography variant="display2" gutterBottom align="center">
+                No Results
+              </Typography>
+            </div>)}          
       </div>
     ) 
     }
