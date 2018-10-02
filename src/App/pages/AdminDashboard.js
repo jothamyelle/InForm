@@ -16,6 +16,7 @@ import { orange300 } from 'material-ui/styles/colors';
 import SimpleSlide from '../components/AdminDashboardSlide'
 import SimpleGrow from '../components/AdminDashboardGrow'
 import Header from './Header/Header';
+import { Link } from 'react-router-dom';
 
 import Grow from '@material-ui/core/Grow';
 
@@ -94,7 +95,7 @@ class AdminDashboard extends Component {
                 return(
                   <TableRow key={form.formId}>
                     <TableRowColumn>{form.type}</TableRowColumn>
-                    <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+                    <TableRowColumn><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.formId}`}><FlatButton backgroundColor="orange">View</FlatButton></Link></TableRowColumn>
                   </TableRow>
                 )})
                 }
@@ -128,20 +129,7 @@ class AdminDashboard extends Component {
         <div>
           <Header />
           <br/>
-
-          <SimpleGrow todaysForms={todaysForms} todaysJobs={todaysJobs} todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
-          {/* <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/> */}
-          {/* <Typography variant="display3" gutterBottom align="center">
-            Good Morning Ben. <br/>Currently {todaysFormsNumber} forms from {todaysJobsNumber} active jobs
-          </Typography> */}
-
-          {/* <Typography variant="display2" gutterBottom align="center">
-            Today's Forms
-          </Typography> */}
-
-          {/* <Typography variant="display2" gutterBottom align="center">
-            Today's Active Jobs
-          </Typography> */}   
+          <SimpleGrow todaysForms={todaysForms} todaysJobs={todaysJobs} todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>   
         </div>
       )
     }
