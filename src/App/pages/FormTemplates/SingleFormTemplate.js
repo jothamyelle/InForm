@@ -6,12 +6,13 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 
 import Typography from '@material-ui/core/Typography';
+import orange from '@material-ui/core/colors/orange';
+
 import { orange300 } from 'material-ui/styles/colors';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -21,10 +22,66 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import Input from '@material-ui/core/Input'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 import JobsStyles from '../Jobs/JobsStyes.css'
 // import LoadingProgress from '../components/Progress'
 
+const styles = theme => ({
+  container: {
+    display: 'block',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  cssLabel: {
+    '&$cssFocused': {
+      color: orange[500],
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: orange[500],
+    },
+  },
+  bootstrapRoot: {
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  bootstrapInput: {
+    borderRadius: 4,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  bootstrapFormLabel: {
+    fontSize: 18,
+  },
+});
 
 
 class SingleFormTemplate extends Component {
@@ -52,6 +109,7 @@ class SingleFormTemplate extends Component {
   };
 
   renderFormHTML() {
+    const { classes } = this.props;
     
     let controls = this.props.formData.map(control => {
       switch(control.type) {
@@ -142,13 +200,18 @@ class SingleFormTemplate extends Component {
                 name={control.label} 
                 required={control.required}
                 value={control.options}
+                classes={{
+                  underline: classes.cssUnderline,
+                }}   
               >
               
               {control.options.map((option) => {
               return ( 
                   <MenuItem
                     key={option}
-                    
+                    classes={{
+                      underline: classes.cssUnderline,
+                    }}
                   >
                     {option}
                   </MenuItem>
@@ -161,21 +224,27 @@ class SingleFormTemplate extends Component {
         );
         case 'text':
         return(
-          <div>
-            <TextField style={{width: 300, margin: 20 }}
-              label={control.label}
+          <div className={classes.container}>
+          <InputLabel>{control.label}</InputLabel>
+            <Input style={{width: 300, margin: 20 }}
+              type="text"
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required}
               margin="normal"
+              classes={{
+                underline: classes.cssUnderline,
+              }}   
             />
           </div>
         );
         case 'textarea':
         return(
           <div>
-            <TextField style={{width: 300, margin: 20 }}
+            <InputLabel>{control.label}</InputLabel>
+            <Input style={{width: 300, margin: 20 }}
               label={control.label}
+              type="text"
               multiline
               rowsMax="4"
               margin="normal"
@@ -183,20 +252,26 @@ class SingleFormTemplate extends Component {
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required}
+              classes={{
+                underline: classes.cssUnderline,
+              }}
             />
           </div>
         );
         case 'date':
         return(          
           <div>
-            <TextField style={{ width: 300, margin: 20 }}
+            <InputLabel>{control.label}</InputLabel>
+            <Input style={{ width: 300, margin: 20 }}
               label={control.label}
               type="date"
-              // defaultValue= "2017-05-24"
               name={control.label}
               required={control.required}
               InputLabelProps={{
                 shrink: true
+              }}
+              classes={{
+                underline: classes.cssUnderline,
               }}
             />
           </div>
@@ -204,8 +279,8 @@ class SingleFormTemplate extends Component {
         case 'time':
         return(
           <div>
-
-            <TextField style={{ width: 300, margin: 20 }}
+            <InputLabel>{control.label}</InputLabel>
+            <Input style={{ width: 300, margin: 20 }}
               label={control.label}
               type="time"
               InputLabelProps={{
@@ -216,26 +291,34 @@ class SingleFormTemplate extends Component {
               }}
               name={control.label}
               required={control.required}
+              classes={{
+                underline: classes.cssUnderline,
+              }}
             />
           </div>
         );
         case 'number':
         return(
           <div>
-            <TextField style={{width: 300, margin: 20 }}
+            <InputLabel>{control.label}</InputLabel>
+            <Input style={{width: 300, margin: 20 }}
               label={control.label}
               type="number"
               name={control.label}
               required={control.required}
               placeholder={control.placeholder} 
               margin="normal"
+              classes={{
+                underline: classes.cssUnderline,
+              }}
             />
           </div>
         );
         case 'email':
         return(
           <div>
-            <TextField style={{width: 300, margin: 20 }}
+            <InputLabel>{control.label}</InputLabel>
+            <Input style={{width: 300, margin: 20 }}
               label={control.label}
               type="email"
               name={control.label}
@@ -243,6 +326,9 @@ class SingleFormTemplate extends Component {
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               margin="normal"
+              classes={{
+                underline: classes.cssUnderline,
+              }}
             />
           </div>
        );
@@ -305,4 +391,8 @@ class SingleFormTemplate extends Component {
   }
 }
 
-export default SingleFormTemplate;
+SingleFormTemplate.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SingleFormTemplate);
