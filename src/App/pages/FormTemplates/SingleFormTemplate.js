@@ -43,6 +43,8 @@ class SingleFormTemplate extends Component {
     this.state = {
       formName: "",
       radioOptions: "",
+      selectOptions: "",
+      selectMultipleOptions: [],
       submitted: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,6 +61,14 @@ class SingleFormTemplate extends Component {
 
   radioChange = event => {
     this.setState({ radioOptions: event.target.value });
+  };
+
+  selectChange = event => {
+    this.setState({ selectOptions: event.target.value });
+  };
+
+  selectMultipleChange = event => {
+    this.setState({ selectMultipleOptions: event.target.value });
   };
 
   renderFormHTML() {
@@ -130,7 +140,10 @@ class SingleFormTemplate extends Component {
                   inputProps={{
                     name: control.label,
                     required: control.required
+                    
                   }}
+                  value={this.state.selectOptions}
+                  onChange={this.selectChange}
                 >
                   {control.options.map(option => {
                     return(
@@ -154,13 +167,15 @@ class SingleFormTemplate extends Component {
                 multiple
                 name={control.label} 
                 required={control.required}
-                value={control.options}
+                value={this.state.selectMultipleOptions}
+                onChange={this.selectMultipleChange}
               >
               
               {control.options.map((option) => {
               return ( 
                   <MenuItem color="primary"
                     key={option}
+                    value={option}
                   >
                     {option}
                   </MenuItem>
