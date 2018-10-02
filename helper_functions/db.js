@@ -176,7 +176,7 @@ function postFormTemplate(formBuilderContent, name, category ) {
           for (field in formBuilderContent) {
           knex('template_fields')
           .insert({
-            label: formBuilderContent[field].label, 
+            label: formBuilderContent[field].label || formBuilderContent[field].value, 
             type: formBuilderContent[field].type,
             options: JSON.stringify(formBuilderContent[field].controlOptions),
             maxlength: formBuilderContent[field].maxlength,
