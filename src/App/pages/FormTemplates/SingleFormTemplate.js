@@ -22,67 +22,20 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import Input from '@material-ui/core/Input'
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 
 import JobsStyles from '../Jobs/JobsStyes.css'
-// import LoadingProgress from '../components/Progress'
 
-const styles = theme => ({
-  container: {
-    display: 'block',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing.unit,
-  },
-  cssLabel: {
-    '&$cssFocused': {
-      color: orange[500],
-    },
-  },
-  cssFocused: {},
-  cssUnderline: {
-    '&:after': {
-      borderBottomColor: orange[500],
-    },
-  },
-  bootstrapRoot: {
-    'label + &': {
-      marginTop: theme.spacing.unit * 3,
-    },
-  },
-  bootstrapInput: {
-    borderRadius: 4,
-    backgroundColor: theme.palette.common.white,
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    padding: '10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
-  bootstrapFormLabel: {
-    fontSize: 18,
-  },
-});
-
+const theme = createMuiTheme({
+  palette: {
+    primary: orange,
+    secondary: orange,
+    tertiary: orange,
+  }
+})
 
 class SingleFormTemplate extends Component {
   constructor(props){
@@ -109,7 +62,6 @@ class SingleFormTemplate extends Component {
   };
 
   renderFormHTML() {
-    const { classes } = this.props;
     
     let controls = this.props.formData.map(control => {
       switch(control.type) {
@@ -130,7 +82,7 @@ class SingleFormTemplate extends Component {
         case 'checkbox':
         return(
           <div>
-            <FormControl component="fieldset" style={{width: 300, margin: 20 }}>
+            <FormControl component="fieldset" style={{width: 400, margin: 20 }}>
               <FormLabel component="legend" color={orange300}>{control.label} </FormLabel>
               <FormGroup>
                 
@@ -151,7 +103,7 @@ class SingleFormTemplate extends Component {
         case 'radio':
         return(
           <div>
-            <FormControl component="fieldset" style={{width: 300, margin: 20 }}>
+            <FormControl component="fieldset" style={{width: 400, margin: 20 }}>
               <FormLabel component="legend">{control.label}</FormLabel>
               <RadioGroup
                 name={control.label}
@@ -171,47 +123,44 @@ class SingleFormTemplate extends Component {
         case 'select':
         return(
           <div>
-            <FormControl style={{width: 300, margin: 20 }}>
-              <InputLabel>{control.label}</InputLabel>
-              <Select
-                inputProps={{
-                  name: control.label,
-                  required: control.required
-                }}
-              >
-                {control.options.map(option => {
-                  return(
-                  <MenuItem value={option}>{option}</MenuItem>
-                  )
-                })}
-              
-              </Select>
-            </FormControl>
+            
+              <FormControl style={{width: 400, margin: 20 }}>
+                <InputLabel>{control.label}</InputLabel>
+                <Select color="primary"
+                  inputProps={{
+                    name: control.label,
+                    required: control.required
+                  }}
+                >
+                  {control.options.map(option => {
+                    return(
+                    <MenuItem color="primary" value={option}>{option} </MenuItem>
+                    )
+                  })}
+                
+                </Select>
+              </FormControl>
           </div>
         );
         case 'selectMultiple':
         console.log(control.options)
         return(
           <div>
-            <FormControl style={{width: 300, margin: 20 }}>
+            
+            <FormControl color="primary" style={{width: 400, margin: 20 }}>
               <InputLabel>{control.label}</InputLabel>
               <Select
+                color="primary"
                 multiple
                 name={control.label} 
                 required={control.required}
                 value={control.options}
-                classes={{
-                  underline: classes.cssUnderline,
-                }}   
               >
               
               {control.options.map((option) => {
               return ( 
-                  <MenuItem
+                  <MenuItem color="primary"
                     key={option}
-                    classes={{
-                      underline: classes.cssUnderline,
-                    }}
                   >
                     {option}
                   </MenuItem>
@@ -224,25 +173,21 @@ class SingleFormTemplate extends Component {
         );
         case 'text':
         return(
-          <div className={classes.container}>
-          <InputLabel>{control.label}</InputLabel>
-            <Input style={{width: 300, margin: 20 }}
+          <div>
+            <TextField style={{width: 400, margin: 20 }}
+              label={control.label}
               type="text"
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required}
               margin="normal"
-              classes={{
-                underline: classes.cssUnderline,
-              }}   
             />
           </div>
         );
         case 'textarea':
         return(
           <div>
-            <InputLabel>{control.label}</InputLabel>
-            <Input style={{width: 300, margin: 20 }}
+            <TextField style={{width: 400, margin: 20 }}
               label={control.label}
               type="text"
               multiline
@@ -252,17 +197,13 @@ class SingleFormTemplate extends Component {
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required}
-              classes={{
-                underline: classes.cssUnderline,
-              }}
             />
           </div>
         );
         case 'date':
         return(          
           <div>
-            <InputLabel>{control.label}</InputLabel>
-            <Input style={{ width: 300, margin: 20 }}
+            <TextField style={{ width: 400, margin: 20 }}
               label={control.label}
               type="date"
               name={control.label}
@@ -270,55 +211,40 @@ class SingleFormTemplate extends Component {
               InputLabelProps={{
                 shrink: true
               }}
-              classes={{
-                underline: classes.cssUnderline,
-              }}
             />
           </div>
         );
         case 'time':
         return(
           <div>
-            <InputLabel>{control.label}</InputLabel>
-            <Input style={{ width: 300, margin: 20 }}
+            <TextField style={{ width: 400, margin: 20 }}
               label={control.label}
               type="time"
               InputLabelProps={{
                 shrink: true,
               }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
               name={control.label}
               required={control.required}
-              classes={{
-                underline: classes.cssUnderline,
-              }}
             />
           </div>
         );
         case 'number':
         return(
           <div>
-            <InputLabel>{control.label}</InputLabel>
-            <Input style={{width: 300, margin: 20 }}
+            <TextField style={{width: 400, margin: 20 }}
               label={control.label}
               type="number"
               name={control.label}
               required={control.required}
               placeholder={control.placeholder} 
               margin="normal"
-              classes={{
-                underline: classes.cssUnderline,
-              }}
             />
           </div>
         );
         case 'email':
         return(
           <div>
-            <InputLabel>{control.label}</InputLabel>
-            <Input style={{width: 300, margin: 20 }}
+            <TextField style={{width: 400, margin: 20 }}
               label={control.label}
               type="email"
               name={control.label}
@@ -326,9 +252,6 @@ class SingleFormTemplate extends Component {
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               margin="normal"
-              classes={{
-                underline: classes.cssUnderline,
-              }}
             />
           </div>
        );
@@ -378,11 +301,13 @@ class SingleFormTemplate extends Component {
       <div>
         <TemporaryDrawer />
           <form onSubmit={(e) => this.handleSubmit(e)}>
-            <Paper elevation={3} style={{width: 500, padding: 25}} className={JobsStyles.searchBox}>
+            <Paper elevation={3} style={{width: 800, padding: 25}} className={JobsStyles.searchBox}>
               <Typography variant="display4" gutterBottom align="center">
                 {this.state.formName}
               </Typography>
-              {this.renderFormHTML()}
+              <MuiThemeProvider theme={theme}>
+                {this.renderFormHTML()}
+              </MuiThemeProvider>
               <RaisedButton type="submit" backgroundColor={orange300} style={{margin: 20}}>Submit</RaisedButton>
             </Paper>
           </form>
@@ -395,4 +320,5 @@ SingleFormTemplate.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SingleFormTemplate);
+
+export default SingleFormTemplate;
