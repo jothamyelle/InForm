@@ -3,7 +3,10 @@ import formBuilderObject from '../../CreateFormBuilder.js'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import orange from '@material-ui/core/colors/orange';
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -134,7 +137,9 @@ class FormBuilder extends Component {
     } else {
       return (
         <div>
-          <h2>Build a Form:</h2>
+          <Typography variant="display2" align="Center">
+            Build a Form:
+          </Typography>
           <form onSubmit={this.handleSubmit}>
             <label>Name</label>
             <input type="text" name="name" required/>
