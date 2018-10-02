@@ -89,8 +89,10 @@ export default formBuilderObject = {
   }
 
   .reset-btn {
-    background-color: #ffb74d;
+    background-color: lightgrey;
     color: black;
+    padding-left: 11px;
+    padding-right: 11px;
   }
 
   .staged {

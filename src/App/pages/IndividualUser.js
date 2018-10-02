@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import ImageAvatars from '../components/Avatar'
 import Typography from '@material-ui/core/Typography';
 import 'typeface-roboto'
-import Footer from './Footer/Footer'
 
 class IndividualUser extends Component {
 
