@@ -8,6 +8,9 @@ import ListItem from 'material-ui/List/ListItem';
 import { Link } from 'react-router-dom'
 import orange from '@material-ui/core/colors/orange';
 import { orange300 } from 'material-ui/styles/colors';
+import DrawerStyles from './DrawerStyles.css'
+import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
 
 
 const styles = theme => ({
@@ -69,7 +72,9 @@ class TemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button className={classes.button} onClick={this.toggleDrawer('left', true)}>Menu</Button>
+        <IconButton onClick={this.toggleDrawer('left', true)}>
+          <MenuIcon className={DrawerStyles.TemporaryDrawerbutton4} className={classes.button} >Menu</MenuIcon>
+        </IconButton>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}

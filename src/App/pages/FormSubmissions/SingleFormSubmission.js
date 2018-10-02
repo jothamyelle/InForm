@@ -4,6 +4,7 @@ import LoadingSpinner from '../../Spinner';
 import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import Header from '../Header/Header'
 
 class SingleFormSubmission extends Component {
   constructor(props){
@@ -65,7 +66,7 @@ class SingleFormSubmission extends Component {
   render() {  
     return(
       <div>
-        <TemporaryDrawer />
+        <Header />
           <div id="formSubmissionContent"></div>
       </div>
     )

@@ -15,6 +15,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { orange300 } from 'material-ui/styles/colors';
 import SimpleSlide from '../components/AdminDashboardSlide'
 import SimpleGrow from '../components/AdminDashboardGrow'
+import Header from './Header/Header';
 
 import Grow from '@material-ui/core/Grow';
 
@@ -125,7 +126,8 @@ class AdminDashboard extends Component {
 
       return (
         <div>
-          <TemporaryDrawer />
+          <Header />
+          <br/>
 
           <SimpleGrow todaysForms={todaysForms} todaysJobs={todaysJobs} todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/>
           {/* <SimpleSlide todaysFormsNumber={todaysFormsNumber} todaysJobsNumber={todaysJobsNumber}/> */}
