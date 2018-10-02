@@ -153,6 +153,13 @@ app.post('/api/submitForm', (req, res) => {
   });
 });
 
+app.get('/api/getFormSubmission/:id', (req,res) => {
+  dbHelpers.getFormSubmissionById(req.params.id)
+  .then(formData => {
+    res.json(formData);
+  });
+});
+
 const port = process.env.PORT || 3005;
 app.listen(port);
 

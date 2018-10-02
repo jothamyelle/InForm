@@ -151,10 +151,11 @@ class Hours extends Component {
               <br/>
               <FlatButton type="submit" backgroundColor={orange300}>Filter</FlatButton>
             </form>
-          </div>
-          <br/>
+            <br/>
+            <br/>
           { this.renderRows() }
-          <br/>
+          </div>
+
           <br/>
           <Footer/>
         </div>

@@ -37,9 +37,7 @@ const styles = theme => ({
   },
 });
 
-
 class FormSubmissionsTable extends Component {
-
   render() {
     const {  dateArray, thisWeeksForms } = this.props;
     const today = (
@@ -75,7 +73,7 @@ class FormSubmissionsTable extends Component {
                   <TableRowColumn>{form.type}</TableRowColumn>
                   <TableRowColumn>{form.job_name}</TableRowColumn>
                   <TableRowColumn><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></TableRowColumn>
-                  <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
+                  <TableRowColumn><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.submitted_forms_id}`}><FlatButton backgroundColor="orange">View</FlatButton></Link></TableRowColumn>
                   <TableRowColumn><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
                 </TableRow>
                 )

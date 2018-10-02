@@ -160,12 +160,13 @@ class Jobs extends Component {
                 </Table>
                   )}
                 </div>
-              )}
-            </div>
+                )}
+                <br/>
+                <br/>
+                {!isLoading ? (<Footer />):<p></p>}
+              </div>
           )}
-          <br/>
-          <br/>
-          <Footer/>
+       
         </div>
       )
     }
