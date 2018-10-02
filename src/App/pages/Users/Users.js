@@ -61,7 +61,7 @@ class User extends Component {
           <br/>
           <div className="App">
             {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
-            <Typography variant="display3" gutterBottom align="center">
+            <Typography variant="display3" gutterBottom align="center" >
               Staff
             </Typography>
             <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
@@ -70,18 +70,18 @@ class User extends Component {
               {userRolesList.map((role) =>  {
                 return (
                   <div key={role.id}>
-                  <Typography variant="display2" gutterBottom align="center">
-                    {role.role}
-                  </Typography>
-                  <div style={{alignItems:'center', justifyContent:'center'}} className={userStyles.employeeContainer}>
-                    {usersList.map((user) => {
-                      if (user.role_id === role.id) {
-                        return (
-                          <IndividualUser user={user} key={user.id}/>
-                        );
-                      }
-                    })}
-                  </div>
+                    <Typography variant="display2" gutterBottom align="center">
+                      {role.role}
+                    </Typography>
+                    <div style={{alignItems:'center', justifyContent:'center'}} className={userStyles.employeeContainer}>
+                      {usersList.map((user) => {
+                        if (user.role_id === role.id) {
+                          return (
+                            <IndividualUser user={user} key={user.id}/>
+                          );
+                        }
+                      })}
+                    </div>
                   </div>
                 )
               })

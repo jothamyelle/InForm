@@ -115,7 +115,6 @@ class Jobs extends Component {
                       <TableHeaderColumn>Name</TableHeaderColumn>
                       <TableHeaderColumn>Address</TableHeaderColumn>
                       <TableHeaderColumn>Job Number</TableHeaderColumn>
-                      <TableHeaderColumn>More Information</TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
                   <TableBody displayRowCheckbox={false}>
@@ -125,7 +124,6 @@ class Jobs extends Component {
                           <TableRowColumn>{item.name}</TableRowColumn>
                           <TableRowColumn>{item.address}</TableRowColumn>
                           <TableRowColumn>{item.job_number}</TableRowColumn>
-                          <TableRowColumn><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
                         </TableRow>
                       ))
                       })}
@@ -144,7 +142,6 @@ class Jobs extends Component {
                         <TableHeaderColumn>Name</TableHeaderColumn>
                         <TableHeaderColumn>Address</TableHeaderColumn>
                         <TableHeaderColumn>Job Number</TableHeaderColumn>
-                        <TableHeaderColumn>More Information</TableHeaderColumn>
                       </TableRow>
                     </TableHeader>
                       <TableBody displayRowCheckbox={false}>
@@ -154,7 +151,6 @@ class Jobs extends Component {
                               <TableRowColumn>{item.name}</TableRowColumn>
                               <TableRowColumn>{item.address}</TableRowColumn>
                               <TableRowColumn>{item.job_number}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
                             </TableRow>
                           ))
                         })}
