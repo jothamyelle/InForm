@@ -1,0 +1,21 @@
+// import MUI colors
+@import "../bower_components/mui/src/sass/mui/colors";
+
+// customize MUI variables
+$mui-primary-color:       mui-color('orange', '300');
+$mui-primary-color-dark:  mui-color('purple', '700');
+$mui-primary-color-light: mui-color('purple', '100');
+
+$mui-accent-color:        mui-color('green', 'A200');
+$mui-accent-color-dark:   mui-color('green', 'A100');
+$mui-accent-color-light:  mui-color('green', 'A400');
+
+
+// import MUI SASS
+@import "../bower_components/mui/src/sass/mui";
+
+$mui-input-placeholder-color: mui-color('orange', '300');
+$mui-input-border-color: mui-color('orange', '300');
+$mui-input-font-color: mui-color('orange', '300');
+$mui-input-border-color-focus: mui-color('orange', '300');
+$mui-base-font-size: 16px;
