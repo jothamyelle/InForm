@@ -56,7 +56,7 @@ class FormTemplate extends Component {
       this.setState({ snackOpen: true });
   };
 
-  handleClose = (event, reason) => {
+  handleSnackClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -225,7 +225,7 @@ class FormTemplate extends Component {
                   key="close"
                   aria-label="Close"
                   color="inherit"
-                  onClick={this.handleClose}
+                  onClick={this.handleSnackClose}
                 >
                   <CloseIcon style={{color: "orange"}} />
                 </IconButton>,

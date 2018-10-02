@@ -28,10 +28,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import JobsStyles from '../Jobs/JobsStyes.css'
 
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-
 const theme = createMuiTheme({
   palette: {
     primary: orange,
@@ -50,25 +46,10 @@ class SingleFormTemplate extends Component {
       selectOptions: "",
       selectMultipleOptions: [],
       submitted: false,
-      open: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  handleClick = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    this.setState({ open: false });
-  };
-
-
-
   componentWillMount() {
     axios.get(`/api/getFormtemplateName/${this.props.formId}`)
     .then(formName => {
@@ -294,15 +275,6 @@ class SingleFormTemplate extends Component {
     return controls;
   }
 
-  handleSubmitConfirmation = () => {
-    this.setState({ open: true });
-  };
-
-  closeSubmitConfirmation = () => {
-    this.setState({open: false});
-  }  
-
-
   handleSubmit = (event) => {
     event.persist();
     event.preventDefault();
@@ -328,9 +300,6 @@ class SingleFormTemplate extends Component {
       jobId: 1
     })
     .then(() => {
-      
-      this.handleClick();
-      // alert("Form successfully submitted!");
       this.setState({
         submitted: true
       });
