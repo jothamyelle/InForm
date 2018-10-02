@@ -239,7 +239,9 @@ function submitForm(formData) {
   // formData.body.templateId
   // formData.body.userId
   // formData.body.jobId
-  let keyValuePairs = formData.body.formValues;
+  let keyValues = formData.body.formValues;
+  let keys = Object.keys(keyValues);
+  let count = 0;
   knex('submitted_forms')
     .insert({
       form_template_id: formData.body.templateId, 
@@ -250,10 +252,12 @@ function submitForm(formData) {
     })
     .returning('*')
     .then((submittedForm) => {
-      for (keyValue in keyValuePairs) {
+      for (keyValue in keyValues) {
+        let keyValuePair = {};
+        keyValuePair[keys[count]] = keyValues[keyValue];
         knex('submitted_fields')
         .insert({
-          value: JSON.stringify(keyValuePairs[keyValue]),
+          value: JSON.stringify(keyValuePair),
           date_created: new Date().toISOString(), 
           date_updated: new Date().toISOString()
         })
@@ -271,9 +275,19 @@ function submitForm(formData) {
           console.log(res)
         })
       })
+      count++;
      }
   })
   return Promise.resolve();
+}
+
+function getFormSubmissionById(submissionId) {
+  return knex.select('*')
+  .from('submitted_forms')
+  .where('submitted_forms.id', submissionId)
+  .join('submitted_form_fields', {'submitted_forms.id': 'submitted_form_fields.submitted_form_id'})
+  .join('submitted_fields', {'submitted_form_fields.submitted_field_id': 'submitted_fields.id'})
+  .returning('*')
 }
 
 exports.getJobs = getJobs;
@@ -291,6 +305,7 @@ exports.getFormSubmissionsByDate = getFormSubmissionsByDate;
 exports.getFormSubmissionsFromLastWeek = getFormSubmissionsFromLastWeek;
 exports.postFormTemplate = postFormTemplate;
 exports.getFormTemplateById = getFormTemplateById;
+exports.getFormSubmissionById = getFormSubmissionById;
 exports.getFormTemplateName = getFormTemplateName;
 exports.deleteFormTemplate = deleteFormTemplate;
 exports.submitForm = submitForm;

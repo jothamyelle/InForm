@@ -46,7 +46,7 @@ class SingleFormTemplate extends Component {
             {control.options.map(option => {
               return(
               <p>
-                <input type="checkbox" name={control.label + control.id}
+                <input type="checkbox" name={control.label}
                   required={control.required} value={option}/>
                 <label>{option}</label>
               </p>
@@ -61,7 +61,7 @@ class SingleFormTemplate extends Component {
             {control.options.map(option => {
               return(
               <p>
-                <input type="radio" name={control.label + control.id}
+                <input type="radio" name={control.label}
                   required={control.required} value={option}/>
                 <label>{option}</label>
               </p>
@@ -73,7 +73,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
           <label>{control.label}</label>
-          <select name={control.label + control.id}
+          <select name={control.label}
             required={control.required}>
             {control.options.map(option => {
               return(
@@ -87,7 +87,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
           <label>{control.label}</label>
-          <select name={control.label + control.id} multiple
+          <select name={control.label} multiple
             required={control.required}>
             {control.options.map(option => {
               return(
@@ -101,7 +101,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
           <label>{control.label}</label>
-          <input type="text" name={control.label + control.id}
+          <input type="text" name={control.label}
             placeholder={control.placeholder} 
             maxlength={control.maxlength}
             required={control.required} />
@@ -111,7 +111,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             <label>{control.label}</label>
-            <textarea name={control.label + control.id}
+            <textarea name={control.label}
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required} />
@@ -121,7 +121,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             <label>{control.label}</label>
-            <input type="date" name={control.label + control.id}
+            <input type="date" name={control.label}
               required={control.required} />
           </div>
         );
@@ -129,7 +129,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             <label>{control.label}</label>
-            <input type="time" name={control.label + control.id}
+            <input type="time" name={control.label}
               required={control.required} />
           </div>
         );
@@ -137,7 +137,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             <label>{control.label}</label>
-            <input type="number" name={control.label + control.id}
+            <input type="number" name={control.label}
               placeholder={control.placeholder} 
               required={control.required} />
           </div>
@@ -146,7 +146,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             <label>{control.label}</label>
-            <input type="email" name={control.label + control.id}
+            <input type="email" name={control.label}
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
               required={control.required} />

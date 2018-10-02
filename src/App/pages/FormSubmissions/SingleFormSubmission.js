@@ -9,197 +9,64 @@ class SingleFormSubmission extends Component {
   constructor(props){
     super(props);
     this.state = {
-      
+      formData: null,
+      formName: null
     }
   }
 
-  componentWillMount() {
-    console.log("this.props.match.params.id:", this.props.match.params.id);
-    // axios.get(`/api/getFormSubmission/${this.props.formId}`)
-    // .then(formName => {
-    //   this.setState({
-    //     formName: formName.data[0].type
-    //   })
-    // })
+  componentDidMount() {
+    axios.get(`/api/getFormSubmission/${this.props.match.params.id}`)
+    .then(formData => {
+      this.setState({
+        formData: formData.data
+      }, () => {
+        let rootDiv = document.getElementById('formSubmissionContent');
+        axios.get(`/api/getFormTemplateName/${this.state.formData[0].form_template_id}`)
+        .then(formName => {
+          this.setState({
+            formName: formName.data[0].type
+          }, () => {
+            rootDiv.innerHTML = this.renderFormHTML();
+          })
+        })
+      })
+    })
   }
 
-  // renderFormHTML() {
-  //   let controls = this.props.formData.map(control => {
-  //     switch(control.type) {
-  //       case 'header':
-  //       return(
-  //         <div>
-  //           <h2>{control.value}</h2>
-  //         </div>
-  //       );
-  //       case 'paragraph':
-  //       return(
-  //         <div>
-  //           <p>{control.value}</p>
-  //         </div>
-  //         );
-  //       case 'checkbox':
-  //       return(
-  //         <div>
-  //         <label>{control.label}</label>
-  //           {control.options.map(option => {
-  //             return(
-  //             <p>
-  //               <input type="checkbox" name={control.label + control.id}
-  //                 required={control.required} value={option}/>
-  //               <label>{option}</label>
-  //             </p>
-  //             )
-  //           })}
-  //         </div>
-  //       );
-  //       case 'radio':
-  //       return(
-  //         <div>
-  //         <label>{control.label}</label>
-  //           {control.options.map(option => {
-  //             return(
-  //             <p>
-  //               <input type="radio" name={control.label + control.id}
-  //                 required={control.required} value={option}/>
-  //               <label>{option}</label>
-  //             </p>
-  //             )
-  //           })}
-  //         </div>
-  //       );
-  //       case 'select':
-  //       return(
-  //         <div>
-  //         <label>{control.label}</label>
-  //         <select name={control.label + control.id}
-  //           required={control.required}>
-  //           {control.options.map(option => {
-  //             return(
-  //             <option>{option}</option>
-  //             )
-  //           })}
-  //           </select>
-  //         </div>
-  //       );
-  //       case 'selectMultiple':
-  //       return(
-  //         <div>
-  //         <label>{control.label}</label>
-  //         <select name={control.label + control.id} multiple
-  //           required={control.required}>
-  //           {control.options.map(option => {
-  //             return(
-  //             <option>{option}</option>
-  //             )
-  //           })}
-  //           </select>
-  //         </div>
-  //       );
-  //       case 'text':
-  //       return(
-  //         <div>
-  //         <label>{control.label}</label>
-  //         <input type="text" name={control.label + control.id}
-  //           placeholder={control.placeholder} 
-  //           maxlength={control.maxlength}
-  //           required={control.required} />
-  //         </div>
-  //       );
-  //       case 'textarea':
-  //       return(
-  //         <div>
-  //           <label>{control.label}</label>
-  //           <textarea name={control.label + control.id}
-  //             placeholder={control.placeholder} 
-  //             maxlength={control.maxlength}
-  //             required={control.required} />
-  //         </div>
-  //       );
-  //       case 'date':
-  //       return(
-  //         <div>
-  //           <label>{control.label}</label>
-  //           <input type="date" name={control.label + control.id}
-  //             required={control.required} />
-  //         </div>
-  //       );
-  //       case 'time':
-  //       return(
-  //         <div>
-  //           <label>{control.label}</label>
-  //           <input type="time" name={control.label + control.id}
-  //             required={control.required} />
-  //         </div>
-  //       );
-  //       case 'number':
-  //       return(
-  //         <div>
-  //           <label>{control.label}</label>
-  //           <input type="number" name={control.label + control.id}
-  //             placeholder={control.placeholder} 
-  //             required={control.required} />
-  //         </div>
-  //       );
-  //       case 'email':
-  //       return(
-  //         <div>
-  //           <label>{control.label}</label>
-  //           <input type="email" name={control.label + control.id}
-  //             placeholder={control.placeholder} 
-  //             maxlength={control.maxlength}
-  //             required={control.required} />
-  //         </div>
-  //      );
-  //     }
-  //   })
-  //   return controls;
-  // }
-
-  // handleSubmit = (event) => {
-  //   event.persist();
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   const formData = new FormData(form);
-
-  //   const data = {};
-  //   for (let [key, val] of formData.entries()) {
-  //     if(data[key]) {
-  //       if(!Array.isArray(data[key])){
-  //         data[key]=[data[key]]
-  //       }
-  //       data[key].push(val);
-  //     } else {
-  //       Object.assign(data, { [key]: val })
-  //     }
-  //   }
-
-  //   axios.post(`/api/submitForm`, {
-  //     formValues: data,
-  //     templateId: this.props.formId,
-  //     userId: 1,
-  //     jobId: 1
-  //   })
-  //   .then(() => {
-  //     alert("Form successfully submitted!");
-  //     this.setState({
-  //       submitted: true
-  //     });
-  //   });
-  // }
-
+  renderFormHTML() {
+    let htmlToRender = `<h1>${this.state.formName}</h1>`;
+    this.state.formData.forEach(control => {
+      let controlKeys = Object.keys(control.value);
+      for (let key in control.value) {
+        if(Array.isArray(control.value[key])) {
+          htmlToRender += `
+            <div>
+              <strong>${controlKeys[0]}:</strong>
+              <ul>`;
+              control.value[key].forEach(value => {
+                htmlToRender += `
+                <li>${value}</li>`;
+              })
+              htmlToRender += 
+              `</ul>
+            </div>`
+        } else {
+          htmlToRender += `
+            <div>
+              <p><strong>${controlKeys[0]}:</strong> ${control.value[key]}</p>
+            </div>
+          `
+        }
+      }
+    });
+    return htmlToRender;
+  }
 
   render() {  
-    // if(this.state.submitted) {
-    //   return <Redirect to={`/form_templates`}/>
-    // }
     return(
       <div>
         <TemporaryDrawer />
-          <h1>Yeee boiiii</h1>
-          {/* {this.renderFormHTML()} */}
-          {/* <input type="submit"/>
-        </form> */}
+          <div id="formSubmissionContent"></div>
       </div>
     )
   }
