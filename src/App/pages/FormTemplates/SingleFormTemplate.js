@@ -26,8 +26,11 @@ import PropTypes from 'prop-types';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-
 import JobsStyles from '../Jobs/JobsStyes.css'
+
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -37,6 +40,7 @@ const theme = createMuiTheme({
   }
 })
 
+
 class SingleFormTemplate extends Component {
   constructor(props){
     super(props);
@@ -45,11 +49,26 @@ class SingleFormTemplate extends Component {
       radioOptions: "",
       selectOptions: "",
       selectMultipleOptions: [],
-      submitted: false
+      submitted: false,
+      open: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
+  handleClick = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ open: false });
+  };
+
+
+
   componentWillMount() {
     axios.get(`/api/getFormtemplateName/${this.props.formId}`)
     .then(formName => {
@@ -275,12 +294,21 @@ class SingleFormTemplate extends Component {
     return controls;
   }
 
+  handleSubmitConfirmation = () => {
+    this.setState({ open: true });
+  };
+
+  closeSubmitConfirmation = () => {
+    this.setState({open: false});
+  }  
+
+
   handleSubmit = (event) => {
     event.persist();
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-
+    
     const data = {};
     for (let [key, val] of formData.entries()) {
       if(data[key]) {
@@ -292,7 +320,7 @@ class SingleFormTemplate extends Component {
         Object.assign(data, { [key]: val })
       }
     }
-
+    
     axios.post(`/api/submitForm`, {
       formValues: data,
       templateId: this.props.formId,
@@ -300,16 +328,19 @@ class SingleFormTemplate extends Component {
       jobId: 1
     })
     .then(() => {
-      alert("Form successfully submitted!");
+      
+      this.handleClick();
+      // alert("Form successfully submitted!");
       this.setState({
         submitted: true
       });
     });
   }
-
-
+  
+  
   render() {  
     if(this.state.submitted) {
+      this.props.formSubmit();
       return <Redirect to={`/form_templates`}/>
     }
     return(
@@ -323,9 +354,13 @@ class SingleFormTemplate extends Component {
               <MuiThemeProvider theme={theme}>
                 {this.renderFormHTML()}
               </MuiThemeProvider>
+      
               <RaisedButton type="submit" backgroundColor={orange300} style={{margin: 20}}>Submit</RaisedButton>
             </Paper>
           </form>
+      
+
+        
       </div>
     )
   }
