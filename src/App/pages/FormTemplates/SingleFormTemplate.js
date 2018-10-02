@@ -18,6 +18,9 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import JobsStyles from '../Jobs/JobsStyes.css'
 // import LoadingProgress from '../components/Progress'
@@ -51,21 +54,22 @@ class SingleFormTemplate extends Component {
       switch(control.type) {
         case 'header':
         return(
-          <Typography variant="display2" gutterBottom align="center">    
+          <Typography variant="display2" gutterBottom align="center" style={{margin: 20}}>    
             {control.label}
             <input type="hidden" name={control.type + control.id} value={control.label} />
           </Typography>
         );
         case 'paragraph':
         return(
-          <Typography component="p">
+          <Typography component="p" style={{margin: 20}}>
             {control.label}
             <input type="hidden" name={control.type + control.id} value={control.label} />
           </Typography>
           );
         case 'checkbox':
         return(
-            <FormControl component="fieldset">
+          <div>
+            <FormControl component="fieldset" style={{width: 300, margin: 20 }}>
               <FormLabel component="legend" color="primary">{control.label} </FormLabel>
               <FormGroup>
                 
@@ -81,11 +85,12 @@ class SingleFormTemplate extends Component {
                   })}
               </FormGroup>
             </FormControl>
+          </div>
         );
         case 'radio':
         return(
           <div>
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" style={{width: 300, margin: 20 }}>
               <FormLabel component="legend">{control.label}</FormLabel>
               <RadioGroup
                 name={control.label + control.id}
@@ -103,104 +108,137 @@ class SingleFormTemplate extends Component {
         case 'select':
         return(
           <div>
-          <FormControl style={{minWidth: 120}}>
-            <InputLabel>{control.label}</InputLabel>
-            <Select
-              inputProps={{
-                name: control.label + control.id,
-                required: control.required
-              }}
-            >
-              {control.options.map(option => {
-                return(
-                <MenuItem value={option}>{option}</MenuItem>
-                )
-              })}
-            
-            </Select>
-          </FormControl>
+            <FormControl style={{width: 300, margin: 20 }}>
+              <InputLabel>{control.label}</InputLabel>
+              <Select
+                inputProps={{
+                  name: control.label + control.id,
+                  required: control.required
+                }}
+              >
+                {control.options.map(option => {
+                  return(
+                  <MenuItem value={option}>{option}</MenuItem>
+                  )
+                })}
+              
+              </Select>
+            </FormControl>
           </div>
         );
         case 'selectMultiple':
         console.log(control.options)
         return(
-
-          <FormControl style={{minWidth: 120}}>
-            <InputLabel>{control.label}</InputLabel>
-            <Select
-              multiple
-              name={control.label + control.id} 
-              required={control.required}
-              value={control.options}
-            >
-            
-            {control.options.map((option) => {
-             return ( 
-                <MenuItem
-                  key={option}
-                  
-                >
-                  {option}
-                </MenuItem>
-             )
-            }
-            )}
-            </Select>
-          </FormControl>
+          <div>
+            <FormControl style={{width: 300, margin: 20 }}>
+              <InputLabel>{control.label}</InputLabel>
+              <Select
+                multiple
+                name={control.label + control.id} 
+                required={control.required}
+                value={control.options}
+              >
+              
+              {control.options.map((option) => {
+              return ( 
+                  <MenuItem
+                    key={option}
+                    
+                  >
+                    {option}
+                  </MenuItem>
+              )
+              }
+              )}
+              </Select>
+            </FormControl>
+          </div>  
         );
         case 'text':
         return(
           <div>
-          <label>{control.label}</label>
-          <input type="text" name={control.label + control.id}
-            placeholder={control.placeholder} 
-            maxlength={control.maxlength}
-            required={control.required} />
+            <TextField style={{width: 300, margin: 20 }}
+              label={control.label}
+              placeholder={control.placeholder} 
+              maxlength={control.maxlength}
+              required={control.required}
+              margin="normal"
+            />
           </div>
         );
         case 'textarea':
         return(
           <div>
-            <label>{control.label}</label>
-            <textarea name={control.label + control.id}
+            <TextField style={{width: 300, margin: 20 }}
+              label={control.label}
+              multiline
+              rowsMax="4"
+              margin="normal"
+              name={control.label + control.id}
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
-              required={control.required} />
+              required={control.required}
+            />
           </div>
         );
         case 'date':
-        return(
+        return(          
           <div>
-            <label>{control.label}</label>
-            <input type="date" name={control.label + control.id}
-              required={control.required} />
+            <TextField style={{ width: 300, margin: 20 }}
+              label={control.label}
+              type="date"
+              // defaultValue= "2017-05-24"
+              name={control.label + control.id}
+              required={control.required}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
           </div>
         );
         case 'time':
         return(
           <div>
-            <label>{control.label}</label>
-            <input type="time" name={control.label + control.id}
-              required={control.required} />
+
+            <TextField style={{ width: 300, margin: 20 }}
+              label={control.label}
+              type="time"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              inputProps={{
+                step: 300, // 5 min
+              }}
+              name={control.label + control.id}
+              required={control.required}
+            />
           </div>
         );
         case 'number':
         return(
           <div>
-            <label>{control.label}</label>
-            <input type="number" name={control.label + control.id}
+            <TextField style={{width: 300, margin: 20 }}
+              label={control.label}
+              type="number"
+              name={control.label + control.id}
+              required={control.required}
               placeholder={control.placeholder} 
-              required={control.required} />
+              margin="normal"
+            />
           </div>
         );
         case 'email':
         return(
           <div>
-            <label>{control.label}</label>
-            <input type="email" name={control.label + control.id}
+            <TextField style={{width: 300, margin: 20 }}
+              label={control.label}
+              type="number"
+              name={control.label + control.id}
+              required={control.required}
               placeholder={control.placeholder} 
               maxlength={control.maxlength}
-              required={control.required} />
+              margin="normal"
+            />
           </div>
        );
       }
@@ -213,15 +251,15 @@ class SingleFormTemplate extends Component {
     return(
       <div>
         <TemporaryDrawer />
-        <form>
-          <Typography variant="display4" gutterBottom align="center">
-            {this.state.formName}
-          </Typography>
-          <div className={JobsStyles.searchBox}>
-            {this.renderFormHTML()}
-          </div>
-          <input type="submit"/>
-        </form>
+          <form>
+            <Typography variant="display4" gutterBottom align="center">
+              {this.state.formName}
+            </Typography>
+            <Paper elevation={3} style={{width: 500, padding: 25}} className={JobsStyles.searchBox}>
+              {this.renderFormHTML()}
+              <RaisedButton type="submit" backgroundColor={orange300} style={{margin: 20}}>Submit</RaisedButton>
+            </Paper>
+          </form>
       </div>
     )
   }
