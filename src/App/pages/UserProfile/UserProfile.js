@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TemporaryDrawer from '../Drawer';
 import LoadingProgress from '../../components/Progress'
+import Footer from '../Footer/Footer'
 import Typography from '@material-ui/core/Typography';
 import ImageAvatars from '../../components/Avatar'
 import {
@@ -85,10 +86,14 @@ class UserProfile extends Component {
           </TableBody>
 				</Table>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <div className="formContainer">
-        <Typography variant="display2" gutterBottom align="center">
-          Submitted Forms ({this.state.forms.length})
-        </Typography>
+          <Typography variant="display2" gutterBottom align="center">
+            Submitted Forms ({this.state.forms.length})
+          </Typography>
 				{uniqueFormCategories.map((category) => {
 					return (
 						<div style={{width: '80%', margin: 'auto'}} key={category}>
@@ -117,10 +122,15 @@ class UserProfile extends Component {
                     })}
                   </TableBody>
 								</Table>
+                <br/>
+                <br/>
 						</div>
 					)
 				})}
-			</div>
+			  </div>
+        <br/>
+        <br/>
+        <Footer />
     </div>
     )
   } 

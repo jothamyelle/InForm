@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import TemporaryDrawer from './Drawer';
 import { orange300 } from 'material-ui/styles/colors';
 import LoadingProgress from '../components/Progress';
+import Footer from './Footer/Footer'
 
 
 import {
@@ -16,6 +17,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
+import { ENTERING } from 'react-transition-group/Transition';
 
 class Jobs extends Component {
   // Initialize the state
@@ -89,7 +91,7 @@ class Jobs extends Component {
         <div>
           <TemporaryDrawer />
           {/* <h1>Jobs</h1> */}
-          <Typography variant="display4" gutterBottom align="center">
+          <Typography variant="display2" gutterBottom align="center">
             Jobs
           </Typography>
           <div className={JobsStyles.searchBox}>
@@ -159,8 +161,11 @@ class Jobs extends Component {
                   )}
                 </div>
               )}
-              </div>
+            </div>
           )}
+          <br/>
+          <br/>
+          <Footer/>
         </div>
       )
     }
