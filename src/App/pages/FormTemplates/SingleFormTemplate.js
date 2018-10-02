@@ -254,10 +254,10 @@ class SingleFormTemplate extends Component {
       <div>
         <TemporaryDrawer />
           <form>
-            <Typography variant="display4" gutterBottom align="center">
-              {this.state.formName}
-            </Typography>
             <Paper elevation={3} style={{width: 500, padding: 25}} className={JobsStyles.searchBox}>
+              <Typography variant="display4" gutterBottom align="center">
+                {this.state.formName}
+              </Typography>
               {this.renderFormHTML()}
               <RaisedButton type="submit" backgroundColor={orange300} style={{margin: 20}}>Submit</RaisedButton>
             </Paper>
