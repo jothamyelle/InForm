@@ -149,7 +149,7 @@ class FormBuilder extends Component {
             {this.state.newTemplateName}
           </Typography>
           <div ref={this.fbRef}/>
-          <button onClick={this.saveForm} id="saveButton">Save</button>
+          <Button onClick={this.saveForm} id="saveButton">Save</Button>
         </div>
         )
     } else {
