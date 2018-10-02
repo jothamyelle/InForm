@@ -7,6 +7,12 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import orange from '@material-ui/core/colors/orange';
+import FormCategoryNameInput from '../../components/FormCategoryNameInput'
+import FormCategorySelect from '../../components/FormCategorySelect'
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+
 
 class FormBuilder extends Component {
   constructor(props) {
@@ -18,6 +24,7 @@ class FormBuilder extends Component {
       newTemplateName: "",
       newTemplateCategory: "",
       redirect: false,
+      submitted: false
     };
 
     this.saveForm = this.saveForm.bind(this);
@@ -25,10 +32,17 @@ class FormBuilder extends Component {
   }
   
   handleSubmit(event) {
-    event.preventDefault();
-    
-    this.setState({newTemplateName: event.target[0].value, newTemplateCategory: event.target[1].value});
-  
+    event.preventDefault();  
+    this.setState({submitted: true});
+    // this.setState({newTemplateName: event.target[0].value, newTemplateCategory: event.target[1].value});
+  }
+
+  handleFormChange = (value) => {
+    this.setState({ newTemplateCategory: value})
+  }
+
+  handleFormNameChange = (value) => {
+    this.setState({ newTemplateName: value})
   }
 
   componentWillMount() {
@@ -87,7 +101,7 @@ class FormBuilder extends Component {
   }
   
   componentDidUpdate () {
-    if(this.state.newTemplateName && !this.state.redirect){      
+    if(this.state.submitted && !this.state.redirect){      
       formBuilderObject.createFormBuilder(this.fbRef.current);
     }
   }
@@ -111,17 +125,21 @@ class FormBuilder extends Component {
         .then(() => {
           document.getElementsByClassName('materialcssaddition').innerHTML = '';
           formBuilderObject.emptyListOfDisplayOptions();
-          this.setState({ newTemplateName: "", newTemplateCategory: "", formContent: "", redirect: true});
+          this.setState({ newTemplateName: "", newTemplateCategory: "", submitted: false, formContent: "", redirect: true});
         }) 
       }
       );
     }
     
     render() {
+      const formOptions = this.state.categories.map(category => (
+        <MenuItem value={category}>{category}</MenuItem>
+      ))
+
     if (this.state.redirect) {
 
       return <Redirect to='/form_templates'/>
-    } else if(this.state.newTemplateName) {
+    } else if(this.state.submitted) {
       return (
         <div>
           <Typography variant="display3" align="Center">
@@ -141,11 +159,24 @@ class FormBuilder extends Component {
             Build a Form:
           </Typography>
           <form onSubmit={this.handleSubmit}>
-            <label>Name</label>
+
+          {/* <InputLabel>Category</InputLabel>
+          <Select
+            value={this.state.newTemplateCategory}
+            onChange={this.handleFormChange}
+          >
+          {formOptions}
+          </Select> */}
+
+          <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
+          <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
+
+            {/* <label>Name</label>
             <input type="text" name="name" required/>
             <label>Category</label>
-            <select name="category">{this.state.categories.map(category => <option key={category}>{category}</option>)}</select>
-            <input type="Submit"/>
+            <select name="category">{this.state.categories.map(category => <option key={category}>{category}</option>)}</select> */}
+            <Button type="submit">Submit</Button>
+            {/* <input type="Submit"/> */}
           </form>
         </div>
       )
