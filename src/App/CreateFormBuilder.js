@@ -405,18 +405,14 @@ export default formBuilderObject = {
       default:
         options = createOption(currentElement.id, currentElement.dataset.type); 
     }
-
     listOfDisplayOptions[currentElement.id] = options;
   }
 
   function updateControlOption(currentElement, option, index) {
-    if(option.value != "") {
-      listOfDisplayOptions[currentElement.id].controlOptions[index] = option.value;
-    }
+    listOfDisplayOptions[currentElement.id].controlOptions[index] = option.value;
   }
 
   function updateStagingAreaHTML(element, type) {
-    console.log("listOfDisplayOptions:", listOfDisplayOptions);
     let currentElement = listOfDisplayOptions[element.id];
     let labelName = "";
     let inputType = "";
@@ -462,7 +458,7 @@ export default formBuilderObject = {
       controlOptionsArray.forEach((option, index) => {
         multiOptionsDiv.innerHTML += `
           <p>
-          <input type="${inputType}" class="checkboxOption" value="${controlOptionsArray[index]}"/>
+          <input type="${inputType}" value="${controlOptionsArray[index]}"/>
           <label>${controlOptionsArray[index]}<label>
           </p>
           `;
@@ -482,7 +478,6 @@ export default formBuilderObject = {
       return;
     }
     addControlButton.addEventListener('click', event => {
-      console.log("event:", event);
       let className = event.srcElement.dataset.classtype;
       let controlInputs = document.getElementsByClassName(className);
       let controlInput = controlInputs[controlInputs.length - 1]
@@ -835,7 +830,6 @@ export default formBuilderObject = {
           listOfDisplayOptions[clone.id].controlOptions.push(option);
         });
 
-      // displayAppropriateOptions(clone);
       controlClickDisplayOptions(clone);
     })
   }
