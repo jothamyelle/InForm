@@ -80,7 +80,7 @@ class SingleFormTemplate extends Component {
                   return(
                     <FormControlLabel
                       control={
-                      <Checkbox name={control.label} required={control.required} style={{color: "orange"}}/>
+                      <Checkbox value={option} name={control.label} required={control.required} style={{color: "orange"}}/>
                       }
                       label={option}
                     />
