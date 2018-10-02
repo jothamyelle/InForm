@@ -90,11 +90,13 @@ class FormSubmissions extends Component {
           {this.state.isLoading ? (
             <LoadingProgress/>
           ) : (
-            <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+            <div>
+              <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+              <Footer />
+            </div>
           )}
           </div>
         )}
-        <Footer />
       </div>
     )
   }
