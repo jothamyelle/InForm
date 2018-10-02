@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -44,6 +42,7 @@ class SimpleSelect extends React.Component {
     
     return (
       <form className={classes.root} autoComplete="off">
+      
         <FormControl className={classes.formControl}>
           <InputLabel>Category</InputLabel>
           <Select
@@ -51,7 +50,7 @@ class SimpleSelect extends React.Component {
             value={this.state.chosenFormCategory}
             onChange={this.handleChange}
           >
-          {options}
+            {options}
           </Select>
         </FormControl>
         

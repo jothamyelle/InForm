@@ -159,24 +159,9 @@ class FormBuilder extends Component {
             Build a Form:
           </Typography>
           <form onSubmit={this.handleSubmit}>
-
-          {/* <InputLabel>Category</InputLabel>
-          <Select
-            value={this.state.newTemplateCategory}
-            onChange={this.handleFormChange}
-          >
-          {formOptions}
-          </Select> */}
-
-          <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
-          <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
-
-            {/* <label>Name</label>
-            <input type="text" name="name" required/>
-            <label>Category</label>
-            <select name="category">{this.state.categories.map(category => <option key={category}>{category}</option>)}</select> */}
+            <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
+            <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
             <Button type="submit">Submit</Button>
-            {/* <input type="Submit"/> */}
           </form>
         </div>
       )

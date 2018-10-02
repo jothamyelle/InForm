@@ -43,36 +43,36 @@ handleChange = (event) => {
   this.props.handleFormNameChange(event.target.value)
 }
 
-render() {
-const { classes } = this.props;
+  render() {
+    const { classes } = this.props;
 
-return (
-    <div className={classes.container}>
-      <FormControl className={classes.margin}>
-        <InputLabel
-          htmlFor="custom-css-input"
-          FormLabelClasses={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          }}
-        >
-          Form Name
-        </InputLabel>
-        <Input
-          id="custom-css-input"
-          value={this.state.formTemplateName}
-          onChange={this.handleChange}
-          classes={{
-            underline: classes.cssUnderline,
-          }}
-          required
-          hintText="Form Name"
-          floatingLabelText="Form Name"
-        />
-      </FormControl>
-    </div>
-  );
-}
+    return (
+      <div className={classes.container}>
+        <FormControl className={classes.margin}>
+          <InputLabel
+            htmlFor="custom-css-input"
+            FormLabelClasses={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            }}
+          >
+            Form Name
+          </InputLabel>
+          <Input
+            id="custom-css-input"
+            value={this.state.formTemplateName}
+            onChange={this.handleChange}
+            classes={{
+              underline: classes.cssUnderline,
+            }}
+            required
+            hintText="Form Name"
+            floatingLabelText="Form Name"
+          />
+        </FormControl>
+      </div>
+    );
+  }
 
 }
 
