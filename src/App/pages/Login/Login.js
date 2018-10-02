@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { orange500 } from 'material-ui/styles/colors';
 import orange from '@material-ui/core/colors/orange';
+import Footer from '../Footer/Footer'
 
 const styles = theme => ({
   layout: {
@@ -63,53 +64,56 @@ class Login extends Component {
   render() {
   const { classes } = this.props;
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
-          <Typography variant="display1">Sign in</Typography>
-          <form className={classes.form} onSubmit={this.formHandler}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel 
-              FormLabelClasses={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
-              }}
-              >Email Address</InputLabel>
-              <Input
-              id="custom-css-input"
-              classes={{
-                underline: classes.cssUnderline,
-              }}
-              />
-            </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel 
-              FormLabelClasses={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
-              }}
-              >Password</InputLabel>
-              <Input
+    <div>
+      <React.Fragment>
+        <CssBaseline />
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <Typography variant="display1">Sign in</Typography>
+            <form className={classes.form} onSubmit={this.formHandler}>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel 
+                FormLabelClasses={{
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                }}
+                >Email Address</InputLabel>
+                <Input
+                id="custom-css-input"
                 classes={{
                   underline: classes.cssUnderline,
                 }}
-                name="password"
-                type="password"
-              />
-            </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="raised"
-              className={classes.submit}
-            >
-              Sign in
-            </Button>
-          </form>
-        </Paper>
-      </main>
-    </React.Fragment>
+                />
+              </FormControl>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel 
+                FormLabelClasses={{
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                }}
+                >Password</InputLabel>
+                <Input
+                  classes={{
+                    underline: classes.cssUnderline,
+                  }}
+                  name="password"
+                  type="password"
+                />
+              </FormControl>
+              <Button
+                type="submit"
+                fullWidth
+                variant="raised"
+                className={classes.submit}
+              >
+                Sign in
+              </Button>
+            </form>
+          </Paper>
+        </main>
+      </React.Fragment>
+      <Footer />
+    </div>
   );
   }
 }

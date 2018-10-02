@@ -6,6 +6,7 @@ import userStyles from './userStyles.css';
 import UserSearch from '../../components/UserSearch';
 import TemporaryDrawer from '../Drawer';
 import Typography from '@material-ui/core/Typography';
+import Footer from '../Footer/Footer'
 
 class User extends Component {
   constructor(props){
@@ -87,7 +88,9 @@ class User extends Component {
             </div>
             )}
           </div>
-          </div>
+          <br/>
+          <Footer />
+        </div>
       )
     }
   }

@@ -15,6 +15,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { orange300 } from 'material-ui/styles/colors';
 import SimpleSlide from '../components/AdminDashboardSlide'
 import SimpleGrow from '../components/AdminDashboardGrow'
+
 import Grow from '@material-ui/core/Grow';
 
 
@@ -138,7 +139,7 @@ class AdminDashboard extends Component {
 
           {/* <Typography variant="display2" gutterBottom align="center">
             Today's Active Jobs
-          </Typography> */}          
+          </Typography> */}   
         </div>
       )
     }

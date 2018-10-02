@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import JobsStyles from '../Jobs/JobsStyes.css'
 import HoursStyles from './HoursStyles.css'
 import { orange300 } from 'material-ui/styles/colors';
+import Footer from '../Footer/Footer'
 
 
 import {
@@ -133,7 +134,7 @@ class Hours extends Component {
           <Typography variant="display4" gutterBottom align="center">
             Hours
           </Typography>
-          <div className={JobsStyles.searchBox}>
+          <div className={JobsStyles.searchBox}  style={{height: "100vh"}}>
             <form onSubmit={this.handleSubmit}>
               <DateRangePicker
                 className={HoursStyles.CalendarDay__selected}
@@ -153,6 +154,9 @@ class Hours extends Component {
           </div>
           <br/>
           { this.renderRows() }
+          <br/>
+          <br/>
+          <Footer/>
         </div>
       )
     }
