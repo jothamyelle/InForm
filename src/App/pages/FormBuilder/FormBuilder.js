@@ -4,6 +4,17 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Header from '../Header/Header'
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import orange from '@material-ui/core/colors/orange';
+import FormCategoryNameInput from '../../components/FormCategoryNameInput'
+import FormCategorySelect from '../../components/FormCategorySelect'
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import FlatButton from 'material-ui/FlatButton';
+import { orange300 } from 'material-ui/styles/colors';
 
 
 class FormBuilder extends Component {
@@ -16,6 +27,7 @@ class FormBuilder extends Component {
       newTemplateName: "",
       newTemplateCategory: "",
       redirect: false,
+      submitted: false
     };
 
     this.saveForm = this.saveForm.bind(this);
@@ -23,10 +35,17 @@ class FormBuilder extends Component {
   }
   
   handleSubmit(event) {
-    event.preventDefault();
-    
-    this.setState({newTemplateName: event.target[0].value, newTemplateCategory: event.target[1].value});
-  
+    event.preventDefault();  
+    this.setState({submitted: true});
+    // this.setState({newTemplateName: event.target[0].value, newTemplateCategory: event.target[1].value});
+  }
+
+  handleFormChange = (value) => {
+    this.setState({ newTemplateCategory: value})
+  }
+
+  handleFormNameChange = (value) => {
+    this.setState({ newTemplateName: value})
   }
 
   componentWillMount() {
@@ -85,7 +104,7 @@ class FormBuilder extends Component {
   }
   
   componentDidUpdate () {
-    if(this.state.newTemplateName && !this.state.redirect){      
+    if(this.state.submitted && !this.state.redirect){      
       formBuilderObject.createFormBuilder(this.fbRef.current);
     }
   }
@@ -109,17 +128,18 @@ class FormBuilder extends Component {
         .then(() => {
           document.getElementsByClassName('materialcssaddition').innerHTML = '';
           formBuilderObject.emptyListOfDisplayOptions();
-          this.setState({ newTemplateName: "", newTemplateCategory: "", formContent: "", redirect: true});
+          this.setState({ newTemplateName: "", newTemplateCategory: "", submitted: false, formContent: "", redirect: true});
         }) 
       }
       );
     }
     
     render() {
+
     if (this.state.redirect) {
 
       return <Redirect to='/form_templates'/>
-    } else if(this.state.newTemplateName) {
+    } else if(this.state.submitted) {
       return (
         <div>
           <Header />
@@ -131,20 +151,27 @@ class FormBuilder extends Component {
             {this.state.newTemplateName}
           </Typography>
           <div ref={this.fbRef}/>
-          <button onClick={this.saveForm} id="saveButton">Save</button>
+          <Button 
+            style={{backgroundColor: '#ffb74d', color: 'black'}}
+            onClick={this.saveForm}
+          >
+            Save
+          </Button>
         </div>
         )
     } else {
       return (
         <div>
-          <h2>Build a Form:</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input type="text" name="name" required/>
-            <label>Category</label>
-            <select name="category">{this.state.categories.map(category => <option key={category}>{category}</option>)}</select>
-            <input type="Submit"/>
-          </form>
+          <Typography style={{marginTop:'10px'}} variant="display2" align="Center">
+            Form Builder
+          </Typography>
+          <div>
+            <form style={{width:'50%', margin:'auto', textAlign:'center'}} onSubmit={this.handleSubmit}>
+              <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
+              <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
+              <FlatButton backgroundColor={orange300} style={{marginTop:'10px', paddingLeft:'5px', paddingRight:'5px'}} type="submit">GET STARTED</FlatButton>
+            </form>
+          </div>
         </div>
       )
     }
