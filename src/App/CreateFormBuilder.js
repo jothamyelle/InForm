@@ -781,7 +781,9 @@ export default formBuilderObject = {
 
   function controlClickDisplayOptions(node) {
     node.addEventListener('click', function() {
-      displayAppropriateOptions(listOfDisplayOptions[node.id]);
+      if (listOfDisplayOptions[node.id]) {
+        displayAppropriateOptions(listOfDisplayOptions[node.id]);
+      }
     })
   }
 
