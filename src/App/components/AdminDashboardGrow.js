@@ -53,7 +53,7 @@ class SimpleGrow extends React.Component {
 
           <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})} >
             <Typography variant="display3" gutterBottom align="center">
-              Currently {this.props.todaysFormsNumber} forms from {this.props.todaysJobsNumber} active jobs
+              Currently {this.props.todaysFormsNumber} {(this.props.todaysFormsNumber === 1) ? "form" : "forms" } from {this.props.todaysJobsNumber} active jobs
             </Typography>
           </Grow>
           <br/>
