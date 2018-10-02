@@ -6,6 +6,7 @@ import TemporaryDrawer from './Drawer';
 import { orange300 } from 'material-ui/styles/colors';
 import LoadingProgress from '../components/Progress';
 import Footer from './Footer/Footer'
+import Header from './Header/Header'
 
 
 import {
@@ -89,9 +90,10 @@ class Jobs extends Component {
     } else {
       return (
         <div>
-          <TemporaryDrawer />
+          <Header />
+          <br/>
           {/* <h1>Jobs</h1> */}
-          <Typography variant="display2" gutterBottom align="center">
+          <Typography variant="display3" gutterBottom align="center">
             Jobs
           </Typography>
           <div className={JobsStyles.searchBox}>

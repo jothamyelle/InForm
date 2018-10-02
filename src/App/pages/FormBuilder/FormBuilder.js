@@ -3,6 +3,7 @@ import formBuilderObject from '../../CreateFormBuilder.js'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import Header from '../Header/Header'
 
 
 class FormBuilder extends Component {
@@ -121,6 +122,8 @@ class FormBuilder extends Component {
     } else if(this.state.newTemplateName) {
       return (
         <div>
+          <Header />
+          <br/>
           <Typography variant="display3" align="Center">
             Form Builder
           </Typography>
