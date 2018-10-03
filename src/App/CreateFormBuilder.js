@@ -271,6 +271,7 @@ export default formBuilderObject = {
     currentElement.addEventListener('dragenter', handleDragEnter, false);
     currentElement.addEventListener('dragover', handleDragOver, false);
     currentElement.addEventListener('dragleave', handleDragLeave, false);
+    controlClickDisplayOptions(currentElement);
     if (currentElement.parentNode.id === 'stagingArea') {
       currentElement.addEventListener('drop', handleDrop, false);
     }
@@ -498,220 +499,222 @@ export default formBuilderObject = {
 
   function displayAppropriateOptions(elementObject) {
     let htmlToDisplay = "";
-    let controlOptionsArray = listOfDisplayOptions[elementObject.id].controlOptions;
-    switch(elementObject.type) {
-      case 'header':
-      htmlToDisplay += `
-        <p><label>Section Header<label></p>
-        <input type="text" class="headerValue" value="${elementObject.value}"/>
-      `;
-      break;
-      case 'paragraph':
-      htmlToDisplay += `
-        <p><label>Instructions or Question<label></p>
-        <textarea class="instructionsValue"/>${elementObject.value}</textarea>
-      `;
-      break;
-      case 'checkbox':
+    if(elementObject){
+      let controlOptionsArray = listOfDisplayOptions[elementObject.id].controlOptions;
+      switch(elementObject.type) {
+        case 'header':
         htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="checkLabel" value="${elementObject.label}"/>
-        <br/>
-        <p><label>Checkbox Options<label></p>`;
-        if(controlOptionsArray.length > 0) {
-          controlOptionsArray.forEach((option, index) => {
-            htmlToDisplay += `
-            <input type="text" class="checkboxOption" value="${controlOptionsArray[index]}"/>`;
-          });
-        } else {
-          htmlToDisplay += `
-          <input type="text" class="checkboxOption"/>`;
-        }
-        htmlToDisplay += `
-        <br/>
-        <button class="addControlOption mui-btn" data-classtype="checkboxOption">+ Add Option</button>
-        <br/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="checkRequired" ${elementObject.required ? 'checked' : ''}/>
-        `;
-      break;
-      case 'radio':
-      htmlToDisplay += `
-      <p><label>Label<label></p>
-      <input type="text" class="radioLabel" value="${elementObject.label}"/>
-      <br/>
-        <p><label>Radio Options<label></p>`;
-        if(controlOptionsArray.length > 0) {
-          controlOptionsArray.forEach((option, index) => {
-            htmlToDisplay += `
-            <input type="text" class="radioOption" value="${controlOptionsArray[index]}"/>`;
-          });
-        } else {
-          htmlToDisplay += `
-          <input type="text" class="radioOption"/>`;
-        }
-        htmlToDisplay += `
-        <br/>
-        <button class="addControlOption mui-btn" data-classtype="radioOption">+ Add Option</button>
-        <br/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="radioRequired"${elementObject.required ? 'checked' : ''}/>
+          <p><label>Section Header<label></p>
+          <input type="text" class="headerValue" value="${elementObject.value}"/>
         `;
         break;
-        case 'select':
+        case 'paragraph':
         htmlToDisplay += `
-      <p><label>Label<label></p>
-      <input type="text" class="selectLabel" value="${elementObject.label}"/>
-      <br/>
-      <p><label>Select Options<label></p>`;
-      if(controlOptionsArray.length > 0) {
-        controlOptionsArray.forEach((option, index) => {
-          htmlToDisplay += `
-          <input type="text" class="selectOption" value="${controlOptionsArray[index]}"/>`;
-        });
-      } else {
-        htmlToDisplay += `
-        <input type="text" class="selectOption"/>`;
-      }
-      htmlToDisplay += `
-      <br/>
-      <button class="addControlOption mui-btn" data-classtype="selectOption">+ Add Option</button>
-      <br/>
-      <p><label>Required<label></p>
-      <input type="checkbox" class="selectRequired" ${elementObject.required ? 'checked' : ''}/>
+          <p><label>Instructions or Question<label></p>
+          <textarea class="instructionsValue"/>${elementObject.value}</textarea>
         `;
-      break;
-      case 'selectMultiple':
+        break;
+        case 'checkbox':
+          htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="checkLabel" value="${elementObject.label}"/>
+          <br/>
+          <p><label>Checkbox Options<label></p>`;
+          if(controlOptionsArray.length > 0) {
+            controlOptionsArray.forEach((option, index) => {
+              htmlToDisplay += `
+              <input type="text" class="checkboxOption" value="${controlOptionsArray[index]}"/>`;
+            });
+          } else {
+            htmlToDisplay += `
+            <input type="text" class="checkboxOption"/>`;
+          }
+          htmlToDisplay += `
+          <br/>
+          <button class="addControlOption mui-btn" data-classtype="checkboxOption">+ Add Option</button>
+          <br/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="checkRequired" ${elementObject.required ? 'checked' : ''}/>
+          `;
+        break;
+        case 'radio':
         htmlToDisplay += `
         <p><label>Label<label></p>
-        <input type="text" class="selectMultipleLabel" value="${elementObject.label}"/>
+        <input type="text" class="radioLabel" value="${elementObject.label}"/>
         <br/>
-        <p><label>Select Multiple Options<label></p>`;
+          <p><label>Radio Options<label></p>`;
+          if(controlOptionsArray.length > 0) {
+            controlOptionsArray.forEach((option, index) => {
+              htmlToDisplay += `
+              <input type="text" class="radioOption" value="${controlOptionsArray[index]}"/>`;
+            });
+          } else {
+            htmlToDisplay += `
+            <input type="text" class="radioOption"/>`;
+          }
+          htmlToDisplay += `
+          <br/>
+          <button class="addControlOption mui-btn" data-classtype="radioOption">+ Add Option</button>
+          <br/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="radioRequired"${elementObject.required ? 'checked' : ''}/>
+          `;
+          break;
+          case 'select':
+          htmlToDisplay += `
+        <p><label>Label<label></p>
+        <input type="text" class="selectLabel" value="${elementObject.label}"/>
+        <br/>
+        <p><label>Select Options<label></p>`;
         if(controlOptionsArray.length > 0) {
           controlOptionsArray.forEach((option, index) => {
             htmlToDisplay += `
-            <input type="text" class="selectMultipleOption" value="${controlOptionsArray[index]}"/>`;
+            <input type="text" class="selectOption" value="${controlOptionsArray[index]}"/>`;
           });
         } else {
           htmlToDisplay += `
-          <input type="text" class="selectMultipleOption"/>`;
+          <input type="text" class="selectOption"/>`;
         }
         htmlToDisplay += `
         <br/>
-        <button class="addControlOption mui-btn" data-classtype="selectMultipleOption">+ Add Option</button>
+        <button class="addControlOption mui-btn" data-classtype="selectOption">+ Add Option</button>
         <br/>
         <p><label>Required<label></p>
-        <input type="checkbox" class="selectMultipleMultipleRequired" ${elementObject.required ? 'checked' : ''}/>
-        `;
-      break;
-      case 'text':
-      htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="textLabel" value="${elementObject.label}"/>
-        <p><label>Placeholder<label></p>
-        <input type="text" class="textPlaceholder" value="${elementObject.placeholder}"/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="textRequired" ${elementObject.required ? 'checked' : ''}/>
-        <p><label>Maximum Length<label></p>
-        <input type="number" class="textMaxlength" value="${elementObject.maxlength}"/>
-        `;
-      break;
-      case 'textarea':
-      htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="textareaLabel" value="${elementObject.label}"/>
-        <p><label>Placeholder<label></p>
-        <input type="text" class="textareaPlaceholder" value="${elementObject.placeholder}"/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="textareaRequired" ${elementObject.required ? 'checked' : ''}/>
-        <p><label>Maximum Length<label></p>
-        <input type="number" class="textareaMaxlength" value="${elementObject.maxlength}"/>
-        `;
-      break;
-      case 'date':
-      htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="dateLabel" value="${elementObject.label}"/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="dateRequired" ${elementObject.required ? 'checked' : ''}/>
-        `;
-      break;
-      case 'time':
-      htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="timeLabel" value="${elementObject.label}"/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="timeRequired" ${elementObject.required ? 'checked' : ''}/>
-        `;
-      break;
-      case 'number':
-      htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="numberLabel" value="${elementObject.label}"/>
-        <p><label>Placeholder<label></p>
-        <input type="number" class="numberPlaceholder" value="${elementObject.placeholder}"/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="numberRequired" ${elementObject.required ? 'checked' : ''}/>
-        <p><label>Maximum Length<label></p>
-        <input type="number" class="numberMaxlength" value="${elementObject.maxlength}"/>
-        `;
-      break;
-      case 'email':
+        <input type="checkbox" class="selectRequired" ${elementObject.required ? 'checked' : ''}/>
+          `;
+        break;
+        case 'selectMultiple':
+          htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="selectMultipleLabel" value="${elementObject.label}"/>
+          <br/>
+          <p><label>Select Multiple Options<label></p>`;
+          if(controlOptionsArray.length > 0) {
+            controlOptionsArray.forEach((option, index) => {
+              htmlToDisplay += `
+              <input type="text" class="selectMultipleOption" value="${controlOptionsArray[index]}"/>`;
+            });
+          } else {
+            htmlToDisplay += `
+            <input type="text" class="selectMultipleOption"/>`;
+          }
+          htmlToDisplay += `
+          <br/>
+          <button class="addControlOption mui-btn" data-classtype="selectMultipleOption">+ Add Option</button>
+          <br/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="selectMultipleMultipleRequired" ${elementObject.required ? 'checked' : ''}/>
+          `;
+        break;
+        case 'text':
         htmlToDisplay += `
-        <p><label>Label<label></p>
-        <input type="text" class="emailLabel" value="${elementObject.label}"/>
-        <p><label>Placeholder<label></p>
-        <input type="text" class="emailPlaceholder" value="${elementObject.placeholder}"/>
-        <p><label>Required<label></p>
-        <input type="checkbox" class="emailRequired" ${elementObject.required ? 'checked' : ''}/>
-        <p><label>Maximum Length<label></p>
-        <input type="number" class="emailMaxlength" value="${elementObject.maxlength}"/>
-        `;
-      break;
-    }
+          <p><label>Label<label></p>
+          <input type="text" class="textLabel" value="${elementObject.label}"/>
+          <p><label>Placeholder<label></p>
+          <input type="text" class="textPlaceholder" value="${elementObject.placeholder}"/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="textRequired" ${elementObject.required ? 'checked' : ''}/>
+          <p><label>Maximum Length<label></p>
+          <input type="number" class="textMaxlength" value="${elementObject.maxlength}"/>
+          `;
+        break;
+        case 'textarea':
+        htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="textareaLabel" value="${elementObject.label}"/>
+          <p><label>Placeholder<label></p>
+          <input type="text" class="textareaPlaceholder" value="${elementObject.placeholder}"/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="textareaRequired" ${elementObject.required ? 'checked' : ''}/>
+          <p><label>Maximum Length<label></p>
+          <input type="number" class="textareaMaxlength" value="${elementObject.maxlength}"/>
+          `;
+        break;
+        case 'date':
+        htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="dateLabel" value="${elementObject.label}"/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="dateRequired" ${elementObject.required ? 'checked' : ''}/>
+          `;
+        break;
+        case 'time':
+        htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="timeLabel" value="${elementObject.label}"/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="timeRequired" ${elementObject.required ? 'checked' : ''}/>
+          `;
+        break;
+        case 'number':
+        htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="numberLabel" value="${elementObject.label}"/>
+          <p><label>Placeholder<label></p>
+          <input type="number" class="numberPlaceholder" value="${elementObject.placeholder}"/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="numberRequired" ${elementObject.required ? 'checked' : ''}/>
+          <p><label>Maximum Length<label></p>
+          <input type="number" class="numberMaxlength" value="${elementObject.maxlength}"/>
+          `;
+        break;
+        case 'email':
+          htmlToDisplay += `
+          <p><label>Label<label></p>
+          <input type="text" class="emailLabel" value="${elementObject.label}"/>
+          <p><label>Placeholder<label></p>
+          <input type="text" class="emailPlaceholder" value="${elementObject.placeholder}"/>
+          <p><label>Required<label></p>
+          <input type="checkbox" class="emailRequired" ${elementObject.required ? 'checked' : ''}/>
+          <p><label>Maximum Length<label></p>
+          <input type="number" class="emailMaxlength" value="${elementObject.maxlength}"/>
+          `;
+        break;
+      }
 
-    let optionsList = document.getElementById('optionsList');
-    optionsList.innerHTML = '';
-    optionsList.insertAdjacentHTML('afterbegin', htmlToDisplay);
+      let optionsList = document.getElementById('optionsList');
+      optionsList.innerHTML = '';
+      optionsList.insertAdjacentHTML('afterbegin', htmlToDisplay);
 
-    addControlOption(elementObject.id);
-    
-    // add event listeners to all the multiple options inputs
-    let optionClasses = ['checkboxOption','radioOption','selectOption', 'selectMultipleOption'];
-    optionClasses.forEach(optionClass => {
-      Array.from(document.getElementsByClassName(optionClass)).forEach(function(option, index) {
-        option.addEventListener('keyup', event => {
-          updateControlOption(elementObject, option, index);
-          updateStagingAreaHTML(elementObject, optionClass);
+      addControlOption(elementObject.id);
+      
+      // add event listeners to all the multiple options inputs
+      let optionClasses = ['checkboxOption','radioOption','selectOption', 'selectMultipleOption'];
+      optionClasses.forEach(optionClass => {
+        Array.from(document.getElementsByClassName(optionClass)).forEach(function(option, index) {
+          option.addEventListener('keyup', event => {
+            updateControlOption(elementObject, option, index);
+            updateStagingAreaHTML(elementObject, optionClass);
+          });
         });
       });
-    });
 
-    // add listeners to all the inputs in the options area
-    let controlsValueArray = ['formTitleValue','headerValue','instructionsValue'];
-    controlsValueArray.forEach(controlValue => {
-      addOptionListeners(controlValue, elementObject, 'value');
-    });
+      // add listeners to all the inputs in the options area
+      let controlsValueArray = ['formTitleValue','headerValue','instructionsValue'];
+      controlsValueArray.forEach(controlValue => {
+        addOptionListeners(controlValue, elementObject, 'value');
+      });
 
-    let controlsLabelArray = ['checkLabel', 'radioLabel', 'selectLabel', 'selectMultipleLabel', 'textLabel', 'textareaLabel', 'dateLabel', 'timeLabel', 'numberLabel', 'emailLabel'];
-    controlsLabelArray.forEach(controlLabel => {
-      addOptionListeners(controlLabel, elementObject, 'label');
-    });
+      let controlsLabelArray = ['checkLabel', 'radioLabel', 'selectLabel', 'selectMultipleLabel', 'textLabel', 'textareaLabel', 'dateLabel', 'timeLabel', 'numberLabel', 'emailLabel'];
+      controlsLabelArray.forEach(controlLabel => {
+        addOptionListeners(controlLabel, elementObject, 'label');
+      });
 
-    let controlsPlaceholderArray = ['textPlaceholder', 'textareaPlaceholder', 'numberPlaceholder', 'emailPlaceholder'];
-    controlsPlaceholderArray.forEach(controlPlaceholder => {
-      addOptionListeners(controlPlaceholder, elementObject, 'placeholder');
-    });
+      let controlsPlaceholderArray = ['textPlaceholder', 'textareaPlaceholder', 'numberPlaceholder', 'emailPlaceholder'];
+      controlsPlaceholderArray.forEach(controlPlaceholder => {
+        addOptionListeners(controlPlaceholder, elementObject, 'placeholder');
+      });
 
-    let controlsMaxlengthArray = ['textMaxlength', 'textareaMaxlength', 'numberMaxlength', 'emailMaxlength'];
-    controlsMaxlengthArray.forEach(controlMaxlength => {
-      addNumberListener(controlMaxlength, elementObject, 'maxlength');
-    });
+      let controlsMaxlengthArray = ['textMaxlength', 'textareaMaxlength', 'numberMaxlength', 'emailMaxlength'];
+      controlsMaxlengthArray.forEach(controlMaxlength => {
+        addNumberListener(controlMaxlength, elementObject, 'maxlength');
+      });
 
-    let controlsRequiredArray = ['checkRequired', 'radioRequired', 'selectRequired', 'selectMultipleRequired', 'textRequired', 'textareaRequired', 'dateRequired', 'timeRequired', 'numberRequired', 'emailRequired'];
-    controlsRequiredArray.forEach(controlRequired => {
-      addOptionCheckboxListener(controlRequired, elementObject, 'required');
-    });  
+      let controlsRequiredArray = ['checkRequired', 'radioRequired', 'selectRequired', 'selectMultipleRequired', 'textRequired', 'textareaRequired', 'dateRequired', 'timeRequired', 'numberRequired', 'emailRequired'];
+      controlsRequiredArray.forEach(controlRequired => {
+        addOptionCheckboxListener(controlRequired, elementObject, 'required');
+      }); 
+    }
   }
 
   function addOptionListeners(className, elementObject, prop) {
@@ -815,7 +818,7 @@ export default formBuilderObject = {
 
   function addDuplicateListener(button) {
     button.addEventListener('click', function() {
-      listOfDisplayOptions[0].id = 0;
+      // listOfDisplayOptions[0].id = 0;
 
       const control = button.parentElement;
       const clone = control.cloneNode(true);
