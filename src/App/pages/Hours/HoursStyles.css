@@ -12,12 +12,33 @@
 
 .CalendarDay__selected:hover {
   background: #ffb74d; ;
-  color: #ffb74d; ;
+  color: white; 
+}
+
+.CalendarDay__selected_span:hover {
+  background: grey; ;
+  color: white; 
+  border: 2px double #ffb74d;
+}
+
+.CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover {
+  background: #ffb74d;
+  border: 2px double #ffb74d;
+}
+
+.DateInput_input__focused {
+  border-bottom: 2px solid #ffb74d;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight {
+  border-right: 0px
 }
 
 .CalendarDay__hovered_span:hover,
 .CalendarDay__hovered_span {
   background: #ffb74d; ;
+  color: white;
+  border: 2px double #ffb74d;
 }
 
 .DateRangePickerInput__withBorder {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Search from '../../components/Search';
-import TemporaryDrawer from '../Drawer';
+import Header from '../Header/Header';
 import FormSubmissionsTable from '../../components/FormSubmissionsTable'
 import Typography from '@material-ui/core/Typography';
 import LoadingProgress from '../../components/Progress';
@@ -75,9 +75,9 @@ class FormSubmissions extends Component {
     }
     return (
       <div>
-        <TemporaryDrawer />
-
-        <Typography variant="display4" gutterBottom align="center">
+        <Header />
+        <br/>
+        <Typography variant="display3" gutterBottom align="center">
             Submitted Forms 
         </Typography>
         <div className={FormSubmissionsStyles.searchBox}>
@@ -91,11 +91,13 @@ class FormSubmissions extends Component {
           {this.state.isLoading ? (
             <LoadingProgress/>
           ) : (
-            <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+            <div>
+              <FormSubmissionsTable dateArray={dateArray} thisWeeksForms={this.state.thisWeeksForms}/>
+              <Footer />
+            </div>
           )}
           </div>
         )}
-        <Footer />
       </div>
     )
   }

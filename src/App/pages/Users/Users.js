@@ -4,9 +4,9 @@ import LoadingProgress from '../../components/Progress'
 import IndividualUser from '../IndividualUser';
 import userStyles from './userStyles.css';
 import UserSearch from '../../components/UserSearch';
-import TemporaryDrawer from '../Drawer';
 import Typography from '@material-ui/core/Typography';
 import Footer from '../Footer/Footer'
+import Header from '../Header/Header';
 
 class User extends Component {
   constructor(props){
@@ -57,10 +57,11 @@ class User extends Component {
     } else {
       return (
         <div>
-          <TemporaryDrawer />
+          <Header />
+          <br/>
           <div className="App">
             {/* <UserRoles userRolesList={this.state.userRolesList}/> */}
-            <Typography variant="display4" gutterBottom align="center">
+            <Typography variant="display3" gutterBottom align="center" >
               Staff
             </Typography>
             <UserSearch handleSearchQuery={this.handleSearchQuery} data={usersList}/>
@@ -69,18 +70,18 @@ class User extends Component {
               {userRolesList.map((role) =>  {
                 return (
                   <div key={role.id}>
-                  <Typography variant="display2" gutterBottom align="center">
-                    {role.role}
-                  </Typography>
-                  <div style={{alignItems:'center', justifyContent:'center'}} className={userStyles.employeeContainer}>
-                    {usersList.map((user) => {
-                      if (user.role_id === role.id) {
-                        return (
-                          <IndividualUser user={user} key={user.id}/>
-                        );
-                      }
-                    })}
-                  </div>
+                    <Typography variant="display2" gutterBottom align="center">
+                      {role.role}
+                    </Typography>
+                    <div style={{alignItems:'center', justifyContent:'center'}} className={userStyles.employeeContainer}>
+                      {usersList.map((user) => {
+                        if (user.role_id === role.id) {
+                          return (
+                            <IndividualUser user={user} key={user.id}/>
+                          );
+                        }
+                      })}
+                    </div>
                   </div>
                 )
               })

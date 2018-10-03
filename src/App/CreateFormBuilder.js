@@ -89,8 +89,10 @@ export default formBuilderObject = {
   }
 
   .reset-btn {
-    background-color: #ffb74d;
+    background-color: lightgrey;
     color: black;
+    padding-left: 11px;
+    padding-right: 11px;
   }
 
   .staged {
@@ -341,8 +343,9 @@ export default formBuilderObject = {
     const duplicateButton = createDuplicateButton();
     node.append(duplicateButton);
     addDuplicateListener(duplicateButton);
-
-    controlClickDisplayOptions(node);
+    if(listOfDisplayOptions[node.id]) {
+      controlClickDisplayOptions(node);
+    }
     
     return node;
   }
@@ -780,10 +783,16 @@ export default formBuilderObject = {
   }
 
   function createbeginnerItem() {
+
     let beginnerItem = document.createElement('div');
     beginnerItem.setAttribute('id', 'beginnerItem');
     beginnerItem.classList.add('staged');
-    beginnerItem.textContent = 'Drop Stuff Here';
+    let plusIcon = document.createElement('i');
+    plusIcon.classList.add('material-icons');
+    plusIcon.classList.add('plus-icon');
+    plusIcon.textContent ='add_circle_outline';
+    beginnerItem.append(plusIcon);
+    // beginnerItem.textContent = 'Drop Stuff Here';
 
     return beginnerItem;
   }
@@ -791,6 +800,10 @@ export default formBuilderObject = {
   function addDeleteListener(button) {
     button.addEventListener('click', function() {
       button.parentElement.remove();
+      let optionsList = document.getElementById('optionsList');
+      optionsList.innerHTML = '';
+      // displayAppropriateOptions(listOfDisplayOptions[button.parentElement.id -1]);
+      delete listOfDisplayOptions[button.parentElement.id];
       let stagingArea = document.getElementById('stagingArea');
       if(!stagingArea.innerHTML.trim()) {
         const beginnerItem = createbeginnerItem(); 

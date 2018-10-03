@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TemporaryDrawer from '../Drawer';
+import Header from '../Header/Header';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +15,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 import {
   Table,
@@ -40,10 +45,25 @@ class FormTemplate extends Component {
       templates: null,
       data: [],
       open: false,
+      snackOpen: false,
       confirmationTemplateId: null,
     }
     this.handleFillOutClick = this.handleFillOutClick.bind(this);
   }
+
+  handleClick = () => {
+    if (this.props.formSubmitted)
+      this.setState({ snackOpen: true });
+  };
+
+  handleSnackClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ snackOpen: false });
+    this.props.setFormSubmittedToFalse();
+  };
+
 
   handleClickConfirmation = (templateId) => {
     this.setState({ confirmationTemplateId: templateId, open: true });
@@ -59,6 +79,7 @@ class FormTemplate extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getTemplatesAndCategories();
+    this.handleClick();
   }
 
   getTemplatesAndCategories = () => {
@@ -99,13 +120,15 @@ class FormTemplate extends Component {
   }
 
   render() {
+    console.log(this.props.formSubmitted);
     if (this.state.data.length > 0) {
       return <Redirect to={`/form_templates/${this.state.confirmationTemplateId}`} />
     }
       return(
         <div>
-          <TemporaryDrawer />  
-          <Typography variant="display4" gutterBottom align="center">
+          <Header />
+          <br/>
+          <Typography variant="display3" gutterBottom align="center">
             Form Templates
           </Typography>
           <div className={JobsStyles.searchBox}>
@@ -134,7 +157,7 @@ class FormTemplate extends Component {
                         </TableRow>
                       </TableHeader>
                         <TableBody displayRowCheckbox={false}>
-                        {this.state.templates.map((template) => {
+                        {this.state.templates.reverse().map((template) => {
                           if(template.form_category_id === category.id)
                           return (
                             <TableRow  key={template.id}>
@@ -183,6 +206,35 @@ class FormTemplate extends Component {
               </DialogActions>
             </Dialog>
           </div>
+
+          <div>
+            <Snackbar
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={this.state.snackOpen}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+              ContentProps={{
+                'aria-describedby': 'message-id',
+              }}
+              message={<span id="message-id">Form successfully submitted!</span>}
+              action={[
+                <IconButton
+                  key="close"
+                  aria-label="Close"
+                  color="inherit"
+                  onClick={this.handleSnackClose}
+                >
+                  <CloseIcon style={{color: "orange"}} />
+                </IconButton>,
+              ]}
+            />
+
+          </div>
+
+
         </div>
       )
   }
