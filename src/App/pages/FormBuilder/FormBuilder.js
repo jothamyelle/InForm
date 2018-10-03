@@ -35,9 +35,10 @@ class FormBuilder extends Component {
   }
   
   handleSubmit(event) {
-    event.preventDefault();  
-    this.setState({submitted: true});
-    // this.setState({newTemplateName: event.target[0].value, newTemplateCategory: event.target[1].value});
+    event.preventDefault();
+    if (this.state.newTemplateCategory && this.state.newTemplateName) {
+      this.setState({submitted: true});
+    }
   }
 
   handleFormChange = (value) => {
@@ -143,7 +144,6 @@ class FormBuilder extends Component {
       return (
         <div>
           <Header/>
-          <br/>
           <div style={{margin:'10px'}}>
           <Typography className={'form-title'} variant="display2" gutterBottom align="center">
             {this.state.newTemplateName}
@@ -167,8 +167,8 @@ class FormBuilder extends Component {
           </Typography>
           <div>
             <form style={{width:'50%', margin:'auto', textAlign:'center'}} onSubmit={this.handleSubmit}>
-              <FormCategoryNameInput handleFormNameChange={this.handleFormNameChange}/>
-              <FormCategorySelect handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
+              <FormCategoryNameInput required handleFormNameChange={this.handleFormNameChange}/>
+              <FormCategorySelect required="true" handleFormChange={this.handleFormChange} formCategories={this.state.categories}/>
               <FlatButton backgroundColor={orange300} style={{marginTop:'10px', paddingLeft:'5px', paddingRight:'5px'}} type="submit">GET STARTED</FlatButton>
             </form>
           </div>
