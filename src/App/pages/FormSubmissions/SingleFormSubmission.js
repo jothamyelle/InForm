@@ -5,6 +5,17 @@ import TemporaryDrawer from '../Drawer';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import Header from '../Header/Header'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import JobsStyles from '../Jobs/JobsStyes.css'
 
 class SingleFormSubmission extends Component {
   constructor(props){
@@ -15,7 +26,7 @@ class SingleFormSubmission extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get(`/api/getFormSubmission/${this.props.match.params.id}`)
     .then(formData => {
       this.setState({
@@ -27,7 +38,7 @@ class SingleFormSubmission extends Component {
           this.setState({
             formName: formName.data[0].type
           }, () => {
-            rootDiv.innerHTML = this.renderFormHTML();
+            // rootDiv.innerHTML = this.renderFormHTML();
           })
         })
       })
@@ -35,28 +46,26 @@ class SingleFormSubmission extends Component {
   }
 
   renderFormHTML() {
-    let htmlToRender = `<h1>${this.state.formName}</h1>`;
-    this.state.formData.forEach(control => {
+    let htmlToRender = this.state.formData.map(control => {
       let controlKeys = Object.keys(control.value);
       for (let key in control.value) {
         if(Array.isArray(control.value[key])) {
-          htmlToRender += `
-            <div>
-              <strong>${controlKeys[0]}:</strong>
-              <ul>`;
-              control.value[key].forEach(value => {
-                htmlToRender += `
-                <li>${value}</li>`;
-              })
-              htmlToRender += 
-              `</ul>
-            </div>`
+          return (
+            <TableRow>
+            <TableRowColumn style={{fontSize: 24, whiteSpace: 'normal', wordWrap: 'break-word', padding: 10, verticalAlign: "center"}} variant="display1" gutterBottom align="center">{controlKeys[0]}:</TableRowColumn>
+                {control.value[key].map(value => {
+                  return (
+                    <li>{value}</li>
+                  )
+                })}
+            </TableRow>)
         } else {
-          htmlToRender += `
-            <div>
-              <p><strong>${controlKeys[0]}:</strong> ${control.value[key]}</p>
-            </div>
-          `
+          return (
+            <TableRow>
+              <TableRowColumn style={{fontSize: 24, whiteSpace: 'normal', wordWrap: 'break-word', padding: 10, verticalAlign: "center"}} variant="display1" gutterBottom align="center">{controlKeys[0]}:</TableRowColumn> 
+              <TableRowColumn style={{fontSize: 24, whiteSpace: 'normal', wordWrap: 'break-word', padding: 10, verticalAlign: "center"}} variant="display1" gutterBottom align="center">{control.value[key]}</TableRowColumn>
+            </TableRow>
+          )
         }
       }
     });
@@ -64,12 +73,27 @@ class SingleFormSubmission extends Component {
   }
 
   render() {  
-    return(
-      <div>
+    if(this.state.formName && this.state.formData) {
+      return(
+        <div>
         <Header />
-          <div id="formSubmissionContent"></div>
+        <Paper elevation={3} style={{width: 800, padding: 25, margin: "20px auto 0"}}>
+          <Typography variant="display2" gutterBottom align="center">{this.state.formName}</Typography>
+          <Table selectable={false} className={JobsStyles.formsTable} style={{margin: "0 auto", width: "50%"}}>
+            <TableBody displayRowCheckbox={false}>
+              {this.renderFormHTML()}
+            </TableBody>
+          </Table>
+        </Paper>
+        </div>
+      )
+    } else {
+      return(
+      <div>
+        Loading
       </div>
-    )
+      )
+    }
   }
 }
 
