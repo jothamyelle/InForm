@@ -77,6 +77,7 @@ class App extends Component {
           <Route path='/form_templates/:id' render={ () => (this.state.loggedIn ? ( <SingleFormTemplate formData={this.state.formData} formId={this.state.formId} formSubmit={this.formSubmit}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_templates' render={ () => (this.state.loggedIn ? ( <FormTemplate getFormData={this.getFormData} formSubmitted={this.state.formSubmitted} setFormSubmittedToFalse={this.setFormSubmittedToFalse}/> ) : ( <Login login={this.login}/> )) }/>
           <Route path='/form_builder' render={ () => (this.state.loggedIn ? ( <FormBuilder/> ) : ( <Login login={this.login}/> )) }/>
+          <Route path='/login' render={ () => (this.state.loggedIn ? ( <Login/> ) : ( <Login login={this.login}/> )) }/>
           <Route component={NoMatch}/>
         </Switch>
       </div>

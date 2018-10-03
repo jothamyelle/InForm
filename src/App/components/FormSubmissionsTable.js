@@ -65,7 +65,7 @@ class FormSubmissionsTable extends Component {
               <TableHeaderColumn style={{fontSize:30}}></TableHeaderColumn>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {thisWeeksForms && thisWeeksForms.map((form) => {
+            {thisWeeksForms && thisWeeksForms.reverse().map((form) => {
               return ( new Date(form.submitted_forms_date_created).toISOString().slice(0, 10) == new Date(item).toISOString().slice(0, 10) && (
                 <TableRow key={form.submitted_forms_id}>
                   <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
