@@ -120,11 +120,15 @@ class Hours extends Component {
   }
 
   render() {
+    let hoursMargin = '100px';
+    if(this.state.currentFilterHours) {
+      hoursMargin = 0;
+    }
       return (
         <div>
-          <Header />
+          <Header/>
           <br/>
-          <Typography variant="display3" gutterBottom align="center">
+          <Typography variant="display3"  style={{marginTop: hoursMargin}} gutterBottom align="center">
             Hours
           </Typography>
           {((this.state.currentFilterHours || this.state.currentQuery) ? (
