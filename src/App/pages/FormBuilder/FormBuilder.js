@@ -142,26 +142,26 @@ class FormBuilder extends Component {
     } else if(this.state.submitted) {
       return (
         <div>
-          <Header />
+          <Header/>
           <br/>
-          <Typography variant="display3" align="Center">
-            Form Builder
-          </Typography>
-          <Typography variant="display2" gutterBottom align="Left">
+          <div style={{margin:'10px'}}>
+          <Typography className={'form-title'} variant="display2" gutterBottom align="center">
             {this.state.newTemplateName}
           </Typography>
           <div ref={this.fbRef}/>
           <Button 
-            style={{backgroundColor: '#ffb74d', color: 'black'}}
+            style={{backgroundColor: '#ffb74d', color: 'black', marginLeft:'40px'}}
             onClick={this.saveForm}
           >
             Save
           </Button>
+          </div>
         </div>
         )
     } else {
       return (
         <div>
+          <Header />
           <Typography style={{marginTop:'10px'}} variant="display2" align="Center">
             Form Builder
           </Typography>
