@@ -10,7 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { orange500 } from 'material-ui/styles/colors';
 import orange from '@material-ui/core/colors/orange';
-import Footer from '../Footer/Footer'
+import { Link } from 'react-router-dom';
+import Header from '../Header/Header'
+import { orange300 } from 'material-ui/styles/colors';
 
 const styles = theme => ({
   layout: {
@@ -65,6 +67,7 @@ class Login extends Component {
   const { classes } = this.props;
   return (
     <div>
+      <Header />
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
@@ -100,19 +103,21 @@ class Login extends Component {
                   type="password"
                 />
               </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="raised"
-                className={classes.submit}
-              >
-                Sign in
-              </Button>
+                <Link to='/' style={{textDecoration:"none"}}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="raised"
+                  className={classes.submit}
+                  style={{backgroundColor:orange300, color:"white"}}
+                >
+                  Sign in
+                </Button>
+                </Link>
             </form>
           </Paper>
         </main>
       </React.Fragment>
-      <Footer />
     </div>
   );
   }

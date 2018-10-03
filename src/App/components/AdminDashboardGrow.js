@@ -49,7 +49,7 @@ class SimpleGrow extends React.Component {
 
           <Grow in={checked}>
           <Typography variant="display3" gutterBottom align="center">
-            Good Morning Ben.
+            Good afternoon, Winona.
           </Typography>
           </Grow>
           <br/>

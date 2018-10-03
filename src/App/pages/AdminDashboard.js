@@ -90,7 +90,7 @@ class AdminDashboard extends Component {
               <TableHeaderColumn style={{fontSize:30}}>View Form</TableHeaderColumn>
             </TableHeader>
             <TableBody displayRowCheckbox={false}>
-              {this.state.todaysForms.map((form) => {
+              {this.state.todaysForms.reverse().map((form) => {
                 return(
                   <TableRow key={form.formId}>
                     <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>

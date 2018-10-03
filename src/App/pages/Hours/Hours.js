@@ -154,7 +154,7 @@ class Hours extends Component {
             { this.renderRows() }
           </div>
           ) : (
-          <div className={JobsStyles.searchBox} style={{height: "69vh"}}>
+          <div className={JobsStyles.searchBox} style={{height: "100vh"}}>
           <form onSubmit={this.handleSubmit}>
             <DateRangePicker
               className={HoursStyles.CalendarDay__selected}
