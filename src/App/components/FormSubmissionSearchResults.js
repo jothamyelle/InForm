@@ -28,28 +28,28 @@ class FormSubmissionSearchResults extends Component {
     ))
 
     return (
-      <div className={FormSubmissionsStyles.tableContainer}>
-        <Typography variant="display2" gutterBottom align="center">
-        Search Results
-        </Typography>
-        <div style={{height: "100vh"}}>
-          <Table selectable={false} className={FormSubmissionsStyles.formsTable}>
-            <TableHeader displaySelectAll={false}>
-              <TableHeaderColumn style={{fontSize:30}}>Form Name</TableHeaderColumn>
-              <TableHeaderColumn style={{fontSize:30}}>Job</TableHeaderColumn>
-              <TableHeaderColumn style={{fontSize:30}}>Employee</TableHeaderColumn>
-              <TableHeaderColumn style={{fontSize:30}}>View</TableHeaderColumn>
-              <TableHeaderColumn style={{fontSize:30}}>Delete</TableHeaderColumn>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-              {options}
-            </TableBody>
-          </Table>
-        </div>
-        <div style={{position:"absolute", width: "100vw", left: "0"}}>
-          <Footer />
-        </div>
-      </div>          
+      <div>
+        <div className={FormSubmissionsStyles.tableContainer}>
+          <Typography variant="display2" gutterBottom align="center">
+          Search Results
+          </Typography>
+          <div style={{height: "100vh"}}>
+            <Table selectable={false} className={FormSubmissionsStyles.formsTable}>
+              <TableHeader displaySelectAll={false}>
+                <TableHeaderColumn style={{fontSize:30}}>Form Name</TableHeaderColumn>
+                <TableHeaderColumn style={{fontSize:30}}>Job</TableHeaderColumn>
+                <TableHeaderColumn style={{fontSize:30}}>Employee</TableHeaderColumn>
+                <TableHeaderColumn style={{fontSize:30}}>View</TableHeaderColumn>
+                <TableHeaderColumn style={{fontSize:30}}>Delete</TableHeaderColumn>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {options}
+              </TableBody>
+            </Table>
+          </div>
+        </div> 
+        <Footer />
+      </div>        
       )
   }
 }
