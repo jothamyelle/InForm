@@ -16,6 +16,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
+
 import {
   Table,
   TableBody,
@@ -40,10 +45,25 @@ class FormTemplate extends Component {
       templates: null,
       data: [],
       open: false,
+      snackOpen: false,
       confirmationTemplateId: null,
     }
     this.handleFillOutClick = this.handleFillOutClick.bind(this);
   }
+
+  handleClick = () => {
+    if (this.props.formSubmitted)
+      this.setState({ snackOpen: true });
+  };
+
+  handleSnackClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ snackOpen: false });
+    this.props.setFormSubmittedToFalse();
+  };
+
 
   handleClickConfirmation = (templateId) => {
     this.setState({ confirmationTemplateId: templateId, open: true });
@@ -59,6 +79,7 @@ class FormTemplate extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     this.getTemplatesAndCategories();
+    this.handleClick();
   }
 
   getTemplatesAndCategories = () => {
@@ -99,6 +120,7 @@ class FormTemplate extends Component {
   }
 
   render() {
+    console.log(this.props.formSubmitted);
     if (this.state.data.length > 0) {
       return <Redirect to={`/form_templates/${this.state.confirmationTemplateId}`} />
     }
@@ -182,6 +204,35 @@ class FormTemplate extends Component {
               </DialogActions>
             </Dialog>
           </div>
+
+          <div>
+            <Snackbar
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={this.state.snackOpen}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+              ContentProps={{
+                'aria-describedby': 'message-id',
+              }}
+              message={<span id="message-id">Form successfully submitted!</span>}
+              action={[
+                <IconButton
+                  key="close"
+                  aria-label="Close"
+                  color="inherit"
+                  onClick={this.handleSnackClose}
+                >
+                  <CloseIcon style={{color: "orange"}} />
+                </IconButton>,
+              ]}
+            />
+
+          </div>
+
+
         </div>
       )
   }
