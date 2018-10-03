@@ -58,23 +58,21 @@ class FormSubmissionsTable extends Component {
         {(new Date(item).toISOString().slice(0, 10) == new Date().toISOString().slice(0, 10)) ? (today) : (weeksDate(item))}
         <Table selectable={false} className={FormSubmissionsStyles.formsTable}>
           <TableHeader displaySelectAll={false}>
-            <TableRow displaySelectAll={false}>
-              <TableHeaderColumn>Form Name</TableHeaderColumn>
-              <TableHeaderColumn>Job</TableHeaderColumn>
-              <TableHeaderColumn>Employee</TableHeaderColumn>
-              <TableHeaderColumn>View</TableHeaderColumn>
-              <TableHeaderColumn>Delete</TableHeaderColumn>
-            </TableRow>
+              <TableHeaderColumn style={{fontSize:30}}>Form Name</TableHeaderColumn>
+              <TableHeaderColumn style={{fontSize:30}}>Job</TableHeaderColumn>
+              <TableHeaderColumn style={{fontSize:30}}>Employee</TableHeaderColumn>
+              <TableHeaderColumn style={{fontSize:30}}></TableHeaderColumn>
+              <TableHeaderColumn style={{fontSize:30}}></TableHeaderColumn>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {thisWeeksForms && thisWeeksForms.map((form) => {
               return ( new Date(form.submitted_forms_date_created).toISOString().slice(0, 10) == new Date(item).toISOString().slice(0, 10) && (
                 <TableRow key={form.submitted_forms_id}>
-                  <TableRowColumn>{form.type}</TableRowColumn>
-                  <TableRowColumn>{form.job_name}</TableRowColumn>
-                  <TableRowColumn><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></TableRowColumn>
-                  <TableRowColumn><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.submitted_forms_id}`}><FlatButton backgroundColor="orange">View</FlatButton></Link></TableRowColumn>
-                  <TableRowColumn><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
+                  <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
+                  <TableRowColumn style={{fontSize:17}}>{form.job_name}</TableRowColumn>
+                  <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></TableRowColumn>
+                  <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.submitted_forms_id}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
+                  <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
                 </TableRow>
                 )
               )

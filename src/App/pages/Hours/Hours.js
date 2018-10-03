@@ -99,20 +99,18 @@ class Hours extends Component {
                 <br/>
                 <Table selectable={false} className={JobsStyles.formsTable}>
                   <TableHeader displaySelectAll={false}>
-                    <TableRow displayRowCheckbox={false}>
-                      <TableHeaderColumn>Employee Name</TableHeaderColumn>
-                      <TableHeaderColumn>Hours Worked</TableHeaderColumn>
-                      <TableHeaderColumn>Shifts Worked</TableHeaderColumn>
-                      <TableHeaderColumn>View Employee</TableHeaderColumn>
-                    </TableRow>
+                    <TableHeaderColumn style={{fontSize:30}}>Employee Name</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>Hours Worked</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>Shifts Worked</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>View Employee</TableHeaderColumn>
                   </TableHeader>
                   <TableBody displayRowCheckbox={false}>
                     {uniqueUsersArray.map((item) =>
                       <TableRow key={item.user_id}>
-                        <TableRowColumn>{item.first_name} {item.last_name}</TableRowColumn>
-                        <TableRowColumn>{Math.floor((item.minutes_worked)/60)}</TableRowColumn>
-                        <TableRowColumn>{item.shift_count}</TableRowColumn>
-                        <TableRowColumn>{<Link to={`/users/${item.user_id}`} target="_blank"><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:17}}>{item.first_name} {item.last_name}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:17}}>{Math.floor((item.minutes_worked)/60)}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:17}}>{item.shift_count}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:17}}>{<Link to={`/users/${item.user_id}`} target="_blank"><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
                       </TableRow>
                     )}
                   </TableBody>
@@ -133,7 +131,8 @@ class Hours extends Component {
           <Typography variant="display3" gutterBottom align="center">
             Hours
           </Typography>
-          <div className={JobsStyles.searchBox}  style={{height: "100vh"}}>
+          {((this.state.currentFilterHours || this.state.currentQuery) ? (
+          <div className={JobsStyles.searchBox} style={{height: "100vh"}}>
             <form onSubmit={this.handleSubmit}>
               <DateRangePicker
                 className={HoursStyles.CalendarDay__selected}
@@ -152,9 +151,31 @@ class Hours extends Component {
             </form>
             <br/>
             <br/>
-          { this.renderRows() }
+            { this.renderRows() }
           </div>
-
+          ) : (
+          <div className={JobsStyles.searchBox} style={{height: "69vh"}}>
+          <form onSubmit={this.handleSubmit}>
+            <DateRangePicker
+              className={HoursStyles.CalendarDay__selected}
+              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+              startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+              endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+              endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+              onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+              isOutsideRange = {() => false}
+            />
+            <br/>
+            <br/>
+            <FlatButton type="submit" backgroundColor={orange300}>Filter</FlatButton>
+          </form>
+          <br/>
+          <br/>
+          { this.renderRows() }
+        </div>
+        ))}
           <br/>
           <Footer/>
         </div>
