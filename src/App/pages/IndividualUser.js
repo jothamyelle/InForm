@@ -15,7 +15,7 @@ class IndividualUser extends Component {
           <Link to={`/users/${user.id}`}>
             <ImageAvatars image_url={user.image_url}/>
           </Link>
-          <Typography variant="Subheading" gutterBottom align="center">
+          <Typography variant="Subheading" style={{fontSize:25}} gutterBottom align="center">
             {user.first_name} {user.last_name}
           </Typography>
         </figure>

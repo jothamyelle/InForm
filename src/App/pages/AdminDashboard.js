@@ -93,8 +93,8 @@ class AdminDashboard extends Component {
               {this.state.todaysForms.reverse().map((form) => {
                 return(
                   <TableRow key={form.formId}>
-                    <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
-                    <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.formId}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
+                    <TableRowColumn style={{fontSize:25}}>{form.type}</TableRowColumn>
+                    <TableRowColumn style={{fontSize:25}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.formId}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
                   </TableRow>
                 )})
                 }
@@ -113,7 +113,7 @@ class AdminDashboard extends Component {
               {this.state.uniqueJobs.map((job) => {
                 return(
                   <TableRow displayRowCheckbox={false} key={job.job_id}>
-                    <TableRowColumn style={{fontSize:17}}>{job.name}</TableRowColumn>
+                    <TableRowColumn style={{fontSize:25}}>{job.name}</TableRowColumn>
                   </TableRow>
                 )
               })}

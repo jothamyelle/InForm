@@ -119,9 +119,9 @@ class Jobs extends Component {
                     {list.map((item) => {
                       return ((item.active) && (
                         <TableRow>
-                          <TableRowColumn style={{fontSize:17}}>{item.name}</TableRowColumn>
-                          <TableRowColumn style={{fontSize:17}}>{item.address}</TableRowColumn>
-                          <TableRowColumn style={{fontSize:17}}>{item.job_number}</TableRowColumn>
+                          <TableRowColumn style={{fontSize:25}}>{item.name}</TableRowColumn>
+                          <TableRowColumn style={{fontSize:25}}>{item.address}</TableRowColumn>
+                          <TableRowColumn style={{fontSize:25}}>{item.job_number}</TableRowColumn>
                         </TableRow>
                       ))
                       })}
@@ -143,9 +143,9 @@ class Jobs extends Component {
                         {list.map((item) => {
                           return ((!item.active) && (
                             <TableRow key={item.id}>
-                              <TableRowColumn style={{fontSize:17}}>{item.name}</TableRowColumn>
-                              <TableRowColumn style={{fontSize:17}}>{item.address}</TableRowColumn>
-                              <TableRowColumn style={{fontSize:17}}>{item.job_number}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:25}}>{item.name}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:25}}>{item.address}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:25}}>{item.job_number}</TableRowColumn>
                             </TableRow>
                           ))
                         })}
