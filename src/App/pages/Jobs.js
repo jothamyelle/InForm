@@ -111,19 +111,17 @@ class Jobs extends Component {
                 {/* <h2>Active Jobs ({this.getActiveJobCount()})</h2> */}
                 <Table selectable={false} className={JobsStyles.formsTable}>
                   <TableHeader displaySelectAll={false}>
-                    <TableRow displayRowCheckbox={false}>
-                      <TableHeaderColumn>Name</TableHeaderColumn>
-                      <TableHeaderColumn>Address</TableHeaderColumn>
-                      <TableHeaderColumn>Job Number</TableHeaderColumn>
-                    </TableRow>
+                    <TableHeaderColumn style={{fontSize:30}}>Name</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>Address</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>Job Number</TableHeaderColumn>
                   </TableHeader>
                   <TableBody displayRowCheckbox={false}>
                     {list.map((item) => {
                       return ((item.active) && (
                         <TableRow>
-                          <TableRowColumn>{item.name}</TableRowColumn>
-                          <TableRowColumn>{item.address}</TableRowColumn>
-                          <TableRowColumn>{item.job_number}</TableRowColumn>
+                          <TableRowColumn style={{fontSize:17}}>{item.name}</TableRowColumn>
+                          <TableRowColumn style={{fontSize:17}}>{item.address}</TableRowColumn>
+                          <TableRowColumn style={{fontSize:17}}>{item.job_number}</TableRowColumn>
                         </TableRow>
                       ))
                       })}
@@ -134,23 +132,20 @@ class Jobs extends Component {
                   <Typography variant="display2" gutterBottom align="center">
                     Inactive Jobs ({this.getInactiveJobCount()})
                   </Typography>
-                  {/* <h2>Inactive Jobs ({this.getInactiveJobCount()})</h2> */}
                   {this.getInactiveJobCount() > 0 && (
                   <Table>
-                    <TableHeader displaySelectAll={false}>
-                      <TableRow>
-                        <TableHeaderColumn>Name</TableHeaderColumn>
-                        <TableHeaderColumn>Address</TableHeaderColumn>
-                        <TableHeaderColumn>Job Number</TableHeaderColumn>
-                      </TableRow>
+                    <TableHeader displaySelectAll={false} className={JobsStyles.th}>
+                      <TableHeaderColumn style={{fontSize:30}}>Name</TableHeaderColumn>
+                      <TableHeaderColumn style={{fontSize:30}}>Address</TableHeaderColumn>
+                      <TableHeaderColumn style={{fontSize:30}}>Job Number</TableHeaderColumn>
                     </TableHeader>
                       <TableBody displayRowCheckbox={false}>
                         {list.map((item) => {
                           return ((!item.active) && (
                             <TableRow key={item.id}>
-                              <TableRowColumn>{item.name}</TableRowColumn>
-                              <TableRowColumn>{item.address}</TableRowColumn>
-                              <TableRowColumn>{item.job_number}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:17}}>{item.name}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:17}}>{item.address}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:17}}>{item.job_number}</TableRowColumn>
                             </TableRow>
                           ))
                         })}

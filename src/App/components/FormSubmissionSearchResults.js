@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormSubmissionsStyles from '../pages/FormSubmissions/FormSubmissionsStyles.css'
 import Typography from '@material-ui/core/Typography';
+import { orange300 } from 'material-ui/styles/colors';
 
 import {
   Table,
@@ -17,11 +18,11 @@ class FormSubmissionSearchResults extends Component {
   render() {
     const options = this.props.results.map(item => (
           <TableRow key={item.submitted_forms_id} displaySelectAll={false}>
-            <TableRowColumn>{item.type}</TableRowColumn>
-            <TableRowColumn>{item.job_name}</TableRowColumn>
-            <TableRowColumn>{item.first_name} {item.last_name}</TableRowColumn>
-            <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
-            <TableRowColumn><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
+            <TableRowColumn style={{fontSize:17}}>{item.type}</TableRowColumn>
+            <TableRowColumn style={{fontSize:17}}>{item.job_name}</TableRowColumn>
+            <TableRowColumn style={{fontSize:17}}>{item.first_name} {item.last_name}</TableRowColumn>
+            <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+            <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
           </TableRow>
     ))
 
@@ -32,13 +33,11 @@ class FormSubmissionSearchResults extends Component {
         </Typography>
         <Table selectable={false} className={FormSubmissionsStyles.formsTable}>
           <TableHeader displaySelectAll={false}>
-            <TableRow displaySelectAll={false}>
-              <TableHeaderColumn>Form Name</TableHeaderColumn>
-              <TableHeaderColumn>Job</TableHeaderColumn>
-              <TableHeaderColumn>Employee</TableHeaderColumn>
-              <TableHeaderColumn>View</TableHeaderColumn>
-              <TableHeaderColumn>Delete</TableHeaderColumn>
-            </TableRow>
+            <TableHeaderColumn style={{fontSize:30}}>Form Name</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>Job</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>Employee</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>View</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>Delete</TableHeaderColumn>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {options}

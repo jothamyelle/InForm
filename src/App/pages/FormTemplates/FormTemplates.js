@@ -128,20 +128,18 @@ class FormTemplate extends Component {
                   <div className="form-container">
                     <Table selectable={false} className={JobsStyles.formsTable}>
                       <TableHeader displaySelectAll={false}>
-                        <TableRow displayRowCheckbox={false}>
-                          <TableHeaderColumn>Form name</TableHeaderColumn>
-                          <TableHeaderColumn>Fill Out</TableHeaderColumn>
-                          <TableHeaderColumn>Delete Template</TableHeaderColumn>
-                        </TableRow>
+                        <TableHeaderColumn style={{fontSize:30}}>Form name</TableHeaderColumn>
+                        <TableHeaderColumn style={{fontSize:30}}>Fill Out</TableHeaderColumn>
+                        <TableHeaderColumn style={{fontSize:30}}>Delete Template</TableHeaderColumn>
                       </TableHeader>
-                        <TableBody displayRowCheckbox={false}>
+                      <TableBody displayRowCheckbox={false}>
                         {this.state.templates.reverse().map((template) => {
                           if(template.form_category_id === category.id)
                           return (
                             <TableRow  key={template.id}>
-                              <TableRowColumn>{template.type}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
+                              <TableRowColumn style={{fontSize:17}}>{template.type}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
                             </TableRow>
                           )
                         })}
