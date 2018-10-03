@@ -6,12 +6,13 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import ListItem from 'material-ui/List/ListItem';
 import { Link } from 'react-router-dom'
-import orange from '@material-ui/core/colors/orange';
 import { orange300 } from 'material-ui/styles/colors';
 import DrawerStyles from './DrawerStyles.css'
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-
+import orange from '@material-ui/core/colors/orange';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { fullWhite } from 'material-ui/styles/colors';
 
 const styles = theme => ({
   list: {
@@ -29,6 +30,14 @@ const styles = theme => ({
     backgroundColor: orange300
   },
 });
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: fullWhite,
+  }
+}
+})
 
 class TemporaryDrawer extends React.Component {
   state = {
@@ -72,9 +81,11 @@ class TemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <IconButton onClick={this.toggleDrawer('left', true)}>
-          <MenuIcon className={DrawerStyles.TemporaryDrawerbutton4} className={classes.button} >Menu</MenuIcon>
-        </IconButton>
+        <MuiThemeProvider theme={theme}>        
+          <IconButton color="primary" onClick={this.toggleDrawer('left', true)}>
+            <MenuIcon className={DrawerStyles.TemporaryDrawerbutton4} className={classes.button} >Menu</MenuIcon>
+          </IconButton>
+        </MuiThemeProvider>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}

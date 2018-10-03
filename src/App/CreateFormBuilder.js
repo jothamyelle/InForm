@@ -40,16 +40,32 @@ export default formBuilderObject = {
   }
 
   body {
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
-    padding:20px;
+    padding:0px;
+  }
+  
+  .headerp {
+    font-family: krub;
+    margin-top: 10px;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .header {
+    padding: 15px 5px;
   }
 
   #options-h3 {
     margin-top: 10px;
   }
 
+  .form-title {
+    text-align: center;
+  }
+
   .formBuildArea {
+    margin:0px 40px;
     padding:20px;
     display: flex;
     justify-content: space-around;
@@ -93,6 +109,7 @@ export default formBuilderObject = {
     color: black;
     padding-left: 11px;
     padding-right: 11px;
+    margin-left:40px
   }
 
   .staged {
