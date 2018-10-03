@@ -13,6 +13,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
+import { orange300 } from 'material-ui/styles/colors';
 
 class UserProfile extends Component {
   constructor(props){
@@ -70,19 +71,17 @@ class UserProfile extends Component {
           </Typography>
           <Table>
 					<TableHeader displaySelectAll={false}>
-            <TableRow displayRowCheckbox={false}>
-              <TableHeaderColumn>Email</TableHeaderColumn>
-              <TableHeaderColumn>Phone</TableHeaderColumn>
-              <TableHeaderColumn>Address</TableHeaderColumn>
-              <TableHeaderColumn>Role</TableHeaderColumn>
-            </TableRow>
+            <TableHeaderColumn style={{fontSize:30}}>Email</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>Phone</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>Address</TableHeaderColumn>
+            <TableHeaderColumn style={{fontSize:30}}>Role</TableHeaderColumn>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
 					<TableRow displayRowCheckbox={false}>
-						<TableRowColumn>{email}</TableRowColumn>
-						<TableRowColumn>{phone_number}</TableRowColumn>
-						<TableRowColumn>{address}</TableRowColumn>
-						<TableRowColumn>{(this.state.roles.find(id => role_id)).role}</TableRowColumn>
+						<TableRowColumn style={{fontSize:17}}>{email}</TableRowColumn>
+						<TableRowColumn style={{fontSize:17}}>{phone_number}</TableRowColumn>
+						<TableRowColumn style={{fontSize:17}}>{address}</TableRowColumn>
+						<TableRowColumn style={{fontSize:17}}>{(this.state.roles.find(id => role_id)).role}</TableRowColumn>
 					</TableRow>
           </TableBody>
 				</Table>
@@ -103,21 +102,19 @@ class UserProfile extends Component {
               </Typography>
 								<Table>
 									<TableHeader displaySelectAll={false}>
-										<TableRow displayRowCheckbox={false}>
-											<TableHeaderColumn>Form Type</TableHeaderColumn>
-											<TableHeaderColumn>Date Submitted</TableHeaderColumn>
-											<TableHeaderColumn>View</TableHeaderColumn>
-										</TableRow>
+                    <TableHeaderColumn style={{fontSize:30}}>Form Type</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>Date Submitted</TableHeaderColumn>
+                    <TableHeaderColumn style={{fontSize:30}}>View</TableHeaderColumn>
 									</TableHeader>
                   <TableBody displayRowCheckbox={false}>
                     {this.state.forms.map((form) => {
                       if(form.name === category){
                         return (
-                            <TableRow key={form.id} displayRowCheckbox={false}>
-                              <TableRowColumn>{form.type}</TableRowColumn>
-                              <TableRowColumn>{(form.date_created).slice(0, 10)}</TableRowColumn>
-                              <TableRowColumn><FlatButton backgroundColor="orange">View</FlatButton></TableRowColumn>
-                            </TableRow>
+                          <TableRow key={form.id} displayRowCheckbox={false}>
+                            <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
+                            <TableRowColumn style={{fontSize:17}}>{(form.date_created).slice(0, 10)}</TableRowColumn>
+                            <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+                          </TableRow>
                         )
                       }
                     })}

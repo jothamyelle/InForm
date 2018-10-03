@@ -18,6 +18,7 @@ import SimpleGrow from '../components/AdminDashboardGrow'
 import Header from './Header/Header';
 import { Link } from 'react-router-dom';
 
+
 import Grow from '@material-ui/core/Grow';
 
 
@@ -85,17 +86,15 @@ class AdminDashboard extends Component {
         <div style={{width:'75%', margin: 'auto'}} className="form-container">
           <Table selectable={false} style={{textAlign: 'left'}}>
             <TableHeader displaySelectAll={false}>
-              <TableRow displayRowCheckbox={false}>
-                <TableHeaderColumn>Form name</TableHeaderColumn>
-                <TableHeaderColumn>View Form</TableHeaderColumn>
-              </TableRow>
+              <TableHeaderColumn style={{fontSize:30}}>Form name</TableHeaderColumn>
+              <TableHeaderColumn style={{fontSize:30}}>View Form</TableHeaderColumn>
             </TableHeader>
             <TableBody displayRowCheckbox={false}>
               {this.state.todaysForms.map((form) => {
                 return(
                   <TableRow key={form.formId}>
-                    <TableRowColumn>{form.type}</TableRowColumn>
-                    <TableRowColumn><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.formId}`}><FlatButton backgroundColor="orange">View</FlatButton></Link></TableRowColumn>
+                    <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
+                    <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.formId}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
                   </TableRow>
                 )})
                 }
@@ -108,15 +107,13 @@ class AdminDashboard extends Component {
         <div style={{width:'75%', margin: 'auto'}} className="form-container">
           <Table style={{textAlign: 'left'}}>
             <TableHeader displaySelectAll={false}>
-              <TableRow displayRowCheckbox={false}>
-                <TableHeaderColumn>Job Name</TableHeaderColumn>
-              </TableRow>
+              <TableHeaderColumn style={{fontSize:30}}>Job Name</TableHeaderColumn>
             </TableHeader>
             <TableBody displayRowCheckbox={false} >
               {this.state.uniqueJobs.map((job) => {
                 return(
                   <TableRow displayRowCheckbox={false} key={job.job_id}>
-                    <TableRowColumn>{job.name}</TableRowColumn>
+                    <TableRowColumn style={{fontSize:17}}>{job.name}</TableRowColumn>
                   </TableRow>
                 )
               })}
