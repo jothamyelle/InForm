@@ -78,7 +78,7 @@ class SingleFormTemplate extends Component {
       switch(control.type) {
         case 'header':
         return(
-          <Typography variant="display2" gutterBottom align="center" style={{margin: 20}}>    
+          <Typography variant="display1" gutterBottom align="center" style={{margin: 20}}>    
             {control.label}
             <input type="hidden" name={control.type} value={control.label} />
           </Typography>
@@ -320,7 +320,7 @@ class SingleFormTemplate extends Component {
           <br/>
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <Paper elevation={3} style={{width: 800, padding: 25}} className={JobsStyles.searchBox}>
-              <Typography variant="display4" gutterBottom align="center">
+              <Typography variant="display2" gutterBottom align="center">
                 {this.state.formName}
               </Typography>
               <MuiThemeProvider theme={theme}>

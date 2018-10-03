@@ -37,8 +37,6 @@ class SingleFormSubmission extends Component {
         .then(formName => {
           this.setState({
             formName: formName.data[0].type
-          }, () => {
-            // rootDiv.innerHTML = this.renderFormHTML();
           })
         })
       })
