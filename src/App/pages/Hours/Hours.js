@@ -89,14 +89,10 @@ class Hours extends Component {
         <div>
           <div className={JobsStyles.searchBox}>
             <HoursNameSearch handleSearchQuery={this.handleSearchQuery} data={uniqueUsersArray}/>
-            <br/>
-            <br/>
           </div>
           {!currentQuery && (
             (uniqueUsersArray.length > 0) ? (
               <div>
-                <br/>
-                <br/>
                 <Table selectable={false} className={JobsStyles.formsTable}>
                   <TableHeader displaySelectAll={false}>
                     <TableHeaderColumn style={{fontSize:30}}>Employee Name</TableHeaderColumn>
@@ -110,7 +106,7 @@ class Hours extends Component {
                         <TableRowColumn style={{fontSize:17}}>{item.first_name} {item.last_name}</TableRowColumn>
                         <TableRowColumn style={{fontSize:17}}>{Math.floor((item.minutes_worked)/60)}</TableRowColumn>
                         <TableRowColumn style={{fontSize:17}}>{item.shift_count}</TableRowColumn>
-                        <TableRowColumn style={{fontSize:17}}>{<Link to={`/users/${item.user_id}`} target="_blank"><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:17}}>{<Link to={`/users/${item.user_id}`}><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
                       </TableRow>
                     )}
                   </TableBody>

@@ -38,7 +38,7 @@ class HoursNameSearchResults extends Component {
                     <TableRowColumn style={{fontSize:17}}>{item.first_name} {item.last_name}</TableRowColumn>
                     <TableRowColumn style={{fontSize:17}}>{Math.floor((item.minutes_worked)/60)}</TableRowColumn>
                     <TableRowColumn style={{fontSize:17}}>{item.shift_count}</TableRowColumn>
-                    <TableRowColumn style={{fontSize:17}}>{<Link to={`/users/${item.user_id}`} target="_blank"><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
+                    <TableRowColumn style={{fontSize:17}}>{<Link to={`/users/${item.user_id}`}><FlatButton backgroundColor={orange300}>Go</FlatButton></Link>}</TableRowColumn>
                   </TableRow>
                 )}
               </TableBody>

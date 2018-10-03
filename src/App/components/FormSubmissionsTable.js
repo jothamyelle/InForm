@@ -70,7 +70,7 @@ class FormSubmissionsTable extends Component {
                 <TableRow key={form.submitted_forms_id}>
                   <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
                   <TableRowColumn style={{fontSize:17}}>{form.job_name}</TableRowColumn>
-                  <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`} target="_blank">{form.first_name} {form.last_name}</Link></TableRowColumn>
+                  <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`}>{form.first_name} {form.last_name}</Link></TableRowColumn>
                   <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.submitted_forms_id}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
                   <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
                 </TableRow>
