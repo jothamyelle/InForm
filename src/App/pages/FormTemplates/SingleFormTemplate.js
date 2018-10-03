@@ -93,7 +93,7 @@ class SingleFormTemplate extends Component {
         case 'checkbox':
         return(
           <div>
-            <FormControl component="fieldset" style={{width: 400, margin: 20 }}>
+            <FormControl required={control.required} component="fieldset" style={{width: 400, margin: 20 }}>
               <FormLabel component="legend" color={orange300}>{control.label} </FormLabel>
               <FormGroup>
                 
@@ -114,11 +114,11 @@ class SingleFormTemplate extends Component {
         case 'radio':
         return(
           <div>
-            <FormControl component="fieldset" style={{width: 400, margin: 20 }}>
+            <FormControl required={control.required} component="fieldset" style={{width: 400, margin: 20 }}>
               <FormLabel component="legend">{control.label}</FormLabel>
               <RadioGroup
                 name={control.label}
-                required={control.required} 
+                 
                 value={this.state.radioOptions}
                 onChange={this.radioChange}
               >
@@ -135,7 +135,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             
-              <FormControl style={{width: 400, margin: 20 }}>
+              <FormControl required={control.required} style={{width: 400, margin: 20 }}>
                 <InputLabel>{control.label}</InputLabel>
                 <Select color="primary"
                   inputProps={{
@@ -161,7 +161,7 @@ class SingleFormTemplate extends Component {
         return(
           <div>
             
-            <FormControl color="primary" style={{width: 400, margin: 20 }}>
+            <FormControl required={control.required} color="primary" style={{width: 400, margin: 20 }}>
               <InputLabel>{control.label}</InputLabel>
               <Select
                 color="primary"
