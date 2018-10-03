@@ -68,11 +68,11 @@ class FormSubmissionsTable extends Component {
             {thisWeeksForms && thisWeeksForms.reverse().map((form) => {
               return ( new Date(form.submitted_forms_date_created).toISOString().slice(0, 10) == new Date(item).toISOString().slice(0, 10) && (
                 <TableRow key={form.submitted_forms_id}>
-                  <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
-                  <TableRowColumn style={{fontSize:17}}>{form.job_name}</TableRowColumn>
-                  <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`}>{form.first_name} {form.last_name}</Link></TableRowColumn>
-                  <TableRowColumn style={{fontSize:17}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.submitted_forms_id}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
-                  <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
+                  <TableRowColumn style={{fontSize:25}}>{form.type}</TableRowColumn>
+                  <TableRowColumn style={{fontSize:25}}>{form.job_name}</TableRowColumn>
+                  <TableRowColumn style={{fontSize:25}}><Link style={{textDecoration: 'none'}} to={`/users/${form.user_id}`}>{form.first_name} {form.last_name}</Link></TableRowColumn>
+                  <TableRowColumn style={{fontSize:25}}><Link style={{textDecoration: 'none'}} to={`/form_submissions/${form.submitted_forms_id}`}><FlatButton backgroundColor={orange300}>View</FlatButton></Link></TableRowColumn>
+                  <TableRowColumn style={{fontSize:25}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
                 </TableRow>
                 )
               )

@@ -19,11 +19,11 @@ class FormSubmissionSearchResults extends Component {
   render() {
     const options = this.props.results.map(item => (
       <TableRow key={item.submitted_forms_id} displaySelectAll={false}>
-        <TableRowColumn style={{fontSize:17}}>{item.type}</TableRowColumn>
-        <TableRowColumn style={{fontSize:17}}>{item.job_name}</TableRowColumn>
-        <TableRowColumn style={{fontSize:17}}>{item.first_name} {item.last_name}</TableRowColumn>
-        <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
-        <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
+        <TableRowColumn style={{fontSize:25}}>{item.type}</TableRowColumn>
+        <TableRowColumn style={{fontSize:25}}>{item.job_name}</TableRowColumn>
+        <TableRowColumn style={{fontSize:25}}>{item.first_name} {item.last_name}</TableRowColumn>
+        <TableRowColumn style={{fontSize:25}}><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+        <TableRowColumn style={{fontSize:25}}><FlatButton backgroundColor="lightgrey">Delete</FlatButton></TableRowColumn>
       </TableRow>
     ))
 

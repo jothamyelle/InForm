@@ -78,10 +78,10 @@ class UserProfile extends Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
 					<TableRow displayRowCheckbox={false}>
-						<TableRowColumn style={{fontSize:17}}>{email}</TableRowColumn>
-						<TableRowColumn style={{fontSize:17}}>{phone_number}</TableRowColumn>
-						<TableRowColumn style={{fontSize:17}}>{address}</TableRowColumn>
-						<TableRowColumn style={{fontSize:17}}>{(this.state.roles.find(id => role_id)).role}</TableRowColumn>
+						<TableRowColumn style={{fontSize:25}}>{email}</TableRowColumn>
+						<TableRowColumn style={{fontSize:25}}>{phone_number}</TableRowColumn>
+						<TableRowColumn style={{fontSize:25}}>{address}</TableRowColumn>
+						<TableRowColumn style={{fontSize:25}}>{(this.state.roles.find(id => role_id)).role}</TableRowColumn>
 					</TableRow>
           </TableBody>
 				</Table>
@@ -111,9 +111,9 @@ class UserProfile extends Component {
                       if(form.name === category){
                         return (
                           <TableRow key={form.id} displayRowCheckbox={false}>
-                            <TableRowColumn style={{fontSize:17}}>{form.type}</TableRowColumn>
-                            <TableRowColumn style={{fontSize:17}}>{(form.date_created).slice(0, 10)}</TableRowColumn>
-                            <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
+                            <TableRowColumn style={{fontSize:25}}>{form.type}</TableRowColumn>
+                            <TableRowColumn style={{fontSize:25}}>{(form.date_created).slice(0, 10)}</TableRowColumn>
+                            <TableRowColumn style={{fontSize:25}}><FlatButton backgroundColor={orange300}>View</FlatButton></TableRowColumn>
                           </TableRow>
                         )
                       }

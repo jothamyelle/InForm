@@ -159,9 +159,9 @@ class FormTemplate extends Component {
                           if(template.form_category_id === category.id)
                           return (
                             <TableRow  key={template.id}>
-                              <TableRowColumn style={{fontSize:17}}>{template.type}</TableRowColumn>
-                              <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
-                              <TableRowColumn style={{fontSize:17}}><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
+                              <TableRowColumn style={{fontSize:25}}>{template.type}</TableRowColumn>
+                              <TableRowColumn style={{fontSize:25}}><FlatButton backgroundColor={orange300} onClick={() => this.handleFillOutClick(template.id)}>Fill Out</FlatButton></TableRowColumn>
+                              <TableRowColumn style={{fontSize:25}}><FlatButton backgroundColor="lightgrey" onClick={() => this.handleClickConfirmation(template.id)}>Delete</FlatButton></TableRowColumn>
                             </TableRow>
                           )
                         })}

@@ -32,9 +32,9 @@ class JobSearchResults extends Component {
                   {this.props.jobs.map((item) => {
                     return (
                       <TableRow>
-                        <TableRowColumn style={{fontSize:17}}>{item.name}</TableRowColumn>
-                        <TableRowColumn style={{fontSize:17}}>{item.address}</TableRowColumn>
-                        <TableRowColumn style={{fontSize:17}}>{item.job_number}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:25}}>{item.name}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:25}}>{item.address}</TableRowColumn>
+                        <TableRowColumn style={{fontSize:25}}>{item.job_number}</TableRowColumn>
                       </TableRow>
                     );
                   })}
