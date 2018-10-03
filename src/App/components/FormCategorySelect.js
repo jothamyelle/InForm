@@ -55,12 +55,12 @@ class SimpleSelect extends React.Component {
     return (
       <form className={classes.root} autoComplete="off">
       
-        <FormControl className={classes.formControl}>
+        <FormControl required={true} className={classes.formControl}>
         <MuiThemeProvider theme={theme}>        
           <InputLabel>Category</InputLabel>
           <Select
             color="primary"
-            required
+            required={true}
             value={this.state.chosenFormCategory}
             onChange={this.handleChange}
           >
