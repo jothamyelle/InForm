@@ -425,7 +425,6 @@ export default formBuilderObject = {
       default:
         options = createOption(currentElement.id, currentElement.dataset.type); 
     }
-
     listOfDisplayOptions[currentElement.id] = options;
   }
 
@@ -479,7 +478,7 @@ export default formBuilderObject = {
       controlOptionsArray.forEach((option, index) => {
         multiOptionsDiv.innerHTML += `
           <p>
-          <input type="${inputType}" class="checkboxOption" value="${controlOptionsArray[index]}"/>
+          <input type="${inputType}" value="${controlOptionsArray[index]}"/>
           <label>${controlOptionsArray[index]}<label>
           </p>
           `;
@@ -499,20 +498,15 @@ export default formBuilderObject = {
       return;
     }
     addControlButton.addEventListener('click', event => {
-      console.log("event:", event);
       let className = event.srcElement.dataset.classtype;
       let controlInputs = document.getElementsByClassName(className);
       let controlInput = controlInputs[controlInputs.length - 1]
       let newRow = controlInput.cloneNode();
       controlInput.insertAdjacentElement('afterend', newRow);
       newRow.value = '';
-      listOfDisplayOptions[elementId].controlOptions[controlInputs.length - 1] = newRow.value;
       let elementObject = document.getElementById(elementId);
       let index = controlInputs.length - 1;
       newRow.addEventListener('keyup', event => {
-        updateControlOption(elementObject, newRow, index);
-      });
-      newRow.addEventListener('change', event => {
         updateControlOption(elementObject, newRow, index);
         updateStagingAreaHTML(elementObject, className);
       });
@@ -705,8 +699,6 @@ export default formBuilderObject = {
       Array.from(document.getElementsByClassName(optionClass)).forEach(function(option, index) {
         option.addEventListener('keyup', event => {
           updateControlOption(elementObject, option, index);
-        });
-        option.addEventListener('change', event => {
           updateStagingAreaHTML(elementObject, optionClass);
         });
       });
@@ -761,7 +753,6 @@ export default formBuilderObject = {
     Array.from(document.getElementsByClassName(className)).forEach(function (element) {
       element.addEventListener('change', function() {
         listOfDisplayOptions[elementObject.id][prop] = element['value'];
-        const control = document.getElementById(elementObject.id);
       })
     })
   }
@@ -869,7 +860,6 @@ export default formBuilderObject = {
           listOfDisplayOptions[clone.id].controlOptions.push(option);
         });
 
-      // displayAppropriateOptions(clone);
       controlClickDisplayOptions(clone);
     })
   }
@@ -886,17 +876,6 @@ export default formBuilderObject = {
       addAllEventListeners(beginnerItem);
     })
   }
-
-  // Save Button
-
-  // function addSaveButtonListener() {
-  //   const saveButton = document.getElementById('saveButton');
-  //   const savedFormTemplate = [];
-  //   saveButton.addEventListener('click', function() { 
-  //     console.log(JSON.stringify(listOfDisplayOptions));
-  //     return JSON.stringify(savedFormTemplate);
-  //   })
-  // }
 
   // Delete Buttons
   function addDeleteButtonListener(){
