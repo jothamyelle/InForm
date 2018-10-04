@@ -162,7 +162,7 @@ class FormBuilder extends Component {
       return (
         <div>
           <Header />
-          <Typography style={{marginTop:'10px'}} variant="display2" align="Center">
+          <Typography style={{marginTop:'115px'}} variant="display2" align="Center">
             Form Builder
           </Typography>
           <div>
