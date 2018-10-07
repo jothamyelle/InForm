@@ -7,7 +7,7 @@ Upon logging in, managers are directed to their dashboard - providing a high lev
 
 Additionally they can view and search the employee database, keeping up to date with contact information, form submissions and hours worked during their selected calendar period.
 
-Each page is also features a global search bar to enhance the user experience and provide relevant information as quickly as possible.
+Each page also features a global search bar to enhance the user experience and provide relevant information as quickly as possible.
 
 # Screenshots
 Dashboard
