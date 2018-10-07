@@ -11,17 +11,17 @@ Each page is also features a global search bar to enhance the user experience an
 
 # Screenshots
 Dashboard
-![Dashboard](https://github.com/jothamyelle/InForm/blob/readme/docs/Dashboard.png?raw=true)
+![Dashboard](https://github.com/jothamyelle/InForm/blob/readme/docs/dashboard-cropped.png?raw=true)
 Form Builder
-![Form Builder](https://github.com/jothamyelle/InForm/blob/readme/docs/Form_Builder_Info.png?raw=true)
+![Form Builder](https://github.com/jothamyelle/InForm/blob/readme/docs/form-builder-info.png?raw=true)
 Filling out a form
-![Form](https://github.com/jothamyelle/InForm/blob/readme/docs/Form.png?raw=true)
+![Form](https://github.com/jothamyelle/InForm/blob/readme/docs/form.png?raw=true)
 Staff
-![Staff](https://github.com/jothamyelle/InForm/blob/readme/docs/Staff.png?raw=true)
+![Staff](https://github.com/jothamyelle/InForm/blob/readme/docs/staff.png?raw=true)
 User profile
-![User Profile](https://github.com/jothamyelle/InForm/blob/readme/docs/Individual%20Employee.png?raw=true)
-Submitted forms
-![Submissions](https://github.com/jothamyelle/InForm/blob/readme/docs/Submitted%20Forms.png?raw=true)
+![User Profile](https://github.com/jothamyelle/InForm/blob/readme/docs/individual-employee.png?raw=true)
+Form templates
+![Templates](https://github.com/jothamyelle/InForm/blob/readme/docs/form-templates.png?raw=true)
 
 # Getting Started
 1. Install all dependencies
